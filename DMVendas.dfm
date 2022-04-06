@@ -4,8 +4,12 @@ object DM_Vendas: TDM_Vendas
   Width = 1204
   object FDQuerySaida_Venda: TFDQuery
     Connection = DM_Dados.DADOS
+    UpdateOptions.AssignedValues = [uvUpdateMode, uvFetchGeneratorsPoint]
+    UpdateOptions.UpdateMode = upWhereAll
+    UpdateOptions.FetchGeneratorsPoint = gpNone
     SQL.Strings = (
-      'select * from saida_Venda')
+      'select * from saida_Venda'
+      'order by codigo')
     Left = 40
     Top = 64
     object FDQuerySaida_VendaCODIGO: TIntegerField
