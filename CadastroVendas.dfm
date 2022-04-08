@@ -277,7 +277,6 @@ object frmCadastroVendas: TfrmCadastroVendas
           Width = 55
           Height = 13
           Caption = 'DESCONTO'
-          FocusControl = DBE_Desconto
         end
         object Label7: TLabel
           Left = 492
@@ -333,6 +332,7 @@ object frmCadastroVendas: TfrmCadastroVendas
           Height = 21
           DataField = 'DATAVENDA'
           DataSource = DM_Vendas.DT_Saida_Venda
+          ReadOnly = True
           TabOrder = 4
         end
         object DBLookupComboBox2: TDBLookupComboBox
@@ -449,15 +449,6 @@ object frmCadastroVendas: TfrmCadastroVendas
           TabOrder = 15
           OnExit = DBC_DescontoExit
         end
-        object DBE_Desconto: TDBEdit
-          Left = 551
-          Top = 76
-          Width = 64
-          Height = 21
-          DataField = 'DESCONTO'
-          DataSource = DM_Vendas.DT_Saida_Venda
-          TabOrder = 16
-        end
         object DBEdit6: TDBEdit
           Left = 551
           Top = 103
@@ -465,7 +456,7 @@ object frmCadastroVendas: TfrmCadastroVendas
           Height = 21
           DataField = 'FRETE'
           DataSource = DM_Vendas.DT_Saida_Venda
-          TabOrder = 17
+          TabOrder = 16
         end
         object DBComboBox1: TDBComboBox
           Left = 696
@@ -476,6 +467,15 @@ object frmCadastroVendas: TfrmCadastroVendas
           Items.Strings = (
             'SASA'
             'SAFDASFAS')
+          TabOrder = 17
+        end
+        object DBE_Desconto: TDBEdit
+          Left = 553
+          Top = 76
+          Width = 121
+          Height = 21
+          DataField = 'DESCONTO'
+          DataSource = DM_Vendas.DT_Saida_Venda
           TabOrder = 18
         end
       end

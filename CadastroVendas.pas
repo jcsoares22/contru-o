@@ -55,11 +55,11 @@ type
     btnGerarLancamento: TButton;
     DBC_Desconto: TDBComboBox;
     Label14: TLabel;
-    DBE_Desconto: TDBEdit;
     Label7: TLabel;
     DBEdit6: TDBEdit;
     DBComboBox1: TDBComboBox;
     DBGrid_Venda: TDBGrid;
+    DBE_Desconto: TDBEdit;
     procedure DBGridVendasExit(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure btnNovoClick(Sender: TObject);
@@ -349,22 +349,35 @@ begin
     // combobox de deconto por percento ou real
     0:
       begin
-        // R$
-        DM_Vendas.FDQuerySaida_VendaDESCONTO.Currency := true;
+      DM_Vendas.FDQuerySaida_VendaDESCONTO.Clear;
+        { // R$
+          DM_Vendas.FDQuerySaida_VendaDESCONTO.Clear;
+          DM_Vendas.FDQuerySaida_VendaDESCONTO.Currency := true;
+          if DM_Vendas.FDQuerySaida_VendaDESCONTO.CurValue > 10 then
+          Begin
+          ShowMessage('Valor do desconto acima do permitido ');
+          DM_Vendas.FDQuerySaida_VendaDESCONTO.Clear;
+          End
+          else
+
+          frmCadastroVendas.DBE_Desconto.Text; }
+      end;
+    1: // %
+      begin
+        DM_Vendas.FDQuerySaida_VendaDESCONTO.Clear;
+        DM_Vendas.FDQuerySaida_VendaDESCONTO.Currency := false;
         if DM_Vendas.FDQuerySaida_VendaDESCONTO.CurValue > 10 then
         Begin
           ShowMessage('Valor do desconto acima do permitido ');
           DM_Vendas.FDQuerySaida_VendaDESCONTO.Clear;
         End
         else
-
           frmCadastroVendas.DBE_Desconto.Text;
-
       end;
-    1: // %
+    2: // %
       begin
+       // DM_Vendas.FDQuerySaida_VendaDESCONTO.Clear;
         DM_Vendas.FDQuerySaida_VendaDESCONTO.Currency := false;
-
         if DM_Vendas.FDQuerySaida_VendaDESCONTO.CurValue > 10 then
         Begin
           ShowMessage('Valor do desconto acima do permitido ');
