@@ -9,6 +9,7 @@ inherited frmCadastroProduto: TfrmCadastroProduto
   inherited Cadastro: TPageControl
     Width = 1127
     Height = 675
+    ActivePage = TabSheet2
     ExplicitWidth = 1127
     ExplicitHeight = 675
     inherited TabSheet1: TTabSheet

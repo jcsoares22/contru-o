@@ -436,7 +436,6 @@ object frmCadastroVendas: TfrmCadastroVendas
           TabOrder = 14
         end
         object DBC_Desconto: TDBComboBox
-          Tag = 1
           Left = 492
           Top = 76
           Width = 44
@@ -447,7 +446,6 @@ object frmCadastroVendas: TfrmCadastroVendas
             'R$'
             '%')
           TabOrder = 15
-          OnExit = DBC_DescontoExit
         end
         object DBEdit6: TDBEdit
           Left = 551
@@ -458,17 +456,6 @@ object frmCadastroVendas: TfrmCadastroVendas
           DataSource = DM_Vendas.DT_Saida_Venda
           TabOrder = 16
         end
-        object DBComboBox1: TDBComboBox
-          Left = 696
-          Top = 128
-          Width = 145
-          Height = 21
-          CharCase = ecUpperCase
-          Items.Strings = (
-            'SASA'
-            'SAFDASFAS')
-          TabOrder = 17
-        end
         object DBE_Desconto: TDBEdit
           Left = 553
           Top = 76
@@ -476,7 +463,9 @@ object frmCadastroVendas: TfrmCadastroVendas
           Height = 21
           DataField = 'DESCONTO'
           DataSource = DM_Vendas.DT_Saida_Venda
-          TabOrder = 18
+          TabOrder = 17
+          OnEnter = DBE_DescontoEnter
+          OnExit = DBE_DescontoExit
         end
       end
       object Panel2: TPanel
@@ -530,38 +519,42 @@ object frmCadastroVendas: TfrmCadastroVendas
         Columns = <
           item
             Expanded = False
+            FieldName = 'CODIGO'
+            Visible = True
+          end
+          item
+            Expanded = False
             FieldName = 'CODPRODUTO'
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'NOME_PRODUTO'
-            Width = 64
-            Visible = True
-          end
-          item
-            Expanded = False
-            FieldName = 'QTE_ESTOQUE'
-            ReadOnly = True
-            Width = 64
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'VALORPRODUTO'
-            Width = 64
-            Visible = True
-          end
-          item
-            Expanded = False
-            FieldName = 'QUANTIDADE'
-            Width = 64
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'VALORTOTAL'
-            Width = 64
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'QTE_ESTOQUE'
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'QUANTIDADE'
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'COD_VENDA'
             Visible = True
           end>
       end

@@ -48,7 +48,6 @@ begin
   Application.CreateForm(TfrmPrincipal, frmPrincipal);
   Application.CreateForm(TDM_Finaceiro, DM_Finaceiro);
   Application.CreateForm(TDM_Mov_Estoque, DM_Mov_Estoque);
-  Application.CreateForm(TfrmPreferencia, frmPreferencia);
   { usuarios := TfrmLogin.Create(nil);
     if usuarios.ShowModal = 1 then
     begin

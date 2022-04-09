@@ -34,12 +34,12 @@ type
     FDQuerySaidaProdutoQUANTIDADE: TIntegerField;
     FDQuerySaida_VendaDESCONTO: TFMTBCDField;
     FDQuerySaida_VendaTIPO_DESC: TStringField;
+    FDQuerySaidaProdutoCOD_VENDA: TIntegerField;
     procedure FDQuerySaidaProdutoAfterPost(DataSet: TDataSet);
     procedure FDQuerySaidaProdutoCODPRODUTOValidate(Sender: TField);
     procedure FDQuerySaidaProdutoQUANTIDADEValidate(Sender: TField);
     procedure FDQuerySaidaProdutoQUANTIDADESetText(Sender: TField;
       const Text: string);
-    procedure FDQuerySaidaProdutoQUANTIDADEChange(Sender: TField);
     procedure FDQuerySaidaProdutoAfterDelete(DataSet: TDataSet);
   private
     { Private declarations }
@@ -78,22 +78,8 @@ end;
 
 procedure TDM_Vendas.FDQuerySaidaProdutoCODPRODUTOValidate(Sender: TField);
 begin
-  DM_Vendas.FDQuerySaidaProdutoVALORPRODUTO :=
-    DM_Cadastro.FDQueryProdutoPRECO_VENDA;
-end;
-
-procedure TDM_Vendas.FDQuerySaidaProdutoQUANTIDADEChange(Sender: TField);
-begin
-  if FDQuerySaidaProdutoQUANTIDADE.Value < 1 then
-  begin
-    ShowMessage
-      ('Quantidade inferior ao permitido, sera adiconado a quantidade de 1 no produto o minimo permitido');
-    FDQuerySaidaProdutoQUANTIDADE.Value := 1;
-  end
-  else
-  FDQuerySaidaProdutoVALORTOTAL.Value := FDQuerySaidaProdutoVALORPRODUTO.Value *
-    FDQuerySaidaProdutoQUANTIDADE.Value;
-
+  {DM_Vendas.FDQuerySaidaProdutoVALORPRODUTO :=
+      DM_Cadastro.FDQueryProdutoPRECO_VENDA;}
 end;
 
 procedure TDM_Vendas.FDQuerySaidaProdutoQUANTIDADESetText(Sender: TField;
@@ -104,10 +90,7 @@ begin
 end;
 
 procedure TDM_Vendas.FDQuerySaidaProdutoQUANTIDADEValidate(Sender: TField);
-var
-  nun: Integer;
 begin
-  nun := 1;
   if FDQuerySaidaProdutoQUANTIDADE.Value < 1 then
   begin
     ShowMessage('Quantidade negativa, coloque um valor valido');

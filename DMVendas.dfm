@@ -41,6 +41,10 @@ object DM_Vendas: TDM_Vendas
     end
     object FDQuerySaida_VendaNOME: TStringField
       FieldName = 'NOME'
+      LookupDataSet = DM_Cadastro.FDQueryCliente
+      LookupKeyFields = 'CODIGO'
+      LookupResultField = 'NOME'
+      KeyFields = 'CODCLIENTE'
       Origin = 'NOME'
       ReadOnly = True
       FixedChar = True
@@ -89,6 +93,7 @@ object DM_Vendas: TDM_Vendas
     IndexFieldNames = 'CODIGO'
     MasterSource = DT_Saida_Venda
     MasterFields = 'CODIGO'
+    DetailFields = 'CODIGO'
     Connection = DM_Dados.DADOS
     SQL.Strings = (
       'select * from saida_produto')
@@ -104,7 +109,6 @@ object DM_Vendas: TDM_Vendas
       Origin = 'CODPRODUTO'
       ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
       Required = True
-      OnValidate = FDQuerySaidaProdutoCODPRODUTOValidate
     end
     object FDQuerySaidaProdutoNOME_PRODUTO: TStringField
       FieldKind = fkLookup
@@ -151,7 +155,11 @@ object DM_Vendas: TDM_Vendas
     object FDQuerySaidaProdutoQUANTIDADE: TIntegerField
       FieldName = 'QUANTIDADE'
       Origin = 'QUANTIDADE'
-      OnChange = FDQuerySaidaProdutoQUANTIDADEChange
+      OnValidate = FDQuerySaidaProdutoQUANTIDADEValidate
+    end
+    object FDQuerySaidaProdutoCOD_VENDA: TIntegerField
+      FieldName = 'COD_VENDA'
+      Origin = 'COD_VENDA'
     end
   end
   object DT_Saida_Venda: TDataSource
