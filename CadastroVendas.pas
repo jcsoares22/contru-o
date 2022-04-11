@@ -161,22 +161,25 @@ begin
   DM_Vendas.FDQuerySaida_Venda.SQL.Add('');
   DM_Vendas.FDQuerySaida_Venda.SQL.Clear;
   DM_Vendas.FDQuerySaida_Venda.SQL.Add('select * from saida_venda');
+ DM_Vendas.FDQuerySaida_Venda.SQL.Add('WHERE 1 = 1');
 
-  case CB_opcao.ItemIndex of // utilizando o combo box na janela bairro
+ case CB_opcao.ItemIndex of // utilizando o combo box na janela bairro
     0:
       begin
         case CB_Opcao2.ItemIndex of
           0: // iniciado com
             begin // validação para o campo quando ele estiver vazio
-              if edt_Pesquisa.Text = EmptyStr then
+               if edt_Pesquisa.Text = EmptyStr then
               begin
-                DM_Vendas.FDQuerySaida_Venda.SQL.Add('ORDER BY CODIGO');
+                DM_Cadastro.FDQueryProduto.SQL.Add(' AND codigo like ' +
+                  QuotedStr('%' + edt_Pesquisa.Text + ''));
+                //  DM_Vendas.FDQuerySaida_Venda.SQL.Add('order by codigo');
               end
               else
               begin
-                { DM_Vendas.FDQuerySaida_Venda.SQL.Add('where CODIGO =:pcodigo');
-                  DM_Vendas.FDQuerySaida_Venda.ParamByName('pcodigo').AsInteger :=
-                  StrToInt(edt_Pesquisa.Text); }
+                 DM_Vendas.FDQuerySaida_Venda.SQL.Add
+                  ('AND codigo like' +
+                  QuotedStr('%' + edt_Pesquisa.Text + '%'));
               end;
 
             end;
@@ -184,89 +187,85 @@ begin
             begin // validação para o campo quando ele estiver vazio
               if edt_Pesquisa.Text = EmptyStr then
               begin
-                DM_Vendas.FDQuerySaida_Venda.SQL.Add('order by CODIGO');
+                 DM_Vendas.FDQuerySaida_Venda.SQL.Add('order by codigo');
               end
               else
               begin
-                DM_Vendas.FDQuerySaida_Venda.SQL.Add
-                  ('contains CODIGO =:pcodigo');
-                DM_Vendas.FDQuerySaida_Venda.ParamByName('pcodigo').AsInteger :=
-                  StrToInt(edt_Pesquisa.Text);
+                 DM_Vendas.FDQuerySaida_Venda.SQL.Add
+                  ('AND codigo like' +
+                  QuotedStr('%' + edt_Pesquisa.Text + '%'));
+                {  DM_Vendas.FDQuerySaida_Venda.SQL.Add
+                  ('where containing codigo =:pcodigo');
+                   DM_Vendas.FDQuerySaida_Venda.ParamByName('pcodigo').AsInteger :=
+                  StrToInt(edt_Pesquisa.Text); }
               end;
 
             end;
           2: // IGUAL
             begin // validação para o campo quando ele estiver vazio
-              if Trim(edt_Pesquisa.Text) = EmptyStr then
-              // usando o trim ele retira o espaço do começo
+              if edt_Pesquisa.Text = EmptyStr then
               begin
-                DM_Vendas.FDQuerySaida_Venda.SQL.Add('order by CODIGO');
+                 DM_Vendas.FDQuerySaida_Venda.SQL.Add('order by codigo');
               end
               else
               begin
-                DM_Vendas.FDQuerySaida_Venda.SQL.Add('where CODIGO =:pcodigo');
-                DM_Vendas.FDQuerySaida_Venda.ParamByName('pcodigo').AsInteger :=
-                  StrToInt(edt_Pesquisa.Text);
+                 DM_Vendas.FDQuerySaida_Venda.SQL.Add
+                  ('AND codigo = ' + QuotedStr(edt_Pesquisa.Text));
               end;
             end;
         end;
+        {  DM_Vendas.FDQuerySaida_Venda.ParamByName('pbai_codigo').AsInteger :=
+          StrToInt(edt_Pesquisa.Text); }
       end;
 
     1:
-      begin
+      begin // opção nome
         case CB_Opcao2.ItemIndex of
           0:
-            begin
+            begin // inicia com
               if edt_Pesquisa.Text = EmptyStr then
               begin
-                DM_Vendas.FDQuerySaida_Venda.SQL.Add('order by BAI_DESCRICAO');
+                 DM_Vendas.FDQuerySaida_Venda.SQL.Add('order by nome');
               end
               else
               begin
-                DM_Vendas.FDQuerySaida_Venda.SQL.Add
-                  ('where BAI_DESCRICAO =:pdescricao');
-                DM_Vendas.FDQuerySaida_Venda.ParamByName('pdescricao').AsString
-                  := (edt_Pesquisa.Text);
+                 DM_Vendas.FDQuerySaida_Venda.SQL.Add
+                  ('AND NOME like' +
+                  QuotedStr('%' + UpperCase((trim(edt_Pesquisa.Text))) + '%'));
               end;
             end;
           1:
             begin
               if edt_Pesquisa.Text = EmptyStr then
               begin
-                DM_Vendas.FDQuerySaida_Venda.SQL.Add('order by BAI_DESCRICAO');
+                 DM_Vendas.FDQuerySaida_Venda.SQL.Add('order by nome');
               end
               else
               begin
-                DM_Vendas.FDQuerySaida_Venda.SQL.Add
-                  ('where BAI_DESCRICAO =:pdescricao');
-                DM_Vendas.FDQuerySaida_Venda.ParamByName('pdescricao').AsString
-                  := (edt_Pesquisa.Text);
+                 DM_Vendas.FDQuerySaida_Venda.SQL.Add
+                  ('AND NOME like' +
+                  QuotedStr('%' + UpperCase((trim(edt_Pesquisa.Text))) + '%'));
               end;
             end;
           2:
             begin
               if edt_Pesquisa.Text = EmptyStr then
               begin
-                DM_Vendas.FDQuerySaida_Venda.SQL.Add('order by BAI_DESCRICAO');
+                 DM_Vendas.FDQuerySaida_Venda.SQL.Add('order by nome');
               end
               else
               begin
-                DM_Vendas.FDQuerySaida_Venda.SQL.Add
-                  ('where BAI_DESCRICAO =:pdescricao');
-                DM_Vendas.FDQuerySaida_Venda.ParamByName('pdescricao').AsString
-                  := (edt_Pesquisa.Text);
+                 DM_Vendas.FDQuerySaida_Venda.SQL.Add
+                  ('AND nome = ' + UpperCase((trim(edt_Pesquisa.Text))));
               end;
             end;
-          // DM_Endereco..FDQueryBairro.SQL.Add('order by bai_codigo');
-          // DM_Endereco..FDQueryBairro.SQL.Add('where bai_codigo like =:pcodigo');
-
         end;
 
       end;
 
   end;
 
-  DM_Vendas.FDQuerySaida_Venda.Open();
+   DM_Vendas.FDQuerySaida_Venda.Open();
 
 end;
 
