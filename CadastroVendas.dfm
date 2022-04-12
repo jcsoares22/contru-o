@@ -519,42 +519,37 @@ object frmCadastroVendas: TfrmCadastroVendas
         Columns = <
           item
             Expanded = False
-            FieldName = 'CODIGO'
-            Visible = True
-          end
-          item
-            Expanded = False
             FieldName = 'CODPRODUTO'
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'NOME_PRODUTO'
-            Visible = True
-          end
-          item
-            Expanded = False
-            FieldName = 'VALORPRODUTO'
-            Visible = True
-          end
-          item
-            Expanded = False
-            FieldName = 'VALORTOTAL'
+            Width = 64
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'QTE_ESTOQUE'
+            Width = 64
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'QUANTIDADE'
+            Width = 64
             Visible = True
           end
           item
             Expanded = False
-            FieldName = 'COD_VENDA'
+            FieldName = 'VALORPRODUTO'
+            Width = 64
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'VALORTOTAL'
+            Width = 64
             Visible = True
           end>
       end

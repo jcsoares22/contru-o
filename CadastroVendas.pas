@@ -91,12 +91,16 @@ uses DMVendas, DMCadastro, CadastroFinanceiro;
 
 procedure TfrmCadastroVendas.btnCancelarClick(Sender: TObject);
 begin
+  if DM_Vendas.FDQuerySaida_Venda.State in [dsEdit, dsInsert] then
+  begin
+    DM_Vendas.FDQuerySaida_Venda.Cancel;
+  end;
   btnNovo.Enabled := true;
   btnEdit.Enabled := true;
   btnDeletar.Enabled := true;
-  DM_Vendas.FDQuerySaidaProduto.Cancel;
-  DM_Vendas.FDQuerySaida_Venda.Cancel;
-
+  { DM_Vendas.FDQuerySaidaProduto.Cancel;
+    DM_Vendas.FDQuerySaida_Venda.Cancel;
+  }
 end;
 
 procedure TfrmCadastroVendas.btnDeletarClick(Sender: TObject);
@@ -135,7 +139,8 @@ var
   prox: integer;
 begin
   // prox := 1;
-
+  if not(DM_Vendas.FDQuerySaida_Venda.State in [dsEdit, dsInsert]) then
+    DM_Vendas.FDQuerySaida_Venda.Insert;
   DM_Cadastro.FDQueryCliente.Open();
   DM_Vendas.FDQuerySaidaProduto.Open();
   DM_Vendas.FDQuerySaida_Venda.Open();
@@ -272,7 +277,8 @@ end;
 
 procedure TfrmCadastroVendas.btnSalvarClick(Sender: TObject);
 begin
-  DM_Vendas.FDQuerySaida_Venda.edit;
+  if DM_Vendas.FDQuerySaida_Venda.State in [dsEdit, dsInsert] then
+    DM_Vendas.FDQuerySaida_Venda.edit;
   DM_Cadastro.FDQueryProduto.edit;
   DM_Vendas.FDQuerySaidaProduto.edit;
   DM_Vendas.FDQuerySaidaProduto.Post;

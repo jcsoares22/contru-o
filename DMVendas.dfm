@@ -4,9 +4,12 @@ object DM_Vendas: TDM_Vendas
   Width = 1204
   object FDQuerySaida_Venda: TFDQuery
     Connection = DM_Dados.DADOS
-    UpdateOptions.AssignedValues = [uvUpdateMode, uvFetchGeneratorsPoint]
+    UpdateOptions.AssignedValues = [uvUpdateMode, uvFetchGeneratorsPoint, uvGeneratorName]
     UpdateOptions.UpdateMode = upWhereAll
-    UpdateOptions.FetchGeneratorsPoint = gpNone
+    UpdateOptions.GeneratorName = 'GEN_SAIDA_VENDA_ID'
+    UpdateOptions.UpdateTableName = 'CODIGO'
+    UpdateOptions.KeyFields = 'GEN_SAIDA_VENDA_ID'
+    UpdateOptions.AutoIncFields = 'CODIGO'
     SQL.Strings = (
       'select * from saida_Venda'
       'order by codigo')
@@ -97,8 +100,8 @@ object DM_Vendas: TDM_Vendas
     Connection = DM_Dados.DADOS
     SQL.Strings = (
       'select * from saida_produto')
-    Left = 40
-    Top = 136
+    Left = 48
+    Top = 152
     object FDQuerySaidaProdutoCODIGO: TIntegerField
       FieldName = 'CODIGO'
       Origin = 'CODIGO'
@@ -109,6 +112,7 @@ object DM_Vendas: TDM_Vendas
       Origin = 'CODPRODUTO'
       ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
       Required = True
+      OnValidate = FDQuerySaidaProdutoCODPRODUTOValidate
     end
     object FDQuerySaidaProdutoNOME_PRODUTO: TStringField
       FieldKind = fkLookup

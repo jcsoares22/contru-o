@@ -78,8 +78,22 @@ end;
 
 procedure TDM_Vendas.FDQuerySaidaProdutoCODPRODUTOValidate(Sender: TField);
 begin
-  {DM_Vendas.FDQuerySaidaProdutoVALORPRODUTO :=
-      DM_Cadastro.FDQueryProdutoPRECO_VENDA;}
+  { while FDQuerySaidaProdutoCODPRODUTO.Value <>
+    DM_Cadastro.FDQueryProdutoCODIGO.Value do
+    begin
+    ShowMessage('produto não encontrado');
+    f{rmCadastroVendas.DBGridVendas.setFocus;
+    frmCadastroVendas.DBGridVendas.SelectedIndex := 0; }
+
+  // FDQuerySaidaProdutoCODPRODUTO.Value := FDQuerySaidaProdutoCODPRODUTO.s
+  if FDQuerySaidaProdutoCODPRODUTO.Value <> DM_Cadastro.FDQueryProdutoCODIGO.Value
+  then
+  begin
+    ShowMessage('produto não encontrado');
+    frmCadastroVendas.DBGridVendas.setFocus;
+    frmCadastroVendas.DBGridVendas.SelectedIndex := 0;
+  end;
+
 end;
 
 procedure TDM_Vendas.FDQuerySaidaProdutoQUANTIDADESetText(Sender: TField;
