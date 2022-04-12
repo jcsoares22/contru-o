@@ -30,7 +30,7 @@ type
     Label6: TLabel;
     Label4: TLabel;
     DBEdit1: TDBEdit;
-    DBEdit2: TDBEdit;
+    DBECod_Cliente: TDBEdit;
     DBLookupComboBox1: TDBLookupComboBox;
     DBEdit5: TDBEdit;
     DbData: TDBEdit;
@@ -74,6 +74,7 @@ type
     procedure DBGrid1DblClick(Sender: TObject);
     procedure DBE_DescontoEnter(Sender: TObject);
     procedure DBE_DescontoExit(Sender: TObject);
+    procedure DBECod_ClienteExit(Sender: TObject);
   private
     { Private declarations }
   public
@@ -140,16 +141,19 @@ var
 begin
   // prox := 1;
   if not(DM_Vendas.FDQuerySaida_Venda.State in [dsEdit, dsInsert]) then
+  begin
     DM_Vendas.FDQuerySaida_Venda.Insert;
-  DM_Cadastro.FDQueryCliente.Open();
-  DM_Vendas.FDQuerySaidaProduto.Open();
-  DM_Vendas.FDQuerySaida_Venda.Open();
-  DM_Cadastro.FDQueryProduto.Open();
-  DM_Vendas.FDQuerySaidaProduto.edit;
-  DM_Vendas.FDQuerySaida_Venda.Last;
-  prox := DM_Vendas.FDQuerySaida_VendaCODIGO.AsInteger + 1;
-  DM_Vendas.FDQuerySaida_Venda.Append;
-  DM_Vendas.FDQuerySaida_VendaCODIGO.AsInteger := prox;
+  end;
+
+  { DM_Cadastro.FDQueryCliente.Open();
+    DM_Vendas.FDQuerySaidaProduto.Open();
+    DM_Vendas.FDQuerySaida_Venda.Open();
+    DM_Cadastro.FDQueryProduto.Open();
+    DM_Vendas.FDQuerySaidaProduto.edit;
+    DM_Vendas.FDQuerySaida_Venda.Last;
+    prox := DM_Vendas.FDQuerySaida_VendaCODIGO.AsInteger + 1;
+    DM_Vendas.FDQuerySaida_Venda.Append;
+    DM_Vendas.FDQuerySaida_VendaCODIGO.AsInteger := prox; }
   // DBGridVendas.ReadOnly := false;
   btnNovo.Enabled := false;
   btnEdit.Enabled := false;
@@ -347,6 +351,21 @@ end;
 procedure TfrmCadastroVendas.DBC_DescontoChange(Sender: TObject);
 begin
   /// DBC_Desconto.ItemIndex := 0;   // tentando colocar o dbcombobox para iniciar no 0
+end;
+
+procedure TfrmCadastroVendas.DBECod_ClienteExit(Sender: TObject);
+begin  //verificar a tela de para poder verificar se tem um iten já cadastrado
+if DM_Vendas.FDQuerySaida_VendaCODCLIENTE.Value =
+    DM_Cadastro.FDQueryProdutoCODIGO.Value  then
+  begin
+  end
+  else
+  begin
+  ShowMessage('Cliente não encontrado ou bloqueado !');
+    DBECod_Cliente.SetFocus;
+    Exit;
+      DM_Vendas.FDQuerySaida_VendaCODCLIENTE.Value;
+  end;
 end;
 
 procedure TfrmCadastroVendas.DBE_DescontoEnter(Sender: TObject);

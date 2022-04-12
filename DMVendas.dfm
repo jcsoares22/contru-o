@@ -6,9 +6,8 @@ object DM_Vendas: TDM_Vendas
     Connection = DM_Dados.DADOS
     UpdateOptions.AssignedValues = [uvUpdateMode, uvFetchGeneratorsPoint, uvGeneratorName]
     UpdateOptions.UpdateMode = upWhereAll
+    UpdateOptions.FetchGeneratorsPoint = gpImmediate
     UpdateOptions.GeneratorName = 'GEN_SAIDA_VENDA_ID'
-    UpdateOptions.UpdateTableName = 'CODIGO'
-    UpdateOptions.KeyFields = 'GEN_SAIDA_VENDA_ID'
     UpdateOptions.AutoIncFields = 'CODIGO'
     SQL.Strings = (
       'select * from saida_Venda'
