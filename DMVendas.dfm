@@ -1,5 +1,6 @@
 object DM_Vendas: TDM_Vendas
   OldCreateOrder = False
+  OnCreate = DataModuleCreate
   Height = 623
   Width = 1204
   object FDQuerySaida_Venda: TFDQuery
@@ -105,7 +106,10 @@ object DM_Vendas: TDM_Vendas
     end
   end
   object FDQuerySaidaProduto: TFDQuery
+    AfterOpen = FDQuerySaidaProdutoAfterOpen
     AfterDelete = FDQuerySaidaProdutoAfterDelete
+    AfterScroll = FDQuerySaidaProdutoAfterScroll
+    OnCalcFields = FDQuerySaidaProdutoCalcFields
     IndexFieldNames = 'CODIGO'
     MasterSource = DT_Saida_Venda
     MasterFields = 'CODIGO'
@@ -115,7 +119,8 @@ object DM_Vendas: TDM_Vendas
     UpdateOptions.FetchGeneratorsPoint = gpImmediate
     UpdateOptions.GeneratorName = 'GEN_SAIDA_PRODUTO_ID'
     SQL.Strings = (
-      'select * from saida_produto')
+      'select * from saida_produto'
+      '')
     Left = 48
     Top = 152
     object FDQuerySaidaProdutoCODIGO: TIntegerField
@@ -128,7 +133,6 @@ object DM_Vendas: TDM_Vendas
       Origin = 'CODPRODUTO'
       ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
       Required = True
-      OnValidate = FDQuerySaidaProdutoCODPRODUTOValidate
     end
     object FDQuerySaidaProdutoNOME_PRODUTO: TStringField
       FieldKind = fkLookup
@@ -163,19 +167,14 @@ object DM_Vendas: TDM_Vendas
       Size = 2
     end
     object FDQuerySaidaProdutoQTE_ESTOQUE: TFloatField
-      FieldKind = fkLookup
+      FieldKind = fkCalculated
       FieldName = 'QTE_ESTOQUE'
-      LookupDataSet = DM_Cadastro.FDQueryProduto
-      LookupKeyFields = 'CODIGO'
-      LookupResultField = 'QUANTIDADE_ATUAL'
-      KeyFields = 'CODPRODUTO'
       Origin = 'QTE_ESTOQUE'
-      Lookup = True
+      Calculated = True
     end
     object FDQuerySaidaProdutoQUANTIDADE: TIntegerField
       FieldName = 'QUANTIDADE'
       Origin = 'QUANTIDADE'
-      OnValidate = FDQuerySaidaProdutoQUANTIDADEValidate
     end
     object FDQuerySaidaProdutoCOD_VENDA: TIntegerField
       FieldName = 'COD_VENDA'
@@ -189,7 +188,7 @@ object DM_Vendas: TDM_Vendas
   end
   object DT_SaidaProduto: TDataSource
     DataSet = FDQuerySaidaProduto
-    Left = 184
+    Left = 168
     Top = 144
   end
 end

@@ -23,7 +23,7 @@ object frmCadastroVendas: TfrmCadastroVendas
     Top = 0
     Width = 1164
     Height = 685
-    ActivePage = TabSheet1
+    ActivePage = TabSheet2
     Align = alClient
     TabOrder = 0
     object TabSheet1: TTabSheet
@@ -128,31 +128,37 @@ object frmCadastroVendas: TfrmCadastroVendas
           item
             Expanded = False
             FieldName = 'NOME'
+            Width = 64
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'DATAVENDA'
+            Width = 64
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'VALORTOTAL'
+            Width = 64
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'OBS'
+            Width = 64
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'FRETE'
+            Width = 64
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'COND_PAGAMENTO'
+            Width = 64
             Visible = True
           end
           item
@@ -163,21 +169,25 @@ object frmCadastroVendas: TfrmCadastroVendas
           item
             Expanded = False
             FieldName = 'ID_SUBCONTA'
+            Width = 64
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'ID_TIPO_PGTO'
+            Width = 64
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'DESCONTO'
+            Width = 64
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'TIPO_DESC'
+            Width = 64
             Visible = True
           end>
       end
@@ -275,6 +285,29 @@ object frmCadastroVendas: TfrmCadastroVendas
           Height = 13
           Caption = 'FRETE'
           FocusControl = DBEdit6
+        end
+        object Label15: TLabel
+          Left = 912
+          Top = 19
+          Width = 52
+          Height = 13
+          Caption = 'SITUACAO'
+        end
+        object Label16: TLabel
+          Left = 760
+          Top = 16
+          Width = 108
+          Height = 13
+          Caption = 'DATA_FATURAMENTO'
+          FocusControl = DB_Data_Faturamento
+        end
+        object Label17: TLabel
+          Left = 768
+          Top = 72
+          Width = 114
+          Height = 13
+          Caption = 'DATA_CANCELAMENTO'
+          FocusControl = DBEdit2
         end
         object DBEdit1: TDBEdit
           Left = 8
@@ -459,6 +492,36 @@ object frmCadastroVendas: TfrmCadastroVendas
           OnEnter = DBE_DescontoEnter
           OnExit = DBE_DescontoExit
         end
+        object DB_Data_Faturamento: TDBEdit
+          Left = 760
+          Top = 35
+          Width = 73
+          Height = 21
+          DataField = 'DATA_FATURAMENTO'
+          DataSource = DM_Vendas.DT_Saida_Venda
+          TabOrder = 18
+        end
+        object DBComboBox1: TDBComboBox
+          Left = 896
+          Top = 38
+          Width = 145
+          Height = 21
+          DataField = 'SITUACAO'
+          DataSource = DM_Vendas.DT_Saida_Venda
+          Items.Strings = (
+            'Faturado'
+            'Cancelado')
+          TabOrder = 19
+        end
+        object DBEdit2: TDBEdit
+          Left = 768
+          Top = 91
+          Width = 134
+          Height = 21
+          DataField = 'DATA_CANCELAMENTO'
+          DataSource = DM_Vendas.DT_Saida_Venda
+          TabOrder = 20
+        end
       end
       object Panel2: TPanel
         Left = 0
@@ -517,26 +580,31 @@ object frmCadastroVendas: TfrmCadastroVendas
           item
             Expanded = False
             FieldName = 'NOME_PRODUTO'
+            Width = 64
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'QTE_ESTOQUE'
+            Width = 64
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'QUANTIDADE'
+            Width = 64
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'VALORPRODUTO'
+            Width = 64
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'VALORTOTAL'
+            Width = 64
             Visible = True
           end>
       end

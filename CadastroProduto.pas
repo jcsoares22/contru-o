@@ -69,6 +69,7 @@ type
     procedure btnSalvarClick(Sender: TObject);
     procedure btnCancelarClick(Sender: TObject);
     procedure btnPesquisaClick(Sender: TObject);
+    procedure DBEdit7Exit(Sender: TObject);
   private
     { Private declarations }
   public
@@ -118,13 +119,17 @@ var
   prox: Integer;
 begin
   inherited;
-  prox := 1;
-  DM_Cadastro.FDQueryProduto.Active := true;
-  DM_Cadastro.FDQueryProduto.Last;
-  DM_Cadastro.FDQueryProduto.Edit;
-  prox := DM_Cadastro.FDQueryProdutoCODIGO.AsInteger + 1;
-  DM_Cadastro.FDQueryProduto.Append;
-  DM_Cadastro.FDQueryProdutoCODIGO.AsInteger := prox;
+  if not(DM_Cadastro.FDQueryProduto.State in [dsEdit, dsInsert]) then
+  begin
+    DM_Cadastro.FDQueryProduto.Insert;
+  end;
+  { prox := 1;
+    DM_Cadastro.FDQueryProduto.Active := true;
+    DM_Cadastro.FDQueryProduto.Last;
+    DM_Cadastro.FDQueryProduto.Edit;
+    prox := DM_Cadastro.FDQueryProdutoCODIGO.AsInteger + 1;
+    DM_Cadastro.FDQueryProduto.Append;
+    DM_Cadastro.FDQueryProdutoCODIGO.AsInteger := prox; }
   Nome_produto.SetFocus;
 
   DBLookupComboBoxCor.ReadOnly := false;
@@ -159,10 +164,11 @@ begin
               end
               else
               begin
-                DM_Cadastro.FDQueryProduto.SQL.Add('AND codigo like'+ QuotedStr('%' +edt_Pesquisa.Text));
-                {DM_Cadastro.FDQueryProduto.SQL.Add('where codigo =:pcodigo');
-                                DM_Cadastro.FDQueryProduto.ParamByName('pcodigo').AsInteger :=
-                                                  StrToInt(edt_Pesquisa.Text);}
+                DM_Cadastro.FDQueryProduto.SQL.Add
+                  ('AND codigo like' + QuotedStr('%' + edt_Pesquisa.Text));
+                { DM_Cadastro.FDQueryProduto.SQL.Add('where codigo =:pcodigo');
+                  DM_Cadastro.FDQueryProduto.ParamByName('pcodigo').AsInteger :=
+                  StrToInt(edt_Pesquisa.Text); }
               end;
 
             end;
@@ -174,7 +180,9 @@ begin
               end
               else
               begin
-                DM_Cadastro.FDQueryProduto.SQL.Add('AND codigo like'+ QuotedStr('%' +edt_Pesquisa.Text  +'%'));
+                DM_Cadastro.FDQueryProduto.SQL.Add
+                  ('AND codigo like' +
+                  QuotedStr('%' + edt_Pesquisa.Text + '%'));
 
                 { DM_Cadastro.FDQueryProduto.SQL.Add('AND codigo like =:pcodigo');
                   DM_Cadastro.FDQueryProduto.ParamByName('pcodigo').AsInteger :=
@@ -190,7 +198,8 @@ begin
               end
               else
               begin
-                DM_Cadastro.FDQueryProduto.SQL.Add('AND codigo = ' + QuotedStr(edt_Pesquisa.Text));
+                DM_Cadastro.FDQueryProduto.SQL.Add
+                  ('AND codigo = ' + QuotedStr(edt_Pesquisa.Text));
               end;
             end;
         end;
@@ -209,7 +218,9 @@ begin
               end
               else
               begin
-                DM_Cadastro.FDQueryProduto.SQL.Add('AND produto like'+ QuotedStr('%' +edt_Pesquisa.Text  +'%'));
+                DM_Cadastro.FDQueryProduto.SQL.Add
+                  ('AND produto like' +
+                  QuotedStr('%' + edt_Pesquisa.Text));
               end;
             end;
           1:
@@ -220,7 +231,9 @@ begin
               end
               else
               begin
-                DM_Cadastro.FDQueryProduto.SQL.Add('AND produto like'+ QuotedStr('%' +edt_Pesquisa.Text  +'%'));
+                DM_Cadastro.FDQueryProduto.SQL.Add
+                  ('AND produto like' +
+                  QuotedStr('%' + edt_Pesquisa.Text + '%'));
               end;
             end;
           2:
@@ -231,7 +244,8 @@ begin
               end
               else
               begin
-                 DM_Cadastro.FDQueryProduto.SQL.Add('AND produto = ' + QuotedStr(edt_Pesquisa.Text));
+                DM_Cadastro.FDQueryProduto.SQL.Add
+                  ('AND produto = ' + QuotedStr(edt_Pesquisa.Text));
               end;
             end;
           // DM_Cadastro.FDQueryProduto.SQL.Add('order by bai_codigo');
@@ -251,6 +265,17 @@ begin
   inherited;
   DM_Cadastro.FDQueryProduto.Edit;
   DM_Cadastro.FDQueryProduto.Post;
+end;
+
+procedure TfrmCadastroProduto.DBEdit7Exit(Sender: TObject);
+
+begin
+  inherited;
+  {DM_Cadastro.FDQueryProdutoPRECENTO_LUCRO.Value:= StrToCurrDef(DM_Cadastro.FDQueryProdutoPRECO_PRAZO_CUSTO.CurValue * 100 /
+    DM_Cadastro.FDQueryProdutoPRECENTO_PRAZO_LUCRO.CurValue);
+    }  DM_Cadastro.FDQueryProdutoPRECENTO_LUCRO.Text :=
+    ((DM_Cadastro.FDQueryProdutoPRECO_CUSTO.CurValue * 100))/ DM_Cadastro.FDQueryProdutoPRECO_CUSTO.CurValue;
+
 end;
 
 procedure TfrmCadastroProduto.DB_APrazoExit(Sender: TObject);

@@ -203,6 +203,10 @@
   object FDQueryProduto: TFDQuery
     ConstraintsEnabled = True
     Connection = DM_Dados.DADOS
+    UpdateOptions.AssignedValues = [uvFetchGeneratorsPoint, uvGeneratorName]
+    UpdateOptions.FetchGeneratorsPoint = gpImmediate
+    UpdateOptions.GeneratorName = 'GEN_PRODUTO_ID'
+    UpdateOptions.AutoIncFields = 'CODIGO'
     SQL.Strings = (
       'select * from produto')
     Left = 32

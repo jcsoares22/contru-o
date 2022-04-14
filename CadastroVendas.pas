@@ -6,7 +6,7 @@ uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
   System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Data.DB, Vcl.StdCtrls, Vcl.DBCtrls,
-  Vcl.Mask, Vcl.Grids, Vcl.DBGrids, Vcl.ExtCtrls, Vcl.ComCtrls;
+  Vcl.Mask, Vcl.Grids, Vcl.DBGrids, Vcl.ExtCtrls, Vcl.ComCtrls, Vcl.ColorGrd;
 
 type
   TfrmCadastroVendas = class(TForm)
@@ -59,6 +59,12 @@ type
     DBEdit6: TDBEdit;
     DBGrid_Venda: TDBGrid;
     DBE_Desconto: TDBEdit;
+    Label15: TLabel;
+    Label16: TLabel;
+    DB_Data_Faturamento: TDBEdit;
+    DBComboBox1: TDBComboBox;
+    Label17: TLabel;
+    DBEdit2: TDBEdit;
     procedure DBGridVendasExit(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure btnNovoClick(Sender: TObject);
@@ -88,7 +94,7 @@ implementation
 
 {$R *.dfm}
 
-uses DMVendas, DMCadastro, CadastroFinanceiro;
+uses DMVendas, DMCadastro, CadastroFinanceiro, Biblioteca;
 
 procedure TfrmCadastroVendas.btnCancelarClick(Sender: TObject);
 begin
@@ -142,15 +148,16 @@ begin
   // prox := 1;
   if not(DM_Vendas.FDQuerySaida_Venda.State in [dsEdit, dsInsert]) then
   begin
+
+    DM_Vendas.FDQuerySaida_Venda.edit;
     DM_Vendas.FDQuerySaida_Venda.Insert;
   end;
-
   { DM_Cadastro.FDQueryCliente.Open();
     DM_Vendas.FDQuerySaidaProduto.Open();
     DM_Vendas.FDQuerySaida_Venda.Open();
-    DM_Cadastro.FDQueryProduto.Open();
-    DM_Vendas.FDQuerySaidaProduto.edit;
-    DM_Vendas.FDQuerySaida_Venda.Last;
+    DM_Cadastro.FDQueryProduto.Open(); }
+  // DM_Vendas.FDQuerySaidaProduto.edit;
+  { DM_Vendas.FDQuerySaida_Venda.Last;
     prox := DM_Vendas.FDQuerySaida_VendaCODIGO.AsInteger + 1;
     DM_Vendas.FDQuerySaida_Venda.Append;
     DM_Vendas.FDQuerySaida_VendaCODIGO.AsInteger := prox; }
@@ -158,7 +165,6 @@ begin
   btnNovo.Enabled := false;
   btnEdit.Enabled := false;
   btnDeletar.Enabled := false;
-  DbData.Text := DateToStr(Now);
   // Criando a data altomaticamente ao criar uma nova venda
 end;
 
@@ -282,11 +288,15 @@ end;
 procedure TfrmCadastroVendas.btnSalvarClick(Sender: TObject);
 begin
   if DM_Vendas.FDQuerySaida_Venda.State in [dsEdit, dsInsert] then
+  begin
     DM_Vendas.FDQuerySaida_Venda.edit;
-  DM_Cadastro.FDQueryProduto.edit;
-  DM_Vendas.FDQuerySaidaProduto.edit;
-  DM_Vendas.FDQuerySaidaProduto.Post;
-  DM_Vendas.FDQuerySaida_Venda.Post;
+    DM_Cadastro.FDQueryProduto.edit;
+    DM_Vendas.FDQuerySaidaProduto.edit;
+
+    DM_Vendas.FDQuerySaida_Venda.Post;
+    {DM_Vendas.FDQuerySaidaProduto.Append;
+    DM_Vendas.FDQuerySaidaProdutoCODIGO.AsInteger :=  DM_Vendas.FDQuerySaidaProdutoCODIGO.Keyv}
+  end;
   btnNovo.Enabled := true;
   btnEdit.Enabled := true;
   btnDeletar.Enabled := true;
@@ -354,17 +364,17 @@ begin
 end;
 
 procedure TfrmCadastroVendas.DBECod_ClienteExit(Sender: TObject);
-begin  //verificar a tela de para poder verificar se tem um iten já cadastrado
-if DM_Vendas.FDQuerySaida_VendaCODCLIENTE.Value =
-    DM_Cadastro.FDQueryProdutoCODIGO.Value  then
+begin // verificar a tela de para poder verificar se tem um iten já cadastrado
+  if DM_Vendas.FDQuerySaida_VendaCODCLIENTE.Value = DM_Cadastro.
+    FDQueryProdutoCODIGO.Value then
   begin
   end
   else
   begin
-  ShowMessage('Cliente não encontrado ou bloqueado !');
+    ShowMessage('Cliente não encontrado ou bloqueado !');
     DBECod_Cliente.SetFocus;
     Exit;
-      DM_Vendas.FDQuerySaida_VendaCODCLIENTE.Value;
+    DM_Vendas.FDQuerySaida_VendaCODCLIENTE.Value;
   end;
 end;
 
@@ -468,7 +478,7 @@ end;
 
 procedure TfrmCadastroVendas.FormCreate(Sender: TObject);
 begin
-  DM_Cadastro.FDQueryProduto.Open();
+DM_Cadastro.FDQueryProduto.Open();
   DM_Vendas.FDQuerySaida_Venda.Open();
   DM_Vendas.FDQuerySaidaProduto.Open();
   DM_Cadastro.FDQueryCliente.Open();
@@ -476,6 +486,15 @@ begin
   DM_Cadastro.FDQueryTipoPgto.Open();
   DM_Cadastro.FDQueryConta.Open();
   DM_Cadastro.FDQuerySubConta.Open();
+  { AtualizaFDQuery(DM_Cadastro.FDQueryProduto,'');
+    AtualizaFDQuery(DM_Vendas.FDQuerySaida_Venda,'');
+    AtualizaFDQuery(DM_Vendas.FDQuerySaidaProduto,'');
+    AtualizaFDQuery(DM_Cadastro.FDQueryCliente,'');
+    AtualizaFDQuery( DM_Cadastro.FDQueryCondição_pagamento,'');
+    AtualizaFDQuery(DM_Cadastro.FDQueryTipoPgto,'');
+    AtualizaFDQuery( DM_Cadastro.FDQueryConta,'');
+    AtualizaFDQuery(DM_Cadastro.FDQuerySubConta,''); }
+
 end;
 
 end.

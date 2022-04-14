@@ -40,14 +40,18 @@ type
     FDQuerySaida_VendaDATA_CANCELAMENTO: TSQLTimeStampField;
     procedure FDQuerySaidaProdutoAfterPost(DataSet: TDataSet);
     procedure FDQuerySaidaProdutoCODPRODUTOValidate(Sender: TField);
-    procedure FDQuerySaidaProdutoQUANTIDADEValidate(Sender: TField);
     procedure FDQuerySaidaProdutoQUANTIDADESetText(Sender: TField;
       const Text: string);
     procedure FDQuerySaidaProdutoAfterDelete(DataSet: TDataSet);
     procedure FDQuerySaida_VendaBeforePost(DataSet: TDataSet);
     procedure FDQuerySaida_VendaBeforeInsert(DataSet: TDataSet);
+    procedure FDQuerySaidaProdutoAfterOpen(DataSet: TDataSet);
+    procedure FDQuerySaidaProdutoAfterScroll(DataSet: TDataSet);
+    procedure FDQuerySaidaProdutoCalcFields(DataSet: TDataSet);
+    procedure DataModuleCreate(Sender: TObject);
   private
     { Private declarations }
+//    procedure SetItens(pIdVenda: integer);
   public
     { Public declarations }
   end;
@@ -60,22 +64,52 @@ implementation
 {%CLASSGROUP 'Vcl.Controls.TControl'}
 {$R *.dfm}
 
-USES DMDados, DMCadastrO, CadastroVendas;
+USES DMDados, DMCadastrO, CadastroVendas, Biblioteca;
+
+procedure TDM_Vendas.DataModuleCreate(Sender: TObject);
+begin
+{/*where codigo = :ID_VENDA*/}
+end;
 
 procedure TDM_Vendas.FDQuerySaidaProdutoAfterDelete(DataSet: TDataSet);
 begin
-  {Criar o deletar a quantidade que foi deletado a venda
-  DM_Cadastro.FDQueryProduto.Open();
+  { Criar o deletar a quantidade que foi deletado a venda
+    DM_Cadastro.FDQueryProduto.Open();
     DM_Cadastro.FDQueryProduto.Edit;
-      DM_Cadastro.FDQueryProdutoQUANTIDADE_ATUAL.Value :=
-          (DM_Cadastro.FDQueryProdutoQUANTIDADE_ATUAL.Value +
-              DM_Vendas.FDQuerySaidaProdutoQUANTIDADE.Value);}
+    DM_Cadastro.FDQueryProdutoQUANTIDADE_ATUAL.Value :=
+    (DM_Cadastro.FDQueryProdutoQUANTIDADE_ATUAL.Value +
+    DM_Vendas.FDQuerySaidaProdutoQUANTIDADE.Value); }
+end;
+
+procedure TDM_Vendas.FDQuerySaidaProdutoAfterOpen(DataSet: TDataSet);
+begin
+ // SetItens(FDQuerySaida_VendaCODIGO.AsInteger);
 end;
 
 procedure TDM_Vendas.FDQuerySaidaProdutoAfterPost(DataSet: TDataSet);
 begin
   // depois que salva ele a da baixa no estoque
 
+end;
+
+procedure TDM_Vendas.FDQuerySaidaProdutoAfterScroll(DataSet: TDataSet);
+begin
+ // SetItens(FDQuerySaida_VendaCODIGO.AsInteger);
+end;
+
+procedure TDM_Vendas.FDQuerySaidaProdutoCalcFields(DataSet: TDataSet);
+begin
+{  if FDQuerySaidaProdutoQUANTIDADE.Value < 1 then
+  begin
+      ShowMessage('Quantidade negativa, coloque um valor valido');
+        end
+          else
+              FDQuerySaidaProduto.Edit;
+                FDQuerySaida_Venda.Edit;}
+  { FDQuerySaidaProdutoVALORTOTAL.Value := FDQuerySaidaProdutoQUANTIDADE.Value *
+    FDQuerySaidaProdutoVALORPRODUTO.Value; }
+  FDQuerySaidaProdutoVALORTOTAL.AsFloat := FDQuerySaidaProdutoQUANTIDADE.AsFloat
+    * FDQuerySaidaProdutoVALORPRODUTO.AsFloat;
 end;
 
 procedure TDM_Vendas.FDQuerySaidaProdutoCODPRODUTOValidate(Sender: TField);
@@ -101,21 +135,6 @@ end;
 procedure TDM_Vendas.FDQuerySaidaProdutoQUANTIDADESetText(Sender: TField;
   const Text: string);
 begin
-  FDQuerySaidaProdutoVALORTOTAL.Value := FDQuerySaidaProdutoQUANTIDADE.Value *
-    FDQuerySaidaProdutoVALORPRODUTO.Value;
-end;
-
-procedure TDM_Vendas.FDQuerySaidaProdutoQUANTIDADEValidate(Sender: TField);
-begin
-  if FDQuerySaidaProdutoQUANTIDADE.Value < 1 then
-  begin
-    ShowMessage('Quantidade negativa, coloque um valor valido');
-  end
-  else
-    FDQuerySaidaProduto.Edit;
-  FDQuerySaida_Venda.Edit;
-  { FDQuerySaidaProdutoVALORTOTAL.Value := FDQuerySaidaProdutoQUANTIDADE.Value *
-    FDQuerySaidaProdutoVALORPRODUTO.Value; }
   FDQuerySaidaProdutoVALORTOTAL.Value := FDQuerySaidaProdutoQUANTIDADE.Value *
     FDQuerySaidaProdutoVALORPRODUTO.Value;
 end;
@@ -148,5 +167,12 @@ begin
     (DM_Cadastro.FDQueryProdutoQUANTIDADE_ATUAL.Value -
     DM_Vendas.FDQuerySaidaProdutoQUANTIDADE.Value); }
 end;
+
+{procedure TDM_Vendas.SetItens(pIdVenda: integer);
+begin
+  FDQuerySaidaProduto.Close;
+    FDQuerySaidaProduto.ParamByName('ID_VENDA').AsInteger := pIdVenda;
+      atualizaFDQuery(FDQuerySaidaProduto, '');
+      end;}
 
 end.
