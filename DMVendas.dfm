@@ -3,6 +3,8 @@ object DM_Vendas: TDM_Vendas
   Height = 623
   Width = 1204
   object FDQuerySaida_Venda: TFDQuery
+    BeforeInsert = FDQuerySaida_VendaBeforeInsert
+    BeforePost = FDQuerySaida_VendaBeforePost
     Connection = DM_Dados.DADOS
     UpdateOptions.AssignedValues = [uvUpdateMode, uvFetchGeneratorsPoint, uvGeneratorName]
     UpdateOptions.UpdateMode = upWhereAll
@@ -88,15 +90,30 @@ object DM_Vendas: TDM_Vendas
       FixedChar = True
       Size = 2
     end
+    object FDQuerySaida_VendaSITUACAO: TStringField
+      FieldName = 'SITUACAO'
+      Origin = 'SITUACAO'
+      Size = 10
+    end
+    object FDQuerySaida_VendaDATA_FATURAMENTO: TSQLTimeStampField
+      FieldName = 'DATA_FATURAMENTO'
+      Origin = 'DATA_FATURAMENTO'
+    end
+    object FDQuerySaida_VendaDATA_CANCELAMENTO: TSQLTimeStampField
+      FieldName = 'DATA_CANCELAMENTO'
+      Origin = 'DATA_CANCELAMENTO'
+    end
   end
   object FDQuerySaidaProduto: TFDQuery
-    AfterPost = FDQuerySaidaProdutoAfterPost
     AfterDelete = FDQuerySaidaProdutoAfterDelete
     IndexFieldNames = 'CODIGO'
     MasterSource = DT_Saida_Venda
     MasterFields = 'CODIGO'
     DetailFields = 'CODIGO'
     Connection = DM_Dados.DADOS
+    UpdateOptions.AssignedValues = [uvFetchGeneratorsPoint, uvGeneratorName]
+    UpdateOptions.FetchGeneratorsPoint = gpImmediate
+    UpdateOptions.GeneratorName = 'GEN_SAIDA_PRODUTO_ID'
     SQL.Strings = (
       'select * from saida_produto')
     Left = 48

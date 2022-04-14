@@ -35,12 +35,17 @@ type
     FDQuerySaida_VendaDESCONTO: TFMTBCDField;
     FDQuerySaida_VendaTIPO_DESC: TStringField;
     FDQuerySaidaProdutoCOD_VENDA: TIntegerField;
+    FDQuerySaida_VendaSITUACAO: TStringField;
+    FDQuerySaida_VendaDATA_FATURAMENTO: TSQLTimeStampField;
+    FDQuerySaida_VendaDATA_CANCELAMENTO: TSQLTimeStampField;
     procedure FDQuerySaidaProdutoAfterPost(DataSet: TDataSet);
     procedure FDQuerySaidaProdutoCODPRODUTOValidate(Sender: TField);
     procedure FDQuerySaidaProdutoQUANTIDADEValidate(Sender: TField);
     procedure FDQuerySaidaProdutoQUANTIDADESetText(Sender: TField;
       const Text: string);
     procedure FDQuerySaidaProdutoAfterDelete(DataSet: TDataSet);
+    procedure FDQuerySaida_VendaBeforePost(DataSet: TDataSet);
+    procedure FDQuerySaida_VendaBeforeInsert(DataSet: TDataSet);
   private
     { Private declarations }
   public
@@ -59,21 +64,18 @@ USES DMDados, DMCadastrO, CadastroVendas;
 
 procedure TDM_Vendas.FDQuerySaidaProdutoAfterDelete(DataSet: TDataSet);
 begin
+  {Criar o deletar a quantidade que foi deletado a venda
   DM_Cadastro.FDQueryProduto.Open();
-  DM_Cadastro.FDQueryProduto.Edit;
-  DM_Cadastro.FDQueryProdutoQUANTIDADE_ATUAL.Value :=
-    (DM_Cadastro.FDQueryProdutoQUANTIDADE_ATUAL.Value +
-    DM_Vendas.FDQuerySaidaProdutoQUANTIDADE.Value);
+    DM_Cadastro.FDQueryProduto.Edit;
+      DM_Cadastro.FDQueryProdutoQUANTIDADE_ATUAL.Value :=
+          (DM_Cadastro.FDQueryProdutoQUANTIDADE_ATUAL.Value +
+              DM_Vendas.FDQuerySaidaProdutoQUANTIDADE.Value);}
 end;
 
 procedure TDM_Vendas.FDQuerySaidaProdutoAfterPost(DataSet: TDataSet);
 begin
   // depois que salva ele a da baixa no estoque
-  DM_Cadastro.FDQueryProduto.Open();
-  DM_Cadastro.FDQueryProduto.Edit;
-  DM_Cadastro.FDQueryProdutoQUANTIDADE_ATUAL.Value :=
-    (DM_Cadastro.FDQueryProdutoQUANTIDADE_ATUAL.Value -
-    DM_Vendas.FDQuerySaidaProdutoQUANTIDADE.Value);
+
 end;
 
 procedure TDM_Vendas.FDQuerySaidaProdutoCODPRODUTOValidate(Sender: TField);
@@ -116,6 +118,35 @@ begin
     FDQuerySaidaProdutoVALORPRODUTO.Value; }
   FDQuerySaidaProdutoVALORTOTAL.Value := FDQuerySaidaProdutoQUANTIDADE.Value *
     FDQuerySaidaProdutoVALORPRODUTO.Value;
+end;
+
+procedure TDM_Vendas.FDQuerySaida_VendaBeforeInsert(DataSet: TDataSet);
+begin
+  FDQuerySaida_VendaDATAVENDA.AsDateTime := date;
+end;
+
+procedure TDM_Vendas.FDQuerySaida_VendaBeforePost(DataSet: TDataSet);
+begin
+  if FDQuerySaida_VendaDATA_FATURAMENTO.IsNull and
+    (FDQuerySaida_VendaSITUACAO.AsAnsiString = 'Faturado') then
+  begin
+
+    FDQuerySaida_VendaDATA_FATURAMENTO.AsDateTime := date;
+
+    FDQuerySaida_VendaDATA_CANCELAMENTO.Clear;
+  end;
+  if FDQuerySaida_VendaDATA_CANCELAMENTO.IsNull and
+    (FDQuerySaida_VendaSITUACAO.AsAnsiString = 'Cancelado') then
+  begin
+
+    FDQuerySaida_VendaDATA_CANCELAMENTO.AsDateTime := date;
+
+    FDQuerySaida_VendaDATA_FATURAMENTO.Clear;
+  end;
+  { DM_Cadastro.FDQueryProduto.Edit;
+    DM_Cadastro.FDQueryProdutoQUANTIDADE_ATUAL.Value :=
+    (DM_Cadastro.FDQueryProdutoQUANTIDADE_ATUAL.Value -
+    DM_Vendas.FDQuerySaidaProdutoQUANTIDADE.Value); }
 end;
 
 end.
