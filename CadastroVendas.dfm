@@ -432,7 +432,7 @@ object frmCadastroVendas: TfrmCadastroVendas
           Top = 113
           Width = 145
           Height = 21
-          DataField = 'COND_PAGAMENTO'
+          DataField = 'ID_CONTA'
           DataSource = DM_Vendas.DT_Saida_Venda
           KeyField = 'CODIGO'
           ListField = 'DESCRICAO'

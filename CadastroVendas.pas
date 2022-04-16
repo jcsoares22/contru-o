@@ -147,9 +147,11 @@ procedure TfrmCadastroVendas.btnNovoClick(Sender: TObject);
 var
   prox: integer;
 begin
+
   if not(DM_Vendas.FDQuerySaida_Venda.State in [dsEdit, dsInsert]) then
   begin
     DM_Vendas.FDQuerySaida_Venda.Insert;
+    DM_Vendas.FDQuerySaida_VendaDATAVENDA.AsDateTime := Date;
   end;
   { DM_Vendas.FDQuerySaida_Venda.Insert;
     DM_Cadastro.FDQueryCliente.Open();
