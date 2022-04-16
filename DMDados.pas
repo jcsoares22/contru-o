@@ -28,6 +28,9 @@ type
     FDUSUARIOUSU_SENHA: TStringField;
     FDUSUARIOUSU_NIVEL: TIntegerField;
     DT_Usuario: TDataSource;
+    FDQueryPreferencia: TFDQuery;
+    FDQueryPreferenciaLIMITE_DESCONTO: TIntegerField;
+    DT_Preferencia: TDataSource;
   private
     { Private declarations }
   public

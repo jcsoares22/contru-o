@@ -286,6 +286,20 @@ object frmCadastroVendas: TfrmCadastroVendas
           Caption = 'FRETE'
           FocusControl = DBEdit6
         end
+        object Label15: TLabel
+          Left = 1000
+          Top = 15
+          Width = 52
+          Height = 13
+          Caption = 'SITUACAO'
+        end
+        object Label16: TLabel
+          Left = 856
+          Top = 22
+          Width = 108
+          Height = 13
+          Caption = 'DATA_FATURAMENTO'
+        end
         object Label17: TLabel
           Left = 856
           Top = 68
@@ -294,20 +308,13 @@ object frmCadastroVendas: TfrmCadastroVendas
           Caption = 'DATA_CANCELAMENTO'
           FocusControl = DBEdit3
         end
-        object Label16: TLabel
-          Left = 848
-          Top = 12
-          Width = 108
+        object Label18: TLabel
+          Left = 856
+          Top = 114
+          Width = 97
           Height = 13
-          Caption = 'DATA_FATURAMENTO'
-          FocusControl = DB_Data_Faturamento
-        end
-        object Label15: TLabel
-          Left = 1000
-          Top = 15
-          Width = 52
-          Height = 13
-          Caption = 'SITUACAO'
+          Caption = 'DATA_ORCAMENTO'
+          FocusControl = DBEdit2
         end
         object DBEdit1: TDBEdit
           Left = 8
@@ -483,24 +490,6 @@ object frmCadastroVendas: TfrmCadastroVendas
           OnEnter = DBE_DescontoEnter
           OnExit = DBE_DescontoExit
         end
-        object DBEdit3: TDBEdit
-          Left = 856
-          Top = 87
-          Width = 134
-          Height = 21
-          DataField = 'DATA_CANCELAMENTO'
-          DataSource = DM_Vendas.DT_Saida_Venda
-          TabOrder = 17
-        end
-        object DB_Data_Faturamento: TDBEdit
-          Left = 848
-          Top = 31
-          Width = 73
-          Height = 21
-          DataField = 'DATA_FATURAMENTO'
-          DataSource = DM_Vendas.DT_Saida_Venda
-          TabOrder = 18
-        end
         object DBComboBox2: TDBComboBox
           Left = 984
           Top = 34
@@ -510,8 +499,36 @@ object frmCadastroVendas: TfrmCadastroVendas
           DataSource = DM_Vendas.DT_Saida_Venda
           Items.Strings = (
             'Faturado'
-            'Cancelado')
+            'Cancelado'
+            'Orcamento')
+          TabOrder = 17
+        end
+        object DBEdit3: TDBEdit
+          Left = 856
+          Top = 87
+          Width = 134
+          Height = 21
+          DataField = 'DATA_CANCELAMENTO'
+          DataSource = DM_Vendas.DT_Saida_Venda
+          TabOrder = 18
+        end
+        object DBEdit2: TDBEdit
+          Left = 856
+          Top = 133
+          Width = 142
+          Height = 21
+          DataField = 'DATA_ORCAMENTO'
+          DataSource = DM_Vendas.DT_Saida_Venda
           TabOrder = 19
+        end
+        object DB_Data_Faturamento: TDBEdit
+          Left = 856
+          Top = 41
+          Width = 73
+          Height = 21
+          DataField = 'DATA_FATURAMENTO'
+          DataSource = DM_Vendas.DT_Saida_Venda
+          TabOrder = 20
         end
       end
       object Panel2: TPanel

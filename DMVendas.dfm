@@ -4,6 +4,7 @@ object DM_Vendas: TDM_Vendas
   Width = 1204
   object FDQuerySaida_Venda: TFDQuery
     BeforePost = FDQuerySaida_VendaBeforePost
+    IndexFieldNames = 'CODIGO'
     Connection = DM_Dados.DADOS
     Transaction = FDTransaction2
     UpdateOptions.AssignedValues = [uvUpdateMode, uvFetchGeneratorsPoint, uvGeneratorName]
@@ -101,6 +102,10 @@ object DM_Vendas: TDM_Vendas
     object FDQuerySaida_VendaDATA_CANCELAMENTO: TSQLTimeStampField
       FieldName = 'DATA_CANCELAMENTO'
       Origin = 'DATA_CANCELAMENTO'
+    end
+    object FDQuerySaida_VendaDATA_ORCAMENTO: TSQLTimeStampField
+      FieldName = 'DATA_ORCAMENTO'
+      Origin = 'DATA_ORCAMENTO'
     end
   end
   object FDQuerySaidaProduto: TFDQuery

@@ -104,4 +104,20 @@ object DM_Dados: TDM_Dados
     Left = 120
     Top = 104
   end
+  object FDQueryPreferencia: TFDQuery
+    Connection = DADOS
+    SQL.Strings = (
+      'SELECT * FROM controle_sistema')
+    Left = 24
+    Top = 176
+    object FDQueryPreferenciaLIMITE_DESCONTO: TIntegerField
+      FieldName = 'LIMITE_DESCONTO'
+      Origin = 'LIMITE_DESCONTO'
+    end
+  end
+  object DT_Preferencia: TDataSource
+    DataSet = FDQueryPreferencia
+    Left = 104
+    Top = 176
+  end
 end

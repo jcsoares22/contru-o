@@ -39,6 +39,7 @@ type
     FDQuerySaida_VendaDATA_CANCELAMENTO: TSQLTimeStampField;
     FDTransaction1: TFDTransaction;
     FDTransaction2: TFDTransaction;
+    FDQuerySaida_VendaDATA_ORCAMENTO: TSQLTimeStampField;
     procedure FDQuerySaidaProdutoAfterPost(DataSet: TDataSet);
     procedure FDQuerySaidaProdutoCODPRODUTOValidate(Sender: TField);
     procedure FDQuerySaidaProdutoQUANTIDADESetText(Sender: TField;
@@ -121,6 +122,12 @@ begin
   begin
     FDQuerySaida_VendaDATA_CANCELAMENTO.AsDateTime := date;
     FDQuerySaida_VendaDATA_FATURAMENTO.Clear;
+  end;
+   if FDQuerySaida_VendaDATA_ORCAMENTO.IsNull and
+    (FDQuerySaida_VendaSITUACAO.AsAnsiString = 'Orcamento') then
+  begin
+    FDQuerySaida_VendaDATA_ORCAMENTO.AsDateTime := date;
+   // FDQuerySaida_VendaDATA_FATURAMENTO.Clear;
   end;
 end;
 

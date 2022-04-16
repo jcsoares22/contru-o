@@ -59,10 +59,12 @@ type
     DBGridVendas: TDBGrid;
     DBComboBox2: TDBComboBox;
     Label15: TLabel;
+    Label16: TLabel;
     Label17: TLabel;
     DBEdit3: TDBEdit;
+    Label18: TLabel;
+    DBEdit2: TDBEdit;
     DB_Data_Faturamento: TDBEdit;
-    Label16: TLabel;
     procedure DBGridVendasExit(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure btnNovoClick(Sender: TObject);
@@ -94,7 +96,7 @@ implementation
 
 {$R *.dfm}
 
-uses DMVendas, DMCadastro, CadastroFinanceiro;
+uses DMVendas, DMCadastro, CadastroFinanceiro, Preferencia;
 
 procedure TfrmCadastroVendas.btnCancelarClick(Sender: TObject);
 begin
@@ -152,10 +154,8 @@ begin
   // prox := 1;
   if not(DM_Vendas.FDQuerySaida_Venda.State in [dsEdit, dsInsert]) then
   begin
-  DM_Vendas.FDQuerySaida_Venda.edit;
-  DM_Vendas.FDQuerySaidaProduto.edit;
-  DM_Vendas.FDQuerySaida_Venda.Insert;
-  DM_Vendas.FDQuerySaidaProduto.Insert;
+    DM_Vendas.FDQuerySaida_Venda.Insert;
+    // DM_Vendas.FDQuerySaidaProduto.Insert;
   end;
   { DM_Vendas.FDQuerySaida_Venda.Insert;
     DM_Cadastro.FDQueryCliente.Open();
@@ -298,7 +298,7 @@ begin
   begin
     DM_Vendas.FDQuerySaida_Venda.edit;
     DM_Cadastro.FDQueryProduto.edit;
-    DM_Vendas.FDQuerySaidaProduto.edit;
+    DM_Vendas.FDQuerySaidaProduto.Post;
 
     DM_Vendas.FDQuerySaida_Venda.Post;
     { DM_Vendas.FDQuerySaidaProduto.Append;
@@ -348,7 +348,9 @@ end;
 procedure TfrmCadastroVendas.DBE_DescontoExit(Sender: TObject);
 var
   desconto: Currency;
+  percento:  Currency;
 begin
+
   { if frmCadastroVendas.DBC_Desconto.Text = EmptyStr then
     begin
     ShowMessage('Selecione o tipo de desconto');
