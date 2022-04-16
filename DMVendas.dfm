@@ -1,17 +1,12 @@
 object DM_Vendas: TDM_Vendas
   OldCreateOrder = False
-  OnCreate = DataModuleCreate
   Height = 623
   Width = 1204
   object FDQuerySaida_Venda: TFDQuery
-    BeforeInsert = FDQuerySaida_VendaBeforeInsert
-    BeforePost = FDQuerySaida_VendaBeforePost
     Connection = DM_Dados.DADOS
     UpdateOptions.AssignedValues = [uvUpdateMode, uvFetchGeneratorsPoint, uvGeneratorName]
     UpdateOptions.UpdateMode = upWhereAll
     UpdateOptions.FetchGeneratorsPoint = gpImmediate
-    UpdateOptions.GeneratorName = 'GEN_SAIDA_VENDA_ID'
-    UpdateOptions.AutoIncFields = 'CODIGO'
     SQL.Strings = (
       'select * from saida_Venda'
       'order by codigo')
@@ -106,10 +101,6 @@ object DM_Vendas: TDM_Vendas
     end
   end
   object FDQuerySaidaProduto: TFDQuery
-    AfterOpen = FDQuerySaidaProdutoAfterOpen
-    AfterDelete = FDQuerySaidaProdutoAfterDelete
-    AfterScroll = FDQuerySaidaProdutoAfterScroll
-    OnCalcFields = FDQuerySaidaProdutoCalcFields
     IndexFieldNames = 'CODIGO'
     MasterSource = DT_Saida_Venda
     MasterFields = 'CODIGO'
