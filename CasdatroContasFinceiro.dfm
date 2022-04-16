@@ -96,6 +96,14 @@ object frmContas: TfrmContas
         Expanded = False
         FieldName = 'BLOQUEADA'
         Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'TIPO'
+        PickList.Strings = (
+          'PAGAR'
+          'RECEBER')
+        Visible = True
       end>
   end
   object DBGrid2: TDBGrid

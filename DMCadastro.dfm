@@ -438,6 +438,18 @@
       Origin = 'BLOQUEADA'
       Size = 1
     end
+    object FDQueryContaTIPO: TStringField
+      FieldKind = fkLookup
+      FieldName = 'TIPO'
+      LookupDataSet = FDQueryTIPO_CONTA
+      LookupKeyFields = 'ID'
+      LookupResultField = 'TIPO'
+      KeyFields = 'TIPO'
+      LookupCache = True
+      Origin = 'TIPO'
+      Size = 7
+      Lookup = True
+    end
   end
   object FDQuerySubConta: TFDQuery
     IndexFieldNames = 'CODIGO_SUB'
@@ -457,13 +469,11 @@
     object FDQuerySubContaTIPO: TStringField
       FieldKind = fkLookup
       FieldName = 'TIPO'
-      LookupDataSet = FDQueryTipo
-      LookupKeyFields = 'CODIGO'
-      LookupResultField = 'DESCRICAO'
+      LookupDataSet = FDQueryTIPO_CONTA
+      LookupKeyFields = 'ID'
+      LookupResultField = 'TIPO'
       KeyFields = 'TIPO'
       Origin = 'TIPO'
-      Required = True
-      OnValidate = FDQuerySubContaTIPOValidate
       Size = 1
       Lookup = True
     end
@@ -489,27 +499,16 @@
     Left = 648
     Top = 496
   end
-  object FDQueryTipo: TFDQuery
+  object FDQueryTIPO_CONTA: TFDQuery
     Connection = DM_Dados.DADOS
     SQL.Strings = (
-      'select * from tipo_conta')
+      'SELECT * FROM TIPO_CONTA')
     Left = 568
     Top = 392
-    object IntegerField1: TIntegerField
-      FieldName = 'CODIGO'
-      Origin = 'CODIGO'
-      Required = True
-    end
-    object StringField1: TStringField
-      FieldName = 'DESCRICAO'
-      Origin = 'DESCRICAO'
-      Required = True
-      Size = 35
-    end
-    object StringField2: TStringField
-      FieldName = 'BLOQUEADA'
-      Origin = 'BLOQUEADA'
-      Size = 1
-    end
+  end
+  object DataSourcetIPO_CONTA: TDataSource
+    DataSet = FDQueryTIPO_CONTA
+    Left = 648
+    Top = 392
   end
 end

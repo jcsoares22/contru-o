@@ -112,7 +112,12 @@ end;
 
 procedure TfrmCadastroVendas.btnDeletarClick(Sender: TObject);
 begin
-  begin
+  DM_Vendas.FDQuerySaida_Venda.edit;
+  DM_Vendas.FDQuerySaida_Venda.Delete;
+  DM_Vendas.FDQuerySaidaProduto.edit;
+  DM_Vendas.FDQuerySaidaProduto.Delete
+  // DM_Vendas.FDQuerySaidaProduto.Delete;
+  { begin
     DM_Vendas.FDQuerySaida_Venda.edit;
     // DM_Vendas.FDQuerySaida_Venda.Delete;
     DM_Vendas.FDQuerySaidaProduto.edit;
@@ -120,12 +125,12 @@ begin
     while not DM_Vendas.FDQuerySaidaProduto.Eof do
     // verificando ate o final da tabela
     begin
-      DM_Vendas.FDQuerySaidaProduto.edit;
-      DM_Vendas.FDQuerySaidaProduto.Delete;
-      DM_Vendas.FDQuerySaidaProduto.Delete;
-      DM_Vendas.FDQuerySaida_Venda.Delete;
+    DM_Vendas.FDQuerySaidaProduto.edit;
+    DM_Vendas.FDQuerySaidaProduto.Delete;
+    DM_Vendas.FDQuerySaidaProduto.Delete;
+    DM_Vendas.FDQuerySaida_Venda.Delete;
     end;
-  end;
+    end; }
 end;
 
 procedure TfrmCadastroVendas.btnEditClick(Sender: TObject);
@@ -342,14 +347,14 @@ procedure TfrmCadastroVendas.DBE_DescontoExit(Sender: TObject);
 var
   desconto: Currency;
 begin
-   { if frmCadastroVendas.DBC_Desconto.Text = EmptyStr then
-       begin
-             ShowMessage('Selecione o tipo de desconto');
-                   // DM_Vendas.FDQuerySaida_VendaDESCONTO.Clear;
-                         DBC_Desconto.SetFocus;
-                             end
-                                 else}
-     case frmCadastroVendas.DBC_Desconto.ItemIndex of
+  { if frmCadastroVendas.DBC_Desconto.Text = EmptyStr then
+    begin
+    ShowMessage('Selecione o tipo de desconto');
+    // DM_Vendas.FDQuerySaida_VendaDESCONTO.Clear;
+    DBC_Desconto.SetFocus;
+    end
+    else }
+  case frmCadastroVendas.DBC_Desconto.ItemIndex of
     // combobox de deconto por percento ou real
 
     0: // R$
@@ -377,8 +382,7 @@ begin
           frmCadastroVendas.DBE_Desconto.Text;
       end;
 
-
-     end;
+  end;
 end;
 
 procedure TfrmCadastroVendas.DBGrid1DblClick(Sender: TObject);
