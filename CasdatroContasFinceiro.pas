@@ -54,6 +54,7 @@ procedure TfrmContas.FormCreate(Sender: TObject);
 begin
   DM_Cadastro.FDQueryConta.Open();
   DM_Cadastro.FDQuerySubConta.Open();
+  DM_Cadastro.FDQueryTIPO_CONTA.Open();
 end;
 
 end.

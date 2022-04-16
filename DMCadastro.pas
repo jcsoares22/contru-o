@@ -66,7 +66,6 @@ type
     FDQueryContaDESCRICAO: TStringField;
     FDQueryContaBLOQUEADA: TStringField;
     FDQuerySubContaCODIGO_SUB: TIntegerField;
-    FDQuerySubContaTIPO: TStringField;
     FDQuerySubContaDESCRICAO: TStringField;
     FDQuerySubContaBLOQUEADA: TStringField;
     FDQuerySub_grupoCODIGO_GRUPO: TIntegerField;
@@ -97,8 +96,10 @@ type
     FDQueryProdutoQUANTIDADE_SAIDA: TIntegerField;
     FDQueryClienteBAIRRO: TStringField;
     FDQueryTIPO_CONTA: TFDQuery;
-    FDQueryContaTIPO: TStringField;
     DataSourcetIPO_CONTA: TDataSource;
+    FDQuerySubContaTIPO: TStringField;
+    FDQueryContaTIPO: TStringField;
+    FDQueryContaTIPO_CONTA: TStringField;
   private
     { Private declarations }
   public

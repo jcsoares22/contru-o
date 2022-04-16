@@ -439,14 +439,18 @@
       Size = 1
     end
     object FDQueryContaTIPO: TStringField
-      FieldKind = fkLookup
       FieldName = 'TIPO'
+      Origin = 'TIPO'
+      Required = True
+      Size = 7
+    end
+    object FDQueryContaTIPO_CONTA: TStringField
+      FieldKind = fkLookup
+      FieldName = 'TIPO_CONTA'
       LookupDataSet = FDQueryTIPO_CONTA
-      LookupKeyFields = 'ID'
+      LookupKeyFields = 'TIPO'
       LookupResultField = 'TIPO'
       KeyFields = 'TIPO'
-      LookupCache = True
-      Origin = 'TIPO'
       Size = 7
       Lookup = True
     end
@@ -466,17 +470,6 @@
       ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
       Required = True
     end
-    object FDQuerySubContaTIPO: TStringField
-      FieldKind = fkLookup
-      FieldName = 'TIPO'
-      LookupDataSet = FDQueryTIPO_CONTA
-      LookupKeyFields = 'ID'
-      LookupResultField = 'TIPO'
-      KeyFields = 'TIPO'
-      Origin = 'TIPO'
-      Size = 1
-      Lookup = True
-    end
     object FDQuerySubContaDESCRICAO: TStringField
       FieldName = 'DESCRICAO'
       Origin = 'DESCRICAO'
@@ -487,6 +480,13 @@
       FieldName = 'BLOQUEADA'
       Origin = 'BLOQUEADA'
       Size = 1
+    end
+    object FDQuerySubContaTIPO: TStringField
+      FieldName = 'TIPO'
+      Origin = 'TIPO'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+      Size = 7
     end
   end
   object DT_Conta: TDataSource

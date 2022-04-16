@@ -55,7 +55,7 @@ type
     DBGrid_Venda: TDBGrid;
     DBE_Desconto: TDBEdit;
     DBLookupComboBox1: TDBLookupComboBox;
-    DBLookupComboBox5: TDBLookupComboBox;
+    DBLookupCB_conta: TDBLookupComboBox;
     DBGridVendas: TDBGrid;
     DBComboBox2: TDBComboBox;
     Label15: TLabel;
@@ -150,22 +150,23 @@ procedure TfrmCadastroVendas.btnNovoClick(Sender: TObject);
 var
   prox: integer;
 begin
-  prox := 1;
-  { if not(DM_Vendas.FDQuerySaida_Venda.State in [dsEdit, dsInsert]) then
-    begin
+  // prox := 1;
+  if not(DM_Vendas.FDQuerySaida_Venda.State in [dsEdit, dsInsert]) then
+  begin
     DM_Vendas.FDQuerySaida_Venda.Insert;
-    end; }
-  DM_Vendas.FDQuerySaida_Venda.Insert;
-  DM_Cadastro.FDQueryCliente.Open();
-  DM_Vendas.FDQuerySaidaProduto.Open();
-  DM_Vendas.FDQuerySaida_Venda.edit;
-  DM_Vendas.FDQuerySaida_Venda.Open();
-  DM_Cadastro.FDQueryProduto.Open();
-  DM_Vendas.FDQuerySaidaProduto.edit;
-  DM_Vendas.FDQuerySaida_Venda.Last;
-  prox := DM_Vendas.FDQuerySaida_VendaCODIGO.AsInteger + 1;
-  DM_Vendas.FDQuerySaida_Venda.Append;
-  DM_Vendas.FDQuerySaida_VendaCODIGO.AsInteger := prox;
+    // DM_Vendas.FDQuerySaidaProduto.Insert;
+  end;
+  { DM_Vendas.FDQuerySaida_Venda.Insert;
+    DM_Cadastro.FDQueryCliente.Open();
+    DM_Vendas.FDQuerySaidaProduto.Open();
+    DM_Vendas.FDQuerySaida_Venda.edit;
+    DM_Vendas.FDQuerySaida_Venda.Open();
+    DM_Cadastro.FDQueryProduto.Open();
+    DM_Vendas.FDQuerySaidaProduto.edit;
+    DM_Vendas.FDQuerySaida_Venda.Last;
+    prox := DM_Vendas.FDQuerySaida_VendaCODIGO.AsInteger + 1;
+    DM_Vendas.FDQuerySaida_Venda.Append;
+    DM_Vendas.FDQuerySaida_VendaCODIGO.AsInteger := prox; }
   // DBGridVendas.ReadOnly := false;
   btnNovo.Enabled := false;
   btnEdit.Enabled := false;
@@ -411,6 +412,8 @@ end;
 
 procedure TfrmCadastroVendas.FormCreate(Sender: TObject);
 begin
+  // DM_Vendas.FDQuerySaida_VendaID_CONTA.AsString := DM_Cadastro.FDQueryContaTIPO.AsString := 'RECEBER';
+
   DM_Vendas.FDQuerySaida_Venda.Open();
   DM_Cadastro.FDQueryProduto.Open();
   DM_Vendas.FDQuerySaidaProduto.Open();
@@ -419,6 +422,7 @@ begin
   DM_Cadastro.FDQueryTipoPgto.Open();
   DM_Cadastro.FDQueryConta.Open();
   DM_Cadastro.FDQuerySubConta.Open();
+  DM_Cadastro.FDQueryTIPO_CONTA.Open();
   { AtualizaFDQuery(DM_Cadastro.FDQueryProduto,'');
     AtualizaFDQuery(DM_Vendas.FDQuerySaida_Venda,'');
     AtualizaFDQuery(DM_Vendas.FDQuerySaidaProduto,'');

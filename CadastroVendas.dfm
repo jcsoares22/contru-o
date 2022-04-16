@@ -417,7 +417,7 @@ object frmCadastroVendas: TfrmCadastroVendas
           ListSource = DM_Cadastro.DT_Tipo_Pgto
           TabOrder = 11
         end
-        object DBLookupComboBox5: TDBLookupComboBox
+        object DBLookupCB_conta: TDBLookupComboBox
           Left = 59
           Top = 113
           Width = 145

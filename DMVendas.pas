@@ -44,6 +44,7 @@ type
     procedure FDQuerySaidaProdutoAfterDelete(DataSet: TDataSet);
     procedure FDQuerySaida_VendaBeforePost(DataSet: TDataSet);
     procedure FDQuerySaidaProdutoQUANTIDADEValidate(Sender: TField);
+    procedure FDQuerySaida_VendaID_CONTAChange(Sender: TField);
   private
     { Private declarations }
   public
@@ -98,7 +99,7 @@ begin
   begin
     ShowMessage
       ('Quantidade inferior ao permitido, sera adiconado a quantidade de 1 no produto o minimo permitido');
-      FDQuerySaidaProdutoQUANTIDADE.AsFloat := 1;
+    FDQuerySaidaProdutoQUANTIDADE.AsFloat := 1;
   end;
   FDQuerySaidaProdutoVALORTOTAL.Value := FDQuerySaidaProdutoVALORPRODUTO.Value *
     FDQuerySaidaProdutoQUANTIDADE.Value;
@@ -120,5 +121,13 @@ begin
     FDQuerySaida_VendaDATA_FATURAMENTO.Clear;
   end;
 end;
+
+procedure TDM_Vendas.FDQuerySaida_VendaID_CONTAChange(Sender: TField);
+begin
+
+
+  //  FDQuerySaida_VendaID_CONTA.Text :=  DM_Cadastro.FDQueryContaTIPO.Value = 'faturado';
+
+  end;
 
 end.
