@@ -5,7 +5,8 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
   System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Menus, Vcl.StdCtrls, Vcl.ExtCtrls, Preferencia;
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Menus, Vcl.StdCtrls, Vcl.ExtCtrls, Preferencia,
+  AdvCustomFilterPanel, advgridfilterpanel;
 
 type
   TfrmPrincipal = class(TForm)
@@ -49,6 +50,7 @@ type
     Panel2: TPanel;
     ContaSubConta1: TMenuItem;
     ipoDocumento1: TMenuItem;
+    AdvGridFilterPanel1: TAdvGridFilterPanel;
     procedure fecharTela();
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure bntClienteClick(Sender: TObject);
