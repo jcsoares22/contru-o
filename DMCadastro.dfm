@@ -77,8 +77,8 @@
     Connection = DM_Dados.DADOS
     SQL.Strings = (
       'select * from medida')
-    Left = 477
-    Top = 64
+    Left = 613
+    Top = 8
     object FDQueryUnMedidaID: TIntegerField
       FieldName = 'ID'
       Origin = 'ID'
@@ -118,16 +118,16 @@
   end
   object Dt_medida: TDataSource
     DataSet = FDQueryUnMedida
-    Left = 557
-    Top = 72
+    Left = 693
+    Top = 16
   end
   object FDQueryCores: TFDQuery
     ConstraintsEnabled = True
     Connection = DM_Dados.DADOS
     SQL.Strings = (
       'SELECT * FROM CORES')
-    Left = 477
-    Top = 136
+    Left = 613
+    Top = 80
     object FDQueryCoresID: TIntegerField
       FieldName = 'ID'
       Origin = 'ID'
@@ -141,16 +141,16 @@
   end
   object DT_Cores: TDataSource
     DataSet = FDQueryCores
-    Left = 557
-    Top = 144
+    Left = 693
+    Top = 88
   end
   object FDQueryMarca: TFDQuery
     ConstraintsEnabled = True
     Connection = DM_Dados.DADOS
     SQL.Strings = (
       'select * from marca')
-    Left = 477
-    Top = 200
+    Left = 613
+    Top = 144
     object FDQueryMarcaID: TIntegerField
       FieldName = 'ID'
       Origin = 'ID'
@@ -164,8 +164,8 @@
   end
   object DT_Marca: TDataSource
     DataSet = FDQueryMarca
-    Left = 557
-    Top = 208
+    Left = 693
+    Top = 152
   end
   object FDQueryCondição_pagamento: TFDQuery
     Connection = DM_Dados.DADOS
@@ -455,10 +455,17 @@
       Required = True
     end
     object FDQuerySubContaTIPO: TStringField
+      FieldKind = fkLookup
       FieldName = 'TIPO'
+      LookupDataSet = FDQueryTipo
+      LookupKeyFields = 'CODIGO'
+      LookupResultField = 'DESCRICAO'
+      KeyFields = 'TIPO'
       Origin = 'TIPO'
       Required = True
+      OnValidate = FDQuerySubContaTIPOValidate
       Size = 1
+      Lookup = True
     end
     object FDQuerySubContaDESCRICAO: TStringField
       FieldName = 'DESCRICAO'
@@ -481,5 +488,28 @@
     DataSet = FDQuerySubConta
     Left = 648
     Top = 496
+  end
+  object FDQueryTipo: TFDQuery
+    Connection = DM_Dados.DADOS
+    SQL.Strings = (
+      'select * from tipo_conta')
+    Left = 568
+    Top = 392
+    object IntegerField1: TIntegerField
+      FieldName = 'CODIGO'
+      Origin = 'CODIGO'
+      Required = True
+    end
+    object StringField1: TStringField
+      FieldName = 'DESCRICAO'
+      Origin = 'DESCRICAO'
+      Required = True
+      Size = 35
+    end
+    object StringField2: TStringField
+      FieldName = 'BLOQUEADA'
+      Origin = 'BLOQUEADA'
+      Size = 1
+    end
   end
 end

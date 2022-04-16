@@ -95,7 +95,6 @@ object frmContas: TfrmContas
       item
         Expanded = False
         FieldName = 'BLOQUEADA'
-        Width = 64
         Visible = True
       end>
   end
@@ -112,6 +111,27 @@ object frmContas: TfrmContas
     TitleFont.Height = -11
     TitleFont.Name = 'Tahoma'
     TitleFont.Style = []
+    Columns = <
+      item
+        Expanded = False
+        FieldName = 'CODIGO_SUB'
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'TIPO'
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'DESCRICAO'
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'BLOQUEADA'
+        Visible = True
+      end>
   end
   object Panel2: TPanel
     Left = 0

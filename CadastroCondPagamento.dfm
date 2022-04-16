@@ -3,7 +3,6 @@ inherited frmCadastroCondPagamento: TfrmCadastroCondPagamento
   PixelsPerInch = 96
   TextHeight = 13
   inherited Cadastro: TPageControl
-    ActivePage = TabSheet2
     inherited TabSheet1: TTabSheet
       inherited DBGrid_Cliente: TDBGrid
         DataSource = DM_Cadastro.Dt_Condicao_pagamento
@@ -21,13 +20,11 @@ inherited frmCadastroCondPagamento: TfrmCadastroCondPagamento
           item
             Expanded = False
             FieldName = 'DESCONTO_VISTA'
-            Width = 64
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'BLOQUEAR'
-            Width = 64
             Visible = True
           end>
       end

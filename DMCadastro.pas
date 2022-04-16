@@ -96,6 +96,11 @@ type
     FDQueryProdutoQUANTIDADE_ATUAL: TIntegerField;
     FDQueryProdutoQUANTIDADE_SAIDA: TIntegerField;
     FDQueryClienteBAIRRO: TStringField;
+    FDQueryTipo: TFDQuery;
+    IntegerField1: TIntegerField;
+    StringField1: TStringField;
+    StringField2: TStringField;
+    procedure FDQuerySubContaTIPOValidate(Sender: TField);
   private
     { Private declarations }
   public
@@ -110,5 +115,10 @@ implementation
 {%CLASSGROUP 'Vcl.Controls.TControl'}
 
 {$R *.dfm}
+
+procedure TDM_Cadastro.FDQuerySubContaTIPOValidate(Sender: TField);
+begin
+FDQuerySubContaTIPO.Text := 'teste';
+end;
 
 end.
