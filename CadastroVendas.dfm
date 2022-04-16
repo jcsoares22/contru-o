@@ -399,7 +399,7 @@ object frmCadastroVendas: TfrmCadastroVendas
         end
         object btnSalvar: TButton
           Left = 281
-          Top = 9
+          Top = 7
           Width = 75
           Height = 25
           Caption = 'Salvar'
@@ -480,8 +480,7 @@ object frmCadastroVendas: TfrmCadastroVendas
           DataField = 'DESCONTO'
           DataSource = DM_Vendas.DT_Saida_Venda
           TabOrder = 16
-          OnEnter = DBE_DescontoEnter
-          OnExit = DBE_DescontoExit
+          OnChange = DBE_DescontoChange
         end
         object DBEdit3: TDBEdit
           Left = 856
@@ -566,37 +565,42 @@ object frmCadastroVendas: TfrmCadastroVendas
         Columns = <
           item
             Expanded = False
+            FieldName = 'CODIGO'
+            Visible = True
+          end
+          item
+            Expanded = False
             FieldName = 'CODPRODUTO'
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'NOME_PRODUTO'
-            Width = 64
-            Visible = True
-          end
-          item
-            Expanded = False
-            FieldName = 'QTE_ESTOQUE'
-            Width = 64
-            Visible = True
-          end
-          item
-            Expanded = False
-            FieldName = 'QUANTIDADE'
-            Width = 64
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'VALORPRODUTO'
-            Width = 64
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'VALORTOTAL'
-            Width = 64
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'QTE_ESTOQUE'
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'QUANTIDADE'
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'COD_VENDA'
             Visible = True
           end>
       end

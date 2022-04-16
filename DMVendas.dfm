@@ -3,6 +3,9 @@ object DM_Vendas: TDM_Vendas
   Height = 623
   Width = 1204
   object FDQuerySaida_Venda: TFDQuery
+    BeforeInsert = FDQuerySaida_VendaBeforeInsert
+    BeforePost = FDQuerySaida_VendaBeforePost
+    AfterPost = FDQuerySaidaProdutoAfterPost
     Connection = DM_Dados.DADOS
     UpdateOptions.AssignedValues = [uvUpdateMode, uvFetchGeneratorsPoint, uvGeneratorName]
     UpdateOptions.UpdateMode = upWhereAll
@@ -167,7 +170,6 @@ object DM_Vendas: TDM_Vendas
     object FDQuerySaidaProdutoQUANTIDADE: TIntegerField
       FieldName = 'QUANTIDADE'
       Origin = 'QUANTIDADE'
-      OnChange = FDQuerySaidaProdutoQUANTIDADEChange
     end
     object FDQuerySaidaProdutoCOD_VENDA: TIntegerField
       FieldName = 'COD_VENDA'

@@ -13,6 +13,7 @@ object frmPrincipal: TfrmPrincipal
   FormStyle = fsMDIForm
   Menu = MainMenu1
   OldCreateOrder = False
+  OnClose = FormClose
   PixelsPerInch = 96
   TextHeight = 13
   object Panel1: TPanel

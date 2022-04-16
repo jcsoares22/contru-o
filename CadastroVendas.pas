@@ -77,9 +77,8 @@ type
     procedure btnGerarLancamentoClick(Sender: TObject);
     procedure DBC_DescontoChange(Sender: TObject);
     procedure DBGrid1DblClick(Sender: TObject);
-    procedure DBE_DescontoEnter(Sender: TObject);
-    procedure DBE_DescontoExit(Sender: TObject);
     procedure DBECod_ClienteExit(Sender: TObject);
+    procedure DBE_DescontoChange(Sender: TObject);
   private
     { Private declarations }
 
@@ -132,8 +131,12 @@ end;
 
 procedure TfrmCadastroVendas.btnEditClick(Sender: TObject);
 begin
-  DM_Vendas.FDQuerySaida_Venda.edit;
-  DM_Vendas.FDQuerySaidaProduto.edit;
+  if DM_Vendas.FDQuerySaida_Venda.State in [dsEdit, dsInsert] then
+  begin
+    DM_Vendas.FDQuerySaida_Venda.edit;
+    DM_Vendas.FDQuerySaidaProduto.edit;
+  end;
+
 end;
 
 procedure TfrmCadastroVendas.btnGerarLancamentoClick(Sender: TObject);
@@ -151,6 +154,7 @@ begin
   if not(DM_Vendas.FDQuerySaida_Venda.State in [dsEdit, dsInsert]) then
   begin
     DM_Vendas.FDQuerySaida_Venda.Insert;
+
     DM_Vendas.FDQuerySaida_VendaDATAVENDA.AsDateTime := Date;
   end;
   { DM_Vendas.FDQuerySaida_Venda.Insert;
@@ -165,6 +169,7 @@ begin
     DM_Vendas.FDQuerySaida_Venda.Append;
     DM_Vendas.FDQuerySaida_VendaCODIGO.AsInteger := prox; }
   // DBGridVendas.ReadOnly := false;
+  DM_Vendas.FDQuerySaidaProduto.Insert;
   btnNovo.Enabled := false;
   btnEdit.Enabled := false;
   btnDeletar.Enabled := false;
@@ -289,18 +294,37 @@ end;
 
 procedure TfrmCadastroVendas.btnSalvarClick(Sender: TObject);
 begin
-  if DM_Vendas.FDQuerySaida_Venda.State in [dsEdit, dsInsert] then
-  begin
+  DM_Cadastro.FDQueryProduto.edit;
+  btnNovo.Enabled := true;
+  btnEdit.Enabled := true;
+  btnDeletar.Enabled := true;
+  DM_Vendas.FDQuerySaida_Venda.edit;
+
+  DM_Vendas.FDQuerySaidaProduto.post;
+  DM_Vendas.FDQuerySaida_Venda.post;
+  // totaliza;//procedure que totaliza o valor da compra
+  {
+    try
+    if DBSomaTotal.Text = EmptyStr then
+    begin
+    if DM_Vendas.FDQuerySaida_Venda.State in [dsEdit, dsInsert] then
+    begin
+    if MessageDlg('Desja totalizar a venda ?', TMsgDlgType.mtConfirmation,
+    [mbok, mbNo], 0) = mrok then
+    begin
+
+    totaliza;
+    end;
+    end;
+    Abort;
+    end;
+    finally
     DM_Vendas.FDQuerySaida_Venda.edit;
     DM_Cadastro.FDQueryProduto.edit;
     DM_Vendas.FDQuerySaidaProduto.post;
     DM_Vendas.FDQuerySaida_Venda.post;
-    { DM_Vendas.FDQuerySaidaProduto.Append;
-      DM_Vendas.FDQuerySaidaProdutoCODIGO.AsInteger :=  DM_Vendas.FDQuerySaidaProdutoCODIGO.Keyv }
-  end;
-  btnNovo.Enabled := true;
-  btnEdit.Enabled := true;
-  btnDeletar.Enabled := true;
+    end; }
+
 end;
 
 procedure TfrmCadastroVendas.btn_TotalizaClick(Sender: TObject);
@@ -328,68 +352,34 @@ begin // verificar a tela de para poder verificar se tem um iten já cadastrado
   end;
 end;
 
-procedure TfrmCadastroVendas.DBE_DescontoEnter(Sender: TObject);
+procedure TfrmCadastroVendas.DBE_DescontoChange(Sender: TObject);
 begin
   if frmCadastroVendas.DBC_Desconto.Text = EmptyStr then
   begin
     ShowMessage('Selecione o tipo de desconto');
+    DM_Vendas.FDQuerySaida_VendaDESCONTO.Clear;
     // DM_Vendas.FDQuerySaida_VendaDESCONTO.Clear;
     // DM_Vendas.FDQuerySaida_VendaDESCONTO.Text := '';
     DBC_Desconto.SetFocus
   end;
-  begin
-    if frmCadastroVendas.DBC_Desconto.Text <> EmptyStr then
-    begin
-      ShowMessage('Selecione o tipo de desconto');
-      // DM_Vendas.FDQuerySaida_VendaDESCONTO.Clear;
-      DM_Vendas.FDQuerySaida_VendaDESCONTO.Text := '';
-      DBC_Desconto.SetFocus
-    end;
-    begin
-      // verificando se a quantidade esta utrepassando o limite de desconto
-      DM_Vendas.FDQuerySaida_VendaDESCONTO.Currency := false;
-      if DM_Vendas.FDQuerySaida_VendaDESCONTO.CurValue > 10 then
-      Begin
-        ShowMessage('Valor do desconto acima do permitido ');
-        DM_Vendas.FDQuerySaida_VendaDESCONTO.Text := '';
-      End
-      else
-        // frmCadastroVendas.DBE_Desconto.Text;
-    end;
-
-    if frmCadastroVendas.DBC_Desconto.Text = EmptyStr then
-    begin
-      ShowMessage('Selecione o tipo de desconto');
-      // DM_Vendas.FDQuerySaida_VendaDESCONTO.Clear;
-      DBC_Desconto.SetFocus;
-    end;
-  end;
-
-end;
-
-procedure TfrmCadastroVendas.DBE_DescontoExit(Sender: TObject);
-var
-  desconto: Currency;
-begin
-  case frmCadastroVendas.DBC_Desconto.ItemIndex of
+  case DBC_Desconto.ItemIndex of
     // combobox de deconto por percento ou real
-
-    1: // R$
+    0: // R$
       begin
-        DM_Vendas.FDQuerySaida_VendaDESCONTO.Currency := false;
-        DM_Vendas.FDQuerySaida_VendaDESCONTO.Clear;
+        DM_Vendas.FDQuerySaida_VendaDESCONTO.Currency := true;
+        // DM_Vendas.FDQuerySaida_VendaDESCONTO.Clear;
         if DM_Vendas.FDQuerySaida_VendaDESCONTO.CurValue > 10 then
         Begin
           ShowMessage('Valor do desconto acima do permitido em reais ');
           DM_Vendas.FDQuerySaida_VendaDESCONTO.Clear;
         End
-        else
-          frmCadastroVendas.DBE_Desconto.Text;
+        { else
+          frmCadastroVendas.DBE_Desconto.Text; }
       end;
-    2: // %
+    1: // %
       begin
         DM_Vendas.FDQuerySaida_VendaDESCONTO.Currency := false;
-        DM_Vendas.FDQuerySaida_VendaDESCONTO.Clear;
+        // DM_Vendas.FDQuerySaida_VendaDESCONTO.Clear;
         if DM_Vendas.FDQuerySaida_VendaDESCONTO.CurValue > 10 then
         Begin
           ShowMessage('Valor do desconto acima do permitido ');
@@ -452,13 +442,14 @@ procedure TfrmCadastroVendas.totaliza;
 begin
   var
     soma, desconto: Currency;
+
   begin
 
     desconto := 0;
     soma := 0;
-    DM_Vendas.FDQuerySaidaProduto.open();
+    DM_Vendas.FDQuerySaidaProduto.Open();
     DM_Vendas.FDQuerySaidaProduto.edit;
-    DM_Vendas.FDQuerySaida_Venda.open();
+    DM_Vendas.FDQuerySaida_Venda.Open();
     DM_Vendas.FDQuerySaida_Venda.edit;
     DM_Vendas.FDQuerySaidaProduto.First; // pega o primeiro registro
     while not DM_Vendas.FDQuerySaidaProduto.Eof do
@@ -472,7 +463,7 @@ begin
       if DBE_Desconto.Text <> EmptyStr then
       begin
         case DBC_Desconto.ItemIndex of
-        // combobox de deconto por percento ou real
+          // combobox de deconto por percento ou real
           0:
             begin
               // R$
