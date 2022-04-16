@@ -7,9 +7,10 @@ object DM_Vendas: TDM_Vendas
     UpdateOptions.AssignedValues = [uvUpdateMode, uvFetchGeneratorsPoint, uvGeneratorName]
     UpdateOptions.UpdateMode = upWhereAll
     UpdateOptions.FetchGeneratorsPoint = gpImmediate
+    UpdateOptions.GeneratorName = 'GEN_SAIDA_VENDA_ID'
+    UpdateOptions.AutoIncFields = 'CODIGO'
     SQL.Strings = (
-      'select * from saida_Venda'
-      'order by codigo')
+      'select * from saida_Venda')
     Left = 40
     Top = 64
     object FDQuerySaida_VendaCODIGO: TIntegerField
@@ -166,6 +167,7 @@ object DM_Vendas: TDM_Vendas
     object FDQuerySaidaProdutoQUANTIDADE: TIntegerField
       FieldName = 'QUANTIDADE'
       Origin = 'QUANTIDADE'
+      OnChange = FDQuerySaidaProdutoQUANTIDADEChange
     end
     object FDQuerySaidaProdutoCOD_VENDA: TIntegerField
       FieldName = 'COD_VENDA'

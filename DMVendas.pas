@@ -84,15 +84,15 @@ end;
 
 procedure TDM_Vendas.FDQuerySaidaProdutoQUANTIDADEChange(Sender: TField);
 begin
-  if FDQuerySaidaProdutoQUANTIDADE.Value < 1 then
-  begin
+  { if FDQuerySaidaProdutoQUANTIDADE.Value < 1 then
+    begin
     ShowMessage
-      ('Quantidade inferior ao permitido, sera adiconado a quantidade de 1 no produto o minimo permitido');
+    ('Quantidade inferior ao permitido, sera adiconado a quantidade de 1 no produto o minimo permitido');
     FDQuerySaidaProdutoQUANTIDADE.Value := 1;
-  end
-  else
-  FDQuerySaidaProdutoVALORTOTAL.Value := FDQuerySaidaProdutoVALORPRODUTO.Value *
-    FDQuerySaidaProdutoQUANTIDADE.Value;
+    end
+    else }
+  FDQuerySaidaProdutoVALORTOTAL.AsFloat := FDQuerySaidaProdutoVALORPRODUTO.AsFloat *
+    FDQuerySaidaProdutoQUANTIDADE.AsFloat;
 
 end;
 
