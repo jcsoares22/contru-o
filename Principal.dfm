@@ -105,7 +105,6 @@ object frmPrincipal: TfrmPrincipal
       end
       object Condiaaodepagamento1: TMenuItem
         Caption = '&Condia'#231'ao de pagamento'
-        OnClick = Condiaaodepagamento1Click
       end
       object Bairro1: TMenuItem
         Caption = '&Bairro'
@@ -141,6 +140,7 @@ object frmPrincipal: TfrmPrincipal
       Caption = 'Consulta'
       object Oramento1: TMenuItem
         Caption = 'Or'#231'amento'
+        OnClick = Oramento1Click
       end
     end
     object Relatorio1: TMenuItem

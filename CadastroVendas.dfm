@@ -23,18 +23,120 @@ object frmCadastroVendas: TfrmCadastroVendas
     Top = 0
     Width = 1164
     Height = 685
-    ActivePage = TabSheet2
+    ActivePage = TabSheet1
     Align = alClient
     TabOrder = 0
     object TabSheet1: TTabSheet
       Caption = 'Pesquisar'
+      object DBGrid_Venda: TDBGrid
+        Left = 0
+        Top = 49
+        Width = 1156
+        Height = 608
+        Align = alClient
+        DataSource = DM_Vendas.DT_Saida_Venda
+        TabOrder = 0
+        TitleFont.Charset = DEFAULT_CHARSET
+        TitleFont.Color = clWindowText
+        TitleFont.Height = -11
+        TitleFont.Name = 'Tahoma'
+        TitleFont.Style = []
+        OnDblClick = DBGrid1DblClick
+        Columns = <
+          item
+            Expanded = False
+            FieldName = 'CODIGO'
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'CODCLIENTE'
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'DATAVENDA'
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'VALORTOTAL'
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'OBS'
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'NOME'
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'FRETE'
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'COND_PAGAMENTO'
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'ID_CONTA'
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'ID_SUBCONTA'
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'ID_TIPO_PGTO'
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'DESCONTO'
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'TIPO_DESC'
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'SITUACAO'
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'DATA_FATURAMENTO'
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'DATA_CANCELAMENTO'
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'DATA_ORCAMENTO'
+            Visible = True
+          end>
+      end
       object Panel3: TPanel
         Left = 0
         Top = 0
         Width = 1156
         Height = 49
         Align = alTop
-        TabOrder = 0
+        TabOrder = 1
+        ExplicitTop = 8
         object Label9: TLabel
           Left = 19
           Top = -2
@@ -100,100 +202,9 @@ object frmCadastroVendas: TfrmCadastroVendas
           OnClick = btnPesquisaClick
         end
       end
-      object DBGrid_Venda: TDBGrid
-        Left = 0
-        Top = 49
-        Width = 1156
-        Height = 608
-        Align = alClient
-        DataSource = DM_Vendas.DT_Saida_Venda
-        TabOrder = 1
-        TitleFont.Charset = DEFAULT_CHARSET
-        TitleFont.Color = clWindowText
-        TitleFont.Height = -11
-        TitleFont.Name = 'Tahoma'
-        TitleFont.Style = []
-        OnDblClick = DBGrid1DblClick
-        Columns = <
-          item
-            Expanded = False
-            FieldName = 'CODIGO'
-            Visible = True
-          end
-          item
-            Expanded = False
-            FieldName = 'CODCLIENTE'
-            Visible = True
-          end
-          item
-            Expanded = False
-            FieldName = 'NOME'
-            Width = 64
-            Visible = True
-          end
-          item
-            Expanded = False
-            FieldName = 'DATAVENDA'
-            Width = 64
-            Visible = True
-          end
-          item
-            Expanded = False
-            FieldName = 'VALORTOTAL'
-            Width = 64
-            Visible = True
-          end
-          item
-            Expanded = False
-            FieldName = 'OBS'
-            Width = 64
-            Visible = True
-          end
-          item
-            Expanded = False
-            FieldName = 'FRETE'
-            Width = 64
-            Visible = True
-          end
-          item
-            Expanded = False
-            FieldName = 'COND_PAGAMENTO'
-            Width = 64
-            Visible = True
-          end
-          item
-            Expanded = False
-            FieldName = 'ID_CONTA'
-            Visible = True
-          end
-          item
-            Expanded = False
-            FieldName = 'ID_SUBCONTA'
-            Width = 64
-            Visible = True
-          end
-          item
-            Expanded = False
-            FieldName = 'ID_TIPO_PGTO'
-            Width = 64
-            Visible = True
-          end
-          item
-            Expanded = False
-            FieldName = 'DESCONTO'
-            Width = 64
-            Visible = True
-          end
-          item
-            Expanded = False
-            FieldName = 'TIPO_DESC'
-            Width = 64
-            Visible = True
-          end>
-      end
     end
     object TabSheet2: TTabSheet
-      Caption = 'Cadastroo'
+      Caption = 'Cadastro'
       ImageIndex = 1
       object Panel1: TPanel
         Left = 0
@@ -365,7 +376,7 @@ object frmCadastroVendas: TfrmCadastroVendas
           ReadOnly = True
           TabOrder = 4
         end
-        object DBLookupComboBox2: TDBLookupComboBox
+        object DBLookupCB_Cond_pgto: TDBLookupComboBox
           Left = 314
           Top = 140
           Width = 145
@@ -406,7 +417,7 @@ object frmCadastroVendas: TfrmCadastroVendas
         end
         object btnSalvar: TButton
           Left = 281
-          Top = 7
+          Top = 9
           Width = 75
           Height = 25
           Caption = 'Salvar'
@@ -498,9 +509,10 @@ object frmCadastroVendas: TfrmCadastroVendas
           DataField = 'SITUACAO'
           DataSource = DM_Vendas.DT_Saida_Venda
           Items.Strings = (
-            'Faturado'
-            'Cancelado'
-            'Orcamento')
+            'FATURADO'
+            'CANCELADO'
+            'ORCAMENTO'
+            '')
           TabOrder = 17
         end
         object DBEdit3: TDBEdit
@@ -594,37 +606,31 @@ object frmCadastroVendas: TfrmCadastroVendas
           item
             Expanded = False
             FieldName = 'NOME_PRODUTO'
-            Width = 64
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'VALORPRODUTO'
-            Width = 64
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'VALORTOTAL'
-            Width = 64
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'QTE_ESTOQUE'
-            Width = 64
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'QUANTIDADE'
-            Width = 64
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'COD_VENDA'
-            Width = 64
             Visible = True
           end>
       end

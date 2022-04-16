@@ -45,16 +45,14 @@ object frmPreferencia: TfrmPreferencia
         Color = clSkyBlue
         ParentBackground = False
         TabOrder = 0
-        ExplicitLeft = 264
-        ExplicitTop = 400
-        ExplicitWidth = 185
         object Button1: TButton
-          Left = 640
+          Left = 623
           Top = 8
           Width = 75
           Height = 25
           Caption = 'Salvar'
           TabOrder = 0
+          OnClick = Button1Click
         end
         object Button2: TButton
           Left = 776
@@ -63,14 +61,24 @@ object frmPreferencia: TfrmPreferencia
           Height = 25
           Caption = 'Cancelar'
           TabOrder = 1
+          OnClick = Button2Click
+        end
+        object Button3: TButton
+          Left = 704
+          Top = 8
+          Width = 75
+          Height = 25
+          Caption = 'Salvar'
+          TabOrder = 2
+          OnClick = Button3Click
         end
       end
-      object DBEdit1: TDBEdit
+      object DBE_DESCONTO: TDBEdit
         Left = 72
-        Top = 5
+        Top = 3
         Width = 73
         Height = 21
-        DataField = 'LIMITE_DESCONTO'
+        DataField = 'DESCONTO_VENDA'
         DataSource = DM_Dados.DT_Preferencia
         TabOrder = 1
       end

@@ -12,14 +12,6 @@ type
   TfrmCadastroVendas = class(TForm)
     PageControl1: TPageControl;
     TabSheet1: TTabSheet;
-    Panel3: TPanel;
-    Label9: TLabel;
-    Label11: TLabel;
-    Label10: TLabel;
-    CB_opcao: TComboBox;
-    CB_Opcao2: TComboBox;
-    edt_Pesquisa: TEdit;
-    btnPesquisa: TButton;
     TabSheet2: TTabSheet;
     Panel1: TPanel;
     Label1: TLabel;
@@ -31,7 +23,7 @@ type
     DBEdit1: TDBEdit;
     DBEdit5: TDBEdit;
     DbData: TDBEdit;
-    DBLookupComboBox2: TDBLookupComboBox;
+    DBLookupCB_Cond_pgto: TDBLookupComboBox;
     Panel2: TPanel;
     DBSomaTotal: TDBEdit;
     btn_Totaliza: TButton;
@@ -65,6 +57,14 @@ type
     Label18: TLabel;
     DBEdit2: TDBEdit;
     DB_Data_Faturamento: TDBEdit;
+    Panel3: TPanel;
+    Label9: TLabel;
+    Label11: TLabel;
+    Label10: TLabel;
+    CB_opcao: TComboBox;
+    CB_Opcao2: TComboBox;
+    edt_Pesquisa: TEdit;
+    btnPesquisa: TButton;
     procedure DBGridVendasExit(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure btnNovoClick(Sender: TObject);
@@ -85,8 +85,10 @@ type
     { Private declarations }
 
     procedure totaliza;
+
   public
     { Public declarations }
+    percento: Currency;
   end;
 
 var
@@ -96,7 +98,7 @@ implementation
 
 {$R *.dfm}
 
-uses DMVendas, DMCadastro, CadastroFinanceiro, Preferencia;
+uses DMVendas, DMCadastro, CadastroFinanceiro, Preferencia, DMDados;
 
 procedure TfrmCadastroVendas.btnCancelarClick(Sender: TObject);
 begin
@@ -177,12 +179,15 @@ end;
 
 procedure TfrmCadastroVendas.btnPesquisaClick(Sender: TObject);
 begin
-  // DM_Cadastro.FDQueryCliente.Open();
   DM_Vendas.FDQuerySaida_Venda.Close;
-  DM_Vendas.FDQuerySaida_Venda.Params.Clear;
-  DM_Vendas.FDQuerySaida_Venda.SQL.Add('');
-  DM_Vendas.FDQuerySaida_Venda.SQL.Clear;
-  DM_Vendas.FDQuerySaida_Venda.SQL.Add('select * from saida_venda');
+   DM_Vendas.FDQuerySaida_Venda.Params.Clear;
+   DM_Vendas.FDQuerySaida_Venda.SQL.Add('');
+   DM_Vendas.FDQuerySaida_Venda.SQL.Clear;
+   DM_Vendas.FDQuerySaida_Venda.SQL.Add('select * from produto');
+   DM_Vendas.FDQuerySaida_Venda.SQL.Add('WHERE 1 = 1');
+  /// DataModule1.FDQueryProdutoFOTO.Value := Date.;
+  //  DM_Vendas.FDQuerySaida_Venda.SQL.Add('where codigo =:pcodigo');
+  //  DM_Vendas.FDQuerySaida_Venda.ParamByName('pcodigo').AsInteger := StrToInt(edt_Pesquisa.Text);
 
   case CB_opcao.ItemIndex of // utilizando o combo box na janela bairro
     0:
@@ -192,12 +197,14 @@ begin
             begin // validação para o campo quando ele estiver vazio
               if edt_Pesquisa.Text = EmptyStr then
               begin
-                DM_Vendas.FDQuerySaida_Venda.SQL.Add('ORDER BY CODIGO');
+                 DM_Vendas.FDQuerySaida_Venda.SQL.Add('order by codigo');
               end
               else
               begin
-                { DM_Vendas.FDQuerySaida_Venda.SQL.Add('where CODIGO =:pcodigo');
-                  DM_Vendas.FDQuerySaida_Venda.ParamByName('pcodigo').AsInteger :=
+                 DM_Vendas.FDQuerySaida_Venda.SQL.Add
+                  ('AND codigo like' + QuotedStr('%' + edt_Pesquisa.Text));
+                {  DM_Vendas.FDQuerySaida_Venda.SQL.Add('where codigo =:pcodigo');
+                   DM_Vendas.FDQuerySaida_Venda.ParamByName('pcodigo').AsInteger :=
                   StrToInt(edt_Pesquisa.Text); }
               end;
 
@@ -206,81 +213,80 @@ begin
             begin // validação para o campo quando ele estiver vazio
               if edt_Pesquisa.Text = EmptyStr then
               begin
-                DM_Vendas.FDQuerySaida_Venda.SQL.Add('order by CODIGO');
+                 DM_Vendas.FDQuerySaida_Venda.SQL.Add('order by codigo');
               end
               else
               begin
-                DM_Vendas.FDQuerySaida_Venda.SQL.Add
-                  ('contains CODIGO =:pcodigo');
-                DM_Vendas.FDQuerySaida_Venda.ParamByName('pcodigo').AsInteger :=
-                  StrToInt(edt_Pesquisa.Text);
+                 DM_Vendas.FDQuerySaida_Venda.SQL.Add
+                  ('AND codigo like' +
+                  QuotedStr('%' + edt_Pesquisa.Text + '%'));
+
+                {  DM_Vendas.FDQuerySaida_Venda.SQL.Add('AND codigo like =:pcodigo');
+                   DM_Vendas.FDQuerySaida_Venda.ParamByName('pcodigo').AsInteger :=
+                  StrToInt('%'+ edt_Pesquisa.Text + '%'); }
               end;
 
             end;
           2: // IGUAL
             begin // validação para o campo quando ele estiver vazio
-              if Trim(edt_Pesquisa.Text) = EmptyStr then
-              // usando o trim ele retira o espaço do começo
+              if edt_Pesquisa.Text = EmptyStr then
               begin
-                DM_Vendas.FDQuerySaida_Venda.SQL.Add('order by CODIGO');
+                 DM_Vendas.FDQuerySaida_Venda.SQL.Add('order by codigo');
               end
               else
               begin
-                DM_Vendas.FDQuerySaida_Venda.SQL.Add('where CODIGO =:pcodigo');
-                DM_Vendas.FDQuerySaida_Venda.ParamByName('pcodigo').AsInteger :=
-                  StrToInt(edt_Pesquisa.Text);
+                 DM_Vendas.FDQuerySaida_Venda.SQL.Add
+                  ('AND codigo = ' + QuotedStr(edt_Pesquisa.Text));
               end;
             end;
         end;
+        {  DM_Vendas.FDQuerySaida_Venda.ParamByName('pbai_codigo').AsInteger :=
+          StrToInt(edt_Pesquisa.Text); }
       end;
 
     1:
-      begin
+      begin // opção nome
         case CB_Opcao2.ItemIndex of
           0:
-            begin
+            begin // inicia com
               if edt_Pesquisa.Text = EmptyStr then
               begin
-                DM_Vendas.FDQuerySaida_Venda.SQL.Add('order by BAI_DESCRICAO');
+                 DM_Vendas.FDQuerySaida_Venda.SQL.Add('order by produto');
               end
               else
               begin
-                DM_Vendas.FDQuerySaida_Venda.SQL.Add
-                  ('where BAI_DESCRICAO =:pdescricao');
-                DM_Vendas.FDQuerySaida_Venda.ParamByName('pdescricao').AsString
-                  := (edt_Pesquisa.Text);
+                 DM_Vendas.FDQuerySaida_Venda.SQL.Add
+                  ('AND produto like' +
+                  QuotedStr('%' + edt_Pesquisa.Text));
               end;
             end;
           1:
             begin
               if edt_Pesquisa.Text = EmptyStr then
               begin
-                DM_Vendas.FDQuerySaida_Venda.SQL.Add('order by BAI_DESCRICAO');
+                 DM_Vendas.FDQuerySaida_Venda.SQL.Add('order by produto');
               end
               else
               begin
-                DM_Vendas.FDQuerySaida_Venda.SQL.Add
-                  ('where BAI_DESCRICAO =:pdescricao');
-                DM_Vendas.FDQuerySaida_Venda.ParamByName('pdescricao').AsString
-                  := (edt_Pesquisa.Text);
+                 DM_Vendas.FDQuerySaida_Venda.SQL.Add
+                  ('AND produto like' +
+                  QuotedStr('%' + edt_Pesquisa.Text + '%'));
               end;
             end;
           2:
             begin
               if edt_Pesquisa.Text = EmptyStr then
               begin
-                DM_Vendas.FDQuerySaida_Venda.SQL.Add('order by BAI_DESCRICAO');
+                 DM_Vendas.FDQuerySaida_Venda.SQL.Add('order by produto');
               end
               else
               begin
-                DM_Vendas.FDQuerySaida_Venda.SQL.Add
-                  ('where BAI_DESCRICAO =:pdescricao');
-                DM_Vendas.FDQuerySaida_Venda.ParamByName('pdescricao').AsString
-                  := (edt_Pesquisa.Text);
+                 DM_Vendas.FDQuerySaida_Venda.SQL.Add
+                  ('AND produto = ' + QuotedStr(edt_Pesquisa.Text));
               end;
             end;
-          // DM_Endereco..FDQueryBairro.SQL.Add('order by bai_codigo');
-          // DM_Endereco..FDQueryBairro.SQL.Add('where bai_codigo like =:pcodigo');
+          //  DM_Vendas.FDQuerySaida_Venda.SQL.Add('order by bai_codigo');
+          //  DM_Vendas.FDQuerySaida_Venda.SQL.Add('where bai_codigo like =:pcodigo');
 
         end;
 
@@ -288,7 +294,7 @@ begin
 
   end;
 
-  DM_Vendas.FDQuerySaida_Venda.Open();
+   DM_Vendas.FDQuerySaida_Venda.Open();
 
 end;
 
@@ -348,9 +354,10 @@ end;
 procedure TfrmCadastroVendas.DBE_DescontoExit(Sender: TObject);
 var
   desconto: Currency;
-  percento:  Currency;
-begin
 
+begin
+ percento := DM_Dados.FDQueryPreferencia.Fields[0].AsFloat;
+  // DM_Dados.FDQueryPreferenciaLIMITE_DESCONTO.Value
   { if frmCadastroVendas.DBC_Desconto.Text = EmptyStr then
     begin
     ShowMessage('Selecione o tipo de desconto');
@@ -358,35 +365,35 @@ begin
     DBC_Desconto.SetFocus;
     end
     else }
-  case frmCadastroVendas.DBC_Desconto.ItemIndex of
-    // combobox de deconto por percento ou real
+    case frmCadastroVendas.DBC_Desconto.ItemIndex of
+  // combobox de deconto por percento ou real
 
     0: // R$
-      begin
-        DM_Vendas.FDQuerySaida_VendaDESCONTO.Currency := true;
-        if DM_Vendas.FDQuerySaida_VendaDESCONTO.CurValue > 10 then
-        Begin
-          ShowMessage('Valor do desconto acima do permitido em reais ');
-          DM_Vendas.FDQuerySaida_VendaDESCONTO.Clear;
-          DBE_Desconto.SetFocus;
-        End
-        else
-          frmCadastroVendas.DBE_Desconto.Text;
-      end;
-    1: // %
-      begin
-        DM_Vendas.FDQuerySaida_VendaDESCONTO.Currency := false;
-        if DM_Vendas.FDQuerySaida_VendaDESCONTO.CurValue > 10 then
-        Begin
-          ShowMessage('Valor do desconto acima do permitido ');
-          DM_Vendas.FDQuerySaida_VendaDESCONTO.Clear;
-          DBE_Desconto.SetFocus;
-        End
-        else
-          frmCadastroVendas.DBE_Desconto.Text;
-      end;
-
+  begin
+    DM_Vendas.FDQuerySaida_VendaDESCONTO.Currency := true;
+    if DM_Vendas.FDQuerySaida_VendaDESCONTO.CurValue > 10 then
+    Begin
+      ShowMessage('Valor do desconto acima do permitido em reais ');
+      DM_Vendas.FDQuerySaida_VendaDESCONTO.Clear;
+      DBE_Desconto.SetFocus;
+    End
+    else
+      frmCadastroVendas.DBE_Desconto.Text;
   end;
+1: // %
+  begin
+    DM_Vendas.FDQuerySaida_VendaDESCONTO.Currency := false;
+    if DM_Vendas.FDQuerySaida_VendaDESCONTO.CurValue > percento then
+    Begin
+      ShowMessage('Valor do desconto acima do permitido ');
+      DM_Vendas.FDQuerySaida_VendaDESCONTO.Clear;
+      DBE_Desconto.SetFocus;
+    End
+    else
+      frmCadastroVendas.DBE_Desconto.Text;
+  end;
+
+end;
 end;
 
 procedure TfrmCadastroVendas.DBGrid1DblClick(Sender: TObject);
@@ -416,7 +423,7 @@ end;
 procedure TfrmCadastroVendas.FormCreate(Sender: TObject);
 begin
   // DM_Vendas.FDQuerySaida_VendaID_CONTA.AsString := DM_Cadastro.FDQueryContaTIPO.AsString := 'RECEBER';
-
+  DM_Dados.FDQueryPreferencia.Open();
   DM_Vendas.FDQuerySaida_Venda.Open();
   DM_Cadastro.FDQueryProduto.Open();
   DM_Vendas.FDQuerySaidaProduto.Open();
@@ -441,7 +448,9 @@ procedure TfrmCadastroVendas.totaliza;
 begin
   var
     soma, desconto: Currency;
+
   begin
+   percento := DM_Dados.FDQueryPreferencia.Fields[0].AsFloat;
     desconto := 0;
     soma := 0;
     DM_Vendas.FDQuerySaida_Venda.edit;
@@ -471,7 +480,7 @@ begin
             end;
           1: // %
             begin
-              if DM_Vendas.FDQuerySaida_VendaDESCONTO.CurValue > 10 then
+              if DM_Vendas.FDQuerySaida_VendaDESCONTO.CurValue > percento then
               Begin
                 ShowMessage('Valor do desconto acima do permitido ');
               End

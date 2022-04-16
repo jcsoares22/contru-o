@@ -121,8 +121,8 @@ object DM_Vendas: TDM_Vendas
     SQL.Strings = (
       'select * from saida_produto'
       '')
-    Left = 48
-    Top = 152
+    Left = 40
+    Top = 168
     object FDQuerySaidaProdutoCODIGO: TIntegerField
       FieldName = 'CODIGO'
       Origin = 'CODIGO'
@@ -146,18 +146,13 @@ object DM_Vendas: TDM_Vendas
       Lookup = True
     end
     object FDQuerySaidaProdutoVALORPRODUTO: TFMTBCDField
-      FieldKind = fkLookup
       FieldName = 'VALORPRODUTO'
-      LookupDataSet = DM_Cadastro.FDQueryProduto
-      LookupKeyFields = 'CODIGO'
-      LookupResultField = 'PRECO_VENDA'
-      KeyFields = 'CODPRODUTO'
       Origin = 'VALORPRODUTO'
       ReadOnly = True
+      OnValidate = FDQuerySaidaProdutoVALORPRODUTOValidate
       currency = True
       Precision = 18
       Size = 2
-      Lookup = True
     end
     object FDQuerySaidaProdutoVALORTOTAL: TFMTBCDField
       FieldName = 'VALORTOTAL'
@@ -201,5 +196,117 @@ object DM_Vendas: TDM_Vendas
     Connection = DM_Dados.DADOS
     Left = 248
     Top = 72
+  end
+  object FDQueryOrcamento: TFDQuery
+    BeforePost = FDQuerySaida_VendaBeforePost
+    IndexFieldNames = 'CODIGO'
+    Connection = DM_Dados.DADOS
+    Transaction = FDTransaction2
+    UpdateOptions.AssignedValues = [uvUpdateMode, uvFetchGeneratorsPoint, uvGeneratorName]
+    UpdateOptions.UpdateMode = upWhereAll
+    UpdateOptions.FetchGeneratorsPoint = gpImmediate
+    UpdateOptions.GeneratorName = 'GEN_SAIDA_VENDA_ID'
+    UpdateOptions.AutoIncFields = 'CODIGO'
+    SQL.Strings = (
+      'select * from saida_Venda'
+      'where situacao = '#39'ORCAMENTO'#39)
+    Left = 32
+    Top = 272
+    object IntegerField1: TIntegerField
+      FieldName = 'CODIGO'
+      Origin = 'CODIGO'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+    object IntegerField2: TIntegerField
+      FieldName = 'CODCLIENTE'
+      Origin = 'CODCLIENTE'
+      Required = True
+    end
+    object SQLTimeStampField1: TSQLTimeStampField
+      FieldName = 'DATAVENDA'
+      Origin = 'DATAVENDA'
+    end
+    object FMTBCDField1: TFMTBCDField
+      FieldName = 'VALORTOTAL'
+      Origin = 'VALORTOTAL'
+      currency = True
+      Precision = 18
+      Size = 2
+    end
+    object StringField1: TStringField
+      FieldName = 'OBS'
+      Origin = 'OBS'
+      Size = 150
+    end
+    object StringField2: TStringField
+      FieldName = 'NOME'
+      LookupDataSet = FDQuerySaida_Venda
+      LookupKeyFields = 'CODCLIENTE'
+      LookupResultField = 'NOME'
+      KeyFields = 'CODCLIENTE'
+      Origin = 'NOME'
+      ReadOnly = True
+      FixedChar = True
+      Size = 40
+    end
+    object FMTBCDField2: TFMTBCDField
+      FieldName = 'FRETE'
+      Origin = 'FRETE'
+      Precision = 18
+      Size = 2
+    end
+    object StringField3: TStringField
+      FieldName = 'COND_PAGAMENTO'
+      Origin = 'COND_PAGAMENTO'
+      Size = 40
+    end
+    object IntegerField3: TIntegerField
+      FieldName = 'ID_CONTA'
+      Origin = 'ID_CONTA'
+    end
+    object IntegerField4: TIntegerField
+      FieldName = 'ID_SUBCONTA'
+      Origin = 'ID_SUBCONTA'
+    end
+    object IntegerField5: TIntegerField
+      FieldName = 'ID_TIPO_PGTO'
+      Origin = 'ID_TIPO_PGTO'
+    end
+    object FMTBCDField3: TFMTBCDField
+      FieldName = 'DESCONTO'
+      Origin = 'DESCONTO'
+      currency = True
+      Precision = 18
+      Size = 2
+    end
+    object StringField4: TStringField
+      FieldName = 'TIPO_DESC'
+      Origin = 'TIPO_DESC'
+      FixedChar = True
+      Size = 2
+    end
+    object StringField5: TStringField
+      FieldName = 'SITUACAO'
+      Origin = 'SITUACAO'
+      Size = 10
+    end
+    object SQLTimeStampField2: TSQLTimeStampField
+      FieldName = 'DATA_FATURAMENTO'
+      Origin = 'DATA_FATURAMENTO'
+    end
+    object SQLTimeStampField3: TSQLTimeStampField
+      FieldName = 'DATA_CANCELAMENTO'
+      Origin = 'DATA_CANCELAMENTO'
+    end
+    object SQLTimeStampField4: TSQLTimeStampField
+      FieldName = 'DATA_ORCAMENTO'
+      Origin = 'DATA_ORCAMENTO'
+    end
+  end
+  object DtOrcamento: TDataSource
+    DataSet = FDQueryOrcamento
+    Left = 152
+    Top = 272
   end
 end

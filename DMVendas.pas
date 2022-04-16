@@ -40,6 +40,25 @@ type
     FDTransaction1: TFDTransaction;
     FDTransaction2: TFDTransaction;
     FDQuerySaida_VendaDATA_ORCAMENTO: TSQLTimeStampField;
+    FDQueryOrcamento: TFDQuery;
+    IntegerField1: TIntegerField;
+    IntegerField2: TIntegerField;
+    SQLTimeStampField1: TSQLTimeStampField;
+    FMTBCDField1: TFMTBCDField;
+    StringField1: TStringField;
+    StringField2: TStringField;
+    FMTBCDField2: TFMTBCDField;
+    StringField3: TStringField;
+    IntegerField3: TIntegerField;
+    IntegerField4: TIntegerField;
+    IntegerField5: TIntegerField;
+    FMTBCDField3: TFMTBCDField;
+    StringField4: TStringField;
+    StringField5: TStringField;
+    SQLTimeStampField2: TSQLTimeStampField;
+    SQLTimeStampField3: TSQLTimeStampField;
+    SQLTimeStampField4: TSQLTimeStampField;
+    DtOrcamento: TDataSource;
     procedure FDQuerySaidaProdutoAfterPost(DataSet: TDataSet);
     procedure FDQuerySaidaProdutoCODPRODUTOValidate(Sender: TField);
     procedure FDQuerySaidaProdutoQUANTIDADESetText(Sender: TField;
@@ -48,6 +67,7 @@ type
     procedure FDQuerySaida_VendaBeforePost(DataSet: TDataSet);
     procedure FDQuerySaidaProdutoQUANTIDADEValidate(Sender: TField);
     procedure FDQuerySaida_VendaID_CONTAChange(Sender: TField);
+    procedure FDQuerySaidaProdutoVALORPRODUTOValidate(Sender: TField);
   private
     { Private declarations }
   public
@@ -109,25 +129,42 @@ begin
 
 end;
 
+procedure TDM_Vendas.FDQuerySaidaProdutoVALORPRODUTOValidate(Sender: TField);
+begin  // verificar uma validação para procurar o preço de acordo com o tipo avista ou a prazo
+  { if  FDQuerySaida_VendaCOND_PAGAMENTO.IsNull then
+    begin
+    ShowMessage('Informe a condição de pagamento')
+    end;
+    if  FDQuerySaida_VendaCOND_PAGAMENTO.Value = FDQuerySaida_Venda.Fields[0].AsString then
+    begin
+    FDQuerySaida_VendaCOND_PAGAMENTO.LookupDataSet. := 'DM_Cadastro.FDQueryProduto';
+    FDQuerySaida_VendaCOND_PAGAMENTO.LookupKeyFields :=  'codigo';
+    FDQuerySaida_VendaCOND_PAGAMENTO.LookupResultField := 'PRECO_VENDA';
+    FDQuerySaida_VendaCOND_PAGAMENTO.KeyFields :=  'VALORPRODUTO';
+    FDQuerySaida_VendaCOND_PAGAMENTO.FieldKind := fkLookup;
+    end; }
+
+end;
+
 procedure TDM_Vendas.FDQuerySaida_VendaBeforePost(DataSet: TDataSet);
 begin
   if FDQuerySaida_VendaDATA_FATURAMENTO.IsNull and
-    (FDQuerySaida_VendaSITUACAO.AsAnsiString = 'Faturado') then
+    (FDQuerySaida_VendaSITUACAO.AsAnsiString = 'FATURADO') then
   begin
     FDQuerySaida_VendaDATA_FATURAMENTO.AsDateTime := date;
     FDQuerySaida_VendaDATA_CANCELAMENTO.Clear;
   end;
   if FDQuerySaida_VendaDATA_CANCELAMENTO.IsNull and
-    (FDQuerySaida_VendaSITUACAO.AsAnsiString = 'Cancelado') then
+    (FDQuerySaida_VendaSITUACAO.AsAnsiString = 'CANCELADO') then
   begin
     FDQuerySaida_VendaDATA_CANCELAMENTO.AsDateTime := date;
     FDQuerySaida_VendaDATA_FATURAMENTO.Clear;
   end;
-   if FDQuerySaida_VendaDATA_ORCAMENTO.IsNull and
-    (FDQuerySaida_VendaSITUACAO.AsAnsiString = 'Orcamento') then
+  if FDQuerySaida_VendaDATA_ORCAMENTO.IsNull and
+    (FDQuerySaida_VendaSITUACAO.AsAnsiString = 'ORCAMENTO') then
   begin
     FDQuerySaida_VendaDATA_ORCAMENTO.AsDateTime := date;
-   // FDQuerySaida_VendaDATA_FATURAMENTO.Clear;
+    // FDQuerySaida_VendaDATA_FATURAMENTO.Clear;
   end;
 end;
 
@@ -135,8 +172,8 @@ procedure TDM_Vendas.FDQuerySaida_VendaID_CONTAChange(Sender: TField);
 begin
 
 
-  //  FDQuerySaida_VendaID_CONTA.Text :=  DM_Cadastro.FDQueryContaTIPO.Value = 'faturado';
+  // FDQuerySaida_VendaID_CONTA.Text :=  DM_Cadastro.FDQueryContaTIPO.Value = 'faturado';
 
-  end;
+end;
 
 end.

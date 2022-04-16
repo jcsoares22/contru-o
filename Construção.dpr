@@ -32,7 +32,8 @@ uses
   DMMovimentoEstoque in 'DMMovimentoEstoque.pas' {DM_Mov_Estoque: TDataModule},
   MovimentoEstoque in 'MovimentoEstoque.pas' {frmMovimento_estoque},
   Preferencia in 'Preferencia.pas' {frmPreferencia},
-  Biblioteca in 'Biblioteca.pas';
+  Biblioteca in 'Biblioteca.pas',
+  Orcamento in 'Orcamento.pas' {frmOrcamento};
 
 {$R *.res}
 
@@ -49,6 +50,7 @@ begin
   Application.CreateForm(TDM_Endereco, DM_Endereco);
   Application.CreateForm(TDM_Finaceiro, DM_Finaceiro);
   Application.CreateForm(TDM_Mov_Estoque, DM_Mov_Estoque);
+  Application.CreateForm(TfrmOrcamento, frmOrcamento);
   { usuarios := TfrmLogin.Create(nil);
     if usuarios.ShowModal = 1 then
     begin

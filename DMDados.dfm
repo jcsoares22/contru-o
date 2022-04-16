@@ -110,9 +110,11 @@ object DM_Dados: TDM_Dados
       'SELECT * FROM controle_sistema')
     Left = 24
     Top = 176
-    object FDQueryPreferenciaLIMITE_DESCONTO: TIntegerField
-      FieldName = 'LIMITE_DESCONTO'
-      Origin = 'LIMITE_DESCONTO'
+    object FDQueryPreferenciaDESCONTO_VENDA: TFMTBCDField
+      FieldName = 'DESCONTO_VENDA'
+      Origin = 'DESCONTO_VENDA'
+      Precision = 18
+      Size = 2
     end
   end
   object DT_Preferencia: TDataSource

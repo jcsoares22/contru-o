@@ -29,8 +29,8 @@ type
     FDUSUARIOUSU_NIVEL: TIntegerField;
     DT_Usuario: TDataSource;
     FDQueryPreferencia: TFDQuery;
-    FDQueryPreferenciaLIMITE_DESCONTO: TIntegerField;
     DT_Preferencia: TDataSource;
+    FDQueryPreferenciaDESCONTO_VENDA: TFMTBCDField;
   private
     { Private declarations }
   public
