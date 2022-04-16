@@ -5,8 +5,10 @@ object DM_Vendas: TDM_Vendas
   object FDQuerySaida_Venda: TFDQuery
     BeforePost = FDQuerySaida_VendaBeforePost
     Connection = DM_Dados.DADOS
+    Transaction = FDTransaction2
     UpdateOptions.AssignedValues = [uvUpdateMode, uvFetchGeneratorsPoint, uvGeneratorName]
     UpdateOptions.UpdateMode = upWhereAll
+    UpdateOptions.FetchGeneratorsPoint = gpImmediate
     UpdateOptions.GeneratorName = 'GEN_SAIDA_VENDA_ID'
     UpdateOptions.AutoIncFields = 'CODIGO'
     SQL.Strings = (
@@ -107,6 +109,7 @@ object DM_Vendas: TDM_Vendas
     MasterFields = 'CODIGO'
     DetailFields = 'CODIGO'
     Connection = DM_Dados.DADOS
+    Transaction = FDTransaction1
     UpdateOptions.AssignedValues = [uvFetchGeneratorsPoint, uvGeneratorName]
     UpdateOptions.FetchGeneratorsPoint = gpImmediate
     UpdateOptions.GeneratorName = 'GEN_SAIDA_PRODUTO_ID'
@@ -181,7 +184,17 @@ object DM_Vendas: TDM_Vendas
   end
   object DT_SaidaProduto: TDataSource
     DataSet = FDQuerySaidaProduto
-    Left = 168
-    Top = 144
+    Left = 160
+    Top = 160
+  end
+  object FDTransaction1: TFDTransaction
+    Connection = DM_Dados.DADOS
+    Left = 264
+    Top = 160
+  end
+  object FDTransaction2: TFDTransaction
+    Connection = DM_Dados.DADOS
+    Left = 248
+    Top = 72
   end
 end

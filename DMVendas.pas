@@ -37,6 +37,8 @@ type
     FDQuerySaida_VendaSITUACAO: TStringField;
     FDQuerySaida_VendaDATA_FATURAMENTO: TSQLTimeStampField;
     FDQuerySaida_VendaDATA_CANCELAMENTO: TSQLTimeStampField;
+    FDTransaction1: TFDTransaction;
+    FDTransaction2: TFDTransaction;
     procedure FDQuerySaidaProdutoAfterPost(DataSet: TDataSet);
     procedure FDQuerySaidaProdutoCODPRODUTOValidate(Sender: TField);
     procedure FDQuerySaidaProdutoQUANTIDADESetText(Sender: TField;
