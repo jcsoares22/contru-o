@@ -128,37 +128,31 @@ object frmCadastroVendas: TfrmCadastroVendas
           item
             Expanded = False
             FieldName = 'NOME'
-            Width = 64
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'DATAVENDA'
-            Width = 64
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'VALORTOTAL'
-            Width = 64
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'OBS'
-            Width = 64
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'FRETE'
-            Width = 64
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'COND_PAGAMENTO'
-            Width = 64
             Visible = True
           end
           item
@@ -169,25 +163,21 @@ object frmCadastroVendas: TfrmCadastroVendas
           item
             Expanded = False
             FieldName = 'ID_SUBCONTA'
-            Width = 64
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'ID_TIPO_PGTO'
-            Width = 64
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'DESCONTO'
-            Width = 64
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'TIPO_DESC'
-            Width = 64
             Visible = True
           end>
       end
@@ -480,7 +470,6 @@ object frmCadastroVendas: TfrmCadastroVendas
           DataField = 'DESCONTO'
           DataSource = DM_Vendas.DT_Saida_Venda
           TabOrder = 16
-          OnChange = DBE_DescontoChange
         end
         object DBEdit3: TDBEdit
           Left = 856
