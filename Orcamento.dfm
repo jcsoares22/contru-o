@@ -10,7 +10,9 @@ object frmOrcamento: TfrmOrcamento
   Font.Height = -11
   Font.Name = 'Tahoma'
   Font.Style = []
+  FormStyle = fsMDIChild
   OldCreateOrder = False
+  Visible = True
   WindowState = wsMaximized
   OnCreate = FormCreate
   PixelsPerInch = 96
@@ -52,31 +54,37 @@ object frmOrcamento: TfrmOrcamento
           item
             Expanded = False
             FieldName = 'NOME'
+            Width = 64
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'DATAVENDA'
+            Width = 64
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'VALORTOTAL'
+            Width = 64
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'OBS'
+            Width = 64
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'FRETE'
+            Width = 64
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'COND_PAGAMENTO'
+            Width = 64
             Visible = True
           end
           item
@@ -87,21 +95,25 @@ object frmOrcamento: TfrmOrcamento
           item
             Expanded = False
             FieldName = 'ID_SUBCONTA'
+            Width = 64
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'ID_TIPO_PGTO'
+            Width = 64
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'DESCONTO'
+            Width = 64
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'TIPO_DESC'
+            Width = 64
             Visible = True
           end
           item
@@ -112,16 +124,19 @@ object frmOrcamento: TfrmOrcamento
           item
             Expanded = False
             FieldName = 'DATA_FATURAMENTO'
+            Width = 64
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'DATA_CANCELAMENTO'
+            Width = 64
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'DATA_ORCAMENTO'
+            Width = 64
             Visible = True
           end>
       end
@@ -134,7 +149,6 @@ object frmOrcamento: TfrmOrcamento
         Color = clSkyBlue
         ParentBackground = False
         TabOrder = 1
-        ExplicitTop = 8
         object Label9: TLabel
           Left = 19
           Top = 4

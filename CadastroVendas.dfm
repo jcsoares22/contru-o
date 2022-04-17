@@ -23,7 +23,7 @@ object frmCadastroVendas: TfrmCadastroVendas
     Top = 0
     Width = 1164
     Height = 685
-    ActivePage = TabSheet1
+    ActivePage = TabSheet2
     Align = alClient
     TabOrder = 0
     object TabSheet1: TTabSheet
@@ -55,6 +55,11 @@ object frmCadastroVendas: TfrmCadastroVendas
           end
           item
             Expanded = False
+            FieldName = 'NOME'
+            Visible = True
+          end
+          item
+            Expanded = False
             FieldName = 'DATAVENDA'
             Visible = True
           end
@@ -66,11 +71,6 @@ object frmCadastroVendas: TfrmCadastroVendas
           item
             Expanded = False
             FieldName = 'OBS'
-            Visible = True
-          end
-          item
-            Expanded = False
-            FieldName = 'NOME'
             Visible = True
           end
           item
@@ -136,7 +136,6 @@ object frmCadastroVendas: TfrmCadastroVendas
         Height = 49
         Align = alTop
         TabOrder = 1
-        ExplicitTop = 8
         object Label9: TLabel
           Left = 19
           Top = -2
@@ -364,6 +363,7 @@ object frmCadastroVendas: TfrmCadastroVendas
           Width = 1074
           Height = 21
           DataField = 'OBS'
+          DataSource = DM_Vendas.DT_Saida_Venda
           TabOrder = 3
         end
         object DbData: TDBEdit
@@ -511,8 +511,7 @@ object frmCadastroVendas: TfrmCadastroVendas
           Items.Strings = (
             'FATURADO'
             'CANCELADO'
-            'ORCAMENTO'
-            '')
+            'ORCAMENTO')
           TabOrder = 17
         end
         object DBEdit3: TDBEdit

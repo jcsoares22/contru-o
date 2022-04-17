@@ -59,6 +59,7 @@ type
     SQLTimeStampField3: TSQLTimeStampField;
     SQLTimeStampField4: TSQLTimeStampField;
     DtOrcamento: TDataSource;
+    FDQuerySaida_VendaNOME_CLIENTE: TStringField;
     procedure FDQuerySaidaProdutoAfterPost(DataSet: TDataSet);
     procedure FDQuerySaidaProdutoCODPRODUTOValidate(Sender: TField);
     procedure FDQuerySaidaProdutoQUANTIDADESetText(Sender: TField;
@@ -130,7 +131,7 @@ begin
 end;
 
 procedure TDM_Vendas.FDQuerySaidaProdutoVALORPRODUTOValidate(Sender: TField);
-begin  // verificar uma validação para procurar o preço de acordo com o tipo avista ou a prazo
+begin // verificar uma validação para procurar o preço de acordo com o tipo avista ou a prazo
   { if  FDQuerySaida_VendaCOND_PAGAMENTO.IsNull then
     begin
     ShowMessage('Informe a condição de pagamento')
@@ -147,7 +148,7 @@ begin  // verificar uma validação para procurar o preço de acordo com o tipo avi
 end;
 
 procedure TDM_Vendas.FDQuerySaida_VendaBeforePost(DataSet: TDataSet);
-begin
+begin     //validação do tipo de pagamento
   if FDQuerySaida_VendaDATA_FATURAMENTO.IsNull and
     (FDQuerySaida_VendaSITUACAO.AsAnsiString = 'FATURADO') then
   begin
@@ -163,8 +164,10 @@ begin
   if FDQuerySaida_VendaDATA_ORCAMENTO.IsNull and
     (FDQuerySaida_VendaSITUACAO.AsAnsiString = 'ORCAMENTO') then
   begin
+    FDQuerySaida_VendaDATA_FATURAMENTO.Clear;
+    FDQuerySaida_VendaDATA_CANCELAMENTO.Clear;
     FDQuerySaida_VendaDATA_ORCAMENTO.AsDateTime := date;
-    // FDQuerySaida_VendaDATA_FATURAMENTO.Clear;
+
   end;
 end;
 

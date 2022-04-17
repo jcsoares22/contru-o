@@ -44,13 +44,12 @@ begin
   Application.Initialize;
   Application.MainFormOnTaskbar := True;
   Application.CreateForm(TDM_Dados, DM_Dados);
-  Application.CreateForm(TfrmPrincipal, frmPrincipal);
   Application.CreateForm(TDM_Vendas, DM_Vendas);
   Application.CreateForm(TDM_Cadastro, DM_Cadastro);
   Application.CreateForm(TDM_Endereco, DM_Endereco);
-  Application.CreateForm(TDM_Finaceiro, DM_Finaceiro);
   Application.CreateForm(TDM_Mov_Estoque, DM_Mov_Estoque);
-  Application.CreateForm(TfrmOrcamento, frmOrcamento);
+  Application.CreateForm(TDM_Finaceiro, DM_Finaceiro);
+  Application.CreateForm(TfrmPrincipal, frmPrincipal);
   { usuarios := TfrmLogin.Create(nil);
     if usuarios.ShowModal = 1 then
     begin
@@ -60,7 +59,7 @@ begin
     else
     begin
     usuarios.Free;
-    end;      //retirar do comentario mais tarde }
+    end; }      // retirar do comentario mais tarde }
   Application.Run;
 
 end.

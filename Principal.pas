@@ -69,6 +69,7 @@ type
     procedure ipoDocumento1Click(Sender: TObject);
     procedure Estoque2Click(Sender: TObject);
     procedure Configurao2Click(Sender: TObject);
+    procedure Oramento1Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -88,7 +89,7 @@ uses CadastroCliente, CadastroEstados, CadastroUnidadeMedida,
   CadastroCidades, CadastroGrupo, CadastroSubGrupo, CadastroProduto,
   CadastroUsuarios, CadastroVendas, CadastroCondPagamento,
   CasdatroContasFincaeiro, CadastroFinanceiro, CadastroDocumento,
-  MovimentoEstoque;
+  MovimentoEstoque, Orcamento;
 
 
 procedure TfrmPrincipal.bntClienteClick(Sender: TObject);
@@ -305,6 +306,21 @@ begin
     if frmCadastroCidades.Visible = False then
       frmCadastroCidades.Visible := True;
     frmCadastroCidades.BringToFront;
+  end;
+end;
+
+procedure TfrmPrincipal.Oramento1Click(Sender: TObject);
+begin
+
+fecharTela;
+  if (frmOrcamento = nil) then
+    frmOrcamento := TFrmOrcamento.Create(self);
+  if (not frmOrcamento.showing) then
+    frmOrcamento.Show;
+  begin
+    if frmOrcamento.Visible = False then
+      frmOrcamento.Visible := True;
+    frmOrcamento.BringToFront;
   end;
 end;
 

@@ -5,8 +5,8 @@ object ConfiguraBanco: TConfiguraBanco
   BorderIcons = []
   BorderStyle = bsSingle
   Caption = 'Configura Banco'
-  ClientHeight = 99
-  ClientWidth = 598
+  ClientHeight = 117
+  ClientWidth = 636
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText

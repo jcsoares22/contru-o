@@ -107,6 +107,16 @@ object DM_Vendas: TDM_Vendas
       FieldName = 'DATA_ORCAMENTO'
       Origin = 'DATA_ORCAMENTO'
     end
+    object FDQuerySaida_VendaNOME_CLIENTE: TStringField
+      FieldKind = fkLookup
+      FieldName = 'NOME_CLIENTE'
+      LookupDataSet = DM_Cadastro.FDQueryCliente
+      LookupKeyFields = 'NOME'
+      LookupResultField = 'NOME'
+      KeyFields = 'CODIGO'
+      Size = 12
+      Lookup = True
+    end
   end
   object FDQuerySaidaProduto: TFDQuery
     IndexFieldNames = 'CODIGO'
@@ -146,13 +156,18 @@ object DM_Vendas: TDM_Vendas
       Lookup = True
     end
     object FDQuerySaidaProdutoVALORPRODUTO: TFMTBCDField
+      FieldKind = fkLookup
       FieldName = 'VALORPRODUTO'
+      LookupDataSet = DM_Cadastro.FDQueryProduto
+      LookupKeyFields = 'CODIGO'
+      LookupResultField = 'PRECO_VENDA'
+      KeyFields = 'CODPRODUTO'
       Origin = 'VALORPRODUTO'
       ReadOnly = True
-      OnValidate = FDQuerySaidaProdutoVALORPRODUTOValidate
       currency = True
       Precision = 18
       Size = 2
+      Lookup = True
     end
     object FDQuerySaidaProdutoVALORTOTAL: TFMTBCDField
       FieldName = 'VALORTOTAL'
