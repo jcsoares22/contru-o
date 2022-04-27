@@ -5,7 +5,7 @@ object DM_Dados: TDM_Dados
   object DADOS: TFDConnection
     Params.Strings = (
       'User_Name=SYSDBA'
-      'Password=masterkey'
+      'Password=pmpsyfwr'
       'CharacterSet=WIN1252'
       'Port=3050'
       'Protocol=TCPIP'
@@ -14,7 +14,6 @@ object DM_Dados: TDM_Dados
     FetchOptions.AssignedValues = [evAutoClose]
     FetchOptions.AutoClose = False
     FormatOptions.AssignedValues = [fvADOCompatibility]
-    Connected = True
     Left = 8
     Top = 16
   end
