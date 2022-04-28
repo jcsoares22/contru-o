@@ -15,59 +15,85 @@ object frmPrincipal: TfrmPrincipal
   OldCreateOrder = False
   PixelsPerInch = 96
   TextHeight = 13
-  object Panel1: TPanel
-    Left = 0
-    Top = 0
-    Width = 1087
-    Height = 41
-    Align = alTop
-    Alignment = taLeftJustify
-    Color = clSkyBlue
-    ParentBackground = False
-    TabOrder = 0
-    object bntCliente: TButton
-      Left = 15
-      Top = 9
-      Width = 75
-      Height = 25
-      Caption = 'Clientes'
-      TabOrder = 0
-      OnClick = bntClienteClick
-    end
-    object btnSalario: TButton
-      Left = 1000
-      Top = 9
-      Width = 75
-      Height = 25
-      Caption = 'Salario'
-      TabOrder = 1
-    end
-    object btnVendas: TButton
-      Left = 96
-      Top = 9
-      Width = 75
-      Height = 25
-      Caption = 'Vendas'
-      TabOrder = 2
-      OnClick = Venda1Click
-    end
-    object bntFinanceiro: TButton
-      Left = 184
-      Top = 9
-      Width = 75
-      Height = 25
-      Caption = 'Financeiro'
-      TabOrder = 3
-      OnClick = bntFinanceiroClick
-    end
-  end
   object Panel2: TPanel
     Left = 0
     Top = 803
     Width = 1087
     Height = 41
     Align = alBottom
+    TabOrder = 0
+  end
+  object PageControl1: TPageControl
+    Left = 0
+    Top = 0
+    Width = 1087
+    Height = 803
+    ActivePage = TabSheet2
+    Align = alClient
     TabOrder = 1
+    object TabSheet1: TTabSheet
+      Caption = 'Cadastro'
+      object Panel1: TPanel
+        Left = 0
+        Top = 0
+        Width = 1079
+        Height = 41
+        Align = alTop
+        Alignment = taLeftJustify
+        Color = clSkyBlue
+        ParentBackground = False
+        TabOrder = 0
+        object bntCliente: TButton
+          Left = 15
+          Top = 9
+          Width = 75
+          Height = 25
+          Caption = 'Clientes'
+          TabOrder = 0
+          OnClick = bntClienteClick
+        end
+        object btnSalario: TButton
+          Left = 1000
+          Top = 9
+          Width = 75
+          Height = 25
+          Caption = 'Salario'
+          TabOrder = 1
+        end
+      end
+    end
+    object TabSheet2: TTabSheet
+      Caption = 'Venda'
+      ImageIndex = 1
+      object Panel3: TPanel
+        Left = 0
+        Top = 0
+        Width = 1079
+        Height = 41
+        Align = alTop
+        Alignment = taLeftJustify
+        Color = clSkyBlue
+        ParentBackground = False
+        TabOrder = 0
+        object Button2: TButton
+          Left = 1000
+          Top = 9
+          Width = 75
+          Height = 25
+          Caption = 'Salario'
+          TabOrder = 0
+        end
+        object Button3: TButton
+          Left = 96
+          Top = 9
+          Width = 75
+          Height = 25
+          Caption = 'Vendas'
+          TabOrder = 1
+          OnClick = Venda1Click
+        end
+      end
+    end
   end
   object MainMenu1: TMainMenu
     Left = 997

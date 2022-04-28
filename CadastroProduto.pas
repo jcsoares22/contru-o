@@ -69,7 +69,6 @@ type
     procedure btnSalvarClick(Sender: TObject);
     procedure btnCancelarClick(Sender: TObject);
     procedure btnPesquisaClick(Sender: TObject);
-    procedure DBEdit7Exit(Sender: TObject);
   private
     { Private declarations }
   public
@@ -265,17 +264,6 @@ begin
   inherited;
   DM_Cadastro.FDQueryProduto.Edit;
   DM_Cadastro.FDQueryProduto.Post;
-end;
-
-procedure TfrmCadastroProduto.DBEdit7Exit(Sender: TObject);
-
-begin
-  inherited;
-  {DM_Cadastro.FDQueryProdutoPRECENTO_LUCRO.Value:= StrToCurrDef(DM_Cadastro.FDQueryProdutoPRECO_PRAZO_CUSTO.CurValue * 100 /
-    DM_Cadastro.FDQueryProdutoPRECENTO_PRAZO_LUCRO.CurValue);
-    }  DM_Cadastro.FDQueryProdutoPRECENTO_LUCRO.Text :=
-    ((DM_Cadastro.FDQueryProdutoPRECO_CUSTO.CurValue * 100))/ DM_Cadastro.FDQueryProdutoPRECO_CUSTO.CurValue;
-
 end;
 
 procedure TfrmCadastroProduto.DB_APrazoExit(Sender: TObject);

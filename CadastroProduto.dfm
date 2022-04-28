@@ -9,6 +9,7 @@ inherited frmCadastroProduto: TfrmCadastroProduto
   inherited Cadastro: TPageControl
     Width = 1127
     Height = 675
+    ActivePage = TabSheet2
     ExplicitWidth = 1127
     ExplicitHeight = 675
     inherited TabSheet1: TTabSheet
@@ -467,7 +468,6 @@ inherited frmCadastroProduto: TfrmCadastroProduto
             DataField = 'PRECO_VENDA'
             DataSource = DM_Cadastro.DT_Produto
             TabOrder = 2
-            OnExit = DBEdit7Exit
           end
         end
         object TabSheet4: TTabSheet
