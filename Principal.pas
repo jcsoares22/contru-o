@@ -54,7 +54,6 @@ type
     Panel3: TPanel;
     Button2: TButton;
     Button3: TButton;
-    SpeedButton1: TSpeedButton;
     procedure fecharTela();
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure bntClienteClick(Sender: TObject);
