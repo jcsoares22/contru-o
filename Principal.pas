@@ -6,7 +6,7 @@ uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
   System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Menus, Vcl.StdCtrls, Vcl.ExtCtrls, Preferencia,
-  Vcl.ComCtrls;
+  Vcl.ComCtrls, Vcl.Buttons;
 
 type
   TfrmPrincipal = class(TForm)
@@ -54,6 +54,7 @@ type
     Panel3: TPanel;
     Button2: TButton;
     Button3: TButton;
+    SpeedButton1: TSpeedButton;
     procedure fecharTela();
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure bntClienteClick(Sender: TObject);
