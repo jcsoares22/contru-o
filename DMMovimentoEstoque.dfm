@@ -3,6 +3,7 @@ object DM_Mov_Estoque: TDM_Mov_Estoque
   Height = 548
   Width = 772
   object FDQueryMovimentoEstoque: TFDQuery
+    Active = True
     Connection = DM_Dados.DADOS
     SQL.Strings = (
       'select  * from movimento_estoque')
@@ -44,8 +45,8 @@ object DM_Mov_Estoque: TDM_Mov_Estoque
     Connection = DM_Dados.DADOS
     SQL.Strings = (
       'select * from movimento_estoque_tem')
-    Left = 56
-    Top = 128
+    Left = 112
+    Top = 152
     object FDQuery_Movimento_estoque_itemID_MOVIMENTACAO: TIntegerField
       FieldName = 'ID_MOVIMENTACAO'
       Origin = 'ID_MOVIMENTACAO'
@@ -78,14 +79,15 @@ object DM_Mov_Estoque: TDM_Mov_Estoque
       LookupDataSet = DM_Cadastro.FDQueryProduto
       LookupKeyFields = 'CODIGO'
       LookupResultField = 'QUANTIDADE_ATUAL'
-      KeyFields = 'CODPRODUTO'
+      KeyFields = 'QTE_ATUAL'
       Origin = 'QTE_ATUAL'
+      ReadOnly = True
       Lookup = True
     end
   end
   object DT_Movimento_estoque_item: TDataSource
     DataSet = FDQuery_Movimento_estoque_item
-    Left = 216
-    Top = 128
+    Left = 264
+    Top = 168
   end
 end

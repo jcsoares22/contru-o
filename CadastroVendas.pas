@@ -298,27 +298,26 @@ end;
 procedure TfrmCadastroVendas.btnSalvarClick(Sender: TObject);
 begin
 
-try
+  try
     DM_Vendas.FDQuerySaida_Venda.edit;
-  DM_Vendas.FDQuerySaidaProduto.edit;
+    DM_Vendas.FDQuerySaidaProduto.edit;
 
-
-  if DM_Vendas.FDQuerySaida_Venda.State in [dsEdit, dsInsert] then
-  begin
-    DM_Vendas.FDQuerySaidaProduto.Post;
-    DM_Vendas.FDQuerySaida_Venda.Post;
-    { DM_Vendas.FDQuerySaidaProduto.Append;
-      DM_Vendas.FDQuerySaidaProdutoCODIGO.AsInteger :=  DM_Vendas.FDQuerySaidaProdutoCODIGO.Keyv }
-  end;
-  btnNovo.Enabled := true;
-  btnEdit.Enabled := true;
-  btnDeletar.Enabled := true;
-Except
+    if DM_Vendas.FDQuerySaida_Venda.State in [dsEdit, dsInsert] then
+    begin
+      DM_Vendas.FDQuerySaidaProduto.Post;
+      DM_Vendas.FDQuerySaida_Venda.Post;
+      { DM_Vendas.FDQuerySaidaProduto.Append;
+        DM_Vendas.FDQuerySaidaProdutoCODIGO.AsInteger :=  DM_Vendas.FDQuerySaidaProdutoCODIGO.Keyv }
+    end;
+    btnNovo.Enabled := true;
+    btnEdit.Enabled := true;
+    btnDeletar.Enabled := true;
+  Except
     if DM_Vendas.FDQuerySaidaProdutoCODPRODUTO.IsNull then
-  begin
-    ShowMessage('Verifique produto sem codigo')
+    begin
+      ShowMessage('Verifique produto sem codigo')
+    end;
   end;
-end;
 
 end;
 
@@ -429,13 +428,12 @@ end;
 
 procedure TfrmCadastroVendas.FormCreate(Sender: TObject);
 begin
-  // DM_Vendas.FDQuerySaida_VendaID_CONTA.AsString := DM_Cadastro.FDQueryContaTIPO.AsString := 'RECEBER';
+ DM_Cadastro.FDQueryCondição_pagamento.Open();
+  DM_Cadastro.FDQueryCliente.Open();
   DM_Dados.FDQueryPreferencia.Open();
   DM_Vendas.FDQuerySaida_Venda.Open();
   DM_Cadastro.FDQueryProduto.Open();
   DM_Vendas.FDQuerySaidaProduto.Open();
-  DM_Cadastro.FDQueryCliente.Open();
-  DM_Cadastro.FDQueryCondição_pagamento.Open();
   DM_Cadastro.FDQueryTipoPgto.Open();
   DM_Cadastro.FDQueryConta.Open();
   DM_Cadastro.FDQuerySubConta.Open();
@@ -448,13 +446,13 @@ begin
     AtualizaFDQuery(DM_Cadastro.FDQueryTipoPgto,'');
     AtualizaFDQuery( DM_Cadastro.FDQueryConta,'');
     AtualizaFDQuery(DM_Cadastro.FDQuerySubConta,''); }
-
+  // DM_Vendas.FDQuerySaida_VendaID_CONTA.AsString := DM_Cadastro.FDQueryContaTIPO.AsString := 'RECEBER';
 end;
 
 procedure TfrmCadastroVendas.totaliza;
+var
+  soma, desconto: Currency;
 begin
-  var
-    soma, desconto: Currency;
 
   begin
     percento := DM_Dados.FDQueryPreferencia.Fields[0].AsFloat;

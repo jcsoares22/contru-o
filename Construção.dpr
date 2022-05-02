@@ -33,7 +33,9 @@ uses
   MovimentoEstoque in 'MovimentoEstoque.pas' {frmMovimento_estoque},
   Preferencia in 'Preferencia.pas' {frmPreferencia},
   Biblioteca in 'Biblioteca.pas',
-  Orcamento in 'Orcamento.pas' {frmOrcamento};
+  Orcamento in 'Orcamento.pas' {frmOrcamento},
+  Vcl.Themes,
+  Vcl.Styles;
 
 {$R *.res}
 
@@ -43,6 +45,7 @@ var
 begin
   Application.Initialize;
   Application.MainFormOnTaskbar := True;
+  TStyleManager.TrySetStyle('Windows10 Dark');
   Application.CreateForm(TDM_Dados, DM_Dados);
   Application.CreateForm(TDM_Vendas, DM_Vendas);
   Application.CreateForm(TDM_Cadastro, DM_Cadastro);

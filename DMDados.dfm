@@ -13,7 +13,7 @@ object DM_Dados: TDM_Dados
       'DriverID=FB')
     FetchOptions.AssignedValues = [evAutoClose]
     FetchOptions.AutoClose = False
-    FormatOptions.AssignedValues = [fvADOCompatibility]
+    Connected = True
     Left = 8
     Top = 16
   end
@@ -65,8 +65,9 @@ object DM_Dados: TDM_Dados
   object FDUSUARIO: TFDTable
     IndexFieldNames = 'USU_CODIGO'
     Connection = DADOS
+    UpdateOptions.UpdateTableName = 'USUARIO'
     TableName = 'USUARIO'
-    Left = 208
+    Left = 168
     Top = 104
     object FDUSUARIOUSU_CODIGO: TIntegerField
       FieldName = 'USU_CODIGO'
@@ -100,16 +101,17 @@ object DM_Dados: TDM_Dados
   end
   object DT_Usuario: TDataSource
     DataSet = FDUSUARIO
-    Left = 120
+    Left = 88
     Top = 104
   end
   object FDQueryPreferencia: TFDQuery
+    Active = True
     Connection = DADOS
     SQL.Strings = (
       'SELECT * FROM controle_sistema')
-    Left = 24
-    Top = 176
-    object FDQueryPreferenciaDESCONTO_VENDA: TFMTBCDField
+    Left = 32
+    Top = 232
+    object FDQueryPreferenciaDESCONTO_VENDA: TBCDField
       FieldName = 'DESCONTO_VENDA'
       Origin = 'DESCONTO_VENDA'
       Precision = 18
@@ -118,7 +120,7 @@ object DM_Dados: TDM_Dados
   end
   object DT_Preferencia: TDataSource
     DataSet = FDQueryPreferencia
-    Left = 104
-    Top = 176
+    Left = 128
+    Top = 256
   end
 end

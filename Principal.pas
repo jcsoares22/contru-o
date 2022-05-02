@@ -48,12 +48,12 @@ type
     PageControl1: TPageControl;
     TabSheet1: TTabSheet;
     Panel1: TPanel;
-    bntCliente: TButton;
-    btnSalario: TButton;
     TabSheet2: TTabSheet;
     Panel3: TPanel;
     Button2: TButton;
-    Button3: TButton;
+    SpeedButton1: TSpeedButton;
+    SpeedButton2: TSpeedButton;
+    SpeedButton3: TSpeedButton;
     procedure fecharTela();
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure bntClienteClick(Sender: TObject);

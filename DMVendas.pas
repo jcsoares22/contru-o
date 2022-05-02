@@ -11,55 +11,54 @@ uses
 type
   TDM_Vendas = class(TDataModule)
     FDQuerySaida_Venda: TFDQuery;
-    FDQuerySaida_VendaCODIGO: TIntegerField;
-    FDQuerySaida_VendaCODCLIENTE: TIntegerField;
-    FDQuerySaida_VendaDATAVENDA: TSQLTimeStampField;
-    FDQuerySaida_VendaVALORTOTAL: TFMTBCDField;
-    FDQuerySaida_VendaOBS: TStringField;
-    FDQuerySaida_VendaNOME: TStringField;
-    FDQuerySaida_VendaFRETE: TFMTBCDField;
-    FDQuerySaida_VendaCOND_PAGAMENTO: TStringField;
     FDQuerySaidaProduto: TFDQuery;
     FDQuerySaidaProdutoCODIGO: TIntegerField;
     FDQuerySaidaProdutoCODPRODUTO: TIntegerField;
     FDQuerySaidaProdutoNOME_PRODUTO: TStringField;
-    FDQuerySaidaProdutoVALORTOTAL: TFMTBCDField;
     DT_Saida_Venda: TDataSource;
     DT_SaidaProduto: TDataSource;
     FDQuerySaidaProdutoVALORPRODUTO: TFMTBCDField;
+    FDQuerySaidaProdutoQTE_ESTOQUE: TFloatField;
+    FDQuerySaidaProdutoQUANTIDADE: TIntegerField;
+    FDTransaction1: TFDTransaction;
+    FDTransaction2: TFDTransaction;
+    FDQueryOrcamento: TFDQuery;
+    DtOrcamento: TDataSource;
+    FDQuerySaida_VendaCODIGO: TFDAutoIncField;
+    FDQuerySaida_VendaCODCLIENTE: TIntegerField;
+    FDQuerySaida_VendaDATAVENDA: TSQLTimeStampField;
+    FDQuerySaida_VendaVALORTOTAL: TBCDField;
+    FDQuerySaida_VendaOBS: TStringField;
+    FDQuerySaida_VendaNOME: TStringField;
+    FDQuerySaida_VendaFRETE: TBCDField;
+    FDQuerySaida_VendaCOND_PAGAMENTO: TStringField;
     FDQuerySaida_VendaID_CONTA: TIntegerField;
     FDQuerySaida_VendaID_SUBCONTA: TIntegerField;
-    FDQuerySaidaProdutoQTE_ESTOQUE: TFloatField;
     FDQuerySaida_VendaID_TIPO_PGTO: TIntegerField;
-    FDQuerySaidaProdutoQUANTIDADE: TIntegerField;
-    FDQuerySaida_VendaDESCONTO: TFMTBCDField;
+    FDQuerySaida_VendaDESCONTO: TBCDField;
     FDQuerySaida_VendaTIPO_DESC: TStringField;
     FDQuerySaida_VendaSITUACAO: TStringField;
     FDQuerySaida_VendaDATA_FATURAMENTO: TSQLTimeStampField;
     FDQuerySaida_VendaDATA_CANCELAMENTO: TSQLTimeStampField;
-    FDTransaction1: TFDTransaction;
-    FDTransaction2: TFDTransaction;
     FDQuerySaida_VendaDATA_ORCAMENTO: TSQLTimeStampField;
-    FDQueryOrcamento: TFDQuery;
-    IntegerField1: TIntegerField;
-    IntegerField2: TIntegerField;
-    SQLTimeStampField1: TSQLTimeStampField;
-    FMTBCDField1: TFMTBCDField;
-    StringField1: TStringField;
-    StringField2: TStringField;
-    FMTBCDField2: TFMTBCDField;
-    StringField3: TStringField;
-    IntegerField3: TIntegerField;
-    IntegerField4: TIntegerField;
-    IntegerField5: TIntegerField;
-    FMTBCDField3: TFMTBCDField;
-    StringField4: TStringField;
-    StringField5: TStringField;
-    SQLTimeStampField2: TSQLTimeStampField;
-    SQLTimeStampField3: TSQLTimeStampField;
-    SQLTimeStampField4: TSQLTimeStampField;
-    DtOrcamento: TDataSource;
-    FDQuerySaida_VendaNOME_CLIENTE: TStringField;
+    FDQuerySaidaProdutoVALORTOTAL: TBCDField;
+    FDQueryOrcamentoCODIGO: TFDAutoIncField;
+    FDQueryOrcamentoCODCLIENTE: TIntegerField;
+    FDQueryOrcamentoDATAVENDA: TSQLTimeStampField;
+    FDQueryOrcamentoVALORTOTAL: TBCDField;
+    FDQueryOrcamentoOBS: TStringField;
+    FDQueryOrcamentoNOME: TStringField;
+    FDQueryOrcamentoFRETE: TBCDField;
+    FDQueryOrcamentoCOND_PAGAMENTO: TStringField;
+    FDQueryOrcamentoID_CONTA: TIntegerField;
+    FDQueryOrcamentoID_SUBCONTA: TIntegerField;
+    FDQueryOrcamentoID_TIPO_PGTO: TIntegerField;
+    FDQueryOrcamentoDESCONTO: TBCDField;
+    FDQueryOrcamentoTIPO_DESC: TStringField;
+    FDQueryOrcamentoSITUACAO: TStringField;
+    FDQueryOrcamentoDATA_FATURAMENTO: TSQLTimeStampField;
+    FDQueryOrcamentoDATA_CANCELAMENTO: TSQLTimeStampField;
+    FDQueryOrcamentoDATA_ORCAMENTO: TSQLTimeStampField;
     procedure FDQuerySaidaProdutoAfterPost(DataSet: TDataSet);
     procedure FDQuerySaidaProdutoCODPRODUTOValidate(Sender: TField);
     procedure FDQuerySaidaProdutoQUANTIDADESetText(Sender: TField;
@@ -106,15 +105,15 @@ end;
 
 procedure TDM_Vendas.FDQuerySaidaProdutoCODPRODUTOValidate(Sender: TField);
 begin
-  DM_Vendas.FDQuerySaidaProdutoVALORPRODUTO :=
-    DM_Cadastro.FDQueryProdutoPRECO_VENDA;
+  { DM_Vendas.FDQuerySaidaProdutoVALORPRODUTO :=
+    DM_Cadastro.FDQueryProdutoPRECO_VENDA; }
 end;
 
 procedure TDM_Vendas.FDQuerySaidaProdutoQUANTIDADESetText(Sender: TField;
   const Text: string);
 begin
-  FDQuerySaidaProdutoVALORTOTAL.Value := FDQuerySaidaProdutoQUANTIDADE.Value *
-    FDQuerySaidaProdutoVALORPRODUTO.Value;
+  { FDQuerySaidaProdutoVALORTOTAL.Value := FDQuerySaidaProdutoQUANTIDADE.Value *
+    FDQuerySaidaProdutoVALORPRODUTO.Value; }
 end;
 
 procedure TDM_Vendas.FDQuerySaidaProdutoQUANTIDADEValidate(Sender: TField);
@@ -125,8 +124,9 @@ begin
       ('Quantidade inferior ao permitido, sera adiconado a quantidade de 1 no produto o minimo permitido');
     FDQuerySaidaProdutoQUANTIDADE.AsFloat := 1;
   end;
-  FDQuerySaidaProdutoVALORTOTAL.Value := FDQuerySaidaProdutoVALORPRODUTO.Value *
-    FDQuerySaidaProdutoQUANTIDADE.Value;
+  FDQuerySaidaProdutoVALORTOTAL.AsFloat :=
+    FDQuerySaidaProdutoVALORPRODUTO.AsFloat *
+    FDQuerySaidaProdutoQUANTIDADE.AsFloat;
 
 end;
 
@@ -148,7 +148,7 @@ begin // verificar uma validação para procurar o preço de acordo com o tipo avis
 end;
 
 procedure TDM_Vendas.FDQuerySaida_VendaBeforePost(DataSet: TDataSet);
-begin     //validação do tipo de pagamento
+begin // validação do tipo de pagamento
   if FDQuerySaida_VendaDATA_FATURAMENTO.IsNull and
     (FDQuerySaida_VendaSITUACAO.AsAnsiString = 'FATURADO') then
   begin

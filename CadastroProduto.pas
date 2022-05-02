@@ -142,7 +142,7 @@ procedure TfrmCadastroProduto.btnPesquisaClick(Sender: TObject);
 begin
   inherited;
   DM_Cadastro.FDQueryProduto.Close;
-  DM_Cadastro.FDQueryProduto.Params.Clear;
+  ///DM_Cadastro.FDQueryProduto.Params.Clear;
   DM_Cadastro.FDQueryProduto.SQL.Add('');
   DM_Cadastro.FDQueryProduto.SQL.Clear;
   DM_Cadastro.FDQueryProduto.SQL.Add('select * from produto');

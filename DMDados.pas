@@ -30,7 +30,7 @@ type
     DT_Usuario: TDataSource;
     FDQueryPreferencia: TFDQuery;
     DT_Preferencia: TDataSource;
-    FDQueryPreferenciaDESCONTO_VENDA: TFMTBCDField;
+    FDQueryPreferenciaDESCONTO_VENDA: TBCDField;
   private
     { Private declarations }
   public

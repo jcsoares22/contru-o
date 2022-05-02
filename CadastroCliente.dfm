@@ -248,7 +248,6 @@ inherited frmCadastroCliente: TfrmCadastroCliente
         ImeName = 'Portuguese (Brazilian ABNT)'
         ReadOnly = True
         TabOrder = 3
-        StyleName = 'teste'
       end
       object DBLookupComboBoxUf: TDBLookupComboBox
         Left = 552
@@ -287,7 +286,6 @@ inherited frmCadastroCliente: TfrmCadastroCliente
         ImeName = 'Portuguese (Brazilian ABNT)'
         ReadOnly = True
         TabOrder = 6
-        StyleName = 'teste'
       end
       object DB_Email: TDBEdit
         Left = 182
@@ -300,7 +298,6 @@ inherited frmCadastroCliente: TfrmCadastroCliente
         ImeName = 'Portuguese (Brazilian ABNT)'
         ReadOnly = True
         TabOrder = 7
-        StyleName = 'teste'
       end
       object DB_Numero: TDBEdit
         Left = 368
@@ -313,7 +310,6 @@ inherited frmCadastroCliente: TfrmCadastroCliente
         ImeName = 'Portuguese (Brazilian ABNT)'
         ReadOnly = True
         TabOrder = 8
-        StyleName = 'teste'
       end
       object DB_Rua: TDBEdit
         Left = 16
@@ -326,7 +322,6 @@ inherited frmCadastroCliente: TfrmCadastroCliente
         ImeName = 'Portuguese (Brazilian ABNT)'
         ReadOnly = True
         TabOrder = 9
-        StyleName = 'teste'
       end
       object DB_Descricao: TDBEdit
         Left = 16
@@ -339,7 +334,6 @@ inherited frmCadastroCliente: TfrmCadastroCliente
         ImeName = 'Portuguese (Brazilian ABNT)'
         ReadOnly = True
         TabOrder = 10
-        StyleName = 'teste'
       end
       object Edt_bairro: TDBEdit
         Left = 861
@@ -352,7 +346,6 @@ inherited frmCadastroCliente: TfrmCadastroCliente
         ImeName = 'Portuguese (Brazilian ABNT)'
         ReadOnly = True
         TabOrder = 11
-        StyleName = 'teste'
       end
     end
   end

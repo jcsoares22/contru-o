@@ -3,6 +3,7 @@
   Height = 608
   Width = 765
   object FDQueryGrupo: TFDQuery
+    Active = True
     Connection = DM_Dados.DADOS
     SQL.Strings = (
       'select * from grupo_material')
@@ -31,6 +32,7 @@
     Top = 8
   end
   object FDQuerySub_grupo: TFDQuery
+    Active = True
     IndexFieldNames = 'CODIGO_GRUPO'
     MasterSource = DT_Grupo
     MasterFields = 'CODIGO'
@@ -73,6 +75,7 @@
     Top = 64
   end
   object FDQueryUnMedida: TFDQuery
+    Active = True
     ConstraintsEnabled = True
     Connection = DM_Dados.DADOS
     SQL.Strings = (
@@ -122,6 +125,7 @@
     Top = 16
   end
   object FDQueryCores: TFDQuery
+    Active = True
     ConstraintsEnabled = True
     Connection = DM_Dados.DADOS
     SQL.Strings = (
@@ -145,6 +149,7 @@
     Top = 88
   end
   object FDQueryMarca: TFDQuery
+    Active = True
     ConstraintsEnabled = True
     Connection = DM_Dados.DADOS
     SQL.Strings = (
@@ -168,6 +173,7 @@
     Top = 152
   end
   object FDQueryCondição_pagamento: TFDQuery
+    Active = True
     Connection = DM_Dados.DADOS
     SQL.Strings = (
       'select * from condicao_pagamento ')
@@ -200,132 +206,6 @@
     Left = 136
     Top = 184
   end
-  object FDQueryProduto: TFDQuery
-    ConstraintsEnabled = True
-    Connection = DM_Dados.DADOS
-    UpdateOptions.AssignedValues = [uvFetchGeneratorsPoint, uvGeneratorName]
-    UpdateOptions.FetchGeneratorsPoint = gpImmediate
-    UpdateOptions.GeneratorName = 'GEN_PRODUTO_ID'
-    UpdateOptions.AutoIncFields = 'CODIGO'
-    SQL.Strings = (
-      'select * from produto')
-    Left = 32
-    Top = 520
-    object FDQueryProdutoCODIGO: TIntegerField
-      FieldName = 'CODIGO'
-      Origin = 'CODIGO'
-      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
-      Required = True
-    end
-    object FDQueryProdutoPRODUTO: TStringField
-      FieldName = 'PRODUTO'
-      Origin = 'PRODUTO'
-      Required = True
-      Size = 40
-    end
-    object FDQueryProdutoUN_MEDIDA: TStringField
-      FieldName = 'UN_MEDIDA'
-      Origin = 'UN_MEDIDA'
-      Required = True
-      Size = 3
-    end
-    object FDQueryProdutoPRECO_CUSTO: TFMTBCDField
-      FieldName = 'PRECO_CUSTO'
-      Origin = 'PRECO_CUSTO'
-      Precision = 18
-      Size = 2
-    end
-    object FDQueryProdutoPRECO_VENDA: TFMTBCDField
-      FieldName = 'PRECO_VENDA'
-      Origin = 'PRECO_VENDA'
-      Precision = 18
-      Size = 2
-    end
-    object FDQueryProdutoSITUACAO: TStringField
-      FieldName = 'SITUACAO'
-      Origin = 'SITUACAO'
-      FixedChar = True
-      Size = 1
-    end
-    object FDQueryProdutoOBS: TStringField
-      FieldName = 'OBS'
-      Origin = 'OBS'
-      Size = 150
-    end
-    object FDQueryProdutoDATACAD: TSQLTimeStampField
-      FieldName = 'DATACAD'
-      Origin = 'DATACAD'
-    end
-    object FDQueryProdutoDATAVENDA: TSQLTimeStampField
-      FieldName = 'DATAVENDA'
-      Origin = 'DATAVENDA'
-    end
-    object FDQueryProdutoCOR: TStringField
-      FieldName = 'COR'
-      Origin = 'COR'
-      Size = 50
-    end
-    object FDQueryProdutoFOTO: TStringField
-      FieldName = 'FOTO'
-      Origin = 'FOTO'
-      Size = 150
-    end
-    object FDQueryProdutoMARCA: TStringField
-      FieldName = 'MARCA'
-      Origin = 'MARCA'
-      Size = 15
-    end
-    object FDQueryProdutoBAIRRO: TStringField
-      FieldName = 'BAIRRO'
-      Origin = 'BAIRRO'
-      Size = 40
-    end
-    object FDQueryProdutoPRECENTO_LUCRO: TCurrencyField
-      FieldName = 'PRECENTO_LUCRO'
-      Origin = 'PRECENTO_LUCRO'
-    end
-    object FDQueryProdutoPRECO_PRAZO_CUSTO: TFMTBCDField
-      FieldName = 'PRECO_PRAZO_CUSTO'
-      Origin = 'PRECO_PRAZO_CUSTO'
-      Precision = 18
-      Size = 2
-    end
-    object FDQueryProdutoPRECO_PRAZO_VENDA: TFMTBCDField
-      FieldName = 'PRECO_PRAZO_VENDA'
-      Origin = 'PRECO_PRAZO_VENDA'
-      Precision = 18
-      Size = 2
-    end
-    object FDQueryProdutoPRECENTO_PRAZO_LUCRO: TCurrencyField
-      FieldName = 'PRECENTO_PRAZO_LUCRO'
-      Origin = 'PRECENTO_PRAZO_LUCRO'
-    end
-    object FDQueryProdutoID_GRUPO: TIntegerField
-      FieldName = 'ID_GRUPO'
-      Origin = 'ID_GRUPO'
-    end
-    object FDQueryProdutoID_SUBGRUPO: TIntegerField
-      FieldName = 'ID_SUBGRUPO'
-      Origin = 'ID_SUBGRUPO'
-    end
-    object FDQueryProdutoQUANTIDADE_ENTRADA: TIntegerField
-      FieldName = 'QUANTIDADE_ENTRADA'
-      Origin = 'QUANTIDADE_ENTRADA'
-    end
-    object FDQueryProdutoQUANTIDADE_ATUAL: TIntegerField
-      FieldName = 'QUANTIDADE_ATUAL'
-      Origin = 'QUANTIDADE_ATUAL'
-    end
-    object FDQueryProdutoQUANTIDADE_SAIDA: TIntegerField
-      FieldName = 'QUANTIDADE_SAIDA'
-      Origin = 'QUANTIDADE_SAIDA'
-    end
-  end
-  object DT_Produto: TDataSource
-    DataSet = FDQueryProduto
-    Left = 136
-    Top = 520
-  end
   object FDQueryCliente: TFDQuery
     Connection = DM_Dados.DADOS
     SQL.Strings = (
@@ -338,15 +218,9 @@
       ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
       Required = True
     end
-    object FDQueryClienteNOME: TStringField
-      FieldName = 'NOME'
-      Origin = 'NOME'
-      Size = 50
-    end
     object FDQueryClienteTELEFONE: TStringField
       FieldName = 'TELEFONE'
       Origin = 'TELEFONE'
-      EditMask = '!\(99\)0-0000-0000;0;_'
       Size = 11
     end
     object FDQueryClienteCPF: TStringField
@@ -357,6 +231,12 @@
     object FDQueryClienteEMAIL: TStringField
       FieldName = 'EMAIL'
       Origin = 'EMAIL'
+      Size = 50
+    end
+    object FDQueryClienteNOME: TStringField
+      FieldName = 'NOME'
+      Origin = 'NOME'
+      Required = True
       Size = 50
     end
     object FDQueryClienteDESCRICAO: TStringField
@@ -417,6 +297,7 @@
     Top = 328
   end
   object FDQueryConta: TFDQuery
+    Active = True
     Connection = DM_Dados.DADOS
     SQL.Strings = (
       'select * from conta')
@@ -456,6 +337,7 @@
     end
   end
   object FDQuerySubConta: TFDQuery
+    Active = True
     IndexFieldNames = 'CODIGO_SUB'
     MasterSource = DT_Conta
     MasterFields = 'CODIGO'
@@ -500,6 +382,7 @@
     Top = 496
   end
   object FDQueryTIPO_CONTA: TFDQuery
+    Active = True
     Connection = DM_Dados.DADOS
     SQL.Strings = (
       'SELECT * FROM TIPO_CONTA')
@@ -510,5 +393,132 @@
     DataSet = FDQueryTIPO_CONTA
     Left = 648
     Top = 392
+  end
+  object FDQueryProduto: TFDQuery
+    Active = True
+    ConstraintsEnabled = True
+    Connection = DM_Dados.DADOS
+    UpdateOptions.AssignedValues = [uvFetchGeneratorsPoint, uvGeneratorName]
+    UpdateOptions.FetchGeneratorsPoint = gpImmediate
+    UpdateOptions.GeneratorName = 'GEN_PRODUTO_ID'
+    UpdateOptions.AutoIncFields = 'CODIGO'
+    SQL.Strings = (
+      'select * from produto')
+    Left = 40
+    Top = 424
+    object FDQueryProdutoCODIGO: TFDAutoIncField
+      FieldName = 'CODIGO'
+      Origin = 'CODIGO'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      IdentityInsert = True
+    end
+    object FDQueryProdutoPRODUTO: TStringField
+      FieldName = 'PRODUTO'
+      Origin = 'PRODUTO'
+      Required = True
+      Size = 40
+    end
+    object FDQueryProdutoUN_MEDIDA: TStringField
+      FieldName = 'UN_MEDIDA'
+      Origin = 'UN_MEDIDA'
+      Required = True
+      Size = 3
+    end
+    object FDQueryProdutoPRECO_CUSTO: TBCDField
+      FieldName = 'PRECO_CUSTO'
+      Origin = 'PRECO_CUSTO'
+      Precision = 18
+      Size = 2
+    end
+    object FDQueryProdutoPRECO_VENDA: TBCDField
+      FieldName = 'PRECO_VENDA'
+      Origin = 'PRECO_VENDA'
+      Precision = 18
+      Size = 2
+    end
+    object FDQueryProdutoSITUACAO: TStringField
+      FieldName = 'SITUACAO'
+      Origin = 'SITUACAO'
+      FixedChar = True
+      Size = 1
+    end
+    object FDQueryProdutoOBS: TStringField
+      FieldName = 'OBS'
+      Origin = 'OBS'
+      Size = 150
+    end
+    object FDQueryProdutoDATACAD: TSQLTimeStampField
+      FieldName = 'DATACAD'
+      Origin = 'DATACAD'
+    end
+    object FDQueryProdutoDATAVENDA: TSQLTimeStampField
+      FieldName = 'DATAVENDA'
+      Origin = 'DATAVENDA'
+    end
+    object FDQueryProdutoCOR: TStringField
+      FieldName = 'COR'
+      Origin = 'COR'
+      Size = 50
+    end
+    object FDQueryProdutoFOTO: TStringField
+      FieldName = 'FOTO'
+      Origin = 'FOTO'
+      Size = 150
+    end
+    object FDQueryProdutoMARCA: TStringField
+      FieldName = 'MARCA'
+      Origin = 'MARCA'
+      Size = 15
+    end
+    object FDQueryProdutoBAIRRO: TStringField
+      FieldName = 'BAIRRO'
+      Origin = 'BAIRRO'
+      Size = 40
+    end
+    object FDQueryProdutoPRECENTO_LUCRO: TCurrencyField
+      FieldName = 'PRECENTO_LUCRO'
+      Origin = 'PRECENTO_LUCRO'
+    end
+    object FDQueryProdutoPRECO_PRAZO_CUSTO: TBCDField
+      FieldName = 'PRECO_PRAZO_CUSTO'
+      Origin = 'PRECO_PRAZO_CUSTO'
+      Precision = 18
+      Size = 2
+    end
+    object FDQueryProdutoPRECO_PRAZO_VENDA: TBCDField
+      FieldName = 'PRECO_PRAZO_VENDA'
+      Origin = 'PRECO_PRAZO_VENDA'
+      Precision = 18
+      Size = 2
+    end
+    object FDQueryProdutoPRECENTO_PRAZO_LUCRO: TCurrencyField
+      FieldName = 'PRECENTO_PRAZO_LUCRO'
+      Origin = 'PRECENTO_PRAZO_LUCRO'
+    end
+    object FDQueryProdutoQUANTIDADE_SAIDA: TIntegerField
+      FieldName = 'QUANTIDADE_SAIDA'
+      Origin = 'QUANTIDADE_SAIDA'
+    end
+    object FDQueryProdutoID_GRUPO: TIntegerField
+      FieldName = 'ID_GRUPO'
+      Origin = 'ID_GRUPO'
+    end
+    object FDQueryProdutoID_SUBGRUPO: TIntegerField
+      FieldName = 'ID_SUBGRUPO'
+      Origin = 'ID_SUBGRUPO'
+    end
+    object FDQueryProdutoQUANTIDADE_ENTRADA: TIntegerField
+      FieldName = 'QUANTIDADE_ENTRADA'
+      Origin = 'QUANTIDADE_ENTRADA'
+    end
+    object FDQueryProdutoQUANTIDADE_ATUAL: TIntegerField
+      FieldName = 'QUANTIDADE_ATUAL'
+      Origin = 'QUANTIDADE_ATUAL'
+    end
+  end
+  object DataSource1: TDataSource
+    DataSet = FDQueryProduto
+    Left = 144
+    Top = 424
   end
 end

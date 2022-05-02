@@ -17,11 +17,11 @@ type
     FDQueryMovimentoEstoqueID_MOVIMENTACAO: TIntegerField;
     FDQueryMovimentoEstoqueNOME_USUARIO: TStringField;
     FDQueryMovimentoEstoqueDT_MOV: TSQLTimeStampField;
+    FDQueryMovimentoEstoqueTIPO: TStringField;
     FDQuery_Movimento_estoque_itemID_MOVIMENTACAO: TIntegerField;
     FDQuery_Movimento_estoque_itemCODPRODUTO: TIntegerField;
     FDQuery_Movimento_estoque_itemQUANTIDADE: TIntegerField;
     FDQuery_Movimento_estoque_itemNOME_PRODUTO: TStringField;
-    FDQueryMovimentoEstoqueTIPO: TStringField;
     FDQuery_Movimento_estoque_itemQTE_ATUAL: TIntegerField;
     procedure FDQuery_Movimento_estoque_itemAfterPost(DataSet: TDataSet);
   private
@@ -44,7 +44,7 @@ procedure TDM_Mov_Estoque.FDQuery_Movimento_estoque_itemAfterPost
   (DataSet: TDataSet);
 begin
 
-  {case frmMovimento_estoque.DBCB_Movimentacao.ItemIndex of
+  case frmMovimento_estoque.DBCB_Movimentacao.ItemIndex of
     0: // entrada de estoque
       begin
         DM_Cadastro.FDQueryProduto.Open();
@@ -64,7 +64,7 @@ begin
           DM_Mov_Estoque.FDQuery_Movimento_estoque_itemQUANTIDADE.Value);
        // DM_Cadastro.FDQueryProduto.post;
       end;
-  end;}
+  end;
 end;
 
 end.

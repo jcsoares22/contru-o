@@ -29,6 +29,8 @@ object frmPreferencia: TfrmPreferencia
     object TabSheet2: TTabSheet
       Caption = 'venda'
       ImageIndex = 1
+      ExplicitLeft = 0
+      ExplicitTop = 28
       object Label1: TLabel
         Left = 8
         Top = 8
