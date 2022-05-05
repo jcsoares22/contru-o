@@ -15,6 +15,7 @@ type
     procedure btnDeletarClick(Sender: TObject);
     procedure btnSalvarClick(Sender: TObject);
     procedure btnCancelarClick(Sender: TObject);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
   private
     { Private declarations }
   public
@@ -31,7 +32,7 @@ implementation
 procedure TfrmCadastroMarca.btnCancelarClick(Sender: TObject);
 begin
   inherited;
-     DM_Cadastro.FDQueryMarca.Cancel;
+  DM_Cadastro.FDQueryMarca.Cancel;
 end;
 
 procedure TfrmCadastroMarca.btnDeletarClick(Sender: TObject);
@@ -69,6 +70,14 @@ begin
   inherited;
   DM_Cadastro.FDQueryMarca.Edit;
   DM_Cadastro.FDQueryMarca.Post;
+end;
+
+procedure TfrmCadastroMarca.FormClose(Sender: TObject;
+  var Action: TCloseAction);
+begin
+  inherited;
+  frmCadastroMarca.Free;
+  frmCadastroMarca := nil;
 end;
 
 end.

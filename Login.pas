@@ -44,7 +44,7 @@ begin
   DM_Dados.FDQueryUsuario.Open;
   if (DM_Dados.FDQueryUsuario.recordCount > 0) then
   begin
-    showmessage('acesso liberado');
+    {showmessage('acesso liberado');}//validação temporaria
   end
   else
   begin

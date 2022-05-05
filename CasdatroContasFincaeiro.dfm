@@ -14,6 +14,7 @@ object frmContas: TfrmContas
   OldCreateOrder = False
   Visible = True
   WindowState = wsMaximized
+  OnClose = FormClose
   OnCreate = FormCreate
   PixelsPerInch = 96
   TextHeight = 13

@@ -14,6 +14,7 @@ type
     procedure btnDeletarClick(Sender: TObject);
     procedure btnCancelarClick(Sender: TObject);
     procedure edt_PesquisaChange(Sender: TObject);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
   private
     { Private declarations }
   public
@@ -70,6 +71,14 @@ begin
   inherited;
 DM_Endereco.FDQueryEstados.Locate('NOME', edt_Pesquisa.Text,
     [loPartialKey, loCaseInsensitive]);
+end;
+
+procedure TfrmCadastroEstados.FormClose(Sender: TObject;
+  var Action: TCloseAction);
+begin
+  inherited;
+   frmCadastroEstados.Free;
+   frmCadastroEstados := nil;
 end;
 
 end.

@@ -14,6 +14,7 @@ object frmOrcamento: TfrmOrcamento
   OldCreateOrder = False
   Visible = True
   WindowState = wsMaximized
+  OnClose = FormClose
   OnCreate = FormCreate
   PixelsPerInch = 96
   TextHeight = 13
@@ -54,37 +55,31 @@ object frmOrcamento: TfrmOrcamento
           item
             Expanded = False
             FieldName = 'NOME'
-            Width = 64
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'DATAVENDA'
-            Width = 64
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'VALORTOTAL'
-            Width = 64
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'OBS'
-            Width = 64
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'FRETE'
-            Width = 64
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'COND_PAGAMENTO'
-            Width = 64
             Visible = True
           end
           item
@@ -95,25 +90,21 @@ object frmOrcamento: TfrmOrcamento
           item
             Expanded = False
             FieldName = 'ID_SUBCONTA'
-            Width = 64
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'ID_TIPO_PGTO'
-            Width = 64
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'DESCONTO'
-            Width = 64
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'TIPO_DESC'
-            Width = 64
             Visible = True
           end
           item
@@ -124,19 +115,16 @@ object frmOrcamento: TfrmOrcamento
           item
             Expanded = False
             FieldName = 'DATA_FATURAMENTO'
-            Width = 64
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'DATA_CANCELAMENTO'
-            Width = 64
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'DATA_ORCAMENTO'
-            Width = 64
             Visible = True
           end>
       end
@@ -206,7 +194,7 @@ object frmOrcamento: TfrmOrcamento
         end
         object btnPesquisa: TButton
           Left = 688
-          Top = 24
+          Top = 21
           Width = 75
           Height = 25
           Caption = 'Pesquisa'

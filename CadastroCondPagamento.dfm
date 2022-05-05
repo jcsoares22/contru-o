@@ -1,9 +1,16 @@
 inherited frmCadastroCondPagamento: TfrmCadastroCondPagamento
   Caption = 'Condi'#231#227'o de pagamento'
+  Enabled = False
+  ExplicitWidth = 1336
+  ExplicitHeight = 975
   PixelsPerInch = 96
   TextHeight = 13
   inherited Cadastro: TPageControl
     inherited TabSheet1: TTabSheet
+      ExplicitLeft = 4
+      ExplicitTop = 24
+      ExplicitWidth = 1312
+      ExplicitHeight = 908
       inherited DBGrid_Cliente: TDBGrid
         DataSource = DM_Cadastro.Dt_Condicao_pagamento
         Columns = <

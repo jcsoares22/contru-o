@@ -23,6 +23,7 @@ type
     btnPesquisa: TButton;
     procedure btnPesquisaClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
   private
     { Private declarations }
   public
@@ -38,14 +39,15 @@ implementation
   uses dmvendas;
 procedure TfrmOrcamento.btnPesquisaClick(Sender: TObject);
 begin
-   DM_Vendas.FDQuerySaida_Venda.Close;
-   DM_Vendas.FDQuerySaida_Venda.SQL.Add('');
-   DM_Vendas.FDQuerySaida_Venda.SQL.Clear;
-   DM_Vendas.FDQuerySaida_Venda.SQL.Add('select * from saida_venda');
-   DM_Vendas.FDQuerySaida_Venda.SQL.Add('WHERE 1 = 1');
+ DM_Vendas.FDQueryOrcamento.Close;
+  DM_Vendas.FDQueryOrcamento.Params.Clear;
+  DM_Vendas.FDQueryOrcamento.SQL.Add('');
+  DM_Vendas.FDQueryOrcamento.SQL.Clear;
+  DM_Vendas.FDQueryOrcamento.SQL.Add('select * from SAIDA_VENDA');
+  DM_Vendas.FDQueryOrcamento.SQL.Add('WHERE 1 = 1');
   /// DataModule1.FDQueryProdutoFOTO.Value := Date.;
-  //  DM_Vendas.FDQuerySaida_Venda.SQL.Add('where codigo =:pcodigo');
-  //  DM_Vendas.FDQuerySaida_Venda.ParamByName('pcodigo').AsInteger := StrToInt(edt_Pesquisa.Text);
+  // DM_Vendas.FDQueryOrcamento.SQL.Add('where codigo =:pcodigo');
+  // DM_Vendas.FDQueryOrcamento.ParamByName('pcodigo').AsInteger := StrToInt(edt_Pesquisa.Text);
 
   case CB_opcao.ItemIndex of // utilizando o combo box na janela bairro
     0:
@@ -55,14 +57,14 @@ begin
             begin // validação para o campo quando ele estiver vazio
               if edt_Pesquisa.Text = EmptyStr then
               begin
-                 DM_Vendas.FDQuerySaida_Venda.SQL.Add('order by codigo');
+                DM_Vendas.FDQueryOrcamento.SQL.Add('order by codigo');
               end
               else
               begin
-                 DM_Vendas.FDQuerySaida_Venda.SQL.Add
-                  ('AND codigo like' + QuotedStr('%' + edt_Pesquisa.Text +'%'));
-                {  DM_Vendas.FDQuerySaida_Venda.SQL.Add('where codigo =:pcodigo');
-                   DM_Vendas.FDQuerySaida_Venda.ParamByName('pcodigo').AsInteger :=
+                DM_Vendas.FDQueryOrcamento.SQL.Add
+                  ('AND CODIGO like' + QuotedStr('%' + edt_Pesquisa.Text));
+                { DM_Vendas.FDQueryOrcamento.SQL.Add('where codigo =:pcodigo');
+                  DM_Vendas.FDQueryOrcamento.ParamByName('pcodigo').AsInteger :=
                   StrToInt(edt_Pesquisa.Text); }
               end;
 
@@ -71,16 +73,16 @@ begin
             begin // validação para o campo quando ele estiver vazio
               if edt_Pesquisa.Text = EmptyStr then
               begin
-                 DM_Vendas.FDQuerySaida_Venda.SQL.Add('order by codigo');
+                DM_Vendas.FDQueryOrcamento.SQL.Add('order by codigo');
               end
               else
               begin
-                 DM_Vendas.FDQuerySaida_Venda.SQL.Add
+                DM_Vendas.FDQueryOrcamento.SQL.Add
                   ('AND codigo like' +
                   QuotedStr('%' + edt_Pesquisa.Text + '%'));
 
-                {  DM_Vendas.FDQuerySaida_Venda.SQL.Add('AND codigo like =:pcodigo');
-                   DM_Vendas.FDQuerySaida_Venda.ParamByName('pcodigo').AsInteger :=
+                { DM_Vendas.FDQueryOrcamento.SQL.Add('AND codigo like =:pcodigo');
+                  DM_Vendas.FDQueryOrcamento.ParamByName('pcodigo').AsInteger :=
                   StrToInt('%'+ edt_Pesquisa.Text + '%'); }
               end;
 
@@ -89,17 +91,15 @@ begin
             begin // validação para o campo quando ele estiver vazio
               if edt_Pesquisa.Text = EmptyStr then
               begin
-                 DM_Vendas.FDQuerySaida_Venda.SQL.Add('order by codigo');
+                DM_Vendas.FDQueryOrcamento.SQL.Add('order by codigo');
               end
               else
               begin
-                 DM_Vendas.FDQuerySaida_Venda.SQL.Add
+                DM_Vendas.FDQueryOrcamento.SQL.Add
                   ('AND codigo = ' + QuotedStr(edt_Pesquisa.Text));
               end;
             end;
         end;
-        {  DM_Vendas.FDQuerySaida_Venda.ParamByName('pbai_codigo').AsInteger :=
-          StrToInt(edt_Pesquisa.Text); }
       end;
 
     1:
@@ -109,24 +109,23 @@ begin
             begin // inicia com
               if edt_Pesquisa.Text = EmptyStr then
               begin
-                 DM_Vendas.FDQuerySaida_Venda.SQL.Add('order by produto');
+                DM_Vendas.FDQueryOrcamento.SQL.Add('order by produto');
               end
               else
               begin
-                 DM_Vendas.FDQuerySaida_Venda.SQL.Add
-                  ('AND produto like' +
-                  QuotedStr('%' + edt_Pesquisa.Text));
+                DM_Vendas.FDQueryOrcamento.SQL.Add
+                  ('AND produto like' + QuotedStr('%' + edt_Pesquisa.Text));
               end;
             end;
           1:
             begin
               if edt_Pesquisa.Text = EmptyStr then
               begin
-                 DM_Vendas.FDQuerySaida_Venda.SQL.Add('order by produto');
+                DM_Vendas.FDQueryOrcamento.SQL.Add('order by produto');
               end
               else
               begin
-                 DM_Vendas.FDQuerySaida_Venda.SQL.Add
+                DM_Vendas.FDQueryOrcamento.SQL.Add
                   ('AND produto like' +
                   QuotedStr('%' + edt_Pesquisa.Text + '%'));
               end;
@@ -135,16 +134,16 @@ begin
             begin
               if edt_Pesquisa.Text = EmptyStr then
               begin
-                 DM_Vendas.FDQuerySaida_Venda.SQL.Add('order by produto');
+                DM_Vendas.FDQueryOrcamento.SQL.Add('order by produto');
               end
               else
               begin
-                 DM_Vendas.FDQuerySaida_Venda.SQL.Add
+                DM_Vendas.FDQueryOrcamento.SQL.Add
                   ('AND produto = ' + QuotedStr(edt_Pesquisa.Text));
               end;
             end;
-          //  DM_Vendas.FDQuerySaida_Venda.SQL.Add('order by bai_codigo');
-          //  DM_Vendas.FDQuerySaida_Venda.SQL.Add('where bai_codigo like =:pcodigo');
+          // DM_Vendas.FDQueryOrcamento.SQL.Add('order by bai_codigo');
+          // DM_Vendas.FDQueryOrcamento.SQL.Add('where bai_codigo like =:pcodigo');
 
         end;
 
@@ -152,13 +151,20 @@ begin
 
   end;
 
-   DM_Vendas.FDQuerySaida_Venda.Open();
+  DM_Vendas.FDQueryOrcamento.Open();
+end;
 
+procedure TfrmOrcamento.FormClose(Sender: TObject; var Action: TCloseAction);
+begin
+FreeAndNil(frmOrcamento);
+DM_Vendas.FDQueryOrcamento.close;
+DM_Vendas.FDQuerySaida_Venda.close;
 end;
 
 procedure TfrmOrcamento.FormCreate(Sender: TObject);
 begin
 DM_Vendas.FDQueryOrcamento.Open();
+DM_Vendas.FDQuerySaida_Venda.Open();
 end;
 
 end.

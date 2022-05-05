@@ -23,6 +23,7 @@ type
     Label2: TLabel;
     procedure FormCreate(Sender: TObject);
     procedure btnNovoClick(Sender: TObject);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
     
   private
     { Private declarations }
@@ -49,6 +50,11 @@ begin
 end;
 
 
+
+procedure TfrmContas.FormClose(Sender: TObject; var Action: TCloseAction);
+begin
+FreeAndNil(frmContas);
+end;
 
 procedure TfrmContas.FormCreate(Sender: TObject);
 begin

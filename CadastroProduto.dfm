@@ -19,7 +19,7 @@ inherited frmCadastroProduto: TfrmCadastroProduto
       inherited DBGrid_Cliente: TDBGrid
         Width = 1119
         Height = 606
-        DataSource = DM_Cadastro.DT_Produto
+        DataSource = DM_Cadastro.DT_produto
         Columns = <
           item
             Expanded = False
@@ -29,7 +29,6 @@ inherited frmCadastroProduto: TfrmCadastroProduto
           item
             Expanded = False
             FieldName = 'PRODUTO'
-            Width = 64
             Visible = True
           end
           item
@@ -76,6 +75,7 @@ inherited frmCadastroProduto: TfrmCadastroProduto
           item
             Expanded = False
             FieldName = 'DATAVENDA'
+            Width = 64
             Visible = True
           end
           item
@@ -164,8 +164,8 @@ inherited frmCadastroProduto: TfrmCadastroProduto
       end
     end
     inherited TabSheet2: TTabSheet
-      ExplicitLeft = 8
-      ExplicitTop = 28
+      ExplicitLeft = 4
+      ExplicitTop = 24
       ExplicitWidth = 1119
       ExplicitHeight = 647
       object Foto: TImage [0]
@@ -331,7 +331,8 @@ inherited frmCadastroProduto: TfrmCadastroProduto
         Width = 41
         Height = 21
         DataField = 'CODIGO'
-        DataSource = DM_Cadastro.DT_Produto
+        DataSource = DM_Cadastro.DT_produto
+        ReadOnly = True
         TabOrder = 2
       end
       object DBEdit3: TDBEdit
@@ -349,6 +350,8 @@ inherited frmCadastroProduto: TfrmCadastroProduto
         Height = 21
         CharCase = ecUpperCase
         DataField = 'OBS'
+        DataSource = DM_Cadastro.DT_produto
+        ReadOnly = True
         TabOrder = 4
       end
       object DBLookupComboBoxCor: TDBLookupComboBox
@@ -357,7 +360,7 @@ inherited frmCadastroProduto: TfrmCadastroProduto
         Width = 145
         Height = 21
         DataField = 'COR'
-        DataSource = DM_Cadastro.DT_Produto
+        DataSource = DM_Cadastro.DT_produto
         KeyField = 'DESCRICAO'
         ListField = 'DESCRICAO'
         ListSource = DM_Cadastro.DT_Cores
@@ -370,7 +373,7 @@ inherited frmCadastroProduto: TfrmCadastroProduto
         Width = 145
         Height = 21
         DataField = 'MARCA'
-        DataSource = DM_Cadastro.DT_Produto
+        DataSource = DM_Cadastro.DT_produto
         KeyField = 'DESCRICAO'
         ListField = 'DESCRICAO'
         ListSource = DM_Cadastro.DT_Marca
@@ -383,7 +386,7 @@ inherited frmCadastroProduto: TfrmCadastroProduto
         Width = 65
         Height = 21
         DataField = 'UN_MEDIDA'
-        DataSource = DM_Cadastro.DT_Produto
+        DataSource = DM_Cadastro.DT_produto
         KeyField = 'SIGLA_MEDIDA'
         ListField = 'SIGLA_MEDIDA'
         ListSource = DM_Cadastro.Dt_medida
@@ -396,7 +399,8 @@ inherited frmCadastroProduto: TfrmCadastroProduto
         Width = 134
         Height = 21
         DataField = 'QUANTIDADE_SAIDA'
-        DataSource = DM_Cadastro.DT_Produto
+        DataSource = DM_Cadastro.DT_produto
+        ReadOnly = True
         TabOrder = 8
       end
       object DBRadioGroup1: TDBRadioGroup
@@ -407,7 +411,7 @@ inherited frmCadastroProduto: TfrmCadastroProduto
         Caption = 'Situa'#231#227'o'
         Columns = 2
         DataField = 'SITUACAO'
-        DataSource = DM_Cadastro.DT_Produto
+        DataSource = DM_Cadastro.DT_produto
         Items.Strings = (
           'Ativo'
           'Inativo')
@@ -418,12 +422,13 @@ inherited frmCadastroProduto: TfrmCadastroProduto
       end
       object Nome_produto: TDBEdit
         Left = 82
-        Top = 64
+        Top = 67
         Width = 524
         Height = 21
         CharCase = ecUpperCase
         DataField = 'PRODUTO'
-        DataSource = DM_Cadastro.DT_Produto
+        DataSource = DM_Cadastro.DT_produto
+        ReadOnly = True
         TabOrder = 10
       end
       object PageControl1: TPageControl
@@ -465,7 +470,8 @@ inherited frmCadastroProduto: TfrmCadastroProduto
             Width = 77
             Height = 21
             DataField = 'PRECO_CUSTO'
-            DataSource = DM_Cadastro.DT_Produto
+            DataSource = DM_Cadastro.DT_produto
+            ReadOnly = True
             TabOrder = 0
           end
           object DB_Avista: TDBEdit
@@ -474,7 +480,8 @@ inherited frmCadastroProduto: TfrmCadastroProduto
             Width = 48
             Height = 21
             DataField = 'PRECENTO_LUCRO'
-            DataSource = DM_Cadastro.DT_Produto
+            DataSource = DM_Cadastro.DT_produto
+            ReadOnly = True
             TabOrder = 1
             OnExit = DB_AvistaExit
           end
@@ -484,7 +491,8 @@ inherited frmCadastroProduto: TfrmCadastroProduto
             Width = 74
             Height = 21
             DataField = 'PRECO_VENDA'
-            DataSource = DM_Cadastro.DT_Produto
+            DataSource = DM_Cadastro.DT_produto
+            ReadOnly = True
             TabOrder = 2
           end
         end
@@ -521,7 +529,8 @@ inherited frmCadastroProduto: TfrmCadastroProduto
             Width = 68
             Height = 21
             DataField = 'PRECO_PRAZO_CUSTO'
-            DataSource = DM_Cadastro.DT_Produto
+            DataSource = DM_Cadastro.DT_produto
+            ReadOnly = True
             TabOrder = 0
           end
           object DBEdit13: TDBEdit
@@ -530,7 +539,8 @@ inherited frmCadastroProduto: TfrmCadastroProduto
             Width = 55
             Height = 21
             DataField = 'PRECO_PRAZO_VENDA'
-            DataSource = DM_Cadastro.DT_Produto
+            DataSource = DM_Cadastro.DT_produto
+            ReadOnly = True
             TabOrder = 1
           end
           object DB_APrazo: TDBEdit
@@ -539,7 +549,8 @@ inherited frmCadastroProduto: TfrmCadastroProduto
             Width = 42
             Height = 21
             DataField = 'PRECENTO_PRAZO_LUCRO'
-            DataSource = DM_Cadastro.DT_Produto
+            DataSource = DM_Cadastro.DT_produto
+            ReadOnly = True
             TabOrder = 2
             OnExit = DB_APrazoExit
           end
@@ -551,7 +562,8 @@ inherited frmCadastroProduto: TfrmCadastroProduto
         Width = 113
         Height = 21
         DataField = 'DATACAD'
-        DataSource = DM_Cadastro.DT_Produto
+        DataSource = DM_Cadastro.DT_produto
+        ReadOnly = True
         TabOrder = 12
       end
       object DB_DT_Venda: TDBEdit
@@ -560,31 +572,34 @@ inherited frmCadastroProduto: TfrmCadastroProduto
         Width = 113
         Height = 21
         DataField = 'DATAVENDA'
-        DataSource = DM_Cadastro.DT_Produto
+        DataSource = DM_Cadastro.DT_produto
+        ReadOnly = True
         TabOrder = 13
       end
-      object DBLookupComboBox1: TDBLookupComboBox
+      object DBLookupComboBoxGrupo: TDBLookupComboBox
         Left = 644
         Top = 134
         Width = 145
         Height = 21
         DataField = 'ID_GRUPO'
-        DataSource = DM_Cadastro.DT_Produto
+        DataSource = DM_Cadastro.DT_produto
         KeyField = 'CODIGO'
         ListField = 'DESCRICAO'
         ListSource = DM_Cadastro.DT_Grupo
+        ReadOnly = True
         TabOrder = 14
       end
-      object DBLookupComboBox2: TDBLookupComboBox
+      object DBLookupComboBoxSubGrupo: TDBLookupComboBox
         Left = 644
         Top = 161
         Width = 145
         Height = 21
         DataField = 'ID_GRUPO'
-        DataSource = DM_Cadastro.DT_Produto
+        DataSource = DM_Cadastro.DT_produto
         KeyField = 'CODIGO_GRUPO'
         ListField = 'DESCRICAO'
         ListSource = DM_Cadastro.DT_SubGrupo
+        ReadOnly = True
         TabOrder = 15
       end
       object DB_Qte_Entrada: TDBEdit
@@ -593,7 +608,8 @@ inherited frmCadastroProduto: TfrmCadastroProduto
         Width = 134
         Height = 21
         DataField = 'QUANTIDADE_ENTRADA'
-        DataSource = DM_Cadastro.DT_Produto
+        DataSource = DM_Cadastro.DT_produto
+        ReadOnly = True
         TabOrder = 16
       end
       object DB_Qte_Atual: TDBEdit
@@ -602,8 +618,18 @@ inherited frmCadastroProduto: TfrmCadastroProduto
         Width = 134
         Height = 21
         DataField = 'QUANTIDADE_ATUAL'
-        DataSource = DM_Cadastro.DT_Produto
+        DataSource = DM_Cadastro.DT_produto
+        ReadOnly = True
         TabOrder = 17
+      end
+      object DBImage1: TDBImage
+        Left = 880
+        Top = 94
+        Width = 236
+        Height = 175
+        DataField = 'FOTO'
+        DataSource = DM_Cadastro.DT_produto
+        TabOrder = 18
       end
     end
   end

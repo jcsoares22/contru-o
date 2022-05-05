@@ -9,7 +9,6 @@ inherited frmCadastroCores: TfrmCadastroCores
   end
   inherited DB_Grid: TDBGrid
     DataSource = DM_Cadastro.DT_Cores
-    OnKeyPress = DB_GridKeyPress
     Columns = <
       item
         Expanded = False

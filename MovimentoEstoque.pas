@@ -25,6 +25,7 @@ type
     procedure btnDeletarClick(Sender: TObject);
     procedure btnCancelarClick(Sender: TObject);
     procedure btnEditClick(Sender: TObject);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
   private
     { Private declarations }
   public
@@ -109,6 +110,13 @@ DM_Cadastro.FDQueryProduto.Edit;
 DM_Mov_Estoque.FDQueryMovimentoEstoque.Post;
 DM_Cadastro.FDQueryProduto.Post;
 DM_Mov_Estoque.FDQuery_Movimento_estoque_item.Post;
+end;
+
+procedure TfrmMovimento_estoque.FormClose(Sender: TObject;
+  var Action: TCloseAction);
+begin
+  inherited;
+FreeAndNil(frmMovimento_estoque);
 end;
 
 end.

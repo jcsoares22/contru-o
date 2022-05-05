@@ -17,6 +17,7 @@ type
     procedure btnDeletarClick(Sender: TObject);
     procedure btnSalvarClick(Sender: TObject);
     procedure btnCancelarClick(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
   private
     { Private declarations }
   public
@@ -89,6 +90,13 @@ begin
   inherited;
   DM_Cadastro.FDQueryGrupo.Edit;
   DM_Cadastro.FDQueryGrupo.Post;
+end;
+
+procedure TfrmCadastroGrupo.FormCreate(Sender: TObject);
+begin
+  inherited;
+frmCadastroGrupo.Free;
+frmCadastroGrupo := nil;
 end;
 
 end.

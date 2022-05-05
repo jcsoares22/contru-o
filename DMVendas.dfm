@@ -153,15 +153,18 @@ object DM_Vendas: TDM_Vendas
       Lookup = True
     end
     object FDQuerySaidaProdutoQTE_ESTOQUE: TFloatField
-      FieldKind = fkCalculated
       FieldName = 'QTE_ESTOQUE'
+      LookupDataSet = DM_Cadastro.FDQueryProduto
+      LookupKeyFields = 'CODIGO'
+      LookupResultField = 'QUANTIDADE_ATUAL'
+      KeyFields = 'QTE_ESTOQUE'
       Origin = 'QTE_ESTOQUE'
-      Calculated = True
+      ReadOnly = True
     end
     object FDQuerySaidaProdutoQUANTIDADE: TIntegerField
       FieldName = 'QUANTIDADE'
       Origin = 'QUANTIDADE'
-      OnValidate = FDQuerySaidaProdutoQUANTIDADEValidate
+      OnChange = FDQuerySaidaProdutoQUANTIDADEValidate
     end
     object FDQuerySaidaProdutoCOD_VENDA: TIntegerField
       FieldName = 'COD_VENDA'

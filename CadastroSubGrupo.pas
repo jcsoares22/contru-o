@@ -16,6 +16,7 @@ type
     procedure btnDeletarClick(Sender: TObject);
     procedure btnSalvarClick(Sender: TObject);
     procedure btnCancelarClick(Sender: TObject);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
   private
     { Private declarations }
   public
@@ -41,7 +42,7 @@ begin
   if MessageDlg('Desja deletar?', TMsgDlgType.mtConfirmation, [mbok, mbNo], 0) = mrok
   then
   begin
-   DM_Cadastro.FDQuerySub_grupo.delete;
+    DM_Cadastro.FDQuerySub_grupo.delete;
   end;
   Abort;
 
@@ -58,13 +59,13 @@ var
   prox: integer;
 begin
   inherited;
- { DM_Cadastro.FDQuerySub_grupo.Edit;
-   DM_Cadastro.FDQueryUnMedida.Edit;
-     DB_Grid.ReadOnly := false;
-       DM_Cadastro.FDQuerySub_grupo.Last;
-         prox := DM_Cadastro.FDQuerySub_grupoCODIGO_SUB_GRUPO.AsInteger + 1;
-           DM_Cadastro.FDQuerySub_grupo.Append;
-             DM_Cadastro.FDQuerySub_grupoCODIGO_SUB_GRUPO.AsInteger := prox;}
+  { DM_Cadastro.FDQuerySub_grupo.Edit;
+    DM_Cadastro.FDQueryUnMedida.Edit;
+    DB_Grid.ReadOnly := false;
+    DM_Cadastro.FDQuerySub_grupo.Last;
+    prox := DM_Cadastro.FDQuerySub_grupoCODIGO_SUB_GRUPO.AsInteger + 1;
+    DM_Cadastro.FDQuerySub_grupo.Append;
+    DM_Cadastro.FDQuerySub_grupoCODIGO_SUB_GRUPO.AsInteger := prox; }
 end;
 
 procedure TfrmCadastroSubGrupo.btnSalvarClick(Sender: TObject);
@@ -73,6 +74,14 @@ begin
   DM_Cadastro.FDQuerySub_grupo.edit;
   DM_Cadastro.FDQuerySub_grupo.post;
   DB_Grid.ReadOnly := true;
+end;
+
+procedure TfrmCadastroSubGrupo.FormClose(Sender: TObject;
+  var Action: TCloseAction);
+begin
+  inherited;
+  frmCadastroSubGrupo.Free;
+  frmCadastroSubGrupo := nil;
 end;
 
 end.

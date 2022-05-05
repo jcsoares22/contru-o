@@ -51,9 +51,16 @@ type
     TabSheet2: TTabSheet;
     Panel3: TPanel;
     Button2: TButton;
+    Cliente: TSpeedButton;
+    Conta_SubConta: TSpeedButton;
     SpeedButton1: TSpeedButton;
     SpeedButton2: TSpeedButton;
     SpeedButton3: TSpeedButton;
+    SpeedButton4: TSpeedButton;
+    SpeedButton5: TSpeedButton;
+    SpeedButton7: TSpeedButton;
+    SpeedButton8: TSpeedButton;
+    SpeedButton9: TSpeedButton;
     procedure fecharTela();
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure bntClienteClick(Sender: TObject);
@@ -154,7 +161,7 @@ end;
 
 procedure TfrmPrincipal.ContaSubConta1Click(Sender: TObject);
 begin
-  fecharTela;
+ fecharTela;
   if (frmContas = nil) then
     frmContas := TFrmContas.Create(self);
   if (not frmContas.showing) then

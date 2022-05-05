@@ -3,7 +3,8 @@ unit CadastroFinanceiro;
 interface
 
 uses
-  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
+  System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, CadastroPaiPrincipal, Data.DB,
   Vcl.StdCtrls, Vcl.ExtCtrls, Vcl.Grids, Vcl.DBGrids, Vcl.ComCtrls, Vcl.Mask,
   Vcl.DBCtrls;
@@ -30,6 +31,7 @@ type
     DBEdit9: TDBEdit;
     Label13: TLabel;
     DBEdit10: TDBEdit;
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
   private
     { Private declarations }
   public
@@ -42,5 +44,15 @@ var
 implementation
 
 {$R *.dfm}
-   uses DMFinanceiro;
+
+uses DMFinanceiro;
+
+procedure TfrmCadastroFinanceiro.FormClose(Sender: TObject;
+  var Action: TCloseAction);
+begin
+  inherited;
+  frmCadastroFinanceiro.Free;
+  frmCadastroFinanceiro := nil;
+end;
+
 end.

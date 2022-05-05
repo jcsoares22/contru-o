@@ -1,15 +1,25 @@
 inherited frmCadastroFinanceiro: TfrmCadastroFinanceiro
   Caption = 'Financeiro'
+  ExplicitWidth = 1336
+  ExplicitHeight = 975
   PixelsPerInch = 96
   TextHeight = 13
   inherited Cadastro: TPageControl
     ActivePage = TabSheet2
     inherited TabSheet1: TTabSheet
+      ExplicitLeft = 4
+      ExplicitTop = 24
+      ExplicitWidth = 1312
+      ExplicitHeight = 908
       inherited DBGrid_Cliente: TDBGrid
         DataSource = DM_Finaceiro.DT_Financeiro
       end
     end
     inherited TabSheet2: TTabSheet
+      ExplicitLeft = 4
+      ExplicitTop = 24
+      ExplicitWidth = 1312
+      ExplicitHeight = 908
       object Label1: TLabel [0]
         Left = 16
         Top = 64

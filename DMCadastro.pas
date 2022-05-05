@@ -66,7 +66,7 @@ type
     FDQueryContaTIPO: TStringField;
     FDQueryContaTIPO_CONTA: TStringField;
     FDQueryProduto: TFDQuery;
-    DataSource1: TDataSource;
+    DT_produto: TDataSource;
     FDQueryProdutoCODIGO: TFDAutoIncField;
     FDQueryProdutoPRODUTO: TStringField;
     FDQueryProdutoUN_MEDIDA: TStringField;

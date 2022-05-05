@@ -1,6 +1,7 @@
 object frmLogin: TfrmLogin
   Left = 0
   Top = 0
+  BorderIcons = []
   Caption = 'Login'
   ClientHeight = 80
   ClientWidth = 303
@@ -11,6 +12,7 @@ object frmLogin: TfrmLogin
   Font.Name = 'Tahoma'
   Font.Style = []
   OldCreateOrder = False
+  Position = poScreenCenter
   PixelsPerInch = 96
   TextHeight = 13
   object Label1: TLabel

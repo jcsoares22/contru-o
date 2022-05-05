@@ -105,7 +105,6 @@ object DM_Dados: TDM_Dados
     Top = 104
   end
   object FDQueryPreferencia: TFDQuery
-    Active = True
     Connection = DADOS
     SQL.Strings = (
       'SELECT * FROM controle_sistema')
@@ -116,6 +115,54 @@ object DM_Dados: TDM_Dados
       Origin = 'DESCONTO_VENDA'
       Precision = 18
       Size = 2
+    end
+    object FDQueryPreferenciaTELEFONE: TStringField
+      FieldName = 'TELEFONE'
+      Origin = 'TELEFONE'
+      Size = 50
+    end
+    object FDQueryPreferenciaCPF: TStringField
+      FieldName = 'CPF'
+      Origin = 'CPF'
+      Size = 11
+    end
+    object FDQueryPreferenciaEMAIL: TStringField
+      FieldName = 'EMAIL'
+      Origin = 'EMAIL'
+      Size = 50
+    end
+    object FDQueryPreferenciaNOME: TStringField
+      FieldName = 'NOME'
+      Origin = 'NOME'
+      Size = 50
+    end
+    object FDQueryPreferenciaDESCRICAO: TStringField
+      FieldName = 'DESCRICAO'
+      Origin = 'DESCRICAO'
+      Size = 200
+    end
+    object FDQueryPreferenciaRUA: TStringField
+      FieldName = 'RUA'
+      Origin = 'RUA'
+      Size = 25
+    end
+    object FDQueryPreferenciaNUMERO: TStringField
+      FieldName = 'NUMERO'
+      Origin = 'NUMERO'
+      Size = 12
+    end
+    object FDQueryPreferenciaUF_ID: TIntegerField
+      FieldName = 'UF_ID'
+      Origin = 'UF_ID'
+    end
+    object FDQueryPreferenciaCIDADE_ID: TIntegerField
+      FieldName = 'CIDADE_ID'
+      Origin = 'CIDADE_ID'
+    end
+    object FDQueryPreferenciaBAIRRO: TStringField
+      FieldName = 'BAIRRO'
+      Origin = 'BAIRRO'
+      Size = 50
     end
   end
   object DT_Preferencia: TDataSource

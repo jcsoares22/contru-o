@@ -14,6 +14,7 @@ type
     procedure btnEditClick(Sender: TObject);
     procedure btnDeletarClick(Sender: TObject);
     procedure btnSalvarClick(Sender: TObject);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
   private
     { Private declarations }
   public
@@ -56,6 +57,14 @@ begin
   inherited;
   DM_Cadastro.FDQueryTipoPgto.Edit;
   DM_Cadastro.FDQueryTipoPgto.Post;
+end;
+
+procedure TfrmCadastroDocumento.FormClose(Sender: TObject;
+  var Action: TCloseAction);
+begin
+  inherited;
+  frmCadastroDocumento.Free;
+  frmCadastroDocumento := nil;
 end;
 
 end.

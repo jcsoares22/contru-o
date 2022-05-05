@@ -22,6 +22,7 @@ type
     Label2: TLabel;
     procedure FormCreate(Sender: TObject);
     procedure btnNovoClick(Sender: TObject);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
   private
     { Private declarations }
   public
@@ -43,6 +44,11 @@ begin
   prox := DM_Cadastro.FDQueryContaCODIGO.AsInteger + 1;
   DM_Cadastro.FDQueryConta.Append;
   DM_Cadastro.FDQueryContaCODIGO.AsInteger := prox;
+end;
+
+procedure TfrmContas.FormClose(Sender: TObject; var Action: TCloseAction);
+begin
+FreeAndNil(frmContas);
 end;
 
 procedure TfrmContas.FormCreate(Sender: TObject);

@@ -95,6 +95,8 @@ begin
   Dm_Cadastro.FDQueryGrupo.close;
   Dm_Cadastro.FDQuerySub_grupo.close;
   Dm_Cadastro.FDQueryUnMedida.close;
+  frmCadastroBasicoPai.Free;
+  frmCadastroBasicoPai := nil;
 end;
 
 procedure TfrmCadastroBasicoPai.FormCreate(Sender: TObject);

@@ -3,7 +3,6 @@
   Height = 608
   Width = 765
   object FDQueryGrupo: TFDQuery
-    Active = True
     Connection = DM_Dados.DADOS
     SQL.Strings = (
       'select * from grupo_material')
@@ -32,7 +31,6 @@
     Top = 8
   end
   object FDQuerySub_grupo: TFDQuery
-    Active = True
     IndexFieldNames = 'CODIGO_GRUPO'
     MasterSource = DT_Grupo
     MasterFields = 'CODIGO'
@@ -75,7 +73,6 @@
     Top = 64
   end
   object FDQueryUnMedida: TFDQuery
-    Active = True
     ConstraintsEnabled = True
     Connection = DM_Dados.DADOS
     SQL.Strings = (
@@ -125,7 +122,6 @@
     Top = 16
   end
   object FDQueryCores: TFDQuery
-    Active = True
     ConstraintsEnabled = True
     Connection = DM_Dados.DADOS
     SQL.Strings = (
@@ -149,7 +145,6 @@
     Top = 88
   end
   object FDQueryMarca: TFDQuery
-    Active = True
     ConstraintsEnabled = True
     Connection = DM_Dados.DADOS
     SQL.Strings = (
@@ -173,7 +168,6 @@
     Top = 152
   end
   object FDQueryCondição_pagamento: TFDQuery
-    Active = True
     Connection = DM_Dados.DADOS
     SQL.Strings = (
       'select * from condicao_pagamento ')
@@ -297,7 +291,6 @@
     Top = 328
   end
   object FDQueryConta: TFDQuery
-    Active = True
     Connection = DM_Dados.DADOS
     SQL.Strings = (
       'select * from conta')
@@ -337,7 +330,6 @@
     end
   end
   object FDQuerySubConta: TFDQuery
-    Active = True
     IndexFieldNames = 'CODIGO_SUB'
     MasterSource = DT_Conta
     MasterFields = 'CODIGO'
@@ -382,7 +374,6 @@
     Top = 496
   end
   object FDQueryTIPO_CONTA: TFDQuery
-    Active = True
     Connection = DM_Dados.DADOS
     SQL.Strings = (
       'SELECT * FROM TIPO_CONTA')
@@ -395,7 +386,6 @@
     Top = 392
   end
   object FDQueryProduto: TFDQuery
-    Active = True
     ConstraintsEnabled = True
     Connection = DM_Dados.DADOS
     UpdateOptions.AssignedValues = [uvFetchGeneratorsPoint, uvGeneratorName]
@@ -427,12 +417,14 @@
     object FDQueryProdutoPRECO_CUSTO: TBCDField
       FieldName = 'PRECO_CUSTO'
       Origin = 'PRECO_CUSTO'
+      currency = True
       Precision = 18
       Size = 2
     end
     object FDQueryProdutoPRECO_VENDA: TBCDField
       FieldName = 'PRECO_VENDA'
       Origin = 'PRECO_VENDA'
+      currency = True
       Precision = 18
       Size = 2
     end
@@ -478,22 +470,26 @@
     object FDQueryProdutoPRECENTO_LUCRO: TCurrencyField
       FieldName = 'PRECENTO_LUCRO'
       Origin = 'PRECENTO_LUCRO'
+      currency = False
     end
     object FDQueryProdutoPRECO_PRAZO_CUSTO: TBCDField
       FieldName = 'PRECO_PRAZO_CUSTO'
       Origin = 'PRECO_PRAZO_CUSTO'
+      currency = True
       Precision = 18
       Size = 2
     end
     object FDQueryProdutoPRECO_PRAZO_VENDA: TBCDField
       FieldName = 'PRECO_PRAZO_VENDA'
       Origin = 'PRECO_PRAZO_VENDA'
+      currency = True
       Precision = 18
       Size = 2
     end
     object FDQueryProdutoPRECENTO_PRAZO_LUCRO: TCurrencyField
       FieldName = 'PRECENTO_PRAZO_LUCRO'
       Origin = 'PRECENTO_PRAZO_LUCRO'
+      currency = False
     end
     object FDQueryProdutoQUANTIDADE_SAIDA: TIntegerField
       FieldName = 'QUANTIDADE_SAIDA'
@@ -516,7 +512,7 @@
       Origin = 'QUANTIDADE_ATUAL'
     end
   end
-  object DataSource1: TDataSource
+  object DT_produto: TDataSource
     DataSet = FDQueryProduto
     Left = 144
     Top = 424

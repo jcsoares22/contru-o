@@ -3,7 +3,8 @@ unit CadastroCores;
 interface
 
 uses
-  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
+  System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, CadastroBasicoPai, Data.DB, Vcl.Grids,
   Vcl.DBGrids, Vcl.StdCtrls, Vcl.ExtCtrls, DMCadastro;
 
@@ -15,6 +16,7 @@ type
     procedure btnSalvarClick(Sender: TObject);
     procedure btnCancelarClick(Sender: TObject);
     procedure DB_GridKeyPress(Sender: TObject; var Key: Char);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
   private
     { Private declarations }
   public
@@ -31,13 +33,13 @@ implementation
 procedure TfrmCadastroCores.btnCancelarClick(Sender: TObject);
 begin
   inherited;
- DM_Cadastro.FDQueryCores.Cancel;
+  DM_Cadastro.FDQueryCores.Cancel;
 end;
 
 procedure TfrmCadastroCores.btnDeletarClick(Sender: TObject);
 begin
   inherited;
-         if MessageDlg('Desja deletar?', TMsgDlgType.mtConfirmation, [mbok, mbNo], 0) = mrok
+  if MessageDlg('Desja deletar?', TMsgDlgType.mtConfirmation, [mbok, mbNo], 0) = mrok
   then
   begin
     DM_Cadastro.FDQueryCores.Delete;
@@ -48,7 +50,7 @@ end;
 procedure TfrmCadastroCores.btnEditClick(Sender: TObject);
 begin
   inherited;
-     DM_Cadastro.FDQueryCores.Edit;
+  DM_Cadastro.FDQueryCores.Edit;
 end;
 
 procedure TfrmCadastroCores.btnNovoClick(Sender: TObject);
@@ -66,14 +68,22 @@ end;
 procedure TfrmCadastroCores.btnSalvarClick(Sender: TObject);
 begin
   inherited;
- DM_Cadastro.FDQueryCores.Edit;
+  DM_Cadastro.FDQueryCores.Edit;
   DM_Cadastro.FDQueryCores.Post;
 end;
 
 procedure TfrmCadastroCores.DB_GridKeyPress(Sender: TObject; var Key: Char);
 begin
   inherited;
-    Key := UpCase(Key);
+  Key := UpCase(Key);
+end;
+
+procedure TfrmCadastroCores.FormClose(Sender: TObject;
+  var Action: TCloseAction);
+begin
+  inherited;
+  frmCadastroCores.Free;
+  frmCadastroCores := nil;
 end;
 
 end.

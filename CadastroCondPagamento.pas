@@ -22,6 +22,7 @@ type
     procedure btnEditClick(Sender: TObject);
     procedure btnDeletarClick(Sender: TObject);
     procedure btnCancelarClick(Sender: TObject);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
   private
     { Private declarations }
   public
@@ -82,6 +83,13 @@ begin
   DM_Cadastro.FDQueryCondição_pagamento.Post;
   DB_nome.ReadOnly := true;
   DB_desc_avista.ReadOnly := true;
+end;
+
+procedure TfrmCadastroCondPagamento.FormClose(Sender: TObject;
+  var Action: TCloseAction);
+begin
+  inherited;
+     FreeAndNil(frmCadastroCondPagamento);
 end;
 
 end.

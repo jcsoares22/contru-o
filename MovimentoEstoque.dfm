@@ -1,12 +1,16 @@
 inherited frmMovimento_estoque: TfrmMovimento_estoque
   Caption = 'Movimento Estoque'
-  ExplicitWidth = 320
-  ExplicitHeight = 240
+  ExplicitWidth = 1336
+  ExplicitHeight = 975
   PixelsPerInch = 96
   TextHeight = 13
   inherited Cadastro: TPageControl
     ActivePage = TabSheet2
     inherited TabSheet1: TTabSheet
+      ExplicitLeft = 4
+      ExplicitTop = 24
+      ExplicitWidth = 1312
+      ExplicitHeight = 908
       inherited DBGrid_Cliente: TDBGrid
         DataSource = DM_Mov_Estoque.DT_Movimento_estoque_item
         Columns = <
@@ -18,16 +22,19 @@ inherited frmMovimento_estoque: TfrmMovimento_estoque
           item
             Expanded = False
             FieldName = 'CODPRODUTO'
+            Width = 64
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'QUANTIDADE'
+            Width = 64
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'NOME_PRODUTO'
+            Width = 64
             Visible = True
           end
           item
@@ -38,6 +45,10 @@ inherited frmMovimento_estoque: TfrmMovimento_estoque
       end
     end
     inherited TabSheet2: TTabSheet
+      ExplicitLeft = 4
+      ExplicitTop = 24
+      ExplicitWidth = 1312
+      ExplicitHeight = 908
       inherited Panel1: TPanel
         Height = 105
         ExplicitHeight = 105
@@ -142,16 +153,19 @@ inherited frmMovimento_estoque: TfrmMovimento_estoque
           item
             Expanded = False
             FieldName = 'CODPRODUTO'
+            Width = 64
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'QUANTIDADE'
+            Width = 64
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'NOME_PRODUTO'
+            Width = 64
             Visible = True
           end
           item

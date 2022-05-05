@@ -12,6 +12,8 @@ object frmPreferencia: TfrmPreferencia
   Font.Name = 'Tahoma'
   Font.Style = []
   OldCreateOrder = False
+  Position = poScreenCenter
+  OnClose = FormClose
   OnCreate = FormCreate
   PixelsPerInch = 96
   TextHeight = 13
@@ -19,61 +21,184 @@ object frmPreferencia: TfrmPreferencia
     Left = 0
     Top = 0
     Width = 891
-    Height = 704
-    ActivePage = TabSheet2
+    Height = 663
+    ActivePage = TabSheet1
     Align = alClient
     TabOrder = 0
+    ExplicitHeight = 704
     object TabSheet1: TTabSheet
       Caption = 'Informa'#231#227'o'
+      ExplicitLeft = 8
+      ExplicitTop = 28
+      ExplicitHeight = 676
+      object Label3: TLabel
+        Left = 24
+        Top = 56
+        Width = 50
+        Height = 13
+        Caption = 'TELEFONE'
+        FocusControl = DBEdit2
+      end
+      object Label4: TLabel
+        Left = 464
+        Top = 8
+        Width = 19
+        Height = 13
+        Caption = 'CPF'
+        FocusControl = DBEdit3
+      end
+      object Label5: TLabel
+        Left = 152
+        Top = 56
+        Width = 30
+        Height = 13
+        Caption = 'EMAIL'
+        FocusControl = DBEdit4
+      end
+      object Label6: TLabel
+        Left = 24
+        Top = 8
+        Width = 29
+        Height = 13
+        Caption = 'NOME'
+        FocusControl = DBEdit5
+      end
+      object Label8: TLabel
+        Left = 24
+        Top = 176
+        Width = 21
+        Height = 13
+        Caption = 'RUA'
+        FocusControl = DBEdit7
+      end
+      object Label9: TLabel
+        Left = 392
+        Top = 176
+        Width = 43
+        Height = 13
+        Caption = 'NUMERO'
+        FocusControl = DBEdit8
+      end
+      object Label10: TLabel
+        Left = 24
+        Top = 112
+        Width = 30
+        Height = 13
+        Caption = 'UF_ID'
+      end
+      object Label11: TLabel
+        Left = 216
+        Top = 112
+        Width = 55
+        Height = 13
+        Caption = 'CIDADE_ID'
+      end
+      object Label12: TLabel
+        Left = 400
+        Top = 115
+        Width = 39
+        Height = 13
+        Caption = 'BAIRRO'
+        FocusControl = DBEdit11
+      end
+      object DBEdit2: TDBEdit
+        Left = 24
+        Top = 72
+        Width = 97
+        Height = 21
+        DataField = 'TELEFONE'
+        DataSource = DM_Dados.DT_Preferencia
+        TabOrder = 0
+      end
+      object DBEdit3: TDBEdit
+        Left = 464
+        Top = 24
+        Width = 147
+        Height = 21
+        DataField = 'CPF'
+        DataSource = DM_Dados.DT_Preferencia
+        TabOrder = 1
+      end
+      object DBEdit4: TDBEdit
+        Left = 152
+        Top = 72
+        Width = 193
+        Height = 21
+        DataField = 'EMAIL'
+        DataSource = DM_Dados.DT_Preferencia
+        TabOrder = 2
+      end
+      object DBEdit5: TDBEdit
+        Left = 24
+        Top = 24
+        Width = 417
+        Height = 21
+        DataField = 'NOME'
+        DataSource = DM_Dados.DT_Preferencia
+        TabOrder = 3
+      end
+      object DBEdit7: TDBEdit
+        Left = 24
+        Top = 192
+        Width = 329
+        Height = 21
+        DataField = 'RUA'
+        DataSource = DM_Dados.DT_Preferencia
+        TabOrder = 4
+      end
+      object DBEdit8: TDBEdit
+        Left = 392
+        Top = 192
+        Width = 160
+        Height = 21
+        DataField = 'NUMERO'
+        DataSource = DM_Dados.DT_Preferencia
+        TabOrder = 5
+      end
+      object DBEdit11: TDBEdit
+        Left = 400
+        Top = 131
+        Width = 371
+        Height = 21
+        DataField = 'BAIRRO'
+        DataSource = DM_Dados.DT_Preferencia
+        TabOrder = 6
+      end
+      object DBLookupComboBox2: TDBLookupComboBox
+        Left = 208
+        Top = 131
+        Width = 145
+        Height = 21
+        DataField = 'CIDADE_ID'
+        DataSource = DM_Dados.DT_Preferencia
+        KeyField = 'ID'
+        ListField = 'NOME'
+        ListSource = DM_Endereco.Dt_Cidade
+        TabOrder = 7
+      end
+      object DBLookupComboBox1: TDBLookupComboBox
+        Left = 24
+        Top = 131
+        Width = 145
+        Height = 21
+        DataField = 'UF_ID'
+        DataSource = DM_Dados.DT_Preferencia
+        KeyField = 'ID'
+        ListField = 'NOME'
+        ListSource = DM_Endereco.DT_Estados
+        TabOrder = 8
+      end
     end
     object TabSheet2: TTabSheet
       Caption = 'venda'
       ImageIndex = 1
-      ExplicitLeft = 0
-      ExplicitTop = 28
+      ExplicitHeight = 676
       object Label1: TLabel
         Left = 8
         Top = 8
         Width = 58
         Height = 13
         Caption = '% desconto'
-      end
-      object Panel1: TPanel
-        Left = 0
-        Top = 635
-        Width = 883
-        Height = 41
-        Align = alBottom
-        Color = clSkyBlue
-        ParentBackground = False
-        TabOrder = 0
-        object Button1: TButton
-          Left = 623
-          Top = 8
-          Width = 75
-          Height = 25
-          Caption = 'Salvar'
-          TabOrder = 0
-          OnClick = Button1Click
-        end
-        object Button2: TButton
-          Left = 776
-          Top = 8
-          Width = 75
-          Height = 25
-          Caption = 'Cancelar'
-          TabOrder = 1
-          OnClick = Button2Click
-        end
-        object Button3: TButton
-          Left = 704
-          Top = 8
-          Width = 75
-          Height = 25
-          Caption = 'Salvar'
-          TabOrder = 2
-          OnClick = Button3Click
-        end
       end
       object DBE_DESCONTO: TDBEdit
         Left = 72
@@ -82,8 +207,47 @@ object frmPreferencia: TfrmPreferencia
         Height = 21
         DataField = 'DESCONTO_VENDA'
         DataSource = DM_Dados.DT_Preferencia
-        TabOrder = 1
+        TabOrder = 0
       end
+    end
+  end
+  object Panel1: TPanel
+    Left = 0
+    Top = 663
+    Width = 891
+    Height = 41
+    Align = alBottom
+    Color = clSkyBlue
+    ParentBackground = False
+    TabOrder = 1
+    ExplicitTop = 635
+    ExplicitWidth = 883
+    object Button1: TButton
+      Left = 633
+      Top = 6
+      Width = 75
+      Height = 25
+      Caption = 'Salvar'
+      TabOrder = 0
+      OnClick = Button1Click
+    end
+    object Button2: TButton
+      Left = 795
+      Top = 6
+      Width = 75
+      Height = 25
+      Caption = 'Cancelar'
+      TabOrder = 1
+      OnClick = Button2Click
+    end
+    object Button3: TButton
+      Left = 714
+      Top = 6
+      Width = 75
+      Height = 25
+      Caption = 'Edit'
+      TabOrder = 2
+      OnClick = Button3Click
     end
   end
 end

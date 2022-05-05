@@ -23,7 +23,7 @@ object frmCadastroVendas: TfrmCadastroVendas
     Top = 0
     Width = 1164
     Height = 685
-    ActivePage = TabSheet2
+    ActivePage = TabSheet1
     Align = alClient
     TabOrder = 0
     object TabSheet1: TTabSheet
@@ -607,11 +607,6 @@ object frmCadastroVendas: TfrmCadastroVendas
         Columns = <
           item
             Expanded = False
-            FieldName = 'CODIGO'
-            Visible = True
-          end
-          item
-            Expanded = False
             FieldName = 'CODPRODUTO'
             Visible = True
           end
@@ -623,19 +618,13 @@ object frmCadastroVendas: TfrmCadastroVendas
           end
           item
             Expanded = False
-            FieldName = 'VALORPRODUTO'
-            Width = 64
-            Visible = True
-          end
-          item
-            Expanded = False
-            FieldName = 'VALORTOTAL'
-            Width = 64
-            Visible = True
-          end
-          item
-            Expanded = False
             FieldName = 'QTE_ESTOQUE'
+            Width = 64
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'VALORPRODUTO'
             Width = 64
             Visible = True
           end
@@ -647,7 +636,7 @@ object frmCadastroVendas: TfrmCadastroVendas
           end
           item
             Expanded = False
-            FieldName = 'COD_VENDA'
+            FieldName = 'VALORTOTAL'
             Width = 64
             Visible = True
           end>

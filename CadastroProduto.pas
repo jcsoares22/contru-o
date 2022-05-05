@@ -55,12 +55,13 @@ type
     DB_DT_Cad: TDBEdit;
     Label26: TLabel;
     DB_DT_Venda: TDBEdit;
-    DBLookupComboBox1: TDBLookupComboBox;
-    DBLookupComboBox2: TDBLookupComboBox;
+    DBLookupComboBoxGrupo: TDBLookupComboBox;
+    DBLookupComboBoxSubGrupo: TDBLookupComboBox;
     Label27: TLabel;
     DB_Qte_Entrada: TDBEdit;
     Label28: TLabel;
     DB_Qte_Atual: TDBEdit;
+    DBImage1: TDBImage;
     procedure DB_APrazoExit(Sender: TObject);
     procedure DB_AvistaExit(Sender: TObject);
     procedure btnNovoClick(Sender: TObject);
@@ -69,8 +70,11 @@ type
     procedure btnSalvarClick(Sender: TObject);
     procedure btnCancelarClick(Sender: TObject);
     procedure btnPesquisaClick(Sender: TObject);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
   private
     { Private declarations }
+    procedure mod_ReadOnlyFalse;
+    procedure mod_ReadOnlyTrue;
   public
     { Public declarations }
   end;
@@ -111,6 +115,7 @@ procedure TfrmCadastroProduto.btnEditClick(Sender: TObject);
 begin
   inherited;
   DM_Cadastro.FDQueryProduto.Edit;
+  mod_ReadOnlyFalse;
 end;
 
 procedure TfrmCadastroProduto.btnNovoClick(Sender: TObject);
@@ -136,13 +141,14 @@ begin
   DBLookupComboBoxUNMedida.ReadOnly := false;
   DB_DT_Venda.Text := DateToStr(Now);
   DB_DT_Cad.Text := DateToStr(Now);
+  mod_ReadOnlyFalse;
 end;
 
 procedure TfrmCadastroProduto.btnPesquisaClick(Sender: TObject);
 begin
   inherited;
   DM_Cadastro.FDQueryProduto.Close;
-  ///DM_Cadastro.FDQueryProduto.Params.Clear;
+  /// DM_Cadastro.FDQueryProduto.Params.Clear;
   DM_Cadastro.FDQueryProduto.SQL.Add('');
   DM_Cadastro.FDQueryProduto.SQL.Clear;
   DM_Cadastro.FDQueryProduto.SQL.Add('select * from produto');
@@ -218,8 +224,7 @@ begin
               else
               begin
                 DM_Cadastro.FDQueryProduto.SQL.Add
-                  ('AND produto like' +
-                  QuotedStr('%' + edt_Pesquisa.Text));
+                  ('AND produto like' + QuotedStr('%' + edt_Pesquisa.Text));
               end;
             end;
           1:
@@ -264,6 +269,7 @@ begin
   inherited;
   DM_Cadastro.FDQueryProduto.Edit;
   DM_Cadastro.FDQueryProduto.Post;
+  mod_ReadOnlyTrue;
 end;
 
 procedure TfrmCadastroProduto.DB_APrazoExit(Sender: TObject);
@@ -285,4 +291,47 @@ begin
     DM_Cadastro.FDQueryProdutoPRECO_CUSTO.Value;
 end;
 
+procedure TfrmCadastroProduto.FormClose(Sender: TObject;
+  var Action: TCloseAction);
+begin
+  inherited;
+  frmCadastroProduto.Free;
+  frmCadastroProduto := nil;
+end;
+procedure TfrmCadastroProduto.mod_ReadOnlyFalse;
+begin
+    DBEdit3.ReadOnly := false;
+    DBEdit9.ReadOnly := false;
+    DBLookupComboBoxCor.ReadOnly := false;
+    DBLookupComboBoxMarca.ReadOnly := false;
+    DBLookupComboBoxUNMedida.ReadOnly := false;
+    DBRadioGroup1.ReadOnly := false;
+    Nome_produto.ReadOnly := false;
+    DBEdit5.ReadOnly := false;
+    DB_Avista.ReadOnly := false;
+    DBEdit7.ReadOnly := false;
+    DBEdit12.ReadOnly := false;
+    DBEdit13.ReadOnly := false;
+    DB_APrazo.ReadOnly := false;
+    DBLookupComboBoxGrupo.ReadOnly := false;
+    DBLookupComboBoxSubGrupo.ReadOnly := false;
+
+end;
+procedure TfrmCadastroProduto.mod_ReadOnlyTrue;
+begin
+    DBEdit9.ReadOnly := true;
+    DBLookupComboBoxCor.ReadOnly := true;
+    DBLookupComboBoxMarca.ReadOnly := true;
+    DBLookupComboBoxUNMedida.ReadOnly := true;
+    DBRadioGroup1.ReadOnly := true;
+    Nome_produto.ReadOnly := true;
+    DBEdit5.ReadOnly := true;
+    DB_Avista.ReadOnly := true;
+    DBEdit7.ReadOnly := true;
+    DBEdit12.ReadOnly := true;
+    DBEdit13.ReadOnly := true;
+    DB_APrazo.ReadOnly := true;
+    DBLookupComboBoxGrupo.ReadOnly := true;
+    DBLookupComboBoxSubGrupo.ReadOnly := true;
+end;
 end.

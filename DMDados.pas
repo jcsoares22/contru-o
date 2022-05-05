@@ -31,6 +31,16 @@ type
     FDQueryPreferencia: TFDQuery;
     DT_Preferencia: TDataSource;
     FDQueryPreferenciaDESCONTO_VENDA: TBCDField;
+    FDQueryPreferenciaTELEFONE: TStringField;
+    FDQueryPreferenciaCPF: TStringField;
+    FDQueryPreferenciaEMAIL: TStringField;
+    FDQueryPreferenciaNOME: TStringField;
+    FDQueryPreferenciaDESCRICAO: TStringField;
+    FDQueryPreferenciaRUA: TStringField;
+    FDQueryPreferenciaNUMERO: TStringField;
+    FDQueryPreferenciaUF_ID: TIntegerField;
+    FDQueryPreferenciaCIDADE_ID: TIntegerField;
+    FDQueryPreferenciaBAIRRO: TStringField;
   private
     { Private declarations }
   public

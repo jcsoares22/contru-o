@@ -9,9 +9,12 @@ inherited frmCadastroCliente: TfrmCadastroCliente
   inherited Cadastro: TPageControl
     Width = 1095
     Height = 806
+    ActivePage = TabSheet2
     ExplicitWidth = 1095
     ExplicitHeight = 806
     inherited TabSheet1: TTabSheet
+      ExplicitLeft = 4
+      ExplicitTop = 24
       ExplicitWidth = 1087
       ExplicitHeight = 778
       inherited DBGrid_Cliente: TDBGrid
@@ -32,37 +35,31 @@ inherited frmCadastroCliente: TfrmCadastroCliente
           item
             Expanded = False
             FieldName = 'TELEFONE'
-            Width = 64
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'CPF'
-            Width = 64
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'EMAIL'
-            Width = 64
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'DESCRICAO'
-            Width = 64
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'RUA'
-            Width = 64
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'NUMERO'
-            Width = 64
             Visible = True
           end
           item
@@ -78,7 +75,6 @@ inherited frmCadastroCliente: TfrmCadastroCliente
           item
             Expanded = False
             FieldName = 'BAIRRO'
-            Width = 64
             Visible = True
           end>
       end
@@ -91,6 +87,8 @@ inherited frmCadastroCliente: TfrmCadastroCliente
       end
     end
     inherited TabSheet2: TTabSheet
+      ExplicitLeft = 4
+      ExplicitTop = 24
       ExplicitWidth = 1087
       ExplicitHeight = 778
       object Label1: TLabel [0]

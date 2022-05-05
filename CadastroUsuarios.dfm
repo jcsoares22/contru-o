@@ -1,10 +1,15 @@
 inherited frmCadastroUsuario: TfrmCadastroUsuario
   Caption = 'Cadastro Usuarios'
+  ExplicitWidth = 1336
+  ExplicitHeight = 975
   PixelsPerInch = 96
   TextHeight = 13
   inherited Cadastro: TPageControl
-    ActivePage = TabSheet1
     inherited TabSheet1: TTabSheet
+      ExplicitLeft = 4
+      ExplicitTop = 24
+      ExplicitWidth = 1312
+      ExplicitHeight = 908
       inherited DBGrid_Cliente: TDBGrid
         Top = 57
         Height = 851
@@ -18,7 +23,6 @@ inherited frmCadastroUsuario: TfrmCadastroUsuario
           item
             Expanded = False
             FieldName = 'USU_NOME'
-            Width = 64
             Visible = True
           end
           item

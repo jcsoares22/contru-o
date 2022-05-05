@@ -121,8 +121,8 @@ begin
   while FDQuerySaidaProdutoQUANTIDADE.Value < 1 do
   begin
     ShowMessage
-      ('Quantidade inferior ao permitido, sera adiconado a quantidade de 1 no produto o minimo permitido');
-    FDQuerySaidaProdutoQUANTIDADE.AsFloat := 1;
+      ('Quantidade negativa informe um valor Valido, sera adiconado a quantia de 1');
+     FDQuerySaidaProdutoQUANTIDADE.Value := 1;
   end;
   FDQuerySaidaProdutoVALORTOTAL.AsFloat :=
     FDQuerySaidaProdutoVALORPRODUTO.AsFloat *

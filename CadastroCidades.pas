@@ -16,6 +16,7 @@ type
     procedure btnDeletarClick(Sender: TObject);
     procedure btnCancelarClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
   private
     { Private declarations }
   public
@@ -32,13 +33,13 @@ implementation
 procedure TfrmCadastroCidades.btnCancelarClick(Sender: TObject);
 begin
   inherited;
-    DM_Endereco.FDQueryCidade.Cancel;
+  DM_Endereco.FDQueryCidade.Cancel;
 end;
 
 procedure TfrmCadastroCidades.btnDeletarClick(Sender: TObject);
 begin
   inherited;
-   if MessageDlg('Desja deletar?', TMsgDlgType.mtConfirmation, [mbok, mbNo], 0) = mrok
+  if MessageDlg('Desja deletar?', TMsgDlgType.mtConfirmation, [mbok, mbNo], 0) = mrok
   then
   begin
     DM_Endereco.FDQueryCidade.Delete;
@@ -70,11 +71,20 @@ begin
   DM_Endereco.FDQueryCidade.Edit;
   DM_Endereco.FDQueryCidade.Post;
 end;
-     procedure TfrmCadastroCidades.FormCreate(Sender: TObject);
+
+procedure TfrmCadastroCidades.FormClose(Sender: TObject;
+  var Action: TCloseAction);
+begin
+  inherited;
+  frmCadastroCidades.Free;
+  frmCadastroCidades := nil;
+end;
+
+procedure TfrmCadastroCidades.FormCreate(Sender: TObject);
 begin
   inherited;
 
 end;
 
-//verificar o por que o cancelar não esta funcionando
+// verificar o por que o cancelar não esta funcionando
 end.
