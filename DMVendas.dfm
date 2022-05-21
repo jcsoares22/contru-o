@@ -102,9 +102,8 @@ object DM_Vendas: TDM_Vendas
     end
   end
   object FDQuerySaidaProduto: TFDQuery
+    AfterScroll = FDQuerySaidaProdutoAfterScroll
     IndexFieldNames = 'CODIGO'
-    MasterSource = DT_Saida_Venda
-    MasterFields = 'CODIGO'
     DetailFields = 'CODIGO'
     Connection = DM_Dados.DADOS
     Transaction = FDTransaction1
@@ -112,10 +111,17 @@ object DM_Vendas: TDM_Vendas
     UpdateOptions.FetchGeneratorsPoint = gpImmediate
     UpdateOptions.GeneratorName = 'GEN_SAIDA_PRODUTO_ID'
     SQL.Strings = (
-      'select * from saida_produto'
-      '')
+      'select * from SAIDA_PRODUTO'
+      'where SAIDA_PRODUTO.CODIGO = :CODIGO;')
     Left = 40
     Top = 168
+    ParamData = <
+      item
+        Name = 'CODIGO'
+        DataType = ftInteger
+        ParamType = ptInput
+        Value = Null
+      end>
     object FDQuerySaidaProdutoCODIGO: TIntegerField
       FieldName = 'CODIGO'
       Origin = 'CODIGO'
@@ -184,8 +190,8 @@ object DM_Vendas: TDM_Vendas
   end
   object DT_SaidaProduto: TDataSource
     DataSet = FDQuerySaidaProduto
-    Left = 160
-    Top = 160
+    Left = 136
+    Top = 168
   end
   object FDTransaction1: TFDTransaction
     Connection = DM_Dados.DADOS
@@ -210,8 +216,8 @@ object DM_Vendas: TDM_Vendas
     SQL.Strings = (
       'select * from saida_Venda'
       'where situacao = '#39'ORCAMENTO'#39)
-    Left = 192
-    Top = 272
+    Left = 680
+    Top = 32
     object FDQueryOrcamentoCODIGO: TFDAutoIncField
       FieldName = 'CODIGO'
       Origin = 'CODIGO'
@@ -299,7 +305,7 @@ object DM_Vendas: TDM_Vendas
   end
   object DtOrcamento: TDataSource
     DataSet = FDQueryOrcamento
-    Left = 328
-    Top = 264
+    Left = 816
+    Top = 24
   end
 end

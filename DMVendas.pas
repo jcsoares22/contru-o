@@ -68,6 +68,7 @@ type
     procedure FDQuerySaidaProdutoQUANTIDADEValidate(Sender: TField);
     procedure FDQuerySaida_VendaID_CONTAChange(Sender: TField);
     procedure FDQuerySaidaProdutoVALORPRODUTOValidate(Sender: TField);
+    procedure FDQuerySaidaProdutoAfterScroll(DataSet: TDataSet);
   private
     { Private declarations }
   public
@@ -103,6 +104,16 @@ begin
     DM_Vendas.FDQuerySaidaProdutoQUANTIDADE.Value);
 end;
 
+procedure TDM_Vendas.FDQuerySaidaProdutoAfterScroll(DataSet: TDataSet);
+begin
+  FDQuerySaidaProduto.close;
+  FDQuerySaidaProduto.Params.Clear;
+  FDQuerySaidaProduto.SQL.Add('');
+  FDQuerySaidaProduto.SQL.Add('select * from SAIDA_PRODUTO');
+  FDQuerySaidaProduto.SQL.Add('where SAIDA_PRODUTO.CODIGO = :CODIGO');
+  FDQuerySaidaProduto.Open();
+end;
+
 procedure TDM_Vendas.FDQuerySaidaProdutoCODPRODUTOValidate(Sender: TField);
 begin
   { DM_Vendas.FDQuerySaidaProdutoVALORPRODUTO :=
@@ -122,7 +133,7 @@ begin
   begin
     ShowMessage
       ('Quantidade negativa informe um valor Valido, sera adiconado a quantia de 1');
-     FDQuerySaidaProdutoQUANTIDADE.Value := 1;
+    FDQuerySaidaProdutoQUANTIDADE.Value := 1;
   end;
   FDQuerySaidaProdutoVALORTOTAL.AsFloat :=
     FDQuerySaidaProdutoVALORPRODUTO.AsFloat *

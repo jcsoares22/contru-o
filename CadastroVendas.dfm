@@ -56,37 +56,31 @@ object frmCadastroVendas: TfrmCadastroVendas
           item
             Expanded = False
             FieldName = 'NOME'
-            Width = 64
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'DATAVENDA'
-            Width = 64
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'VALORTOTAL'
-            Width = 64
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'OBS'
-            Width = 64
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'FRETE'
-            Width = 64
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'COND_PAGAMENTO'
-            Width = 64
             Visible = True
           end
           item
@@ -97,25 +91,21 @@ object frmCadastroVendas: TfrmCadastroVendas
           item
             Expanded = False
             FieldName = 'ID_SUBCONTA'
-            Width = 64
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'ID_TIPO_PGTO'
-            Width = 64
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'DESCONTO'
-            Width = 64
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'TIPO_DESC'
-            Width = 64
             Visible = True
           end
           item
@@ -126,19 +116,16 @@ object frmCadastroVendas: TfrmCadastroVendas
           item
             Expanded = False
             FieldName = 'DATA_FATURAMENTO'
-            Width = 64
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'DATA_CANCELAMENTO'
-            Width = 64
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'DATA_ORCAMENTO'
-            Width = 64
             Visible = True
           end>
       end
@@ -613,31 +600,26 @@ object frmCadastroVendas: TfrmCadastroVendas
           item
             Expanded = False
             FieldName = 'NOME_PRODUTO'
-            Width = 64
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'QTE_ESTOQUE'
-            Width = 64
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'VALORPRODUTO'
-            Width = 64
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'QUANTIDADE'
-            Width = 64
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'VALORTOTAL'
-            Width = 64
             Visible = True
           end>
       end

@@ -152,12 +152,17 @@ end;
 
 procedure TfrmCadastroVendas.btnNovoClick(Sender: TObject);
 
-begin
+begin         DM_Vendas.FDQuerySaidaProduto.Open();
   // prox := 1;
-  if not(DM_Vendas.FDQuerySaida_Venda.State in [dsEdit, dsInsert]) then
+  if not(DM_Vendas.FDQuerySaida_Venda.State in [dsEdit, dsInsert] ) then
   begin
     DM_Vendas.FDQuerySaida_Venda.Insert;
-    // DM_Vendas.FDQuerySaidaProduto.Insert;
+
+
+  end;
+  if not( DM_Vendas.FDQuerySaidaProduto.State in [dsEdit, dsInsert]) then
+  begin
+      DM_Vendas.FDQuerySaidaProduto.Insert;
   end;
   { DM_Vendas.FDQuerySaida_Venda.Insert;
     DM_Cadastro.FDQueryCliente.Open();

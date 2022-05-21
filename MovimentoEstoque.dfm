@@ -12,7 +12,7 @@ inherited frmMovimento_estoque: TfrmMovimento_estoque
       ExplicitWidth = 1312
       ExplicitHeight = 908
       inherited DBGrid_Cliente: TDBGrid
-        DataSource = DM_Mov_Estoque.DT_Movimento_estoque_item
+        DataSource = DM_Mov_Estoque.DT_MovimentoEstoque
         Columns = <
           item
             Expanded = False
@@ -21,25 +21,17 @@ inherited frmMovimento_estoque: TfrmMovimento_estoque
           end
           item
             Expanded = False
-            FieldName = 'CODPRODUTO'
-            Width = 64
+            FieldName = 'NOME_USUARIO'
             Visible = True
           end
           item
             Expanded = False
-            FieldName = 'QUANTIDADE'
-            Width = 64
+            FieldName = 'DT_MOV'
             Visible = True
           end
           item
             Expanded = False
-            FieldName = 'NOME_PRODUTO'
-            Width = 64
-            Visible = True
-          end
-          item
-            Expanded = False
-            FieldName = 'QTE_ATUAL'
+            FieldName = 'TIPO'
             Visible = True
           end>
       end
@@ -77,6 +69,10 @@ inherited frmMovimento_estoque: TfrmMovimento_estoque
         end
         inherited btnDeletar: TButton
           OnClick = btnDeletarClick
+        end
+        inherited btnSalvar: TButton
+          Left = 289
+          ExplicitLeft = 289
         end
         object DBEdit1: TDBEdit
           Left = 184
@@ -153,19 +149,16 @@ inherited frmMovimento_estoque: TfrmMovimento_estoque
           item
             Expanded = False
             FieldName = 'CODPRODUTO'
-            Width = 64
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'QUANTIDADE'
-            Width = 64
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'NOME_PRODUTO'
-            Width = 64
             Visible = True
           end
           item

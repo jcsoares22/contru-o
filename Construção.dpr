@@ -52,16 +52,17 @@ begin
   Application.CreateForm(TDM_Mov_Estoque, DM_Mov_Estoque);
   Application.CreateForm(TDM_Finaceiro, DM_Finaceiro);
   Application.CreateForm(TfrmPrincipal, frmPrincipal);
-  usuarios := TfrmLogin.Create(nil);
-    if usuarios.ShowModal = 1 then
-    begin
-    usuarios.Free;
-    Application.Run;
-    end
-    else
-    begin
-    usuarios.Free;
-    end;       // retirar do comentario mais tarde }
+ { usuarios := TfrmLogin.Create(nil);
+     if usuarios.ShowModal = 1 then
+         begin
+             usuarios.Free;
+                 Application.Run;
+                     end
+                         else
+                             begin
+                                 usuarios.Free;
+                                     end;
+                                     }      // retirar do comentario mais tarde }
   Application.Run;
 
 end.

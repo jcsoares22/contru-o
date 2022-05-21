@@ -3,7 +3,6 @@ object DM_Mov_Estoque: TDM_Mov_Estoque
   Height = 548
   Width = 772
   object FDQueryMovimentoEstoque: TFDQuery
-    Active = True
     Connection = DM_Dados.DADOS
     SQL.Strings = (
       'select  * from movimento_estoque')
@@ -12,6 +11,7 @@ object DM_Mov_Estoque: TDM_Mov_Estoque
     object FDQueryMovimentoEstoqueID_MOVIMENTACAO: TIntegerField
       FieldName = 'ID_MOVIMENTACAO'
       Origin = 'ID_MOVIMENTACAO'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
       Required = True
     end
     object FDQueryMovimentoEstoqueNOME_USUARIO: TStringField
@@ -23,7 +23,6 @@ object DM_Mov_Estoque: TDM_Mov_Estoque
     object FDQueryMovimentoEstoqueDT_MOV: TSQLTimeStampField
       FieldName = 'DT_MOV'
       Origin = 'DT_MOV'
-      EditMask = '!99/99/0000;1;_'
     end
     object FDQueryMovimentoEstoqueTIPO: TStringField
       FieldName = 'TIPO'
@@ -79,7 +78,7 @@ object DM_Mov_Estoque: TDM_Mov_Estoque
       LookupDataSet = DM_Cadastro.FDQueryProduto
       LookupKeyFields = 'CODIGO'
       LookupResultField = 'QUANTIDADE_ATUAL'
-      KeyFields = 'QTE_ATUAL'
+      KeyFields = 'CODPRODUTO'
       Origin = 'QTE_ATUAL'
       ReadOnly = True
       Lookup = True

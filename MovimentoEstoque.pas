@@ -26,6 +26,7 @@ type
     procedure btnCancelarClick(Sender: TObject);
     procedure btnEditClick(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    procedure FormCreate(Sender: TObject);
   private
     { Private declarations }
   public
@@ -66,6 +67,7 @@ var
 begin // usando a variavel prox para poder acrescentar +1 no cadastro
   inherited;
   prox := 1;
+   DM_Cadastro.FDQueryProduto.Open();
   DM_Cadastro.FDQueryProduto.Edit;
   DM_Mov_Estoque.FDQueryMovimentoEstoque.Edit;
   DM_Mov_Estoque.FDQuery_Movimento_estoque_item.Open();
@@ -82,12 +84,11 @@ end;
 procedure TfrmMovimento_estoque.btnSalvarClick(Sender: TObject);
 begin
   inherited;
-
+     DM_Cadastro.FDQueryProduto.Open();
+  DM_Cadastro.FDQueryProduto.Edit;
    case frmMovimento_estoque.DBCB_Movimentacao.ItemIndex of
     0: // entrada de estoque
     begin
-    DM_Cadastro.FDQueryProduto.Open();
-    DM_Cadastro.FDQueryProduto.Edit;
     DM_Cadastro.FDQueryProdutoQUANTIDADE_ENTRADA.Value  :=
     (DM_Cadastro.FDQueryProdutoQUANTIDADE_ENTRADA.Value +
     DM_Mov_Estoque.FDQuery_Movimento_estoque_itemQUANTIDADE.Value);
@@ -117,6 +118,12 @@ procedure TfrmMovimento_estoque.FormClose(Sender: TObject;
 begin
   inherited;
 FreeAndNil(frmMovimento_estoque);
+end;
+
+procedure TfrmMovimento_estoque.FormCreate(Sender: TObject);
+begin
+  inherited;
+    DM_Cadastro.FDQueryProduto.Open();
 end;
 
 end.
