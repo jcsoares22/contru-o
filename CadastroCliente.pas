@@ -41,10 +41,12 @@ type
     procedure btnEditClick(Sender: TObject);
     procedure btnCancelarClick(Sender: TObject);
     procedure btnPesquisaClick(Sender: TObject);
+    procedure DB_CpfKeyPress(Sender: TObject; var Key: Char);
   private
     { Private declarations }
     procedure mod_ReadOnly;
     procedure mod_ReadOnlyTrue;
+
   public
     { Public declarations }
   end;
@@ -243,6 +245,15 @@ begin
 
 end;
 
+procedure TfrmCadastroCliente.DB_CpfKeyPress(Sender: TObject; var Key: Char);
+begin
+  inherited;
+if((Ord(key) < Ord('0')) or  (Ord(key) > Ord('9')))then
+  begin
+    key := char(0)
+  end;
+end;
+
 procedure TfrmCadastroCliente.FormClose(Sender: TObject;
   var Action: TCloseAction);
 begin
@@ -276,5 +287,6 @@ begin
   DB_Email.ReadOnly := true;
   DB_Numero.ReadOnly := true;
 end;
+
 
 end.

@@ -216,7 +216,7 @@ inherited frmCadastroCliente: TfrmCadastroCliente
       end
       object DBEdit1: TDBEdit
         Left = 16
-        Top = 72
+        Top = 75
         Width = 75
         Height = 21
         DataField = 'CODIGO'
@@ -234,6 +234,7 @@ inherited frmCadastroCliente: TfrmCadastroCliente
         DataSource = DM_Cadastro.DT_cliente
         ReadOnly = True
         TabOrder = 2
+        OnKeyPress = DB_CpfKeyPress
       end
       object DB_Nome: TDBEdit
         Left = 283
@@ -284,6 +285,7 @@ inherited frmCadastroCliente: TfrmCadastroCliente
         ImeName = 'Portuguese (Brazilian ABNT)'
         ReadOnly = True
         TabOrder = 6
+        OnKeyPress = DB_CpfKeyPress
       end
       object DB_Email: TDBEdit
         Left = 182

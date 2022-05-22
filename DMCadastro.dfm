@@ -220,6 +220,7 @@
     object FDQueryClienteCPF: TStringField
       FieldName = 'CPF'
       Origin = 'CPF'
+      EditMask = '000\.000\.000\-00;_'
       Size = 11
     end
     object FDQueryClienteEMAIL: TStringField

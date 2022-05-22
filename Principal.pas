@@ -61,7 +61,9 @@ type
     SpeedButton7: TSpeedButton;
     SpeedButton8: TSpeedButton;
     SpeedButton9: TSpeedButton;
-    procedure fecharTela();
+    StatusBar1: TStatusBar;
+    Timer1: TTimer;
+
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure bntClienteClick(Sender: TObject);
     procedure Estados1Click(Sender: TObject);
@@ -82,10 +84,12 @@ type
     procedure Estoque2Click(Sender: TObject);
     procedure Configurao2Click(Sender: TObject);
     procedure Oramento1Click(Sender: TObject);
+    procedure Timer1Timer(Sender: TObject);
   private
     { Private declarations }
   public
     { Public declarations }
+     procedure fecharTela();
   end;
 
 var
@@ -101,7 +105,7 @@ uses CadastroCliente, CadastroEstados, CadastroUnidadeMedida,
   CadastroCidades, CadastroGrupo, CadastroSubGrupo, CadastroProduto,
   CadastroUsuarios, CadastroVendas, CadastroCondPagamento,
   CasdatroContasFincaeiro, CadastroFinanceiro, CadastroDocumento,
-  MovimentoEstoque, Orcamento;
+  MovimentoEstoque, Orcamento, DMDados;
 
 
 procedure TfrmPrincipal.bntClienteClick(Sender: TObject);
@@ -354,6 +358,13 @@ end;
 procedure TfrmPrincipal.Sair1Click(Sender: TObject);
 begin
   close;
+end;
+
+procedure TfrmPrincipal.Timer1Timer(Sender: TObject);
+begin
+ StatusBar1.Panels[2].Text := 'Hora.: '+ TimeToStr(time);
+ StatusBar1.Panels[3].Text := 'Data.: '+ DateToStr(date);
+
 end;
 
 procedure TfrmPrincipal.Unidademedida1Click(Sender: TObject);

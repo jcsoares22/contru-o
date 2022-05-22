@@ -35,7 +35,9 @@ uses
   Biblioteca in 'Biblioteca.pas',
   Orcamento in 'Orcamento.pas' {frmOrcamento},
   Vcl.Themes,
-  Vcl.Styles;
+  Vcl.Styles,
+  CadastroRapidoCliente in 'CadastroRapidoCliente.pas' {frmCadastroRapidoCliente},
+  PesquisaCliente in 'PesquisaCliente.pas' {frmPesquisaCliente};
 
 {$R *.res}
 
@@ -52,7 +54,8 @@ begin
   Application.CreateForm(TDM_Mov_Estoque, DM_Mov_Estoque);
   Application.CreateForm(TDM_Finaceiro, DM_Finaceiro);
   Application.CreateForm(TfrmPrincipal, frmPrincipal);
- { usuarios := TfrmLogin.Create(nil);
+  Application.CreateForm(TfrmPesquisaCliente, frmPesquisaCliente);
+  usuarios := TfrmLogin.Create(nil);
      if usuarios.ShowModal = 1 then
          begin
              usuarios.Free;
@@ -62,7 +65,7 @@ begin
                              begin
                                  usuarios.Free;
                                      end;
-                                     }      // retirar do comentario mais tarde }
+                                        // retirar do comentario mais tarde }
   Application.Run;
 
 end.

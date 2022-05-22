@@ -22,7 +22,6 @@ type
     Label5: TLabel;
     DBEdit4: TDBEdit;
     Label6: TLabel;
-    DBEdit5: TDBEdit;
     Label8: TLabel;
     DBEdit7: TDBEdit;
     Label9: TLabel;
@@ -56,7 +55,7 @@ implementation
 
 {$R *.dfm}
 
-uses CadastroVendas, DMVendas, DMDados, DMEndereco;
+uses DMDados, DMEndereco;
 
 procedure TfrmPreferencia.Button1Click(Sender: TObject);
 begin

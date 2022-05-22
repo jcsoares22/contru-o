@@ -110,12 +110,6 @@ object DM_Dados: TDM_Dados
       'SELECT * FROM controle_sistema')
     Left = 32
     Top = 232
-    object FDQueryPreferenciaDESCONTO_VENDA: TBCDField
-      FieldName = 'DESCONTO_VENDA'
-      Origin = 'DESCONTO_VENDA'
-      Precision = 18
-      Size = 2
-    end
     object FDQueryPreferenciaTELEFONE: TStringField
       FieldName = 'TELEFONE'
       Origin = 'TELEFONE'
@@ -163,6 +157,12 @@ object DM_Dados: TDM_Dados
       FieldName = 'BAIRRO'
       Origin = 'BAIRRO'
       Size = 50
+    end
+    object FDQueryPreferenciaDESCONTO_VENDA: TBCDField
+      FieldName = 'DESCONTO_VENDA'
+      Origin = 'DESCONTO_VENDA'
+      Precision = 18
+      Size = 2
     end
   end
   object DT_Preferencia: TDataSource

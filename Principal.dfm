@@ -20,13 +20,34 @@ object frmPrincipal: TfrmPrincipal
   TextHeight = 13
   object Panel2: TPanel
     Left = 0
-    Top = 723
+    Top = 736
     Width = 1186
-    Height = 41
+    Height = 28
     Align = alBottom
     Color = clSkyBlue
     ParentBackground = False
     TabOrder = 0
+    object StatusBar1: TStatusBar
+      Left = 1
+      Top = 1
+      Width = 1184
+      Height = 26
+      Align = alClient
+      Panels = <
+        item
+          Width = 200
+        end
+        item
+          Text = 'Usu'#225'rio:'
+          Width = 150
+        end
+        item
+          Width = 150
+        end
+        item
+          Width = 200
+        end>
+    end
   end
   object PageControl1: TPageControl
     Left = 0
@@ -772,5 +793,10 @@ object frmPrincipal: TfrmPrincipal
         OnClick = Manutencousurio1Click
       end
     end
+  end
+  object Timer1: TTimer
+    OnTimer = Timer1Timer
+    Left = 1048
+    Top = 168
   end
 end

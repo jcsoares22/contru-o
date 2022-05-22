@@ -6,7 +6,9 @@ uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
   System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Data.DB, Vcl.StdCtrls, Vcl.DBCtrls,
-  Vcl.Mask, Vcl.Grids, Vcl.DBGrids, Vcl.ExtCtrls, Vcl.ComCtrls, Vcl.ColorGrd;
+  Vcl.Mask, Vcl.Grids, Vcl.DBGrids, Vcl.ExtCtrls, Vcl.ComCtrls, Vcl.ColorGrd,
+  IWVCLBaseControl, IWBaseControl, IWBaseHTMLControl, IWControl, IWDBStdCtrls,
+  Vcl.Buttons;
 
 type
   TfrmCadastroVendas = class(TForm)
@@ -40,13 +42,7 @@ type
     TabSheet3: TTabSheet;
     Timer1: TTimer;
     btnGerarLancamento: TButton;
-    DBC_Desconto: TDBComboBox;
-    Label14: TLabel;
-    Label7: TLabel;
-    DBEdit6: TDBEdit;
     DBGrid_Venda: TDBGrid;
-    DBE_Desconto: TDBEdit;
-    DBLookupComboBox1: TDBLookupComboBox;
     DBLookupCB_conta: TDBLookupComboBox;
     DBGridVendas: TDBGrid;
     DBComboBox2: TDBComboBox;
@@ -57,6 +53,7 @@ type
     Label18: TLabel;
     DBEdit2: TDBEdit;
     DB_Data_Faturamento: TDBEdit;
+
     Panel3: TPanel;
     Label9: TLabel;
     Label11: TLabel;
@@ -65,6 +62,17 @@ type
     CB_Opcao2: TComboBox;
     edt_Pesquisa: TEdit;
     btnPesquisa: TButton;
+    Label19: TLabel;
+    DBEdit4: TDBEdit;
+    DBNavigator1: TDBNavigator;
+    SpeedButton1: TSpeedButton;
+    SpeedButton2: TSpeedButton;
+    Label14: TLabel;
+    DBC_Desconto: TDBComboBox;
+    DBE_Desconto: TDBEdit;
+    DBEdit6: TDBEdit;
+    Label7: TLabel;
+    DBLookupComboBox1: TDBLookupComboBox;
     procedure DBGridVendasExit(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure btnNovoClick(Sender: TObject);
@@ -81,11 +89,12 @@ type
     procedure DBE_DescontoExit(Sender: TObject);
     procedure DBECod_ClienteExit(Sender: TObject);
     procedure DBE_DescontoEnter(Sender: TObject);
+    procedure SpeedButton2Click(Sender: TObject);
+    procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
   private
     { Private declarations }
 
     procedure totaliza;
-
   public
     { Public declarations }
     percento: Currency;
@@ -98,7 +107,8 @@ implementation
 
 {$R *.dfm}
 
-uses DMVendas, DMCadastro, CadastroFinanceiro, Preferencia, DMDados;
+uses DMVendas, DMCadastro, CadastroFinanceiro, Preferencia, DMDados, Principal,
+  CadastroRapidoCliente, PesquisaCliente;
 
 procedure TfrmCadastroVendas.btnCancelarClick(Sender: TObject);
 begin
@@ -152,17 +162,18 @@ end;
 
 procedure TfrmCadastroVendas.btnNovoClick(Sender: TObject);
 
-begin         DM_Vendas.FDQuerySaidaProduto.Open();
+begin
+
+  DM_Vendas.FDQuerySaidaProduto.Open();
   // prox := 1;
-  if not(DM_Vendas.FDQuerySaida_Venda.State in [dsEdit, dsInsert] ) then
+  if not(DM_Vendas.FDQuerySaida_Venda.State in [dsEdit, dsInsert]) then
   begin
     DM_Vendas.FDQuerySaida_Venda.Insert;
 
-
   end;
-  if not( DM_Vendas.FDQuerySaidaProduto.State in [dsEdit, dsInsert]) then
+  if not(DM_Vendas.FDQuerySaidaProduto.State in [dsEdit, dsInsert]) then
   begin
-      DM_Vendas.FDQuerySaidaProduto.Insert;
+    DM_Vendas.FDQuerySaidaProduto.Insert;
   end;
   { DM_Vendas.FDQuerySaida_Venda.Insert;
     DM_Cadastro.FDQueryCliente.Open();
@@ -180,11 +191,14 @@ begin         DM_Vendas.FDQuerySaidaProduto.Open();
   btnEdit.Enabled := false;
   btnDeletar.Enabled := false;
   DM_Vendas.FDQuerySaida_VendaDATAVENDA.AsDateTime := date;
+  // frmPrincipal.StatusBar1.Panels[1].Text := 'Usuário.: '+  DM_Dados.FDQueryUsuarioUSU_NOME.AsString;
+  DM_Vendas.FDQuerySaida_VendaUSU_NOME.Text :=
+    frmPrincipal.StatusBar1.Panels[1].Text;
 end;
 
 procedure TfrmCadastroVendas.btnPesquisaClick(Sender: TObject);
 begin
-  DM_Vendas.FDQuerySaida_Venda.Close;
+  DM_Vendas.FDQuerySaida_Venda.close;
   DM_Vendas.FDQuerySaida_Venda.Params.Clear;
   DM_Vendas.FDQuerySaida_Venda.SQL.Add('');
   DM_Vendas.FDQuerySaida_Venda.SQL.Clear;
@@ -367,7 +381,7 @@ var
   desconto: Currency;
 
 begin
-  percento := DM_Dados.FDQueryPreferencia.Fields[0].AsFloat;
+percento := DM_Dados.FDQueryPreferencia.Fields[10].AsFloat;
   // DM_Dados.FDQueryPreferenciaLIMITE_DESCONTO.Value
   { if frmCadastroVendas.DBC_Desconto.Text = EmptyStr then
     begin
@@ -422,18 +436,18 @@ end;
 procedure TfrmCadastroVendas.FormClose(Sender: TObject;
   var Action: TCloseAction);
 begin
-  DM_Vendas.FDQuerySaida_Venda.Close;
-  DM_Vendas.FDQuerySaidaProduto.Close;
-  DM_Cadastro.FDQueryCondição_pagamento.Close;
-  DM_Cadastro.FDQueryProduto.Close;
-  DM_Cadastro.FDQueryCliente.Close;
+  DM_Vendas.FDQuerySaida_Venda.close;
+  DM_Vendas.FDQuerySaidaProduto.close;
+  DM_Cadastro.FDQueryCondição_pagamento.close;
+  DM_Cadastro.FDQueryProduto.close;
+  DM_Cadastro.FDQueryCliente.close;
   frmCadastroVendas.Free;
   frmCadastroVendas := nil;
 end;
 
 procedure TfrmCadastroVendas.FormCreate(Sender: TObject);
 begin
- DM_Cadastro.FDQueryCondição_pagamento.Open();
+  DM_Cadastro.FDQueryCondição_pagamento.Open();
   DM_Cadastro.FDQueryCliente.Open();
   DM_Dados.FDQueryPreferencia.Open();
   DM_Vendas.FDQuerySaida_Venda.Open();
@@ -443,15 +457,40 @@ begin
   DM_Cadastro.FDQueryConta.Open();
   DM_Cadastro.FDQuerySubConta.Open();
   DM_Cadastro.FDQueryTIPO_CONTA.Open();
-  { AtualizaFDQuery(DM_Cadastro.FDQueryProduto,'');
-    AtualizaFDQuery(DM_Vendas.FDQuerySaida_Venda,'');
-    AtualizaFDQuery(DM_Vendas.FDQuerySaidaProduto,'');
-    AtualizaFDQuery(DM_Cadastro.FDQueryCliente,'');
-    AtualizaFDQuery( DM_Cadastro.FDQueryCondição_pagamento,'');
-    AtualizaFDQuery(DM_Cadastro.FDQueryTipoPgto,'');
-    AtualizaFDQuery( DM_Cadastro.FDQueryConta,'');
-    AtualizaFDQuery(DM_Cadastro.FDQuerySubConta,''); }
-  // DM_Vendas.FDQuerySaida_VendaID_CONTA.AsString := DM_Cadastro.FDQueryContaTIPO.AsString := 'RECEBER';
+end;
+
+procedure TfrmCadastroVendas.FormKeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+  if Key = vk_f4 then
+  begin
+    frmCadastroRapidoCliente := TFrmCadastroRapidoCliente.Create(self);
+  try
+    frmCadastroRapidoCliente.showModal;
+  finally
+    FreeAndNil(frmCadastroRapidoCliente);
+  end;
+  end;
+   if Key = vk_f5 then
+  begin
+    frmPesquisaCliente := TFrmPesquisaCliente.Create(self);
+  try
+    frmPesquisaCliente.showModal;
+  finally
+    FreeAndNil(frmPesquisaCliente);
+  end;
+  end;
+end;
+
+procedure TfrmCadastroVendas.SpeedButton2Click(Sender: TObject);
+begin
+  frmCadastroRapidoCliente := TFrmCadastroRapidoCliente.Create(self);
+  try
+    frmCadastroRapidoCliente.showModal;
+  finally
+    FreeAndNil(frmCadastroRapidoCliente);
+  end;
+
 end;
 
 procedure TfrmCadastroVendas.totaliza;

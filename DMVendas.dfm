@@ -4,7 +4,6 @@ object DM_Vendas: TDM_Vendas
   Width = 1204
   object FDQuerySaida_Venda: TFDQuery
     BeforePost = FDQuerySaida_VendaBeforePost
-    IndexFieldNames = 'CODIGO'
     Connection = DM_Dados.DADOS
     Transaction = FDTransaction2
     UpdateOptions.AssignedValues = [uvUpdateMode, uvFetchGeneratorsPoint, uvGeneratorName]
@@ -100,28 +99,26 @@ object DM_Vendas: TDM_Vendas
       FieldName = 'DATA_ORCAMENTO'
       Origin = 'DATA_ORCAMENTO'
     end
+    object FDQuerySaida_VendaUSU_NOME: TStringField
+      FieldName = 'USU_NOME'
+      Origin = 'USU_NOME'
+      Size = 30
+    end
   end
   object FDQuerySaidaProduto: TFDQuery
     AfterScroll = FDQuerySaidaProdutoAfterScroll
     IndexFieldNames = 'CODIGO'
-    DetailFields = 'CODIGO'
+    MasterSource = DT_Saida_Venda
+    MasterFields = 'CODIGO'
     Connection = DM_Dados.DADOS
     Transaction = FDTransaction1
     UpdateOptions.AssignedValues = [uvFetchGeneratorsPoint, uvGeneratorName]
     UpdateOptions.FetchGeneratorsPoint = gpImmediate
     UpdateOptions.GeneratorName = 'GEN_SAIDA_PRODUTO_ID'
     SQL.Strings = (
-      'select * from SAIDA_PRODUTO'
-      'where SAIDA_PRODUTO.CODIGO = :CODIGO;')
+      'select * from SAIDA_PRODUTO')
     Left = 40
     Top = 168
-    ParamData = <
-      item
-        Name = 'CODIGO'
-        DataType = ftInteger
-        ParamType = ptInput
-        Value = Null
-      end>
     object FDQuerySaidaProdutoCODIGO: TIntegerField
       FieldName = 'CODIGO'
       Origin = 'CODIGO'

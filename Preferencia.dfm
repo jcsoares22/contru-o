@@ -25,12 +25,8 @@ object frmPreferencia: TfrmPreferencia
     ActivePage = TabSheet1
     Align = alClient
     TabOrder = 0
-    ExplicitHeight = 704
     object TabSheet1: TTabSheet
       Caption = 'Informa'#231#227'o'
-      ExplicitLeft = 8
-      ExplicitTop = 28
-      ExplicitHeight = 676
       object Label3: TLabel
         Left = 24
         Top = 56
@@ -61,7 +57,7 @@ object frmPreferencia: TfrmPreferencia
         Width = 29
         Height = 13
         Caption = 'NOME'
-        FocusControl = DBEdit5
+        FocusControl = NomeEmpresa
       end
       object Label8: TLabel
         Left = 24
@@ -128,7 +124,7 @@ object frmPreferencia: TfrmPreferencia
         DataSource = DM_Dados.DT_Preferencia
         TabOrder = 2
       end
-      object DBEdit5: TDBEdit
+      object NomeEmpresa: TDBEdit
         Left = 24
         Top = 24
         Width = 417
@@ -192,7 +188,10 @@ object frmPreferencia: TfrmPreferencia
     object TabSheet2: TTabSheet
       Caption = 'venda'
       ImageIndex = 1
-      ExplicitHeight = 676
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object Label1: TLabel
         Left = 8
         Top = 8
@@ -220,8 +219,6 @@ object frmPreferencia: TfrmPreferencia
     Color = clSkyBlue
     ParentBackground = False
     TabOrder = 1
-    ExplicitTop = 635
-    ExplicitWidth = 883
     object Button1: TButton
       Left = 633
       Top = 6
