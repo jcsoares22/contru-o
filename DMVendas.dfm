@@ -124,60 +124,51 @@ object DM_Vendas: TDM_Vendas
       Origin = 'CODIGO'
       Required = True
     end
-    object FDQuerySaidaProdutoCODPRODUTO: TIntegerField
-      FieldName = 'CODPRODUTO'
-      Origin = 'CODPRODUTO'
-      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
-      Required = True
-    end
-    object FDQuerySaidaProdutoNOME_PRODUTO: TStringField
-      FieldKind = fkLookup
-      FieldName = 'NOME_PRODUTO'
-      LookupDataSet = DM_Cadastro.FDQueryProduto
-      LookupKeyFields = 'CODIGO'
-      LookupResultField = 'PRODUTO'
-      KeyFields = 'CODPRODUTO'
-      Origin = 'NOME_PRODUTO'
-      Size = 40
-      Lookup = True
-    end
-    object FDQuerySaidaProdutoVALORPRODUTO: TFMTBCDField
-      FieldKind = fkLookup
+    object FDQuerySaidaProdutoVALORPRODUTO: TBCDField
       FieldName = 'VALORPRODUTO'
-      LookupDataSet = DM_Cadastro.FDQueryProduto
-      LookupKeyFields = 'CODIGO'
-      LookupResultField = 'PRECO_VENDA'
-      KeyFields = 'CODPRODUTO'
       Origin = 'VALORPRODUTO'
-      ReadOnly = True
-      currency = True
       Precision = 18
       Size = 2
-      Lookup = True
-    end
-    object FDQuerySaidaProdutoQTE_ESTOQUE: TFloatField
-      FieldName = 'QTE_ESTOQUE'
-      LookupDataSet = DM_Cadastro.FDQueryProduto
-      LookupKeyFields = 'CODIGO'
-      LookupResultField = 'QUANTIDADE_ATUAL'
-      KeyFields = 'QTE_ESTOQUE'
-      Origin = 'QTE_ESTOQUE'
-      ReadOnly = True
     end
     object FDQuerySaidaProdutoQUANTIDADE: TIntegerField
       FieldName = 'QUANTIDADE'
       Origin = 'QUANTIDADE'
+      Required = True
       OnChange = FDQuerySaidaProdutoQUANTIDADEValidate
-    end
-    object FDQuerySaidaProdutoCOD_VENDA: TIntegerField
-      FieldName = 'COD_VENDA'
-      Origin = 'COD_VENDA'
     end
     object FDQuerySaidaProdutoVALORTOTAL: TBCDField
       FieldName = 'VALORTOTAL'
       Origin = 'VALORTOTAL'
       Precision = 18
       Size = 2
+    end
+    object FDQuerySaidaProdutoNOME_PRODUTO: TStringField
+      FieldKind = fkLookup
+      FieldName = 'NOME_PRODUTO'
+      LookupDataSet = DM_Cadastro.FDQueryProduto
+      LookupKeyFields = 'PRODUTO'
+      LookupResultField = 'CODIGO'
+      KeyFields = 'CODPRODUTO'
+      Origin = 'NOME_PRODUTO'
+      Size = 40
+      Lookup = True
+    end
+    object FDQuerySaidaProdutoCODPRODUTO: TIntegerField
+      FieldName = 'CODPRODUTO'
+      Origin = 'CODPRODUTO'
+      Required = True
+    end
+    object FDQuerySaidaProdutoQTE_ESTOQUE: TFloatField
+      FieldName = 'QTE_ESTOQUE'
+      LookupDataSet = DM_Cadastro.FDQueryProduto
+      LookupKeyFields = 'CODIGO'
+      LookupResultField = 'QUANTIDADE_ATUAL'
+      KeyFields = 'CODPRODUTO'
+      Origin = 'QTE_ESTOQUE'
+    end
+    object FDQuerySaidaProdutoCOD_VENDA: TIntegerField
+      FieldName = 'COD_VENDA'
+      Origin = 'COD_VENDA'
     end
   end
   object DT_Saida_Venda: TDataSource

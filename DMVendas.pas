@@ -12,19 +12,12 @@ type
   TDM_Vendas = class(TDataModule)
     FDQuerySaida_Venda: TFDQuery;
     FDQuerySaidaProduto: TFDQuery;
-    FDQuerySaidaProdutoCODIGO: TIntegerField;
-    FDQuerySaidaProdutoCODPRODUTO: TIntegerField;
-    FDQuerySaidaProdutoNOME_PRODUTO: TStringField;
     DT_Saida_Venda: TDataSource;
     DT_SaidaProduto: TDataSource;
-    FDQuerySaidaProdutoVALORPRODUTO: TFMTBCDField;
-    FDQuerySaidaProdutoQTE_ESTOQUE: TFloatField;
-    FDQuerySaidaProdutoQUANTIDADE: TIntegerField;
     FDTransaction1: TFDTransaction;
     FDTransaction2: TFDTransaction;
     FDQueryOrcamento: TFDQuery;
     DtOrcamento: TDataSource;
-    FDQuerySaidaProdutoVALORTOTAL: TBCDField;
     FDQueryOrcamentoCODIGO: TFDAutoIncField;
     FDQueryOrcamentoCODCLIENTE: TIntegerField;
     FDQueryOrcamentoDATAVENDA: TSQLTimeStampField;
@@ -60,6 +53,14 @@ type
     FDQuerySaida_VendaDATA_CANCELAMENTO: TSQLTimeStampField;
     FDQuerySaida_VendaDATA_ORCAMENTO: TSQLTimeStampField;
     FDQuerySaida_VendaUSU_NOME: TStringField;
+    FDQuerySaidaProdutoCODIGO: TIntegerField;
+    FDQuerySaidaProdutoVALORPRODUTO: TBCDField;
+    FDQuerySaidaProdutoQUANTIDADE: TIntegerField;
+    FDQuerySaidaProdutoVALORTOTAL: TBCDField;
+    FDQuerySaidaProdutoNOME_PRODUTO: TStringField;
+    FDQuerySaidaProdutoCODPRODUTO: TIntegerField;
+    FDQuerySaidaProdutoQTE_ESTOQUE: TFloatField;
+    FDQuerySaidaProdutoCOD_VENDA: TIntegerField;
     procedure FDQuerySaidaProdutoAfterPost(DataSet: TDataSet);
     procedure FDQuerySaidaProdutoCODPRODUTOValidate(Sender: TField);
     procedure FDQuerySaidaProdutoQUANTIDADESetText(Sender: TField;

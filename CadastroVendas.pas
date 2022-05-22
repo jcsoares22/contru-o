@@ -161,39 +161,21 @@ begin
 end;
 
 procedure TfrmCadastroVendas.btnNovoClick(Sender: TObject);
-
 begin
-
-  DM_Vendas.FDQuerySaidaProduto.Open();
-  // prox := 1;
   if not(DM_Vendas.FDQuerySaida_Venda.State in [dsEdit, dsInsert]) then
   begin
     DM_Vendas.FDQuerySaida_Venda.Insert;
-
   end;
-  if not(DM_Vendas.FDQuerySaidaProduto.State in [dsEdit, dsInsert]) then
+{  if not(DM_Vendas.FDQuerySaidaProduto.State in [dsEdit, dsInsert]) then
   begin
-    DM_Vendas.FDQuerySaidaProduto.Insert;
-  end;
-  { DM_Vendas.FDQuerySaida_Venda.Insert;
-    DM_Cadastro.FDQueryCliente.Open();
-    DM_Vendas.FDQuerySaidaProduto.Open();
-    DM_Vendas.FDQuerySaida_Venda.edit;
-    DM_Vendas.FDQuerySaida_Venda.Open();
-    DM_Cadastro.FDQueryProduto.Open();
-    DM_Vendas.FDQuerySaidaProduto.edit;
-    DM_Vendas.FDQuerySaida_Venda.Last;
-    prox := DM_Vendas.FDQuerySaida_VendaCODIGO.AsInteger + 1;
-    DM_Vendas.FDQuerySaida_Venda.Append;
-    DM_Vendas.FDQuerySaida_VendaCODIGO.AsInteger := prox; }
-  // DBGridVendas.ReadOnly := false;
+      DM_Vendas.FDQuerySaidaProduto.Insert;
+        end;}
   btnNovo.Enabled := false;
   btnEdit.Enabled := false;
   btnDeletar.Enabled := false;
   DM_Vendas.FDQuerySaida_VendaDATAVENDA.AsDateTime := date;
-  // frmPrincipal.StatusBar1.Panels[1].Text := 'Usuário.: '+  DM_Dados.FDQueryUsuarioUSU_NOME.AsString;
   DM_Vendas.FDQuerySaida_VendaUSU_NOME.Text :=
-    frmPrincipal.StatusBar1.Panels[1].Text;
+    frmPrincipal.StatusBar1.Panels[1].Text;     //para colocar quem esta logado para pode saber quem fez a venda
 end;
 
 procedure TfrmCadastroVendas.btnPesquisaClick(Sender: TObject);

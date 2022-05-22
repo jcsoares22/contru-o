@@ -17,6 +17,7 @@ object frmCadastroVendas: TfrmCadastroVendas
   WindowState = wsMaximized
   OnClose = FormClose
   OnCreate = FormCreate
+  OnKeyDown = FormKeyDown
   PixelsPerInch = 96
   TextHeight = 13
   object SpeedButton1: TSpeedButton
@@ -33,10 +34,8 @@ object frmCadastroVendas: TfrmCadastroVendas
     ActivePage = TabSheet2
     Align = alClient
     TabOrder = 0
-    ExplicitWidth = 1164
     object TabSheet1: TTabSheet
       Caption = 'Pesquisar'
-      ExplicitWidth = 1156
       object DBGrid_Venda: TDBGrid
         Left = 0
         Top = 57
@@ -158,7 +157,6 @@ object frmCadastroVendas: TfrmCadastroVendas
         Height = 57
         Align = alTop
         TabOrder = 1
-        ExplicitWidth = 1156
         object Label9: TLabel
           Left = 19
           Top = -2
@@ -228,7 +226,6 @@ object frmCadastroVendas: TfrmCadastroVendas
     object TabSheet2: TTabSheet
       Caption = 'Cadastro'
       ImageIndex = 1
-      ExplicitWidth = 1156
       object Panel1: TPanel
         Left = 0
         Top = 0
@@ -238,7 +235,6 @@ object frmCadastroVendas: TfrmCadastroVendas
         Color = clSkyBlue
         ParentBackground = False
         TabOrder = 1
-        ExplicitWidth = 1156
         object Label1: TLabel
           Left = 8
           Top = 53
@@ -545,11 +541,11 @@ object frmCadastroVendas: TfrmCadastroVendas
           Top = 72
           Width = 145
           Height = 21
-          DataField = 'NOME'
+          DataField = 'CODCLIENTE'
           DataSource = DM_Vendas.DT_Saida_Venda
           KeyField = 'CODIGO'
-          ListField = 'DESCRICAO'
-          ListSource = DM_Cadastro.DT_Conta
+          ListField = 'NOME'
+          ListSource = DM_Cadastro.DT_cliente
           TabOrder = 19
         end
       end
@@ -560,7 +556,6 @@ object frmCadastroVendas: TfrmCadastroVendas
         Height = 105
         Align = alBottom
         TabOrder = 2
-        ExplicitWidth = 1156
         object Label14: TLabel
           Left = 17
           Top = 1
@@ -663,19 +658,25 @@ object frmCadastroVendas: TfrmCadastroVendas
           end
           item
             Expanded = False
-            FieldName = 'QTE_ESTOQUE'
-            Width = 64
-            Visible = True
-          end
-          item
-            Expanded = False
             FieldName = 'VALORPRODUTO'
             Width = 64
             Visible = True
           end
           item
             Expanded = False
+            FieldName = 'QTE_ESTOQUE'
+            Width = 64
+            Visible = True
+          end
+          item
+            Expanded = False
             FieldName = 'QUANTIDADE'
+            Width = 64
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'COD_VENDA'
             Width = 64
             Visible = True
           end
@@ -690,7 +691,6 @@ object frmCadastroVendas: TfrmCadastroVendas
     object TabSheet3: TTabSheet
       Caption = 'TabSheet3'
       ImageIndex = 2
-      ExplicitWidth = 1156
     end
   end
   object Timer1: TTimer
