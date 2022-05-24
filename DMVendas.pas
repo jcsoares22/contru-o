@@ -11,10 +11,7 @@ uses
 type
   TDM_Vendas = class(TDataModule)
     FDQuerySaida_Venda: TFDQuery;
-    FDQuerySaidaProduto: TFDQuery;
     DT_Saida_Venda: TDataSource;
-    DT_SaidaProduto: TDataSource;
-    FDTransaction1: TFDTransaction;
     FDTransaction2: TFDTransaction;
     FDQueryOrcamento: TFDQuery;
     DtOrcamento: TDataSource;
@@ -53,6 +50,8 @@ type
     FDQuerySaida_VendaDATA_CANCELAMENTO: TSQLTimeStampField;
     FDQuerySaida_VendaDATA_ORCAMENTO: TSQLTimeStampField;
     FDQuerySaida_VendaUSU_NOME: TStringField;
+    FDQuerySaidaProduto: TFDQuery;
+    DTProduto: TDataSource;
     FDQuerySaidaProdutoCODIGO: TIntegerField;
     FDQuerySaidaProdutoVALORPRODUTO: TBCDField;
     FDQuerySaidaProdutoQUANTIDADE: TIntegerField;
@@ -60,7 +59,6 @@ type
     FDQuerySaidaProdutoNOME_PRODUTO: TStringField;
     FDQuerySaidaProdutoCODPRODUTO: TIntegerField;
     FDQuerySaidaProdutoQTE_ESTOQUE: TFloatField;
-    FDQuerySaidaProdutoCOD_VENDA: TIntegerField;
     procedure FDQuerySaidaProdutoAfterPost(DataSet: TDataSet);
     procedure FDQuerySaidaProdutoCODPRODUTOValidate(Sender: TField);
     procedure FDQuerySaidaProdutoQUANTIDADESetText(Sender: TField;
@@ -71,6 +69,7 @@ type
     procedure FDQuerySaida_VendaID_CONTAChange(Sender: TField);
     procedure FDQuerySaidaProdutoVALORPRODUTOValidate(Sender: TField);
     procedure FDQuerySaidaProdutoAfterScroll(DataSet: TDataSet);
+    procedure FDQuerySaidaProdutoBeforePost(DataSet: TDataSet);
   private
     { Private declarations }
   public
@@ -99,11 +98,7 @@ end;
 procedure TDM_Vendas.FDQuerySaidaProdutoAfterPost(DataSet: TDataSet);
 begin
   // depois que salva ele a da baixa no estoque
-  DM_Cadastro.FDQueryProduto.Open();
-  DM_Cadastro.FDQueryProduto.Edit;
-  DM_Cadastro.FDQueryProdutoQUANTIDADE_ATUAL.Value :=
-    (DM_Cadastro.FDQueryProdutoQUANTIDADE_ATUAL.Value -
-    DM_Vendas.FDQuerySaidaProdutoQUANTIDADE.Value);
+ 
 end;
 
 procedure TDM_Vendas.FDQuerySaidaProdutoAfterScroll(DataSet: TDataSet);
@@ -114,6 +109,15 @@ begin
   FDQuerySaidaProduto.SQL.Add('select * from SAIDA_PRODUTO');
   FDQuerySaidaProduto.SQL.Add('where SAIDA_PRODUTO.CODIGO = :CODIGO');
   FDQuerySaidaProduto.Open();
+end;
+
+procedure TDM_Vendas.FDQuerySaidaProdutoBeforePost(DataSet: TDataSet);
+begin
+ DM_Cadastro.FDQueryProduto.Open();
+  DM_Cadastro.FDQueryProduto.Edit;
+  DM_Cadastro.FDQueryProdutoQUANTIDADE_ATUAL.Value :=
+    (DM_Cadastro.FDQueryProdutoQUANTIDADE_ATUAL.Value -
+    DM_Vendas.FDQuerySaidaProdutoQUANTIDADE.Value);
 end;
 
 procedure TDM_Vendas.FDQuerySaidaProdutoCODPRODUTOValidate(Sender: TField);
@@ -182,6 +186,7 @@ begin // validação do tipo de pagamento
     FDQuerySaida_VendaDATA_ORCAMENTO.AsDateTime := date;
 
   end;
+
 end;
 
 procedure TDM_Vendas.FDQuerySaida_VendaID_CONTAChange(Sender: TField);

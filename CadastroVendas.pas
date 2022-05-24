@@ -44,15 +44,6 @@ type
     btnGerarLancamento: TButton;
     DBGrid_Venda: TDBGrid;
     DBLookupCB_conta: TDBLookupComboBox;
-    DBGridVendas: TDBGrid;
-    DBComboBox2: TDBComboBox;
-    Label15: TLabel;
-    Label16: TLabel;
-    Label17: TLabel;
-    DBEdit3: TDBEdit;
-    Label18: TLabel;
-    DBEdit2: TDBEdit;
-    DB_Data_Faturamento: TDBEdit;
 
     Panel3: TPanel;
     Label9: TLabel;
@@ -73,6 +64,16 @@ type
     DBEdit6: TDBEdit;
     Label7: TLabel;
     DBLookupComboBox1: TDBLookupComboBox;
+    DBGrid1: TDBGrid;
+    Sitação: TRadioGroup;
+    DBEdit2: TDBEdit;
+    Label18: TLabel;
+    Label17: TLabel;
+    DBEdit3: TDBEdit;
+    DB_Data_Faturamento: TDBEdit;
+    Label16: TLabel;
+    Label15: TLabel;
+    DBComboBox2: TDBComboBox;
     procedure DBGridVendasExit(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure btnNovoClick(Sender: TObject);
@@ -162,6 +163,7 @@ end;
 
 procedure TfrmCadastroVendas.btnNovoClick(Sender: TObject);
 begin
+DM_Vendas.FDQuerySaidaProduto.Open();
   if not(DM_Vendas.FDQuerySaida_Venda.State in [dsEdit, dsInsert]) then
   begin
     DM_Vendas.FDQuerySaida_Venda.Insert;
