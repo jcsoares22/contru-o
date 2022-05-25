@@ -37,7 +37,8 @@ uses
   Vcl.Themes,
   Vcl.Styles,
   CadastroRapidoCliente in 'CadastroRapidoCliente.pas' {frmCadastroRapidoCliente},
-  PesquisaCliente in 'PesquisaCliente.pas' {frmPesquisaCliente};
+  PesquisaCliente in 'PesquisaCliente.pas' {frmPesquisaCliente},
+  LoginPreferencia in 'LoginPreferencia.pas' {frmLoginPreferencia};
 
 {$R *.res}
 
@@ -55,7 +56,9 @@ begin
   Application.CreateForm(TDM_Vendas, DM_Vendas);
   Application.CreateForm(TDM_Finaceiro, DM_Finaceiro);
   Application.CreateForm(TDM_Mov_Estoque, DM_Mov_Estoque);
-   usuarios := TfrmLogin.Create(nil);
+  Application.CreateForm(TfrmLoginPreferencia, frmLoginPreferencia);
+
+  {usuarios := TfrmLogin.Create(nil);
     if usuarios.ShowModal = 1 then
     begin
     usuarios.Free;
@@ -64,7 +67,7 @@ begin
     else
     begin
     usuarios.Free;
-    end;
+    end; }
   // retirar do comentario mais tarde }
   Application.Run;
 

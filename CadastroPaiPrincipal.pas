@@ -90,7 +90,7 @@ end;
 
 procedure TfrmCadastroPai.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
-  //Action := caFree;
+  // Action := caFree;
   DM_Cadastro.FDQueryCliente.close;
   DM_Endereco.FDQueryCidade.close;
   DM_Endereco.FDQueryEstados.close;
@@ -103,7 +103,6 @@ begin
   DM_Cadastro.FDQueryCondição_pagamento.close;
   DM_Mov_Estoque.FDQueryMovimentoEstoque.close;
   DM_Dados.FDQueryUsuario.close;
-  DM_Dados.FDUSUARIO.close;
   DM_Mov_Estoque.FDQuery_Movimento_estoque_item.close;
 end;
 
@@ -120,9 +119,8 @@ begin
   DM_Cadastro.FDQueryUnMedida.Open();
   DM_Cadastro.FDQueryCondição_pagamento.Open();
   DM_Cadastro.FDQueryProduto.Open();
-  DM_Mov_Estoque.FDQueryMovimentoEstoque.Open();
   DM_Dados.FDQueryUsuario.Open();
-  DM_Dados.FDUSUARIO.Open();
+  DM_Mov_Estoque.FDQueryMovimentoEstoque.Open();
   DM_Mov_Estoque.FDQuery_Movimento_estoque_item.Open();
 end;
 

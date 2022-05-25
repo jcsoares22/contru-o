@@ -15,18 +15,6 @@ type
     DADOS: TFDConnection;
     FDTransaction1: TFDTransaction;
     FDPhysFBDriverLink1: TFDPhysFBDriverLink;
-    FDQueryUsuario: TFDQuery;
-    FDQueryUsuarioUSU_CODIGO: TIntegerField;
-    FDQueryUsuarioUSU_NOME: TStringField;
-    FDQueryUsuarioUSU_LOGIN: TStringField;
-    FDQueryUsuarioUSU_SENHA: TStringField;
-    FDQueryUsuarioUSU_NIVEL: TIntegerField;
-    FDUSUARIO: TFDTable;
-    FDUSUARIOUSU_CODIGO: TIntegerField;
-    FDUSUARIOUSU_NOME: TStringField;
-    FDUSUARIOUSU_LOGIN: TStringField;
-    FDUSUARIOUSU_SENHA: TStringField;
-    FDUSUARIOUSU_NIVEL: TIntegerField;
     DT_Usuario: TDataSource;
     FDQueryPreferencia: TFDQuery;
     DT_Preferencia: TDataSource;
@@ -41,6 +29,14 @@ type
     FDQueryPreferenciaCIDADE_ID: TIntegerField;
     FDQueryPreferenciaBAIRRO: TStringField;
     FDQueryPreferenciaDESCONTO_VENDA: TBCDField;
+    FDQueryUsuario: TFDQuery;
+    FDQueryUsuarioUSU_CODIGO: TIntegerField;
+    FDQueryUsuarioUSU_NOME: TStringField;
+    FDQueryUsuarioUSU_LOGIN: TStringField;
+    FDQueryUsuarioUSU_SENHA: TStringField;
+    FDQueryUsuarioUSU_NIVEL: TIntegerField;
+    FDQueryUsuarioADM: TStringField;
+    FDQueryUsuarioPREFERENCIA: TStringField;
   private
     { Private declarations }
   public

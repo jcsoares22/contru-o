@@ -26,83 +26,10 @@ object DM_Dados: TDM_Dados
     Left = 144
     Top = 16
   end
-  object FDQueryUsuario: TFDQuery
-    Connection = DADOS
-    SQL.Strings = (
-      'SELECT * FROM USUARIO')
-    Left = 8
-    Top = 104
-    object FDQueryUsuarioUSU_CODIGO: TIntegerField
-      FieldName = 'USU_CODIGO'
-      Origin = 'USU_CODIGO'
-      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
-      Required = True
-    end
-    object FDQueryUsuarioUSU_NOME: TStringField
-      FieldName = 'USU_NOME'
-      Origin = 'USU_NOME'
-      Required = True
-      Size = 30
-    end
-    object FDQueryUsuarioUSU_LOGIN: TStringField
-      FieldName = 'USU_LOGIN'
-      Origin = 'USU_LOGIN'
-      Required = True
-      Size = 10
-    end
-    object FDQueryUsuarioUSU_SENHA: TStringField
-      FieldName = 'USU_SENHA'
-      Origin = 'USU_SENHA'
-      Required = True
-      Size = 10
-    end
-    object FDQueryUsuarioUSU_NIVEL: TIntegerField
-      FieldName = 'USU_NIVEL'
-      Origin = 'USU_NIVEL'
-      Required = True
-    end
-  end
-  object FDUSUARIO: TFDTable
-    IndexFieldNames = 'USU_CODIGO'
-    Connection = DADOS
-    UpdateOptions.UpdateTableName = 'USUARIO'
-    TableName = 'USUARIO'
-    Left = 168
-    Top = 104
-    object FDUSUARIOUSU_CODIGO: TIntegerField
-      FieldName = 'USU_CODIGO'
-      Origin = 'USU_CODIGO'
-      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
-      Required = True
-    end
-    object FDUSUARIOUSU_NOME: TStringField
-      FieldName = 'USU_NOME'
-      Origin = 'USU_NOME'
-      Required = True
-      Size = 30
-    end
-    object FDUSUARIOUSU_LOGIN: TStringField
-      FieldName = 'USU_LOGIN'
-      Origin = 'USU_LOGIN'
-      Required = True
-      Size = 10
-    end
-    object FDUSUARIOUSU_SENHA: TStringField
-      FieldName = 'USU_SENHA'
-      Origin = 'USU_SENHA'
-      Required = True
-      Size = 10
-    end
-    object FDUSUARIOUSU_NIVEL: TIntegerField
-      FieldName = 'USU_NIVEL'
-      Origin = 'USU_NIVEL'
-      Required = True
-    end
-  end
   object DT_Usuario: TDataSource
-    DataSet = FDUSUARIO
-    Left = 88
-    Top = 104
+    DataSet = FDQueryUsuario
+    Left = 128
+    Top = 120
   end
   object FDQueryPreferencia: TFDQuery
     Connection = DADOS
@@ -169,5 +96,53 @@ object DM_Dados: TDM_Dados
     DataSet = FDQueryPreferencia
     Left = 128
     Top = 256
+  end
+  object FDQueryUsuario: TFDQuery
+    Connection = DADOS
+    SQL.Strings = (
+      'select * from usuario')
+    Left = 24
+    Top = 112
+    object FDQueryUsuarioUSU_CODIGO: TIntegerField
+      FieldName = 'USU_CODIGO'
+      Origin = 'USU_CODIGO'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+    object FDQueryUsuarioUSU_NOME: TStringField
+      FieldName = 'USU_NOME'
+      Origin = 'USU_NOME'
+      Required = True
+      Size = 30
+    end
+    object FDQueryUsuarioUSU_LOGIN: TStringField
+      FieldName = 'USU_LOGIN'
+      Origin = 'USU_LOGIN'
+      Required = True
+      Size = 10
+    end
+    object FDQueryUsuarioUSU_SENHA: TStringField
+      FieldName = 'USU_SENHA'
+      Origin = 'USU_SENHA'
+      Required = True
+      Size = 10
+    end
+    object FDQueryUsuarioUSU_NIVEL: TIntegerField
+      FieldName = 'USU_NIVEL'
+      Origin = 'USU_NIVEL'
+      Required = True
+    end
+    object FDQueryUsuarioADM: TStringField
+      FieldName = 'ADM'
+      Origin = 'ADM'
+      FixedChar = True
+      Size = 1
+    end
+    object FDQueryUsuarioPREFERENCIA: TStringField
+      FieldName = 'PREFERENCIA'
+      Origin = 'PREFERENCIA'
+      FixedChar = True
+      Size = 1
+    end
   end
 end

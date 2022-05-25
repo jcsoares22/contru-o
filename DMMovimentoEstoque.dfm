@@ -4,10 +4,13 @@ object DM_Mov_Estoque: TDM_Mov_Estoque
   Width = 772
   object FDQueryMovimentoEstoque: TFDQuery
     Connection = DM_Dados.DADOS
+    UpdateOptions.AssignedValues = [uvFetchGeneratorsPoint, uvGeneratorName]
+    UpdateOptions.GeneratorName = 'GEN_MOVIMENTO_ESTOQUE_ID'
+    UpdateOptions.AutoIncFields = 'ID_MOVIMENTACAO'
     SQL.Strings = (
       'select  * from movimento_estoque')
-    Left = 40
-    Top = 32
+    Left = 32
+    Top = 72
     object FDQueryMovimentoEstoqueID_MOVIMENTACAO: TIntegerField
       FieldName = 'ID_MOVIMENTACAO'
       Origin = 'ID_MOVIMENTACAO'
@@ -32,20 +35,16 @@ object DM_Mov_Estoque: TDM_Mov_Estoque
       Size = 16
     end
   end
-  object DT_MovimentoEstoque: TDataSource
-    DataSet = FDQueryMovimentoEstoque
-    Left = 184
-    Top = 40
-  end
   object FDQuery_Movimento_estoque_item: TFDQuery
-    IndexFieldNames = 'ID_MOVIMENTACAO'
-    MasterSource = DT_MovimentoEstoque
-    MasterFields = 'ID_MOVIMENTACAO'
+    AfterPost = FDQuery_Movimento_estoque_itemAfterPost
     Connection = DM_Dados.DADOS
     SQL.Strings = (
-      'select * from movimento_estoque_tem')
-    Left = 112
-    Top = 152
+      'select * from movimento_estoque_item')
+    Left = 32
+    Top = 200
+    ParamData = <
+      item
+      end>
     object FDQuery_Movimento_estoque_itemID_MOVIMENTACAO: TIntegerField
       FieldName = 'ID_MOVIMENTACAO'
       Origin = 'ID_MOVIMENTACAO'
@@ -84,9 +83,14 @@ object DM_Mov_Estoque: TDM_Mov_Estoque
       Lookup = True
     end
   end
-  object DT_Movimento_estoque_item: TDataSource
+  object DTMovimentoEstoque: TDataSource
+    DataSet = FDQueryMovimentoEstoque
+    Left = 248
+    Top = 72
+  end
+  object DTMovimento_estoque_item: TDataSource
     DataSet = FDQuery_Movimento_estoque_item
-    Left = 264
-    Top = 168
+    Left = 240
+    Top = 184
   end
 end

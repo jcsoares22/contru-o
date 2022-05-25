@@ -16,9 +16,10 @@ type
     DBEdit1: TDBEdit;
     Label2: TLabel;
     Label3: TLabel;
-    DBEdit3: TDBEdit;
-    DBLookupComboBox1: TDBLookupComboBox;
+    DATE_Mov: TDBEdit;
+    Label4: TLabel;
     DBCB_Movimentacao: TDBComboBox;
+    DBEdit2: TDBEdit;
     DBNavigator1: TDBNavigator;
     procedure btnSalvarClick(Sender: TObject);
     procedure btnNovoClick(Sender: TObject);
@@ -40,7 +41,7 @@ implementation
 
 {$R *.dfm}
 
-uses DMCadastro, DMMovimentoEstoque, DMDados;
+uses DMCadastro, DMMovimentoEstoque, DMDados, Principal;
 
 procedure TfrmMovimento_estoque.btnCancelarClick(Sender: TObject);
 begin
@@ -62,23 +63,19 @@ begin
 end;
 
 procedure TfrmMovimento_estoque.btnNovoClick(Sender: TObject);
-var
-  prox: integer;
+
 begin // usando a variavel prox para poder acrescentar +1 no cadastro
   inherited;
-  prox := 1;
-   DM_Cadastro.FDQueryProduto.Open();
-  DM_Cadastro.FDQueryProduto.Edit;
-  DM_Mov_Estoque.FDQueryMovimentoEstoque.Edit;
-  DM_Mov_Estoque.FDQuery_Movimento_estoque_item.Open();
-  DM_Mov_Estoque.FDQueryMovimentoEstoque.last;
-  prox := DM_Mov_Estoque.FDQueryMovimentoEstoqueID_MOVIMENTACAO.AsInteger + 1;
-  DM_Mov_Estoque.FDQueryMovimentoEstoque.Append;
-  DM_Mov_Estoque.FDQueryMovimentoEstoqueID_MOVIMENTACAO.AsInteger := prox;
+ if not(DM_Mov_Estoque.FDQueryMovimentoEstoque.State in [dsEdit, dsInsert]) then
+  begin
+   DM_Mov_Estoque.FDQueryMovimentoEstoque.Insert;
+ END;
   // colocando o foco no campo nome
   DBGrid.SetFocus;
   DBGrid.SelectedIndex := 1;
-
+     DM_Mov_Estoque.FDQueryMovimentoEstoqueNOME_USUARIO.Text :=
+    frmPrincipal.StatusBar1.Panels[1].Text;
+    DATE_Mov.Text :=  DateToStr(now);
 end;
 
 procedure TfrmMovimento_estoque.btnSalvarClick(Sender: TObject);
@@ -124,6 +121,7 @@ procedure TfrmMovimento_estoque.FormCreate(Sender: TObject);
 begin
   inherited;
     DM_Cadastro.FDQueryProduto.Open();
+
 end;
 
 end.

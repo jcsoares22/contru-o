@@ -34,10 +34,8 @@
     ActivePage = TabSheet2
     Align = alClient
     TabOrder = 0
-    ExplicitWidth = 1287
     object TabSheet1: TTabSheet
       Caption = 'Pesquisar'
-      ExplicitWidth = 1279
       object DBGrid_Venda: TDBGrid
         Left = 0
         Top = 57
@@ -66,37 +64,31 @@
           item
             Expanded = False
             FieldName = 'NOME'
-            Width = 64
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'DATAVENDA'
-            Width = 64
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'VALORTOTAL'
-            Width = 64
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'OBS'
-            Width = 64
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'FRETE'
-            Width = 64
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'COND_PAGAMENTO'
-            Width = 64
             Visible = True
           end
           item
@@ -107,25 +99,21 @@
           item
             Expanded = False
             FieldName = 'ID_SUBCONTA'
-            Width = 64
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'ID_TIPO_PGTO'
-            Width = 64
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'DESCONTO'
-            Width = 64
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'TIPO_DESC'
-            Width = 64
             Visible = True
           end
           item
@@ -136,19 +124,16 @@
           item
             Expanded = False
             FieldName = 'DATA_FATURAMENTO'
-            Width = 64
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'DATA_CANCELAMENTO'
-            Width = 64
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'DATA_ORCAMENTO'
-            Width = 64
             Visible = True
           end>
       end
@@ -159,7 +144,6 @@
         Height = 57
         Align = alTop
         TabOrder = 1
-        ExplicitWidth = 1279
         object Label9: TLabel
           Left = 19
           Top = -2
@@ -229,7 +213,6 @@
     object TabSheet2: TTabSheet
       Caption = 'Cadastro'
       ImageIndex = 1
-      ExplicitWidth = 1279
       object Panel1: TPanel
         Left = 0
         Top = 0
@@ -239,7 +222,6 @@
         Color = clSkyBlue
         ParentBackground = False
         TabOrder = 0
-        ExplicitWidth = 1279
         object Label1: TLabel
           Left = 8
           Top = 53
@@ -309,7 +291,7 @@
         end
         object Label19: TLabel
           Left = 652
-          Top = -3
+          Top = 1
           Width = 55
           Height = 13
           Caption = 'USU_NOME'
@@ -484,7 +466,7 @@
         end
         object DBEdit4: TDBEdit
           Left = 652
-          Top = 11
+          Top = 15
           Width = 123
           Height = 21
           DataField = 'USU_NOME'
@@ -569,7 +551,6 @@
         Height = 105
         Align = alBottom
         TabOrder = 1
-        ExplicitWidth = 1279
         object Label14: TLabel
           Left = 17
           Top = 1
@@ -667,25 +648,21 @@
           item
             Expanded = False
             FieldName = 'CODPRODUTO'
-            Width = 64
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'NOME_PRODUTO'
-            Width = 64
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'QTE_ESTOQUE'
-            Width = 64
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'QUANTIDADE'
-            Width = 64
             Visible = True
           end
           item
@@ -696,7 +673,6 @@
           item
             Expanded = False
             FieldName = 'VALORTOTAL'
-            Width = 64
             Visible = True
           end>
       end
@@ -704,11 +680,6 @@
     object TabSheet3: TTabSheet
       Caption = 'TabSheet3'
       ImageIndex = 2
-      ExplicitWidth = 1279
     end
-  end
-  object Timer1: TTimer
-    Left = 964
-    Top = 360
   end
 end

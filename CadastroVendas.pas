@@ -40,7 +40,6 @@ type
     Label12: TLabel;
     Label13: TLabel;
     TabSheet3: TTabSheet;
-    Timer1: TTimer;
     btnGerarLancamento: TButton;
     DBGrid_Venda: TDBGrid;
     DBLookupCB_conta: TDBLookupComboBox;
@@ -363,20 +362,10 @@ end;
 procedure TfrmCadastroVendas.DBE_DescontoExit(Sender: TObject);
 var
   desconto: Currency;
-
 begin
-percento := DM_Dados.FDQueryPreferencia.Fields[10].AsFloat;
-  // DM_Dados.FDQueryPreferenciaLIMITE_DESCONTO.Value
-  { if frmCadastroVendas.DBC_Desconto.Text = EmptyStr then
-    begin
-    ShowMessage('Selecione o tipo de desconto');
-    // DM_Vendas.FDQuerySaida_VendaDESCONTO.Clear;
-    DBC_Desconto.SetFocus;
-    end
-    else }
+percento := DM_Dados.FDQueryPreferenciaDESCONTO_VENDA.CurValue;//DM_Dados.FDQueryPreferencia.Fields[9].AsFloat;    //recebe o valor da preferencia
   case frmCadastroVendas.DBC_Desconto.ItemIndex of
     // combobox de deconto por percento ou real
-
     0: // R$
       begin
         DM_Vendas.FDQuerySaida_VendaDESCONTO.Currency := true;

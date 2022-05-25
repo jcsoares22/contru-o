@@ -23,15 +23,11 @@ object frmCadastroPai: TfrmCadastroPai
     Top = 0
     Width = 1320
     Height = 936
-    ActivePage = TabSheet1
+    ActivePage = TabSheet2
     Align = alClient
     TabOrder = 0
     object TabSheet1: TTabSheet
       Caption = 'Pesquisa'
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object DBGrid_Cliente: TDBGrid
         Left = 0
         Top = 41
@@ -123,10 +119,6 @@ object frmCadastroPai: TfrmCadastroPai
     object TabSheet2: TTabSheet
       Caption = 'Cadastro'
       ImageIndex = 1
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object Panel1: TPanel
         Left = 0
         Top = 0

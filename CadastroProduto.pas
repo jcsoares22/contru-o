@@ -62,6 +62,7 @@ type
     Label28: TLabel;
     DB_Qte_Atual: TDBEdit;
     DBImage1: TDBImage;
+    DBNavigator1: TDBNavigator;
     procedure DB_APrazoExit(Sender: TObject);
     procedure DB_AvistaExit(Sender: TObject);
     procedure btnNovoClick(Sender: TObject);
@@ -119,8 +120,6 @@ begin
 end;
 
 procedure TfrmCadastroProduto.btnNovoClick(Sender: TObject);
-var
-  prox: Integer;
 begin
   inherited;
   if not(DM_Cadastro.FDQueryProduto.State in [dsEdit, dsInsert]) then

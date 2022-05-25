@@ -11,9 +11,9 @@ uses
 type
   TDM_Mov_Estoque = class(TDataModule)
     FDQueryMovimentoEstoque: TFDQuery;
-    DT_MovimentoEstoque: TDataSource;
     FDQuery_Movimento_estoque_item: TFDQuery;
-    DT_Movimento_estoque_item: TDataSource;
+    DTMovimentoEstoque: TDataSource;
+    DTMovimento_estoque_item: TDataSource;
     FDQueryMovimentoEstoqueID_MOVIMENTACAO: TIntegerField;
     FDQueryMovimentoEstoqueNOME_USUARIO: TStringField;
     FDQueryMovimentoEstoqueDT_MOV: TSQLTimeStampField;

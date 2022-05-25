@@ -5,7 +5,8 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
   System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Menus, Vcl.StdCtrls, Vcl.ExtCtrls, Preferencia,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Menus, Vcl.StdCtrls, Vcl.ExtCtrls,
+  Preferencia,
   Vcl.ComCtrls, Vcl.Buttons;
 
 type
@@ -89,7 +90,7 @@ type
     { Private declarations }
   public
     { Public declarations }
-     procedure fecharTela();
+    procedure fecharTela();
   end;
 
 var
@@ -105,8 +106,7 @@ uses CadastroCliente, CadastroEstados, CadastroUnidadeMedida,
   CadastroCidades, CadastroGrupo, CadastroSubGrupo, CadastroProduto,
   CadastroUsuarios, CadastroVendas, CadastroCondPagamento,
   CasdatroContasFincaeiro, CadastroFinanceiro, CadastroDocumento,
-  MovimentoEstoque, Orcamento, DMDados;
-
+  MovimentoEstoque, Orcamento, DMDados, LoginPreferencia;
 
 procedure TfrmPrincipal.bntClienteClick(Sender: TObject);
 begin
@@ -154,18 +154,18 @@ end;
 
 procedure TfrmPrincipal.Configurao2Click(Sender: TObject);
 begin // criando uma janela modal onde ele destroi o form quando fecha
-  frmPreferencia := TFrmPreferencia.Create(self);
-  try
-    frmPreferencia.showModal;
-  finally
-    FreeAndNil(frmPreferencia);
-  end;
+   frmLoginPreferencia := TfrmLoginPreferencia.Create(self);
+    try
+    frmLoginPreferencia.showModal;
+    finally
+    FreeAndNil(frmLoginPreferencia);
+    end;
 
 end;
 
 procedure TfrmPrincipal.ContaSubConta1Click(Sender: TObject);
 begin
- fecharTela;
+  fecharTela;
   if (frmContas = nil) then
     frmContas := TFrmContas.Create(self);
   if (not frmContas.showing) then
@@ -328,7 +328,7 @@ end;
 procedure TfrmPrincipal.Oramento1Click(Sender: TObject);
 begin
 
-fecharTela;
+  fecharTela;
   if (frmOrcamento = nil) then
     frmOrcamento := TFrmOrcamento.Create(self);
   if (not frmOrcamento.showing) then
@@ -362,8 +362,8 @@ end;
 
 procedure TfrmPrincipal.Timer1Timer(Sender: TObject);
 begin
- StatusBar1.Panels[2].Text := 'Hora.: '+ TimeToStr(time);
- StatusBar1.Panels[3].Text := 'Data.: '+ DateToStr(date);
+  StatusBar1.Panels[2].Text := 'Hora.: ' + TimeToStr(time);
+  StatusBar1.Panels[3].Text := 'Data.: ' + DateToStr(date);
 
 end;
 
