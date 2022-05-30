@@ -1,25 +1,33 @@
 inherited frmCadastroCliente: TfrmCadastroCliente
   Caption = 'CadastroCliente'
-  ClientHeight = 806
-  ClientWidth = 1095
-  ExplicitWidth = 1111
-  ExplicitHeight = 845
+  ClientHeight = 639
+  ClientWidth = 1009
+  ExplicitWidth = 1025
+  ExplicitHeight = 678
   PixelsPerInch = 96
   TextHeight = 13
+  object PaintBox1: TPaintBox [0]
+    Left = 496
+    Top = 640
+    Width = 105
+    Height = 105
+  end
   inherited Cadastro: TPageControl
-    Width = 1095
-    Height = 806
-    ActivePage = TabSheet2
-    ExplicitWidth = 1095
-    ExplicitHeight = 806
+    Width = 1009
+    Height = 605
+    ActivePage = TabSheet1
+    ExplicitLeft = 224
+    ExplicitTop = -5
+    ExplicitWidth = 785
+    ExplicitHeight = 486
     inherited TabSheet1: TTabSheet
       ExplicitLeft = 4
       ExplicitTop = 24
       ExplicitWidth = 1087
       ExplicitHeight = 778
       inherited DBGrid_Cliente: TDBGrid
-        Width = 1087
-        Height = 737
+        Width = 1001
+        Height = 536
         DataSource = DM_Cadastro.DT_cliente
         Columns = <
           item
@@ -35,31 +43,37 @@ inherited frmCadastroCliente: TfrmCadastroCliente
           item
             Expanded = False
             FieldName = 'TELEFONE'
+            Width = 64
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'CPF'
+            Width = 64
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'EMAIL'
+            Width = 64
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'DESCRICAO'
+            Width = 64
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'RUA'
+            Width = 64
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'NUMERO'
+            Width = 64
             Visible = True
           end
           item
@@ -75,11 +89,12 @@ inherited frmCadastroCliente: TfrmCadastroCliente
           item
             Expanded = False
             FieldName = 'BAIRRO'
+            Width = 64
             Visible = True
           end>
       end
       inherited Panel2: TPanel
-        Width = 1087
+        Width = 1001
         ExplicitWidth = 1087
         inherited btnPesquisa: TButton
           OnClick = btnPesquisaClick
@@ -180,7 +195,7 @@ inherited frmCadastroCliente: TfrmCadastroCliente
         FocusControl = DB_Descricao
       end
       inherited Panel1: TPanel
-        Width = 1087
+        Width = 1001
         ExplicitWidth = 1087
         inherited btnNovo: TButton
           Width = 63
@@ -206,12 +221,21 @@ inherited frmCadastroCliente: TfrmCadastroCliente
           ExplicitWidth = 71
         end
         object DBNavigator1: TDBNavigator
-          Left = 560
+          Left = 697
           Top = 9
           Width = 240
           Height = 25
           DataSource = DM_Cadastro.DT_cliente
           TabOrder = 5
+        end
+        object btnImprimir: TButton
+          Left = 472
+          Top = 9
+          Width = 75
+          Height = 25
+          Caption = 'Imprimir'
+          TabOrder = 6
+          OnClick = btnImprimirClick
         end
       end
       object DBEdit1: TDBEdit
@@ -232,6 +256,7 @@ inherited frmCadastroCliente: TfrmCadastroCliente
         CharCase = ecUpperCase
         DataField = 'CPF'
         DataSource = DM_Cadastro.DT_cliente
+        MaxLength = 14
         ReadOnly = True
         TabOrder = 2
         OnKeyPress = DB_CpfKeyPress
@@ -348,5 +373,192 @@ inherited frmCadastroCliente: TfrmCadastroCliente
         TabOrder = 11
       end
     end
+  end
+  object Panel4: TPanel
+    Left = 0
+    Top = 605
+    Width = 1009
+    Height = 34
+    Align = alBottom
+    Color = clSkyBlue
+    ParentBackground = False
+    TabOrder = 1
+    ExplicitLeft = -78
+    ExplicitWidth = 1087
+    object btnPesquisaAvancada: TButton
+      Left = 20
+      Top = 6
+      Width = 115
+      Height = 25
+      Caption = 'PesquisaAvan'#231'ada'
+      TabOrder = 0
+      OnClick = btnPesquisaAvancadaClick
+    end
+  end
+  object frCliente: TfrxReport
+    Version = '2022.2.5'
+    DotMatrixReport = False
+    IniFile = '\Software\Fast Reports'
+    PreviewOptions.Buttons = [pbPrint, pbLoad, pbSave, pbExport, pbZoom, pbFind, pbOutline, pbPageSetup, pbTools, pbEdit, pbNavigator, pbExportQuick, pbCopy, pbSelection]
+    PreviewOptions.Zoom = 1.000000000000000000
+    PrintOptions.Printer = 'Default'
+    PrintOptions.PrintOnSheet = 0
+    ReportOptions.CreateDate = 44709.994380011600000000
+    ReportOptions.LastChange = 44710.001783090280000000
+    ScriptLanguage = 'PascalScript'
+    ScriptText.Strings = (
+      'begin'
+      ''
+      'end.')
+    Left = 636
+    Top = 368
+    Datasets = <
+      item
+        DataSet = frxCliente
+        DataSetName = 'frxCliente'
+      end>
+    Variables = <>
+    Style = <>
+    object Data: TfrxDataPage
+      Height = 1000.000000000000000000
+      Width = 1000.000000000000000000
+    end
+    object Page1: TfrxReportPage
+      PaperWidth = 210.000000000000000000
+      PaperHeight = 297.000000000000000000
+      PaperSize = 9
+      LeftMargin = 10.000000000000000000
+      RightMargin = 10.000000000000000000
+      TopMargin = 10.000000000000000000
+      BottomMargin = 10.000000000000000000
+      Frame.Typ = []
+      MirrorMode = []
+      object PageHeader1: TfrxPageHeader
+        FillType = ftBrush
+        FillGap.Top = 0
+        FillGap.Left = 0
+        FillGap.Bottom = 0
+        FillGap.Right = 0
+        Frame.Typ = []
+        Height = 472.441250000000000000
+        Top = 18.897650000000000000
+        Width = 718.110700000000000000
+        object Memo1: TfrxMemoView
+          AllowVectorExport = True
+          Left = 11.338590000000000000
+          Top = 46.488213390000000000
+          Width = 52.913420000000000000
+          Height = 18.897650000000000000
+          Frame.Typ = []
+          Memo.UTF8W = (
+            'Cliente:')
+        end
+        object frxClienteNOME: TfrxMemoView
+          IndexTag = 1
+          AllowVectorExport = True
+          Left = 71.811070000000000000
+          Top = 46.488213390000000000
+          Width = 400.630180000000000000
+          Height = 18.897650000000000000
+          DataField = 'NOME'
+          DataSet = frxCliente
+          DataSetName = 'frxCliente'
+          Frame.Typ = []
+          Memo.UTF8W = (
+            '[frxCliente."NOME"]')
+        end
+        object Memo2: TfrxMemoView
+          AllowVectorExport = True
+          Left = 215.433210000000000000
+          Top = 7.559060000000000000
+          Width = 340.157700000000000000
+          Height = 34.015770000000000000
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -27
+          Font.Name = 'Arial'
+          Font.Style = [fsBold]
+          Frame.Typ = []
+          Memo.UTF8W = (
+            'Cadastro de cliente')
+          ParentFont = False
+        end
+        object frxClienteTELEFONE: TfrxMemoView
+          IndexTag = 1
+          AllowVectorExport = True
+          Left = 75.590600000000000000
+          Top = 75.590600000000000000
+          Width = 86.929190000000000000
+          Height = 18.897650000000000000
+          DataField = 'TELEFONE'
+          DataSet = frxCliente
+          DataSetName = 'frxCliente'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Style = [fsBold]
+          Frame.Typ = []
+          Memo.UTF8W = (
+            '[frxCliente."TELEFONE"]')
+          ParentFont = False
+        end
+        object Memo3: TfrxMemoView
+          AllowVectorExport = True
+          Left = 11.338590000000000000
+          Top = 75.590600000000000000
+          Width = 56.692950000000010000
+          Height = 18.897650000000000000
+          Frame.Typ = []
+          Memo.UTF8W = (
+            'Telefone: ')
+        end
+        object frxClienteCPF: TfrxMemoView
+          IndexTag = 1
+          AllowVectorExport = True
+          Left = 566.929499999999900000
+          Top = 45.354360000000000000
+          Width = 86.929190000000000000
+          Height = 18.897650000000000000
+          DataField = 'CPF'
+          DataSet = frxCliente
+          DataSetName = 'frxCliente'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Style = [fsBold]
+          Frame.Typ = []
+          Memo.UTF8W = (
+            '[frxCliente."CPF"]')
+          ParentFont = False
+        end
+        object Memo4: TfrxMemoView
+          AllowVectorExport = True
+          Left = 480.000310000000000000
+          Top = 46.488213390000000000
+          Width = 94.488250000000000000
+          Height = 18.897650000000000000
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Style = [fsBold]
+          Frame.Typ = []
+          Memo.UTF8W = (
+            'CPF/CNJP.:')
+          ParentFont = False
+        end
+      end
+    end
+  end
+  object frxCliente: TfrxDBDataset
+    UserName = 'frxCliente'
+    CloseDataSource = False
+    DataSource = DM_Cadastro.DT_cliente
+    BCDToCurrency = False
+    DataSetOptions = []
+    Left = 556
+    Top = 456
   end
 end

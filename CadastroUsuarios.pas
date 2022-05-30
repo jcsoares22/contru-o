@@ -5,33 +5,55 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
   System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, CadastroPaiPrincipal, Data.DB,
-  Vcl.StdCtrls, Vcl.ExtCtrls, Vcl.Grids, Vcl.DBGrids, Vcl.ComCtrls, DMDados,
-  Vcl.Mask, Vcl.DBCtrls;
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Data.DB, Vcl.DBCtrls, Vcl.StdCtrls,
+  Vcl.Mask, Vcl.ExtCtrls, Vcl.Grids, Vcl.DBGrids, Vcl.ComCtrls;
 
 type
-  TfrmCadastroUsuario = class(TfrmCadastroPai)
-    DBEdit1: TDBEdit;
+  TfrmCadastroUsuario = class(TForm)
+    Cadastro: TPageControl;
+    TabSheet1: TTabSheet;
+    DBGrid_Cliente: TDBGrid;
+    Panel2: TPanel;
+    Label9: TLabel;
+    Label10: TLabel;
+    Label11: TLabel;
+    Label6: TLabel;
+    CB_Opcao2: TComboBox;
+    CB_opcao: TComboBox;
+    edt_Pesquisa: TEdit;
+    btnPesquisa: TButton;
+    TabSheet2: TTabSheet;
     Label1: TLabel;
-    DB_Nome: TDBEdit;
-    DBEdit3: TDBEdit;
     Label3: TLabel;
-    DBEdit4: TDBEdit;
     Label4: TLabel;
-    DBEdit5: TDBEdit;
     Label5: TLabel;
     Label2: TLabel;
-    Label6: TLabel;
+    Panel1: TPanel;
+    DBEdit1: TDBEdit;
+    DB_Nome: TDBEdit;
+    DBEdit3: TDBEdit;
+    DBEdit4: TDBEdit;
+    DBEdit5: TDBEdit;
     PageControl1: TPageControl;
     Geral: TTabSheet;
-    DBCheckBoxPreferencia: TCheckBox;
-    DBCheckBox_administrador: TCheckBox;
-    procedure btnPesquisaClick(Sender: TObject);
-    procedure edt_PesquisaChange(Sender: TObject);
-    procedure FormClose(Sender: TObject; var Action: TCloseAction);
-    procedure btnSalvarClick(Sender: TObject);
-    procedure btnEditClick(Sender: TObject);
+    Preferencia: TCheckBox;
+    dministrador: TCheckBox;
+    Usuario: TCheckBox;
+    DBCheckBox_administrador: TDBCheckBox;
+    DBCheckBoxPreferencia: TDBCheckBox;
+    Manuteção_usuario: TDBCheckBox;
+    btnNovo: TButton;
+    btnSalvar: TButton;
+    btnEdit: TButton;
+    Button4: TButton;
     procedure btnNovoClick(Sender: TObject);
+    procedure btnSalvarClick(Sender: TObject);
+    procedure edt_PesquisaChange(Sender: TObject);
+    procedure btnPesquisaClick(Sender: TObject);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    procedure btnEditClick(Sender: TObject);
+    procedure FormActivate(Sender: TObject);
+    procedure DBGrid_ClienteDblClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -45,41 +67,43 @@ implementation
 
 {$R *.dfm}
 
-procedure TfrmCadastroUsuario.btnEditClick(Sender: TObject);
-begin
-  inherited;
-      DM_Dados.FDQueryUsuario.Edit;
-end;
+uses Dmdados, LoginMenu;
 
 procedure TfrmCadastroUsuario.btnNovoClick(Sender: TObject);
 begin
   inherited;
-if not(DM_Dados.FDQueryUsuario.State in [dsEdit, dsInsert]) then
+  if not(DM_Dados.FDQueryUsuario.State in [dsEdit, dsInsert]) then
   begin
     DM_Dados.FDQueryUsuario.Insert;
   end;
-
-   if DBCheckBox_administrador.Checked = true then     //COLOCANDO SISTEMA COMO ADMINISTRADOR
-   begin
-      DM_Dados.FDQueryUsuarioADM.Value := 'T';
-   end
+  if DBCheckBox_administrador.Checked = true then
+  // COLOCANDO SISTEMA COMO ADMINISTRADOR
+  begin
+    DM_Dados.FDQueryUsuarioADM.Value := 'T';
+  end
   else
     DM_Dados.FDQueryUsuarioADM.Value := 'F';
 
-    if DBCheckBoxPreferencia.Checked = true then          //COLOCANDO SISTEMA COM PREMISSÃO PARA PODER EDITAR A PREFERENCIA
-   begin
-      DM_Dados.FDQueryUsuarioPREFERENCIA.Value := 'T';
-   end
+  if DBCheckBoxPreferencia.Checked = true then
+  // COLOCANDO SISTEMA COM PREMISSÃO PARA PODER EDITAR A PREFERENCIA
+  begin
+    DM_Dados.FDQueryUsuarioPREFERENCIA.Value := 'T';
+  end
   else
     DM_Dados.FDQueryUsuarioPREFERENCIA.Value := 'F';
 
+  if Manuteção_usuario.Checked = true then
+  // COLOCANDO SISTEMA COM PREMISSÃO PARA PODER EDITAR A PREFERENCIA
+  begin
+    DM_Dados.FDQueryUsuarioCAD_USU.Value := 'T';
+  end
+  else
+    DM_Dados.FDQueryUsuarioCAD_USU.Value := 'F';
 end;
 
 procedure TfrmCadastroUsuario.btnPesquisaClick(Sender: TObject);
 begin
-  inherited;
   DM_Dados.FDQueryUsuario.Close;
-  DM_Dados.FDQueryUsuario.Params.Clear;
   DM_Dados.FDQueryUsuario.SQL.Add('');
   DM_Dados.FDQueryUsuario.SQL.Clear;
   DM_Dados.FDQueryUsuario.SQL.Add('select * from usuario');
@@ -196,9 +220,19 @@ end;
 
 procedure TfrmCadastroUsuario.btnSalvarClick(Sender: TObject);
 begin
-  inherited;
-
+  DM_Dados.FDQueryUsuario.Edit;
   DM_Dados.FDQueryUsuario.Post;
+end;
+
+procedure TfrmCadastroUsuario.DBGrid_ClienteDblClick(Sender: TObject);
+begin
+      Cadastro.TabIndex := 1;
+end;
+
+procedure TfrmCadastroUsuario.btnEditClick(Sender: TObject);
+begin
+  DM_Dados.FDQueryUsuario.Edit;
+
 end;
 
 procedure TfrmCadastroUsuario.edt_PesquisaChange(Sender: TObject);
@@ -208,11 +242,17 @@ begin
     [loPartialKey, loCaseInsensitive]);
 end;
 
+procedure TfrmCadastroUsuario.FormActivate(Sender: TObject);
+begin
+    frmLoginMenu.Visible := false;
+end;
+
 procedure TfrmCadastroUsuario.FormClose(Sender: TObject;
   var Action: TCloseAction);
 begin
-  inherited;
-  FreeAndNil(frmCadastroUsuario);
+  DM_Dados.FDQueryUsuario.Close;
+  frmLoginMenu.Close;
+
 end;
 
 end.

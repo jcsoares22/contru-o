@@ -3,6 +3,7 @@ object DM_Vendas: TDM_Vendas
   Height = 623
   Width = 1204
   object FDQuerySaida_Venda: TFDQuery
+    Active = True
     BeforePost = FDQuerySaida_VendaBeforePost
     IndexesActive = False
     Connection = DM_Dados.DADOS
@@ -45,6 +46,10 @@ object DM_Vendas: TDM_Vendas
     end
     object FDQuerySaida_VendaNOME: TStringField
       FieldName = 'NOME'
+      LookupDataSet = DM_Cadastro.FDQueryCliente
+      LookupKeyFields = 'CODIGO'
+      LookupResultField = 'NOME'
+      KeyFields = 'CODCLIENTE'
       Origin = 'NOME'
       Size = 40
     end

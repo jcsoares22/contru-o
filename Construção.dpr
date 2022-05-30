@@ -20,7 +20,7 @@ uses
   CadastroEstados in 'CadastroEstados.pas' {frmCadastroEstados},
   CadastroCidades in 'CadastroCidades.pas' {frmCadastroCidades},
   CadastroCondPagamento in 'CadastroCondPagamento.pas' {frmCadastroCondPagamento},
-  CadastroUsuarios in 'CadastroUsuarios.pas' {frmCadastroUsuario},
+  CadastroUsuarios2 in 'CadastroUsuarios2.pas' {frmCadastroUsuario2},
   CadastroVendas in 'CadastroVendas.pas' {frmCadastroVendas},
   DMVendas in 'DMVendas.pas' {DM_Vendas: TDataModule},
   CadastroTipoPagamento in 'CadastroTipoPagamento.pas' {frmCadastroTipoPagamento},
@@ -38,7 +38,13 @@ uses
   Vcl.Styles,
   CadastroRapidoCliente in 'CadastroRapidoCliente.pas' {frmCadastroRapidoCliente},
   PesquisaCliente in 'PesquisaCliente.pas' {frmPesquisaCliente},
-  LoginPreferencia in 'LoginPreferencia.pas' {frmLoginPreferencia};
+  LoginPreferencia in 'LoginPreferencia.pas' {frmLoginPreferencia},
+  LoginMenu in 'LoginMenu.pas' {frmLoginMenu},
+  CadastroUsuarios in 'CadastroUsuarios.pas' {frmCadastroUsuario},
+  PesquisaAvancada in 'PesquisaAvancada.pas' {frmPesquisaAvancada},
+  PesquisaAvancadaVenda in 'PesquisaAvancadaVenda.pas' {frmPesquisaAvancadaVenda},
+  EstoqueMinimo in 'EstoqueMinimo.pas' {frmEstoqueminimo},
+  EstoqueProduto in 'EstoqueProduto.pas' {frmEstoque};
 
 {$R *.res}
 
@@ -50,15 +56,13 @@ begin
   Application.MainFormOnTaskbar := True;
   Application.CreateForm(TDM_Dados, DM_Dados);
   Application.CreateForm(TfrmPrincipal, frmPrincipal);
-  Application.CreateForm(TfrmLogin, frmLogin);
   Application.CreateForm(TDM_Cadastro, DM_Cadastro);
   Application.CreateForm(TDM_Endereco, DM_Endereco);
   Application.CreateForm(TDM_Vendas, DM_Vendas);
   Application.CreateForm(TDM_Finaceiro, DM_Finaceiro);
   Application.CreateForm(TDM_Mov_Estoque, DM_Mov_Estoque);
-  Application.CreateForm(TfrmLoginPreferencia, frmLoginPreferencia);
-
-  {usuarios := TfrmLogin.Create(nil);
+  Application.CreateForm(TfrmEstoque, frmEstoque);
+  usuarios := TfrmLogin.Create(nil);
     if usuarios.ShowModal = 1 then
     begin
     usuarios.Free;
@@ -67,7 +71,7 @@ begin
     else
     begin
     usuarios.Free;
-    end; }
+    end;
   // retirar do comentario mais tarde }
   Application.Run;
 

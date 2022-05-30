@@ -1,6 +1,7 @@
 inherited frmCadastroGrupo: TfrmCadastroGrupo
   Caption = 'Grupo'
   ClientHeight = 667
+  ExplicitWidth = 1201
   ExplicitHeight = 706
   PixelsPerInch = 96
   TextHeight = 13

@@ -593,6 +593,7 @@ object frmPrincipal: TfrmPrincipal
         Color = clSkyBlue
         ParentBackground = False
         TabOrder = 0
+        ExplicitTop = -148
         object SpeedButton8: TSpeedButton
           Left = 0
           Top = 0
@@ -662,6 +663,36 @@ object frmPrincipal: TfrmPrincipal
           OnClick = Oramento1Click
         end
         object Button2: TButton
+          Left = 1000
+          Top = 9
+          Width = 75
+          Height = 25
+          Caption = 'Salario'
+          TabOrder = 0
+        end
+      end
+    end
+    object TabSheet3: TTabSheet
+      Caption = 'Financeiro'
+      ImageIndex = 2
+      ExplicitHeight = 269
+      object Panel4: TPanel
+        Left = 0
+        Top = 0
+        Width = 1178
+        Height = 265
+        Align = alTop
+        Alignment = taLeftJustify
+        Color = clSkyBlue
+        ParentBackground = False
+        TabOrder = 0
+        object Lancamento_finaceiro: TSpeedButton
+          Left = 0
+          Top = 3
+          Width = 23
+          Height = 17
+        end
+        object Button1: TButton
           Left = 1000
           Top = 9
           Width = 75
@@ -775,7 +806,8 @@ object frmPrincipal: TfrmPrincipal
         OnClick = Estoque2Click
       end
       object Estoque1: TMenuItem
-        Caption = 'Estoque'
+        Caption = 'Estoque Minimo'
+        OnClick = Estoque1Click
       end
     end
     object Configurao1: TMenuItem

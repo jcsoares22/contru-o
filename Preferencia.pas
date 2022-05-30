@@ -36,12 +36,16 @@ type
     Button1: TButton;
     Button2: TButton;
     Button3: TButton;
+    Produto: TTabSheet;
+    Label2: TLabel;
+    edtEstoqueMinimo: TDBEdit;
     procedure FormCreate(Sender: TObject);
     procedure Button1Click(Sender: TObject);
     procedure Button3Click(Sender: TObject);
     procedure Button2Click(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure Button4Click(Sender: TObject);
+    procedure FormActivate(Sender: TObject);
   private
     { Private declarations }
   public
@@ -55,10 +59,11 @@ implementation
 
 {$R *.dfm}
 
-uses DMDados, DMEndereco;
+uses DMDados, DMEndereco, LoginPreferencia;
 
 procedure TfrmPreferencia.Button1Click(Sender: TObject);
 begin
+  DM_Dados.FDQueryPreferencia.Edit;
   DM_Dados.FDQueryPreferencia.Post;
 end;
 
@@ -74,21 +79,27 @@ end;
 
 procedure TfrmPreferencia.Button4Click(Sender: TObject);
 begin
- frmPreferencia.CloseModal;
+  frmPreferencia.CloseModal;
+end;
+
+procedure TfrmPreferencia.FormActivate(Sender: TObject);
+begin
+  frmLoginPreferencia.Visible := false;
 end;
 
 procedure TfrmPreferencia.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
- DM_Dados.FDQueryPreferencia.close;
+  DM_Dados.FDQueryPreferencia.close;
   DM_Endereco.FDQueryCidade.close;
   DM_Endereco.FDQueryEstados.close;
+  frmLoginPreferencia.close;
 end;
 
 procedure TfrmPreferencia.FormCreate(Sender: TObject);
 begin
   DM_Dados.FDQueryPreferencia.open();
-  DM_Endereco.FDQueryCidade.Open();
-  DM_Endereco.FDQueryEstados.Open();
+  DM_Endereco.FDQueryCidade.open();
+  DM_Endereco.FDQueryEstados.open();
 end;
 
 end.

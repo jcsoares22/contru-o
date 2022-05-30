@@ -7,7 +7,8 @@ uses
   System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Menus, Vcl.StdCtrls, Vcl.ExtCtrls,
   Preferencia,
-  Vcl.ComCtrls, Vcl.Buttons;
+  Vcl.ComCtrls, Vcl.Buttons, Vcl.ToolWin, Vcl.ActnMan, Vcl.ActnCtrls,
+  Vcl.ActnMenus;
 
 type
   TfrmPrincipal = class(TForm)
@@ -50,8 +51,6 @@ type
     TabSheet1: TTabSheet;
     Panel1: TPanel;
     TabSheet2: TTabSheet;
-    Panel3: TPanel;
-    Button2: TButton;
     Cliente: TSpeedButton;
     Conta_SubConta: TSpeedButton;
     SpeedButton1: TSpeedButton;
@@ -60,10 +59,16 @@ type
     SpeedButton4: TSpeedButton;
     SpeedButton5: TSpeedButton;
     SpeedButton7: TSpeedButton;
-    SpeedButton8: TSpeedButton;
-    SpeedButton9: TSpeedButton;
     StatusBar1: TStatusBar;
     Timer1: TTimer;
+    TabSheet3: TTabSheet;
+    Panel3: TPanel;
+    SpeedButton8: TSpeedButton;
+    SpeedButton9: TSpeedButton;
+    Button2: TButton;
+    Panel4: TPanel;
+    Button1: TButton;
+    Lancamento_finaceiro: TSpeedButton;
 
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure bntClienteClick(Sender: TObject);
@@ -86,16 +91,16 @@ type
     procedure Configurao2Click(Sender: TObject);
     procedure Oramento1Click(Sender: TObject);
     procedure Timer1Timer(Sender: TObject);
+    procedure Estoque1Click(Sender: TObject);
   private
     { Private declarations }
   public
     { Public declarations }
-    procedure fecharTela();
+
   end;
 
 var
   frmPrincipal: TfrmPrincipal;
-  formAberto: TForm = nil;
 
 implementation
 
@@ -106,7 +111,8 @@ uses CadastroCliente, CadastroEstados, CadastroUnidadeMedida,
   CadastroCidades, CadastroGrupo, CadastroSubGrupo, CadastroProduto,
   CadastroUsuarios, CadastroVendas, CadastroCondPagamento,
   CasdatroContasFincaeiro, CadastroFinanceiro, CadastroDocumento,
-  MovimentoEstoque, Orcamento, DMDados, LoginPreferencia;
+  MovimentoEstoque, Orcamento, DMDados, LoginPreferencia, LoginMenu, Biblioteca,
+  EstoqueMinimo;
 
 procedure TfrmPrincipal.bntClienteClick(Sender: TObject);
 begin
@@ -154,12 +160,12 @@ end;
 
 procedure TfrmPrincipal.Configurao2Click(Sender: TObject);
 begin // criando uma janela modal onde ele destroi o form quando fecha
-   frmLoginPreferencia := TfrmLoginPreferencia.Create(self);
-    try
+  frmLoginPreferencia := TfrmLoginPreferencia.Create(self);
+  try
     frmLoginPreferencia.showModal;
-    finally
+  finally
     FreeAndNil(frmLoginPreferencia);
-    end;
+  end;
 
 end;
 
@@ -205,6 +211,17 @@ begin
   end;
 end;
 
+procedure TfrmPrincipal.Estoque1Click(Sender: TObject);
+begin
+frmEstoqueminimo := TFrmEstoqueminimo.Create(self);
+    try
+      frmEstoqueminimo.ShowModal;
+    finally
+      FreeAndNil(frmEstoqueminimo);
+
+    end;
+end;
+
 procedure TfrmPrincipal.Estoque2Click(Sender: TObject);
 begin
 
@@ -220,15 +237,6 @@ begin
   end;
 end;
 
-procedure TfrmPrincipal.fecharTela;
-begin
-  if formAberto <> nil then
-  begin
-    formAberto.close;
-    FreeAndNil(formAberto);
-  end;
-
-end;
 
 procedure TfrmPrincipal.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
@@ -285,15 +293,11 @@ end;
 
 procedure TfrmPrincipal.Manutencousurio1Click(Sender: TObject);
 begin
-  fecharTela;
-  if (frmCadastroUsuario = nil) then
-    frmCadastroUsuario := TFrmCadastroUsuario.Create(self);
-  if (not frmCadastroUsuario.showing) then
-    frmCadastroUsuario.Show;
-  begin
-    if frmCadastroUsuario.Visible = False then
-      frmCadastroUsuario.Visible := True;
-    frmCadastroUsuario.BringToFront;
+  frmLoginMenu := TFrmLoginMenu.Create(self);
+  try
+    frmLoginMenu.showModal;
+  finally
+    FreeAndNil(frmLoginMenu);
   end;
 end;
 

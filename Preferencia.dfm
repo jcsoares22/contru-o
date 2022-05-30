@@ -13,6 +13,7 @@ object frmPreferencia: TfrmPreferencia
   Font.Style = []
   OldCreateOrder = False
   Position = poScreenCenter
+  OnActivate = FormActivate
   OnClose = FormClose
   OnCreate = FormCreate
   PixelsPerInch = 96
@@ -22,7 +23,7 @@ object frmPreferencia: TfrmPreferencia
     Top = 0
     Width = 891
     Height = 663
-    ActivePage = TabSheet1
+    ActivePage = Produto
     Align = alClient
     TabOrder = 0
     object TabSheet1: TTabSheet
@@ -201,6 +202,27 @@ object frmPreferencia: TfrmPreferencia
         Width = 73
         Height = 21
         DataField = 'DESCONTO_VENDA'
+        DataSource = DM_Dados.DT_Preferencia
+        TabOrder = 0
+      end
+    end
+    object Produto: TTabSheet
+      Caption = 'Produto'
+      ImageIndex = 2
+      object Label2: TLabel
+        Left = 16
+        Top = 0
+        Width = 92
+        Height = 13
+        Caption = 'ESTOQUE_MINIMO'
+        FocusControl = edtEstoqueMinimo
+      end
+      object edtEstoqueMinimo: TDBEdit
+        Left = 16
+        Top = 19
+        Width = 81
+        Height = 21
+        DataField = 'ESTOQUE_MINIMO'
         DataSource = DM_Dados.DT_Preferencia
         TabOrder = 0
       end

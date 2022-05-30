@@ -37,6 +37,9 @@ object DM_Mov_Estoque: TDM_Mov_Estoque
   end
   object FDQuery_Movimento_estoque_item: TFDQuery
     AfterPost = FDQuery_Movimento_estoque_itemAfterPost
+    IndexFieldNames = 'ID_MOVIMENTACAO'
+    MasterSource = DTMovimentoEstoque
+    MasterFields = 'ID_MOVIMENTACAO'
     Connection = DM_Dados.DADOS
     SQL.Strings = (
       'select * from movimento_estoque_item')

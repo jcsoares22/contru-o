@@ -35,8 +35,8 @@ object DM_Dados: TDM_Dados
     Connection = DADOS
     SQL.Strings = (
       'SELECT * FROM controle_sistema')
-    Left = 32
-    Top = 232
+    Left = 608
+    Top = 56
     object FDQueryPreferenciaTELEFONE: TStringField
       FieldName = 'TELEFONE'
       Origin = 'TELEFONE'
@@ -91,18 +91,28 @@ object DM_Dados: TDM_Dados
       Precision = 18
       Size = 2
     end
+    object FDQueryPreferenciaESTOQUE_MINIMO: TBCDField
+      FieldName = 'ESTOQUE_MINIMO'
+      Origin = 'ESTOQUE_MINIMO'
+      Precision = 18
+      Size = 2
+    end
   end
   object DT_Preferencia: TDataSource
     DataSet = FDQueryPreferencia
-    Left = 128
-    Top = 256
+    Left = 704
+    Top = 56
   end
   object FDQueryUsuario: TFDQuery
     Connection = DADOS
+    UpdateOptions.AssignedValues = [uvFetchGeneratorsPoint, uvGeneratorName]
+    UpdateOptions.FetchGeneratorsPoint = gpImmediate
+    UpdateOptions.GeneratorName = 'GEN_USUARIO_ID'
+    UpdateOptions.AutoIncFields = 'USU_CODIGO'
     SQL.Strings = (
       'select * from usuario')
-    Left = 24
-    Top = 112
+    Left = 32
+    Top = 120
     object FDQueryUsuarioUSU_CODIGO: TIntegerField
       FieldName = 'USU_CODIGO'
       Origin = 'USU_CODIGO'
@@ -141,6 +151,12 @@ object DM_Dados: TDM_Dados
     object FDQueryUsuarioPREFERENCIA: TStringField
       FieldName = 'PREFERENCIA'
       Origin = 'PREFERENCIA'
+      FixedChar = True
+      Size = 1
+    end
+    object FDQueryUsuarioCAD_USU: TStringField
+      FieldName = 'CAD_USU'
+      Origin = 'CAD_USU'
       FixedChar = True
       Size = 1
     end

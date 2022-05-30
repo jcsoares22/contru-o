@@ -43,7 +43,7 @@ uses MovimentoEstoque;
 procedure TDM_Mov_Estoque.FDQuery_Movimento_estoque_itemAfterPost
   (DataSet: TDataSet);
 begin
-
+       DM_Cadastro.FDQueryProduto.Edit;
   case frmMovimento_estoque.DBCB_Movimentacao.ItemIndex of
     0: // entrada de estoque
       begin

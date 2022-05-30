@@ -51,7 +51,7 @@ begin
   //DM_Dados.FDQueryPreferenciaNOME.AsString;     //TODO verificar o por que não esta carregando o nome da empresa
     {showmessage('acesso liberado');}//validação temporaria
     frmPrincipal.StatusBar1.Panels[0].Text :=  'Emp ' + nomeEmpres;  //
-    frmPrincipal.StatusBar1.Panels[1].Text := 'Usuário.: '+  DM_Dados.FDQueryUsuarioUSU_NOME.AsString;// TODO  verificar como colocar o nome da empresa
+    frmPrincipal.StatusBar1.Panels[1].Text := DM_Dados.FDQueryUsuarioUSU_NOME.AsString;// TODO  verificar como colocar o nome da empresa
   end
   else
   begin

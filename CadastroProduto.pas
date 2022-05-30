@@ -7,7 +7,7 @@ uses
   System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, CadastroPaiPrincipal, Data.DB,
   Vcl.StdCtrls, Vcl.ExtCtrls, Vcl.Grids, Vcl.DBGrids, Vcl.ComCtrls, Vcl.DBCtrls,
-  Vcl.Mask, DMCadastro;
+  Vcl.Mask, DMCadastro, Biblioteca;
 
 type
   TfrmCadastroProduto = class(TfrmCadastroPai)
@@ -63,6 +63,8 @@ type
     DB_Qte_Atual: TDBEdit;
     DBImage1: TDBImage;
     DBNavigator1: TDBNavigator;
+    Panel3: TPanel;
+    btnEstoque: TButton;
     procedure DB_APrazoExit(Sender: TObject);
     procedure DB_AvistaExit(Sender: TObject);
     procedure btnNovoClick(Sender: TObject);
@@ -72,6 +74,7 @@ type
     procedure btnCancelarClick(Sender: TObject);
     procedure btnPesquisaClick(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    procedure btnEstoqueClick(Sender: TObject);
   private
     { Private declarations }
     procedure mod_ReadOnlyFalse;
@@ -86,6 +89,8 @@ var
 implementation
 
 {$R *.dfm}
+
+uses EstoqueProduto;
 
 procedure TfrmCadastroProduto.btnCancelarClick(Sender: TObject);
 begin
@@ -117,6 +122,21 @@ begin
   inherited;
   DM_Cadastro.FDQueryProduto.Edit;
   mod_ReadOnlyFalse;
+end;
+
+procedure TfrmCadastroProduto.btnEstoqueClick(Sender: TObject);
+begin
+  inherited;
+fecharTela;
+  if (frmEstoque = nil) then
+    frmEstoque := TFrmEstoque.Create(self);
+  if (not frmEstoque.showing) then
+    frmEstoque.Show;
+  begin
+    if frmEstoque.Visible = False then
+      frmEstoque.Visible := True;
+    frmEstoque.BringToFront;
+  end;
 end;
 
 procedure TfrmCadastroProduto.btnNovoClick(Sender: TObject);

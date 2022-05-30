@@ -8,7 +8,7 @@ uses
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Data.DB, Vcl.StdCtrls, Vcl.DBCtrls,
   Vcl.Mask, Vcl.Grids, Vcl.DBGrids, Vcl.ExtCtrls, Vcl.ComCtrls, Vcl.ColorGrd,
   IWVCLBaseControl, IWBaseControl, IWBaseHTMLControl, IWControl, IWDBStdCtrls,
-  Vcl.Buttons;
+  Vcl.Buttons, frxClass, frxDBSet;
 
 type
   TfrmCadastroVendas = class(TForm)
@@ -52,17 +52,15 @@ type
     CB_Opcao2: TComboBox;
     edt_Pesquisa: TEdit;
     btnPesquisa: TButton;
-    Label19: TLabel;
     DBEdit4: TDBEdit;
     DBNavigator1: TDBNavigator;
-    SpeedButton1: TSpeedButton;
     SpeedButton2: TSpeedButton;
     Label14: TLabel;
     DBC_Desconto: TDBComboBox;
     DBE_Desconto: TDBEdit;
     DBEdit6: TDBEdit;
     Label7: TLabel;
-    DBLookupComboBox1: TDBLookupComboBox;
+    DBLookupCB_Cliente: TDBLookupComboBox;
     DBGrid1: TDBGrid;
     Sitação: TRadioGroup;
     DBEdit2: TDBEdit;
@@ -73,6 +71,12 @@ type
     Label16: TLabel;
     Label15: TLabel;
     DBComboBox2: TDBComboBox;
+    frVendas: TfrxReport;
+    frxDadosvenda: TfrxDBDataset;
+    frxItens_vendas: TfrxDBDataset;
+    btnImprimir: TBitBtn;
+    Panel4: TPanel;
+    btnPesquisaAvancadaVenda: TButton;
     procedure DBGridVendasExit(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure btnNovoClick(Sender: TObject);
@@ -91,6 +95,8 @@ type
     procedure DBE_DescontoEnter(Sender: TObject);
     procedure SpeedButton2Click(Sender: TObject);
     procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
+    procedure btnImprimirClick(Sender: TObject);
+    procedure btnPesquisaAvancadaVendaClick(Sender: TObject);
   private
     { Private declarations }
 
@@ -108,7 +114,7 @@ implementation
 {$R *.dfm}
 
 uses DMVendas, DMCadastro, CadastroFinanceiro, Preferencia, DMDados, Principal,
-  CadastroRapidoCliente, PesquisaCliente;
+  CadastroRapidoCliente, PesquisaCliente, Biblioteca, PesquisaAvancadaVenda;
 
 procedure TfrmCadastroVendas.btnCancelarClick(Sender: TObject);
 begin
@@ -160,6 +166,12 @@ begin
 
 end;
 
+procedure TfrmCadastroVendas.btnImprimirClick(Sender: TObject);
+begin
+//frVendas.Variables.Variables['Cliente'] := QuotedStr(DBLookupCB_Cliente.Text);
+CarregaRelatorio(frVendas);
+end;
+
 procedure TfrmCadastroVendas.btnNovoClick(Sender: TObject);
 begin
 DM_Vendas.FDQuerySaidaProduto.Open();
@@ -175,8 +187,23 @@ DM_Vendas.FDQuerySaidaProduto.Open();
   btnEdit.Enabled := false;
   btnDeletar.Enabled := false;
   DM_Vendas.FDQuerySaida_VendaDATAVENDA.AsDateTime := date;
-  DM_Vendas.FDQuerySaida_VendaUSU_NOME.Text :=
-    frmPrincipal.StatusBar1.Panels[1].Text;     //para colocar quem esta logado para pode saber quem fez a venda
+  DM_Vendas.FDQuerySaida_VendaUSU_NOME.Text :=  DM_Dados.FDQueryUsuarioUSU_NOME.AsString;
+   // frmPrincipal.StatusBar1.Panels[1].Text;     //para colocar quem esta logado para pode saber quem fez a venda
+end;
+
+procedure TfrmCadastroVendas.btnPesquisaAvancadaVendaClick(Sender: TObject);
+begin
+
+ fecharTela;
+  if (frmPesquisaAvancadaVenda = nil) then
+    frmPesquisaAvancadaVenda := TFrmPesquisaAvancadaVenda.Create(self);
+  if (not frmPesquisaAvancadaVenda.showing) then
+    frmPesquisaAvancadaVenda.Show;
+  begin
+    if frmPesquisaAvancadaVenda.Visible = False then
+      frmPesquisaAvancadaVenda.Visible := True;
+    frmPesquisaAvancadaVenda.BringToFront;
+  end;
 end;
 
 procedure TfrmCadastroVendas.btnPesquisaClick(Sender: TObject);
@@ -299,7 +326,8 @@ end;
 
 procedure TfrmCadastroVendas.btnSalvarClick(Sender: TObject);
 begin
-
+  ShowMessage('Totalizando a venda!');
+  totaliza;
   try
     DM_Vendas.FDQuerySaida_Venda.edit;
     DM_Vendas.FDQuerySaidaProduto.edit;
@@ -525,6 +553,7 @@ begin
       end;
     end;
   end;
+
 
 end;
 

@@ -160,8 +160,8 @@
         <DCCReference Include="CadastroCondPagamento.pas">
             <Form>frmCadastroCondPagamento</Form>
         </DCCReference>
-        <DCCReference Include="CadastroUsuarios.pas">
-            <Form>frmCadastroUsuario</Form>
+        <DCCReference Include="CadastroUsuarios2.pas">
+            <Form>frmCadastroUsuario2</Form>
         </DCCReference>
         <DCCReference Include="CadastroVendas.pas">
             <Form>frmCadastroVendas</Form>
@@ -214,6 +214,30 @@
         </DCCReference>
         <DCCReference Include="LoginPreferencia.pas">
             <Form>frmLoginPreferencia</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="LoginMenu.pas">
+            <Form>frmLoginMenu</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="CadastroUsuarios.pas">
+            <Form>frmCadastroUsuario</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="PesquisaAvancada.pas">
+            <Form>frmPesquisaAvancada</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="PesquisaAvancadaVenda.pas">
+            <Form>frmPesquisaAvancadaVenda</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="EstoqueMinimo.pas">
+            <Form>frmEstoqueminimo</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="EstoqueProduto.pas">
+            <Form>frmEstoque</Form>
             <FormType>dfm</FormType>
         </DCCReference>
         <BuildConfiguration Include="Release">

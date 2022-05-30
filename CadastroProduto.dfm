@@ -8,15 +8,18 @@ inherited frmCadastroProduto: TfrmCadastroProduto
   TextHeight = 13
   inherited Cadastro: TPageControl
     Width = 1127
-    Height = 675
+    Height = 634
+    ActivePage = TabSheet1
     ExplicitWidth = 1127
     ExplicitHeight = 675
     inherited TabSheet1: TTabSheet
+      ExplicitLeft = 4
+      ExplicitTop = 24
       ExplicitWidth = 1119
       ExplicitHeight = 647
       inherited DBGrid_Cliente: TDBGrid
         Width = 1119
-        Height = 606
+        Height = 565
         DataSource = DM_Cadastro.DT_produto
         Columns = <
           item
@@ -162,6 +165,8 @@ inherited frmCadastroProduto: TfrmCadastroProduto
       end
     end
     inherited TabSheet2: TTabSheet
+      ExplicitLeft = 4
+      ExplicitTop = 24
       ExplicitWidth = 1119
       ExplicitHeight = 647
       object Foto: TImage [0]
@@ -636,6 +641,26 @@ inherited frmCadastroProduto: TfrmCadastroProduto
         DataSource = DM_Cadastro.DT_produto
         TabOrder = 18
       end
+    end
+  end
+  object Panel3: TPanel
+    Left = 0
+    Top = 634
+    Width = 1127
+    Height = 41
+    Align = alBottom
+    TabOrder = 1
+    ExplicitLeft = 24
+    ExplicitTop = 632
+    ExplicitWidth = 185
+    object btnEstoque: TButton
+      Left = 31
+      Top = 6
+      Width = 75
+      Height = 25
+      Caption = 'Estoque'
+      TabOrder = 0
+      OnClick = btnEstoqueClick
     end
   end
 end

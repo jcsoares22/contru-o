@@ -7,7 +7,7 @@ uses
   System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, CadastroPaiPrincipal, Data.DB,
   Vcl.DBCtrls, Vcl.StdCtrls, Vcl.ExtCtrls, Vcl.Grids, Vcl.DBGrids, Vcl.ComCtrls,
-  Vcl.Mask, DMEndereco, DMCadastro;
+  Vcl.Mask, DMEndereco, DMCadastro, Biblioteca, frxClass, frxDBSet;
 
 type
   TfrmCadastroCliente = class(TfrmCadastroPai)
@@ -34,6 +34,12 @@ type
     DB_Descricao: TDBEdit;
     DBNavigator1: TDBNavigator;
     Edt_bairro: TDBEdit;
+    PaintBox1: TPaintBox;
+    Panel4: TPanel;
+    btnPesquisaAvancada: TButton;
+    btnImprimir: TButton;
+    frCliente: TfrxReport;
+    frxCliente: TfrxDBDataset;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure btnNovoClick(Sender: TObject);
     procedure btnSalvarClick(Sender: TObject);
@@ -42,6 +48,9 @@ type
     procedure btnCancelarClick(Sender: TObject);
     procedure btnPesquisaClick(Sender: TObject);
     procedure DB_CpfKeyPress(Sender: TObject; var Key: Char);
+    procedure DBGrid_ClienteDblClick(Sender: TObject);
+    procedure btnPesquisaAvancadaClick(Sender: TObject);
+    procedure btnImprimirClick(Sender: TObject);
   private
     { Private declarations }
     procedure mod_ReadOnly;
@@ -57,6 +66,8 @@ var
 implementation
 
 {$R *.dfm}
+
+uses PesquisaAvancada;
 
 procedure TfrmCadastroCliente.btnCancelarClick(Sender: TObject);
 begin
@@ -92,6 +103,12 @@ begin
   mod_ReadOnly;
 end;
 
+procedure TfrmCadastroCliente.btnImprimirClick(Sender: TObject);
+begin
+  inherited;
+CarregaRelatorio(frCliente);
+end;
+
 procedure TfrmCadastroCliente.btnNovoClick(Sender: TObject);
 var
   prox: integer;
@@ -107,6 +124,21 @@ begin // usando a variavel prox para poder acrescentar +1 no cadastro
   DM_Cadastro.FDQueryClienteCODIGO.AsInteger := prox;
   DB_Nome.SetFocus; // colocando o foco no campo nome
 
+end;
+
+procedure TfrmCadastroCliente.btnPesquisaAvancadaClick(Sender: TObject);
+begin
+  inherited;
+   fecharTela;
+  if (frmPesquisaAvancada = nil) then
+    frmPesquisaAvancada := TFrmPesquisaAvancada.Create(self);
+  if (not frmPesquisaAvancada.showing) then
+    frmPesquisaAvancada.Show;
+  begin
+    if frmPesquisaAvancada.Visible = False then
+      frmPesquisaAvancada.Visible := True;
+    frmPesquisaAvancada.BringToFront;
+  end;
 end;
 
 procedure TfrmCadastroCliente.btnPesquisaClick(Sender: TObject);
@@ -243,6 +275,12 @@ begin
     end;
     end; }
 
+end;
+
+procedure TfrmCadastroCliente.DBGrid_ClienteDblClick(Sender: TObject);
+begin
+  inherited;
+  Cadastro.TabIndex := 1;
 end;
 
 procedure TfrmCadastroCliente.DB_CpfKeyPress(Sender: TObject; var Key: Char);

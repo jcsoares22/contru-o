@@ -1,7 +1,7 @@
 object frmLoginPreferencia: TfrmLoginPreferencia
   Left = 0
   Top = 0
-  ClientHeight = 299
+  ClientHeight = 136
   ClientWidth = 297
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -33,7 +33,7 @@ object frmLoginPreferencia: TfrmLoginPreferencia
     Width = 121
     Height = 21
     PasswordChar = '*'
-    TabOrder = 0
+    TabOrder = 1
   end
   object edtLogin: TEdit
     Left = 75
@@ -41,7 +41,7 @@ object frmLoginPreferencia: TfrmLoginPreferencia
     Width = 121
     Height = 21
     CharCase = ecUpperCase
-    TabOrder = 1
+    TabOrder = 0
   end
   object btnLogin: TButton
     Left = 214
@@ -59,5 +59,15 @@ object frmLoginPreferencia: TfrmLoginPreferencia
     Height = 25
     Caption = 'Cancelar'
     TabOrder = 3
+  end
+  object ListBox1: TListBox
+    Left = 19
+    Top = 96
+    Width = 246
+    Height = 25
+    ItemHeight = 13
+    Items.Strings = (
+      'Acesso apenas para Administradores do sistema')
+    TabOrder = 4
   end
 end

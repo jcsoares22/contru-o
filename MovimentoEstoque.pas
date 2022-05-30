@@ -27,7 +27,6 @@ type
     procedure btnCancelarClick(Sender: TObject);
     procedure btnEditClick(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
-    procedure FormCreate(Sender: TObject);
   private
     { Private declarations }
   public
@@ -66,24 +65,24 @@ procedure TfrmMovimento_estoque.btnNovoClick(Sender: TObject);
 
 begin // usando a variavel prox para poder acrescentar +1 no cadastro
   inherited;
- if not(DM_Mov_Estoque.FDQueryMovimentoEstoque.State in [dsEdit, dsInsert]) then
+  if not(DM_Mov_Estoque.FDQueryMovimentoEstoque.State in [dsEdit, dsInsert])
+  then
   begin
-   DM_Mov_Estoque.FDQueryMovimentoEstoque.Insert;
- END;
+    DM_Mov_Estoque.FDQueryMovimentoEstoque.Insert;
+  END;
   // colocando o foco no campo nome
   DBGrid.SetFocus;
   DBGrid.SelectedIndex := 1;
-     DM_Mov_Estoque.FDQueryMovimentoEstoqueNOME_USUARIO.Text :=
+  DM_Mov_Estoque.FDQueryMovimentoEstoqueNOME_USUARIO.Text :=
     frmPrincipal.StatusBar1.Panels[1].Text;
-    DATE_Mov.Text :=  DateToStr(now);
+  DATE_Mov.Text := DateToStr(now);
 end;
 
 procedure TfrmMovimento_estoque.btnSalvarClick(Sender: TObject);
 begin
   inherited;
-     DM_Cadastro.FDQueryProduto.Open();
-  DM_Cadastro.FDQueryProduto.Edit;
-   case frmMovimento_estoque.DBCB_Movimentacao.ItemIndex of
+  { DM_Cadastro.FDQueryProduto.Edit;
+    case frmMovimento_estoque.DBCB_Movimentacao.ItemIndex of
     0: // entrada de estoque
     begin
     DM_Cadastro.FDQueryProdutoQUANTIDADE_ENTRADA.Value  :=
@@ -101,27 +100,21 @@ begin
     DM_Mov_Estoque.FDQuery_Movimento_estoque_itemQUANTIDADE.Value);
     // DM_Cadastro.FDQueryProduto.post;
     end;
-end;
-DM_Mov_Estoque.FDQueryMovimentoEstoque.Edit;
-DM_Mov_Estoque.FDQuery_Movimento_estoque_item.Edit;
-DM_Cadastro.FDQueryProduto.Edit;
-DM_Mov_Estoque.FDQueryMovimentoEstoque.Post;
-DM_Cadastro.FDQueryProduto.Post;
-DM_Mov_Estoque.FDQuery_Movimento_estoque_item.Post;
+    end; }
+  DM_Cadastro.FDQueryProduto.Edit;
+  DM_Mov_Estoque.FDQueryMovimentoEstoque.Edit;
+  DM_Mov_Estoque.FDQuery_Movimento_estoque_item.Edit;
+
+  DM_Mov_Estoque.FDQueryMovimentoEstoque.Post;
+  DM_Cadastro.FDQueryProduto.Post;
+  DM_Mov_Estoque.FDQuery_Movimento_estoque_item.Post;
 end;
 
 procedure TfrmMovimento_estoque.FormClose(Sender: TObject;
   var Action: TCloseAction);
 begin
   inherited;
-FreeAndNil(frmMovimento_estoque);
-end;
-
-procedure TfrmMovimento_estoque.FormCreate(Sender: TObject);
-begin
-  inherited;
-    DM_Cadastro.FDQueryProduto.Open();
-
+  FreeAndNil(frmMovimento_estoque);
 end;
 
 end.
