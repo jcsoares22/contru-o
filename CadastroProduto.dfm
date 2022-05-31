@@ -9,14 +9,13 @@ inherited frmCadastroProduto: TfrmCadastroProduto
   inherited Cadastro: TPageControl
     Width = 1127
     Height = 634
-    ActivePage = TabSheet1
     ExplicitWidth = 1127
-    ExplicitHeight = 675
+    ExplicitHeight = 634
     inherited TabSheet1: TTabSheet
       ExplicitLeft = 4
       ExplicitTop = 24
       ExplicitWidth = 1119
-      ExplicitHeight = 647
+      ExplicitHeight = 606
       inherited DBGrid_Cliente: TDBGrid
         Width = 1119
         Height = 565
@@ -35,37 +34,31 @@ inherited frmCadastroProduto: TfrmCadastroProduto
           item
             Expanded = False
             FieldName = 'UN_MEDIDA'
-            Width = 64
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'PRECO_CUSTO'
-            Width = 64
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'PRECO_VENDA'
-            Width = 64
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'SITUACAO'
-            Width = 64
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'OBS'
-            Width = 64
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'DATACAD'
-            Width = 64
             Visible = True
           end
           item
@@ -76,7 +69,6 @@ inherited frmCadastroProduto: TfrmCadastroProduto
           item
             Expanded = False
             FieldName = 'DATAVENDA'
-            Width = 64
             Visible = True
           end
           item
@@ -87,7 +79,6 @@ inherited frmCadastroProduto: TfrmCadastroProduto
           item
             Expanded = False
             FieldName = 'COR'
-            Width = 64
             Visible = True
           end
           item
@@ -98,43 +89,36 @@ inherited frmCadastroProduto: TfrmCadastroProduto
           item
             Expanded = False
             FieldName = 'FOTO'
-            Width = 64
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'MARCA'
-            Width = 64
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'BAIRRO'
-            Width = 64
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'PRECENTO_LUCRO'
-            Width = 64
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'PRECO_PRAZO_CUSTO'
-            Width = 64
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'PRECO_PRAZO_VENDA'
-            Width = 64
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'PRECENTO_PRAZO_LUCRO'
-            Width = 64
             Visible = True
           end
           item
@@ -150,7 +134,6 @@ inherited frmCadastroProduto: TfrmCadastroProduto
           item
             Expanded = False
             FieldName = 'ID_SUBGRUPO'
-            Width = 64
             Visible = True
           end>
       end
@@ -168,10 +151,10 @@ inherited frmCadastroProduto: TfrmCadastroProduto
       ExplicitLeft = 4
       ExplicitTop = 24
       ExplicitWidth = 1119
-      ExplicitHeight = 647
+      ExplicitHeight = 606
       object Foto: TImage [0]
-        Left = 880
-        Top = 94
+        Left = 611
+        Top = 47
         Width = 239
         Height = 175
         Stretch = True
@@ -186,55 +169,34 @@ inherited frmCadastroProduto: TfrmCadastroProduto
       end
       object Label12: TLabel [2]
         Left = 18
-        Top = 549
+        Top = 349
         Width = 20
         Height = 13
         Caption = 'OBS'
         FocusControl = DBEdit9
       end
       object Label13: TLabel [3]
-        Left = 1091
-        Top = 47
+        Left = 577
+        Top = 48
         Width = 28
         Height = 13
         Caption = 'FOTO'
       end
-      object Label14: TLabel [4]
-        Left = 20
-        Top = 125
-        Width = 48
-        Height = 13
-        Caption = 'DATACAD'
-      end
-      object Label15: TLabel [5]
-        Left = 112
-        Top = 126
-        Width = 88
-        Height = 13
-        Caption = 'DATAULTCOMPRA'
-      end
-      object Label16: TLabel [6]
-        Left = 238
-        Top = 123
-        Width = 60
-        Height = 13
-        Caption = 'DATAVENDA'
-      end
-      object Label18: TLabel [7]
-        Left = 621
-        Top = 196
+      object Label18: TLabel [4]
+        Left = 437
+        Top = 156
         Width = 17
         Height = 13
         Caption = 'Cor'
       end
-      object Label19: TLabel [8]
-        Left = 675
-        Top = 267
+      object Label19: TLabel [5]
+        Left = 200
+        Top = 96
         Width = 59
         Height = 13
         Caption = 'UN_MEDIDA'
       end
-      object Label2: TLabel [9]
+      object Label2: TLabel [6]
         Left = 82
         Top = 48
         Width = 49
@@ -242,22 +204,22 @@ inherited frmCadastroProduto: TfrmCadastroProduto
         Caption = 'PRODUTO'
         FocusControl = Nome_produto
       end
-      object Label21: TLabel [10]
-        Left = 613
-        Top = 233
+      object Label21: TLabel [7]
+        Left = 426
+        Top = 181
         Width = 29
         Height = 13
         Caption = 'Marca'
       end
-      object Label25: TLabel [11]
-        Left = 746
-        Top = 434
+      object Label25: TLabel [8]
+        Left = 472
+        Top = 402
         Width = 85
         Height = 13
         Caption = 'Quantidade Saida'
         FocusControl = DB_Qte_Saida
       end
-      object Label3: TLabel [12]
+      object Label3: TLabel [9]
         Left = 712
         Top = -328
         Width = 59
@@ -265,54 +227,63 @@ inherited frmCadastroProduto: TfrmCadastroProduto
         Caption = 'UN_MEDIDA'
         FocusControl = DBEdit3
       end
-      object Label4: TLabel [13]
-        Left = 547
-        Top = 132
+      object Label4: TLabel [10]
+        Left = 363
+        Top = 98
         Width = 91
         Height = 13
         Caption = 'GRUPO_MATERIAL'
       end
-      object Label8: TLabel [14]
-        Left = 588
-        Top = 168
+      object Label8: TLabel [11]
+        Left = 404
+        Top = 126
         Width = 50
         Height = 13
         Caption = 'Sub Grupo'
       end
-      object Label17: TLabel [15]
-        Left = 20
-        Top = 147
+      object Label17: TLabel [12]
+        Left = 16
+        Top = 96
         Width = 48
         Height = 13
         Caption = 'DATACAD'
         FocusControl = DB_DT_Cad
       end
-      object Label26: TLabel [16]
-        Left = 20
-        Top = 230
+      object Label26: TLabel [13]
+        Left = 112
+        Top = 97
         Width = 60
         Height = 13
         Caption = 'DATAVENDA'
         FocusControl = DB_DT_Venda
       end
-      object Label27: TLabel [17]
-        Left = 746
-        Top = 392
+      object Label27: TLabel [14]
+        Left = 472
+        Top = 360
         Width = 119
         Height = 13
         Caption = 'QUANTIDADE_ENTRADA'
         FocusControl = DB_Qte_Entrada
       end
-      object Label28: TLabel [18]
-        Left = 746
-        Top = 482
+      object Label28: TLabel [15]
+        Left = 472
+        Top = 450
         Width = 104
         Height = 13
         Caption = 'QUANTIDADE_ATUAL'
         FocusControl = DB_Qte_Atual
       end
+      object Label20: TLabel [16]
+        Left = 472
+        Top = 498
+        Width = 64
+        Height = 13
+        Caption = 'QTE_MINIMA'
+        FocusControl = DBEdtQTE_Minima
+      end
       inherited Panel1: TPanel
         Width = 1119
+        TabOrder = 1
         ExplicitWidth = 1119
         inherited btnDeletar: TButton
           OnClick = btnDeletarClick
@@ -328,12 +299,12 @@ inherited frmCadastroProduto: TfrmCadastroProduto
         end
       end
       object btn_foto: TButton
-        Left = 940
-        Top = 307
+        Left = 773
+        Top = 228
         Width = 75
         Height = 25
         Caption = 'Carregar'
-        TabOrder = 1
+        TabOrder = 7
       end
       object DB_Codigo: TDBEdit
         Left = 16
@@ -343,7 +314,7 @@ inherited frmCadastroProduto: TfrmCadastroProduto
         DataField = 'CODIGO'
         DataSource = DM_Cadastro.DT_produto
         ReadOnly = True
-        TabOrder = 2
+        TabOrder = 8
       end
       object DBEdit3: TDBEdit
         Left = 712
@@ -351,22 +322,22 @@ inherited frmCadastroProduto: TfrmCadastroProduto
         Width = 55
         Height = 21
         DataField = 'UN_MEDIDA'
-        TabOrder = 3
+        TabOrder = 9
       end
       object DBEdit9: TDBEdit
         Left = 18
-        Top = 568
+        Top = 368
         Width = 441
-        Height = 21
+        Height = 127
         CharCase = ecUpperCase
         DataField = 'OBS'
         DataSource = DM_Cadastro.DT_produto
         ReadOnly = True
-        TabOrder = 4
+        TabOrder = 10
       end
       object DBLookupComboBoxCor: TDBLookupComboBox
-        Left = 644
-        Top = 192
+        Left = 460
+        Top = 152
         Width = 145
         Height = 21
         DataField = 'COR'
@@ -378,8 +349,8 @@ inherited frmCadastroProduto: TfrmCadastroProduto
         TabOrder = 5
       end
       object DBLookupComboBoxMarca: TDBLookupComboBox
-        Left = 648
-        Top = 233
+        Left = 461
+        Top = 181
         Width = 145
         Height = 21
         DataField = 'MARCA'
@@ -391,8 +362,8 @@ inherited frmCadastroProduto: TfrmCadastroProduto
         TabOrder = 6
       end
       object DBLookupComboBoxUNMedida: TDBLookupComboBox
-        Left = 675
-        Top = 286
+        Left = 201
+        Top = 115
         Width = 65
         Height = 21
         DataField = 'UN_MEDIDA'
@@ -401,21 +372,21 @@ inherited frmCadastroProduto: TfrmCadastroProduto
         ListField = 'SIGLA_MEDIDA'
         ListSource = DM_Cadastro.Dt_medida
         ReadOnly = True
-        TabOrder = 7
+        TabOrder = 2
       end
       object DB_Qte_Saida: TDBEdit
-        Left = 746
-        Top = 453
+        Left = 472
+        Top = 421
         Width = 134
         Height = 21
         DataField = 'QUANTIDADE_SAIDA'
         DataSource = DM_Cadastro.DT_produto
         ReadOnly = True
-        TabOrder = 8
+        TabOrder = 11
       end
       object DBRadioGroup1: TDBRadioGroup
-        Left = 634
-        Top = 47
+        Left = 322
+        Top = 228
         Width = 137
         Height = 61
         Caption = 'Situa'#231#227'o'
@@ -425,7 +396,7 @@ inherited frmCadastroProduto: TfrmCadastroProduto
         Items.Strings = (
           'Ativo'
           'Inativo')
-        TabOrder = 9
+        TabOrder = 12
         Values.Strings = (
           'A'
           'I')
@@ -439,15 +410,15 @@ inherited frmCadastroProduto: TfrmCadastroProduto
         DataField = 'PRODUTO'
         DataSource = DM_Cadastro.DT_produto
         ReadOnly = True
-        TabOrder = 10
+        TabOrder = 0
       end
       object PageControl1: TPageControl
-        Left = 192
-        Top = 330
+        Left = 16
+        Top = 142
         Width = 289
         Height = 193
-        ActivePage = TabSheet4
-        TabOrder = 11
+        ActivePage = TabSheet3
+        TabOrder = 13
         object TabSheet3: TTabSheet
           Caption = #192' vista'
           object Label7: TLabel
@@ -482,7 +453,7 @@ inherited frmCadastroProduto: TfrmCadastroProduto
             DataField = 'PRECO_CUSTO'
             DataSource = DM_Cadastro.DT_produto
             ReadOnly = True
-            TabOrder = 0
+            TabOrder = 2
           end
           object DB_Avista: TDBEdit
             Left = 97
@@ -492,7 +463,7 @@ inherited frmCadastroProduto: TfrmCadastroProduto
             DataField = 'PRECENTO_LUCRO'
             DataSource = DM_Cadastro.DT_produto
             ReadOnly = True
-            TabOrder = 1
+            TabOrder = 0
             OnExit = DB_AvistaExit
           end
           object DBEdit7: TDBEdit
@@ -503,12 +474,14 @@ inherited frmCadastroProduto: TfrmCadastroProduto
             DataField = 'PRECO_VENDA'
             DataSource = DM_Cadastro.DT_produto
             ReadOnly = True
-            TabOrder = 2
+            TabOrder = 1
           end
         end
         object TabSheet4: TTabSheet
           Caption = #192' prazo'
           ImageIndex = 1
+          ExplicitLeft = 132
+          ExplicitTop = 8
           object Label22: TLabel
             Left = 3
             Top = 21
@@ -567,28 +540,28 @@ inherited frmCadastroProduto: TfrmCadastroProduto
         end
       end
       object DB_DT_Cad: TDBEdit
-        Left = 20
-        Top = 163
-        Width = 113
+        Left = 16
+        Top = 115
+        Width = 71
         Height = 21
         DataField = 'DATACAD'
         DataSource = DM_Cadastro.DT_produto
         ReadOnly = True
-        TabOrder = 12
+        TabOrder = 14
       end
       object DB_DT_Venda: TDBEdit
-        Left = 20
-        Top = 248
-        Width = 113
+        Left = 112
+        Top = 115
+        Width = 60
         Height = 21
         DataField = 'DATAVENDA'
         DataSource = DM_Cadastro.DT_produto
         ReadOnly = True
-        TabOrder = 13
+        TabOrder = 15
       end
       object DBLookupComboBoxGrupo: TDBLookupComboBox
-        Left = 644
-        Top = 134
+        Left = 460
+        Top = 94
         Width = 145
         Height = 21
         DataField = 'ID_GRUPO'
@@ -597,11 +570,11 @@ inherited frmCadastroProduto: TfrmCadastroProduto
         ListField = 'DESCRICAO'
         ListSource = DM_Cadastro.DT_Grupo
         ReadOnly = True
-        TabOrder = 14
+        TabOrder = 3
       end
       object DBLookupComboBoxSubGrupo: TDBLookupComboBox
-        Left = 644
-        Top = 161
+        Left = 460
+        Top = 121
         Width = 145
         Height = 21
         DataField = 'ID_GRUPO'
@@ -610,11 +583,11 @@ inherited frmCadastroProduto: TfrmCadastroProduto
         ListField = 'DESCRICAO'
         ListSource = DM_Cadastro.DT_SubGrupo
         ReadOnly = True
-        TabOrder = 15
+        TabOrder = 4
       end
       object DB_Qte_Entrada: TDBEdit
-        Left = 746
-        Top = 408
+        Left = 472
+        Top = 376
         Width = 134
         Height = 21
         DataField = 'QUANTIDADE_ENTRADA'
@@ -623,8 +596,8 @@ inherited frmCadastroProduto: TfrmCadastroProduto
         TabOrder = 16
       end
       object DB_Qte_Atual: TDBEdit
-        Left = 746
-        Top = 501
+        Left = 472
+        Top = 469
         Width = 134
         Height = 21
         DataField = 'QUANTIDADE_ATUAL'
@@ -633,13 +606,22 @@ inherited frmCadastroProduto: TfrmCadastroProduto
         TabOrder = 17
       end
       object DBImage1: TDBImage
-        Left = 880
-        Top = 94
+        Left = 612
+        Top = 47
         Width = 236
         Height = 175
         DataField = 'FOTO'
         DataSource = DM_Cadastro.DT_produto
         TabOrder = 18
+      end
+      object DBEdtQTE_Minima: TDBEdit
+        Left = 472
+        Top = 514
+        Width = 134
+        Height = 21
+        DataField = 'QTE_MINIMA'
+        DataSource = DM_Cadastro.DT_produto
+        TabOrder = 19
       end
     end
   end
@@ -650,9 +632,6 @@ inherited frmCadastroProduto: TfrmCadastroProduto
     Height = 41
     Align = alBottom
     TabOrder = 1
-    ExplicitLeft = 24
-    ExplicitTop = 632
-    ExplicitWidth = 185
     object btnEstoque: TButton
       Left = 31
       Top = 6

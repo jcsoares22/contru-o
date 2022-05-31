@@ -24,9 +24,6 @@ type
     Label1: TLabel;
     Label12: TLabel;
     Label13: TLabel;
-    Label14: TLabel;
-    Label15: TLabel;
-    Label16: TLabel;
     Label18: TLabel;
     Label19: TLabel;
     Label2: TLabel;
@@ -65,6 +62,8 @@ type
     DBNavigator1: TDBNavigator;
     Panel3: TPanel;
     btnEstoque: TButton;
+    Label20: TLabel;
+    DBEdtQTE_Minima: TDBEdit;
     procedure DB_APrazoExit(Sender: TObject);
     procedure DB_AvistaExit(Sender: TObject);
     procedure btnNovoClick(Sender: TObject);
@@ -127,7 +126,7 @@ end;
 procedure TfrmCadastroProduto.btnEstoqueClick(Sender: TObject);
 begin
   inherited;
-fecharTela;
+  fecharTela;
   if (frmEstoque = nil) then
     frmEstoque := TFrmEstoque.Create(self);
   if (not frmEstoque.showing) then
@@ -155,9 +154,9 @@ begin
     DM_Cadastro.FDQueryProdutoCODIGO.AsInteger := prox; }
   Nome_produto.SetFocus;
 
-  DBLookupComboBoxCor.ReadOnly := false;
-  DBLookupComboBoxMarca.ReadOnly := false;
-  DBLookupComboBoxUNMedida.ReadOnly := false;
+  DBLookupComboBoxCor.ReadOnly := False;
+  DBLookupComboBoxMarca.ReadOnly := False;
+  DBLookupComboBoxUNMedida.ReadOnly := False;
   DB_DT_Venda.Text := DateToStr(Now);
   DB_DT_Cad.Text := DateToStr(Now);
   mod_ReadOnlyFalse;
@@ -286,9 +285,24 @@ end;
 procedure TfrmCadastroProduto.btnSalvarClick(Sender: TObject);
 begin
   inherited;
-  DM_Cadastro.FDQueryProduto.Edit;
-  DM_Cadastro.FDQueryProduto.Post;
-  mod_ReadOnlyTrue;
+
+  if DBEdtQTE_Minima.Text = '' then
+  begin
+    ShowMessage('Quantidade minima deve ser informada');
+    DBEdtQTE_Minima.SetFocus;
+  end;
+  if DBLookupComboBoxUNMedida.Text = '' then
+  begin
+    ShowMessage('Informe a unidade de medida');
+    DBLookupComboBoxUNMedida.SetFocus;
+  end;
+  if DBEdtQTE_Minima.Text <> '' then
+  begin
+    DM_Cadastro.FDQueryProduto.Edit;
+    DM_Cadastro.FDQueryProduto.Post;
+    mod_ReadOnlyTrue;
+  end;
+
 end;
 
 procedure TfrmCadastroProduto.DB_APrazoExit(Sender: TObject);
@@ -317,40 +331,43 @@ begin
   frmCadastroProduto.Free;
   frmCadastroProduto := nil;
 end;
+
 procedure TfrmCadastroProduto.mod_ReadOnlyFalse;
 begin
-    DBEdit3.ReadOnly := false;
-    DBEdit9.ReadOnly := false;
-    DBLookupComboBoxCor.ReadOnly := false;
-    DBLookupComboBoxMarca.ReadOnly := false;
-    DBLookupComboBoxUNMedida.ReadOnly := false;
-    DBRadioGroup1.ReadOnly := false;
-    Nome_produto.ReadOnly := false;
-    DBEdit5.ReadOnly := false;
-    DB_Avista.ReadOnly := false;
-    DBEdit7.ReadOnly := false;
-    DBEdit12.ReadOnly := false;
-    DBEdit13.ReadOnly := false;
-    DB_APrazo.ReadOnly := false;
-    DBLookupComboBoxGrupo.ReadOnly := false;
-    DBLookupComboBoxSubGrupo.ReadOnly := false;
+  DBEdit3.ReadOnly := False;
+  DBEdit9.ReadOnly := False;
+  DBLookupComboBoxCor.ReadOnly := False;
+  DBLookupComboBoxMarca.ReadOnly := False;
+  DBLookupComboBoxUNMedida.ReadOnly := False;
+  DBRadioGroup1.ReadOnly := False;
+  Nome_produto.ReadOnly := False;
+  DBEdit5.ReadOnly := False;
+  DB_Avista.ReadOnly := False;
+  DBEdit7.ReadOnly := False;
+  DBEdit12.ReadOnly := False;
+  DBEdit13.ReadOnly := False;
+  DB_APrazo.ReadOnly := False;
+  DBLookupComboBoxGrupo.ReadOnly := False;
+  DBLookupComboBoxSubGrupo.ReadOnly := False;
 
 end;
+
 procedure TfrmCadastroProduto.mod_ReadOnlyTrue;
 begin
-    DBEdit9.ReadOnly := true;
-    DBLookupComboBoxCor.ReadOnly := true;
-    DBLookupComboBoxMarca.ReadOnly := true;
-    DBLookupComboBoxUNMedida.ReadOnly := true;
-    DBRadioGroup1.ReadOnly := true;
-    Nome_produto.ReadOnly := true;
-    DBEdit5.ReadOnly := true;
-    DB_Avista.ReadOnly := true;
-    DBEdit7.ReadOnly := true;
-    DBEdit12.ReadOnly := true;
-    DBEdit13.ReadOnly := true;
-    DB_APrazo.ReadOnly := true;
-    DBLookupComboBoxGrupo.ReadOnly := true;
-    DBLookupComboBoxSubGrupo.ReadOnly := true;
+  DBEdit9.ReadOnly := True;
+  DBLookupComboBoxCor.ReadOnly := True;
+  DBLookupComboBoxMarca.ReadOnly := True;
+  DBLookupComboBoxUNMedida.ReadOnly := True;
+  DBRadioGroup1.ReadOnly := True;
+  Nome_produto.ReadOnly := True;
+  DBEdit5.ReadOnly := True;
+  DB_Avista.ReadOnly := True;
+  DBEdit7.ReadOnly := True;
+  DBEdit12.ReadOnly := True;
+  DBEdit13.ReadOnly := True;
+  DB_APrazo.ReadOnly := True;
+  DBLookupComboBoxGrupo.ReadOnly := True;
+  DBLookupComboBoxSubGrupo.ReadOnly := True;
 end;
+
 end.

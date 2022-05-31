@@ -19,7 +19,7 @@ uses
   CadastroEnderecoPai in 'CadastroEnderecoPai.pas' {frmCadastroEnderecoPai},
   CadastroEstados in 'CadastroEstados.pas' {frmCadastroEstados},
   CadastroCidades in 'CadastroCidades.pas' {frmCadastroCidades},
-  CadastroCondPagamento in 'CadastroCondPagamento.pas' {frmCadastroCondPagamento},
+  CadastroCondPagamento2 in 'CadastroCondPagamento2.pas' {frmCadastroCondPagamento2},
   CadastroUsuarios2 in 'CadastroUsuarios2.pas' {frmCadastroUsuario2},
   CadastroVendas in 'CadastroVendas.pas' {frmCadastroVendas},
   DMVendas in 'DMVendas.pas' {DM_Vendas: TDataModule},
@@ -44,7 +44,8 @@ uses
   PesquisaAvancada in 'PesquisaAvancada.pas' {frmPesquisaAvancada},
   PesquisaAvancadaVenda in 'PesquisaAvancadaVenda.pas' {frmPesquisaAvancadaVenda},
   EstoqueMinimo in 'EstoqueMinimo.pas' {frmEstoqueminimo},
-  EstoqueProduto in 'EstoqueProduto.pas' {frmEstoque};
+  EstoqueProduto in 'EstoqueProduto.pas' {frmEstoque},
+  CadastroCondPagamento in 'CadastroCondPagamento.pas' {frmCadastroCondPagamento};
 
 {$R *.res}
 
@@ -62,6 +63,7 @@ begin
   Application.CreateForm(TDM_Finaceiro, DM_Finaceiro);
   Application.CreateForm(TDM_Mov_Estoque, DM_Mov_Estoque);
   Application.CreateForm(TfrmEstoque, frmEstoque);
+  Application.CreateForm(TfrmCadastroCondPagamento, frmCadastroCondPagamento);
   usuarios := TfrmLogin.Create(nil);
     if usuarios.ShowModal = 1 then
     begin

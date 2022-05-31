@@ -16,15 +16,13 @@ inherited frmCadastroCliente: TfrmCadastroCliente
     Width = 1009
     Height = 605
     ActivePage = TabSheet1
-    ExplicitLeft = 224
-    ExplicitTop = -5
-    ExplicitWidth = 785
-    ExplicitHeight = 486
+    ExplicitWidth = 1009
+    ExplicitHeight = 605
     inherited TabSheet1: TTabSheet
       ExplicitLeft = 4
       ExplicitTop = 24
-      ExplicitWidth = 1087
-      ExplicitHeight = 778
+      ExplicitWidth = 1001
+      ExplicitHeight = 577
       inherited DBGrid_Cliente: TDBGrid
         Width = 1001
         Height = 536
@@ -43,37 +41,31 @@ inherited frmCadastroCliente: TfrmCadastroCliente
           item
             Expanded = False
             FieldName = 'TELEFONE'
-            Width = 64
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'CPF'
-            Width = 64
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'EMAIL'
-            Width = 64
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'DESCRICAO'
-            Width = 64
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'RUA'
-            Width = 64
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'NUMERO'
-            Width = 64
             Visible = True
           end
           item
@@ -89,13 +81,12 @@ inherited frmCadastroCliente: TfrmCadastroCliente
           item
             Expanded = False
             FieldName = 'BAIRRO'
-            Width = 64
             Visible = True
           end>
       end
       inherited Panel2: TPanel
         Width = 1001
-        ExplicitWidth = 1087
+        ExplicitWidth = 1001
         inherited btnPesquisa: TButton
           OnClick = btnPesquisaClick
         end
@@ -104,8 +95,8 @@ inherited frmCadastroCliente: TfrmCadastroCliente
     inherited TabSheet2: TTabSheet
       ExplicitLeft = 4
       ExplicitTop = 24
-      ExplicitWidth = 1087
-      ExplicitHeight = 778
+      ExplicitWidth = 1001
+      ExplicitHeight = 577
       object Label1: TLabel [0]
         Left = 16
         Top = 56
@@ -192,11 +183,10 @@ inherited frmCadastroCliente: TfrmCadastroCliente
         Width = 59
         Height = 13
         Caption = 'DESCRICAO'
-        FocusControl = DB_Descricao
       end
       inherited Panel1: TPanel
         Width = 1001
-        ExplicitWidth = 1087
+        ExplicitWidth = 1001
         inherited btnNovo: TButton
           Width = 63
           ExplicitWidth = 63
@@ -348,18 +338,6 @@ inherited frmCadastroCliente: TfrmCadastroCliente
         ReadOnly = True
         TabOrder = 9
       end
-      object DB_Descricao: TDBEdit
-        Left = 16
-        Top = 235
-        Width = 321
-        Height = 21
-        CharCase = ecUpperCase
-        DataField = 'DESCRICAO'
-        DataSource = DM_Cadastro.DT_cliente
-        ImeName = 'Portuguese (Brazilian ABNT)'
-        ReadOnly = True
-        TabOrder = 10
-      end
       object Edt_bairro: TDBEdit
         Left = 861
         Top = 120
@@ -370,6 +348,16 @@ inherited frmCadastroCliente: TfrmCadastroCliente
         DataSource = DM_Cadastro.DT_cliente
         ImeName = 'Portuguese (Brazilian ABNT)'
         ReadOnly = True
+        TabOrder = 10
+      end
+      object DBListBox1: TDBListBox
+        Left = 16
+        Top = 227
+        Width = 369
+        Height = 97
+        DataField = 'DESCRICAO'
+        DataSource = DM_Cadastro.DT_cliente
+        ItemHeight = 13
         TabOrder = 11
       end
     end
@@ -383,8 +371,6 @@ inherited frmCadastroCliente: TfrmCadastroCliente
     Color = clSkyBlue
     ParentBackground = False
     TabOrder = 1
-    ExplicitLeft = -78
-    ExplicitWidth = 1087
     object btnPesquisaAvancada: TButton
       Left = 20
       Top = 6
@@ -410,8 +396,8 @@ inherited frmCadastroCliente: TfrmCadastroCliente
       'begin'
       ''
       'end.')
-    Left = 636
-    Top = 368
+    Left = 612
+    Top = 456
     Datasets = <
       item
         DataSet = frxCliente

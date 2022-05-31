@@ -35,9 +35,7 @@ object frmEstoqueminimo: TfrmEstoqueminimo
     Height = 41
     Align = alBottom
     TabOrder = 1
-    ExplicitLeft = 424
-    ExplicitTop = 272
-    ExplicitWidth = 185
+    ExplicitTop = 511
     object btnRelatorioEstoqueMinimo: TButton
       Left = 888
       Top = 6
@@ -49,25 +47,54 @@ object frmEstoqueminimo: TfrmEstoqueminimo
     end
   end
   object FDQueryEstoqeMinimo: TFDQuery
+    Active = True
     Connection = DM_Dados.DADOS
     SQL.Strings = (
       'select '
-      '    produto.quantidade_atual,'
       '    produto.codigo,'
-      '    produto.marca,'
       '    produto.produto,'
       '    produto.un_medida,'
-      '    controle_sistema.estoque_minimo'
-      'from controle_sistema,'
-      'produto'
+      '    produto.marca,'
+      '    produto.quantidade_atual,'
+      '    produto.qte_minima'
+      'from produto'
       'where '
       '   ('
-      
-        '      (produto.quantidade_atual <= controle_sistema.estoque_mini' +
-        'mo)'
+      '      (produto.quantidade_atual <= produto.qte_minima)'
       '   )')
     Left = 16
     Top = 504
+    object FDQueryEstoqeMinimoCODIGO: TIntegerField
+      FieldName = 'CODIGO'
+      Origin = 'CODIGO'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+    object FDQueryEstoqeMinimoPRODUTO: TStringField
+      FieldName = 'PRODUTO'
+      Origin = 'PRODUTO'
+      Required = True
+      Size = 40
+    end
+    object FDQueryEstoqeMinimoUN_MEDIDA: TStringField
+      FieldName = 'UN_MEDIDA'
+      Origin = 'UN_MEDIDA'
+      Required = True
+      Size = 3
+    end
+    object FDQueryEstoqeMinimoMARCA: TStringField
+      FieldName = 'MARCA'
+      Origin = 'MARCA'
+      Size = 15
+    end
+    object FDQueryEstoqeMinimoQUANTIDADE_ATUAL: TIntegerField
+      FieldName = 'QUANTIDADE_ATUAL'
+      Origin = 'QUANTIDADE_ATUAL'
+    end
+    object FDQueryEstoqeMinimoQTE_MINIMA: TIntegerField
+      FieldName = 'QTE_MINIMA'
+      Origin = 'QTE_MINIMA'
+    end
   end
   object DTEstoqueMinimo: TDataSource
     DataSet = FDQueryEstoqeMinimo
@@ -83,7 +110,7 @@ object frmEstoqueminimo: TfrmEstoqueminimo
     PrintOptions.Printer = 'Default'
     PrintOptions.PrintOnSheet = 0
     ReportOptions.CreateDate = 44710.481128657400000000
-    ReportOptions.LastChange = 44710.488985370370000000
+    ReportOptions.LastChange = 44711.842193206000000000
     ScriptLanguage = 'PascalScript'
     ScriptText.Strings = (
       'begin'
@@ -144,7 +171,7 @@ object frmEstoqueminimo: TfrmEstoqueminimo
         object Memo2: TfrxMemoView
           AllowVectorExport = True
           Left = 7.559060000000000000
-          Top = 30.236239999999990000
+          Top = 30.236240000000000000
           Width = 60.472480000000000000
           Height = 18.897650000000000000
           Font.Charset = DEFAULT_CHARSET
@@ -159,8 +186,8 @@ object frmEstoqueminimo: TfrmEstoqueminimo
         end
         object Memo3: TfrxMemoView
           AllowVectorExport = True
-          Left = 98.267780000000000000
-          Top = 30.236239999999990000
+          Left = 139.267780000000000000
+          Top = 30.236240000000000000
           Width = 94.488250000000000000
           Height = 18.897650000000000000
           Font.Charset = DEFAULT_CHARSET
@@ -175,8 +202,8 @@ object frmEstoqueminimo: TfrmEstoqueminimo
         end
         object Memo4: TfrxMemoView
           AllowVectorExport = True
-          Left = 631.181510000000000000
-          Top = 30.236239999999990000
+          Left = 562.181510000000000000
+          Top = 30.236240000000000000
           Width = 94.488250000000000000
           Height = 18.897650000000000000
           Font.Charset = DEFAULT_CHARSET
@@ -191,7 +218,7 @@ object frmEstoqueminimo: TfrmEstoqueminimo
         end
         object Memo5: TfrxMemoView
           AllowVectorExport = True
-          Left = 517.795610000000000000
+          Left = 492.795610000000000000
           Top = 29.456710000000000000
           Width = 37.795300000000000000
           Height = 18.897650000000000000
@@ -203,6 +230,38 @@ object frmEstoqueminimo: TfrmEstoqueminimo
           Frame.Typ = []
           Memo.UTF8W = (
             'Un')
+          ParentFont = False
+        end
+        object Memo6: TfrxMemoView
+          AllowVectorExport = True
+          Left = 668.976810000000000000
+          Top = 30.236240000000000000
+          Width = 94.488250000000000000
+          Height = 18.897650000000000000
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Style = [fsBold]
+          Frame.Typ = []
+          Memo.UTF8W = (
+            'Qte_Minima')
+          ParentFont = False
+        end
+        object Memo7: TfrxMemoView
+          AllowVectorExport = True
+          Left = 68.031540000000000000
+          Top = 30.236240000000000000
+          Width = 60.472480000000000000
+          Height = 18.897650000000000000
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Style = [fsBold]
+          Frame.Typ = []
+          Memo.UTF8W = (
+            'Marca')
           ParentFont = False
         end
       end
@@ -223,8 +282,8 @@ object frmEstoqueminimo: TfrmEstoqueminimo
           IndexTag = 1
           AllowVectorExport = True
           Left = 7.559060000000000000
-          Top = 3.779530000000022000
-          Width = 79.370130000000000000
+          Top = 3.779529999999990000
+          Width = 37.795300000000000000
           Height = 18.897650000000000000
           DataField = 'CODIGO'
           DataSet = frxEstoqueminimo
@@ -242,8 +301,8 @@ object frmEstoqueminimo: TfrmEstoqueminimo
         object frxDBDataset1PRODUTO: TfrxMemoView
           IndexTag = 1
           AllowVectorExport = True
-          Left = 98.267780000000000000
-          Top = 3.779530000000022000
+          Left = 139.267780000000000000
+          Top = 3.779529999999990000
           Width = 321.260050000000000000
           Height = 18.897650000000000000
           DataField = 'PRODUTO'
@@ -262,8 +321,8 @@ object frmEstoqueminimo: TfrmEstoqueminimo
         object frxDBDataset1QUANTIDADE_ATUAL: TfrxMemoView
           IndexTag = 1
           AllowVectorExport = True
-          Left = 634.961040000000000000
-          Top = 3.779530000000022000
+          Left = 565.961040000000000000
+          Top = 3.779529999999990000
           Width = 79.370130000000000000
           Height = 18.897650000000000000
           DataField = 'QUANTIDADE_ATUAL'
@@ -282,7 +341,7 @@ object frmEstoqueminimo: TfrmEstoqueminimo
         object frEstoqueminimoUN_MEDIDA: TfrxMemoView
           IndexTag = 1
           AllowVectorExport = True
-          Left = 517.795610000000000000
+          Left = 492.795610000000000000
           Width = 22.677180000000000000
           Height = 18.897650000000000000
           DataField = 'UN_MEDIDA'
@@ -301,10 +360,38 @@ object frmEstoqueminimo: TfrmEstoqueminimo
         object Line1: TfrxLineView
           AllowVectorExport = True
           Left = 3.118120000000000000
-          Top = 30.236240000000010000
+          Top = 30.236240000000000000
           Width = 714.331170000000000000
           Color = clBlack
           Frame.Typ = [ftTop]
+        end
+        object frEstoqueminimoMARCA: TfrxMemoView
+          IndexTag = 1
+          AllowVectorExport = True
+          Left = 60.472480000000000000
+          Top = 3.779529999999990000
+          Width = 120.944960000000000000
+          Height = 18.897650000000000000
+          DataField = 'MARCA'
+          DataSet = frxEstoqueminimo
+          DataSetName = 'frEstoqueminimo'
+          Frame.Typ = []
+          Memo.UTF8W = (
+            '[frEstoqueminimo."MARCA"]')
+        end
+        object frEstoqueminimoQTE_MINIMA: TfrxMemoView
+          IndexTag = 1
+          AllowVectorExport = True
+          Left = 661.417750000000000000
+          Top = 3.779529999999990000
+          Width = 79.370130000000000000
+          Height = 18.897650000000000000
+          DataField = 'QTE_MINIMA'
+          DataSet = frxEstoqueminimo
+          DataSetName = 'frEstoqueminimo'
+          Frame.Typ = []
+          Memo.UTF8W = (
+            '[frEstoqueminimo."QTE_MINIMA"]')
         end
       end
       object Line2: TfrxLineView
@@ -323,8 +410,10 @@ object frmEstoqueminimo: TfrmEstoqueminimo
     FieldAliases.Strings = (
       'CODIGO=CODIGO'
       'PRODUTO=PRODUTO'
+      'UN_MEDIDA=UN_MEDIDA'
+      'MARCA=MARCA'
       'QUANTIDADE_ATUAL=QUANTIDADE_ATUAL'
-      'UN_MEDIDA=UN_MEDIDA')
+      'QTE_MINIMA=QTE_MINIMA')
     DataSource = DTEstoqueMinimo
     BCDToCurrency = False
     DataSetOptions = []

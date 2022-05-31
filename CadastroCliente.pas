@@ -31,7 +31,6 @@ type
     DB_Rua: TDBEdit;
     Label7: TLabel;
     Label6: TLabel;
-    DB_Descricao: TDBEdit;
     DBNavigator1: TDBNavigator;
     Edt_bairro: TDBEdit;
     PaintBox1: TPaintBox;
@@ -40,6 +39,7 @@ type
     btnImprimir: TButton;
     frCliente: TfrxReport;
     frxCliente: TfrxDBDataset;
+    DBListBox1: TDBListBox;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure btnNovoClick(Sender: TObject);
     procedure btnSalvarClick(Sender: TObject);

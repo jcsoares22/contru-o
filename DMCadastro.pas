@@ -100,6 +100,8 @@ type
     FDQueryClienteUF_ID: TIntegerField;
     FDQueryClienteCIDADE_ID: TIntegerField;
     FDQueryClienteBAIRRO: TStringField;
+    FDQueryProdutoQTE_MINIMA: TIntegerField;
+    FDQueryCondição_pagamentoTIPO_PAGAMENTO: TStringField;
   private
     { Private declarations }
   public

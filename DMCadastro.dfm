@@ -194,6 +194,12 @@
       Origin = 'BLOQUEAR'
       Size = 1
     end
+    object FDQueryCondição_pagamentoTIPO_PAGAMENTO: TStringField
+      FieldName = 'TIPO_PAGAMENTO'
+      Origin = 'TIPO_PAGAMENTO'
+      FixedChar = True
+      Size = 1
+    end
   end
   object Dt_Condicao_pagamento: TDataSource
     DataSet = FDQueryCondição_pagamento
@@ -387,6 +393,7 @@
     Top = 392
   end
   object FDQueryProduto: TFDQuery
+    Active = True
     ConstraintsEnabled = True
     Connection = DM_Dados.DADOS
     UpdateOptions.AssignedValues = [uvFetchGeneratorsPoint, uvGeneratorName]
@@ -511,6 +518,10 @@
     object FDQueryProdutoQUANTIDADE_ATUAL: TIntegerField
       FieldName = 'QUANTIDADE_ATUAL'
       Origin = 'QUANTIDADE_ATUAL'
+    end
+    object FDQueryProdutoQTE_MINIMA: TIntegerField
+      FieldName = 'QTE_MINIMA'
+      Origin = 'QTE_MINIMA'
     end
   end
   object DT_produto: TDataSource

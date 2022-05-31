@@ -3,26 +3,43 @@ unit CadastroCondPagamento;
 interface
 
 uses
-  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
-  System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, CadastroPaiPrincipal, Data.DB, Vcl.Mask,
-  Vcl.DBCtrls, Vcl.StdCtrls, Vcl.ExtCtrls, Vcl.Grids, Vcl.DBGrids, Vcl.ComCtrls,
-  DMCadastro;
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Data.DB, Vcl.StdCtrls, Vcl.Grids,
+  Vcl.DBGrids, Vcl.Mask, Vcl.DBCtrls, Vcl.ExtCtrls, Vcl.ComCtrls;
 
 type
-  TfrmCadastroCondPagamento = class(TfrmCadastroPai)
-    DB_Codigo: TDBEdit;
+  TfrmCadastroCondPagamento = class(TForm)
+    Cadastro: TPageControl;
+    TabSheet2: TTabSheet;
     Label1: TLabel;
     Label2: TLabel;
+    Label3: TLabel;
+    DBRadioGroupSitiacao: TDBRadioGroup;
+    Panel1: TPanel;
+    btnNovo: TButton;
+    btnEdit: TButton;
+    btnDeletar: TButton;
+    btnSalvar: TButton;
+    btnCancelar: TButton;
+    DB_Codigo: TDBEdit;
     DB_nome: TDBEdit;
     DB_desc_avista: TDBEdit;
-    Label3: TLabel;
+    RadioButtonAPrazo: TRadioButton;
+    RadioButtonAVista: TRadioButton;
+    TabSheet1: TTabSheet;
+    DBGrid_Cliente: TDBGrid;
+    Panel2: TPanel;
+    Label9: TLabel;
+    Label10: TLabel;
+    Label11: TLabel;
+    CB_Opcao2: TComboBox;
+    CB_opcao: TComboBox;
+    edt_Pesquisa: TEdit;
+    btnPesquisa: TButton;
     procedure btnNovoClick(Sender: TObject);
     procedure btnSalvarClick(Sender: TObject);
     procedure btnEditClick(Sender: TObject);
-    procedure btnDeletarClick(Sender: TObject);
-    procedure btnCancelarClick(Sender: TObject);
-    procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    procedure FormCreate(Sender: TObject);
   private
     { Private declarations }
   public
@@ -36,29 +53,10 @@ implementation
 
 {$R *.dfm}
 
-procedure TfrmCadastroCondPagamento.btnCancelarClick(Sender: TObject);
-begin
-  inherited;
-  DB_nome.ReadOnly := true;
-  DB_desc_avista.ReadOnly := true;
-  DM_Cadastro.FDQueryCondição_pagamento.Cancel;
-end;
-
-procedure TfrmCadastroCondPagamento.btnDeletarClick(Sender: TObject);
-begin
-  inherited;
-  if MessageDlg('Desja deletar?', TMsgDlgType.mtConfirmation, [mbok, mbNo], 0) = mrok
-  then
-  begin
-    DM_Cadastro.FDQueryCondição_pagamento.Delete;
-  end;
-  Abort;
-
-end;
+uses DMCadastro;
 
 procedure TfrmCadastroCondPagamento.btnEditClick(Sender: TObject);
 begin
-  inherited;
   DM_Cadastro.FDQueryCondição_pagamento.Edit;
   DB_nome.ReadOnly := false;
   DB_desc_avista.ReadOnly := false;
@@ -68,7 +66,6 @@ procedure TfrmCadastroCondPagamento.btnNovoClick(Sender: TObject);
 var
   prox: integer;
 begin
-  inherited;
   DB_nome.ReadOnly := false;
   DB_desc_avista.ReadOnly := false;
   DM_Cadastro.FDQueryCondição_pagamento.last;
@@ -79,17 +76,20 @@ end;
 
 procedure TfrmCadastroCondPagamento.btnSalvarClick(Sender: TObject);
 begin
-  inherited;
-  DM_Cadastro.FDQueryCondição_pagamento.Post;
+{if DBRadioGroupSitiacao. = 'A' then
+begin
+   DM_Cadastro.FDQueryCondição_pagamentoTIPO_PAGAMENTO.Value := 'A'
+   end;}
+
+DM_Cadastro.FDQueryCondição_pagamento.Post;
   DB_nome.ReadOnly := true;
   DB_desc_avista.ReadOnly := true;
 end;
 
-procedure TfrmCadastroCondPagamento.FormClose(Sender: TObject;
-  var Action: TCloseAction);
+procedure TfrmCadastroCondPagamento.FormCreate(Sender: TObject);
 begin
-  inherited;
-     FreeAndNil(frmCadastroCondPagamento);
+DM_Cadastro.FDQueryCondição_pagamento.Open();
+
 end;
 
 end.

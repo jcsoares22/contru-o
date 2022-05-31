@@ -20,6 +20,12 @@ type
     btnRelatorioEstoqueMinimo: TButton;
     frEstoqueminimo: TfrxReport;
     frxEstoqueminimo: TfrxDBDataset;
+    FDQueryEstoqeMinimoCODIGO: TIntegerField;
+    FDQueryEstoqeMinimoPRODUTO: TStringField;
+    FDQueryEstoqeMinimoUN_MEDIDA: TStringField;
+    FDQueryEstoqeMinimoMARCA: TStringField;
+    FDQueryEstoqeMinimoQUANTIDADE_ATUAL: TIntegerField;
+    FDQueryEstoqeMinimoQTE_MINIMA: TIntegerField;
     procedure FormCreate(Sender: TObject);
     procedure btnRelatorioEstoqueMinimoClick(Sender: TObject);
   private
