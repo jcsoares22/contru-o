@@ -3,9 +3,6 @@ object DM_Finaceiro: TDM_Finaceiro
   Height = 861
   Width = 965
   object FDQueryFinanceiro: TFDQuery
-    IndexFieldNames = 'ID_VENDA'
-    MasterSource = DM_Vendas.DT_Saida_Venda
-    MasterFields = 'CODIGO'
     Connection = DM_Dados.DADOS
     SQL.Strings = (
       'select * from lancamento_financeiro')

@@ -25,7 +25,7 @@
     Top = 0
     Width = 1295
     Height = 644
-    ActivePage = TabSheet1
+    ActivePage = TabSheet2
     Align = alClient
     TabOrder = 0
     object TabSheet1: TTabSheet
@@ -207,10 +207,6 @@
     object TabSheet2: TTabSheet
       Caption = 'Cadastro'
       ImageIndex = 1
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object Panel1: TPanel
         Left = 0
         Top = 0
@@ -679,10 +675,6 @@
     object TabSheet3: TTabSheet
       Caption = 'TabSheet3'
       ImageIndex = 2
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
     end
   end
   object Panel4: TPanel
@@ -713,7 +705,7 @@
     PrintOptions.Printer = 'Default'
     PrintOptions.PrintOnSheet = 0
     ReportOptions.CreateDate = 44709.926040381900000000
-    ReportOptions.LastChange = 44709.973425104200000000
+    ReportOptions.LastChange = 44712.950230289350000000
     ScriptLanguage = 'PascalScript'
     ScriptText.Strings = (
       'begin'
@@ -932,9 +924,15 @@
           Top = 30.236240000000000000
           Width = 94.488250000000000000
           Height = 18.897650000000000000
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Style = [fsBold]
           Frame.Typ = []
           Memo.UTF8W = (
             '[frxDadosvenda."CODCLIENTE"]')
+          ParentFont = False
         end
         object Memo13: TfrxMemoView
           AllowVectorExport = True
@@ -962,9 +960,15 @@
           DataField = 'USU_NOME'
           DataSet = frxDadosvenda
           DataSetName = 'frxDadosvenda'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Style = [fsBold]
           Frame.Typ = []
           Memo.UTF8W = (
             '[frxDadosvenda."USU_NOME"]')
+          ParentFont = False
         end
       end
       object MasterData1: TfrxMasterData
@@ -974,7 +978,7 @@
         FillGap.Bottom = 0
         FillGap.Right = 0
         Frame.Typ = []
-        Height = 22.677180000000000000
+        Height = 26.456710000000000000
         Top = 177.637910000000000000
         Width = 718.110700000000000000
         DataSet = frxItens_vendas
@@ -1084,11 +1088,11 @@
         FillGap.Right = 0
         Frame.Typ = []
         Height = 22.677180000000000000
-        Top = 306.141930000000000000
+        Top = 309.921460000000000000
         Width = 718.110700000000000000
         object SysMemo2: TfrxSysMemoView
           AllowVectorExport = True
-          Left = 291.023810000000000000
+          Left = 15.118120000000000000
           Top = -0.000002439999999992
           Width = 94.488250000000000000
           Height = 18.897650000000000000
@@ -1123,7 +1127,7 @@
         FillGap.Right = 0
         Frame.Typ = []
         Height = 22.677180000000000000
-        Top = 222.992270000000000000
+        Top = 226.771800000000000000
         Width = 718.110700000000000000
         object Page: TfrxMemoView
           IndexTag = 1

@@ -45,7 +45,8 @@ uses
   PesquisaAvancadaVenda in 'PesquisaAvancadaVenda.pas' {frmPesquisaAvancadaVenda},
   EstoqueMinimo in 'EstoqueMinimo.pas' {frmEstoqueminimo},
   EstoqueProduto in 'EstoqueProduto.pas' {frmEstoque},
-  CadastroCondPagamento in 'CadastroCondPagamento.pas' {frmCadastroCondPagamento};
+  CadastroCondPagamento in 'CadastroCondPagamento.pas' {frmCadastroCondPagamento},
+  LancamentoFinanceiro in 'LancamentoFinanceiro.pas' {frmLancamentoFinanceiro};
 
 {$R *.res}
 
@@ -63,7 +64,6 @@ begin
   Application.CreateForm(TDM_Finaceiro, DM_Finaceiro);
   Application.CreateForm(TDM_Mov_Estoque, DM_Mov_Estoque);
   Application.CreateForm(TfrmEstoque, frmEstoque);
-  Application.CreateForm(TfrmCadastroCondPagamento, frmCadastroCondPagamento);
   usuarios := TfrmLogin.Create(nil);
     if usuarios.ShowModal = 1 then
     begin
