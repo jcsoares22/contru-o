@@ -6,7 +6,7 @@ uses
   System.SysUtils, System.Classes, FireDAC.Stan.Intf, FireDAC.Stan.Option,
   FireDAC.Stan.Param, FireDAC.Stan.Error, FireDAC.DatS, FireDAC.Phys.Intf,
   FireDAC.DApt.Intf, FireDAC.Stan.Async, FireDAC.DApt, Data.DB,
-  FireDAC.Comp.DataSet, FireDAC.Comp.Client, Vcl.Dialogs;
+  FireDAC.Comp.DataSet, FireDAC.Comp.Client, Vcl.Dialogs, System.Types, math;
 
 type
   TDM_Vendas = class(TDataModule)
@@ -59,6 +59,8 @@ type
     FDQuerySaidaProdutoNOME_PRODUTO: TStringField;
     FDQuerySaidaProdutoCODPRODUTO: TIntegerField;
     FDQuerySaidaProdutoQTE_ESTOQUE: TFloatField;
+    FDQuerySaida_VendaPARCELA: TIntegerField;
+    FDQuerySaida_VendaDIAS_ENTRE_PARCELAS: TIntegerField;
     procedure FDQuerySaidaProdutoAfterPost(DataSet: TDataSet);
     procedure FDQuerySaidaProdutoCODPRODUTOValidate(Sender: TField);
     procedure FDQuerySaidaProdutoQUANTIDADESetText(Sender: TField;
@@ -66,9 +68,12 @@ type
     procedure FDQuerySaidaProdutoAfterDelete(DataSet: TDataSet);
     procedure FDQuerySaida_VendaBeforePost(DataSet: TDataSet);
     procedure FDQuerySaidaProdutoQUANTIDADEValidate(Sender: TField);
-    procedure FDQuerySaida_VendaID_CONTAChange(Sender: TField);
+
     procedure FDQuerySaidaProdutoVALORPRODUTOValidate(Sender: TField);
     procedure FDQuerySaidaProdutoAfterScroll(DataSet: TDataSet);
+    procedure FDQuerySaidaProdutoBeforePost(DataSet: TDataSet);
+    procedure FDQuerySaidaProdutoNewRecord(DataSet: TDataSet);
+    procedure FDQuerySaida_VendaVALORTOTALChange(Sender: TField);
   private
     { Private declarations }
   public
@@ -83,7 +88,7 @@ implementation
 {%CLASSGROUP 'Vcl.Controls.TControl'}
 {$R *.dfm}
 
-USES DMDados, DMCadastrO, CadastroVendas;
+USES DMDados, DMCadastrO, CadastroVendas, DMFinanceiro;
 
 procedure TDM_Vendas.FDQuerySaidaProdutoAfterDelete(DataSet: TDataSet);
 begin
@@ -110,10 +115,24 @@ begin
   FDQuerySaidaProduto.Open();
 end;
 
+procedure TDM_Vendas.FDQuerySaidaProdutoBeforePost(DataSet: TDataSet);
+begin
+  DM_Cadastro.FDQueryProduto.Open();
+  DM_Cadastro.FDQueryProduto.Edit;
+  DM_Cadastro.FDQueryProdutoQUANTIDADE_ATUAL.Value :=
+    (DM_Cadastro.FDQueryProdutoQUANTIDADE_ATUAL.Value -
+    DM_Vendas.FDQuerySaidaProdutoQUANTIDADE.Value);
+end;
+
 procedure TDM_Vendas.FDQuerySaidaProdutoCODPRODUTOValidate(Sender: TField);
 begin
   { DM_Vendas.FDQuerySaidaProdutoVALORPRODUTO :=
     DM_Cadastro.FDQueryProdutoPRECO_VENDA; }
+end;
+
+procedure TDM_Vendas.FDQuerySaidaProdutoNewRecord(DataSet: TDataSet);
+begin
+  FDQuerySaidaProdutoCODIGO.Value := FDQuerySaida_VendaCODIGO.Value;
 end;
 
 procedure TDM_Vendas.FDQuerySaidaProdutoQUANTIDADESetText(Sender: TField;
@@ -156,11 +175,6 @@ end;
 
 procedure TDM_Vendas.FDQuerySaida_VendaBeforePost(DataSet: TDataSet);
 begin // validação do tipo de pagamento
-  DM_Cadastro.FDQueryProduto.Open();
-  DM_Cadastro.FDQueryProduto.Edit;
-  DM_Cadastro.FDQueryProdutoQUANTIDADE_ATUAL.Value :=
-    (DM_Cadastro.FDQueryProdutoQUANTIDADE_ATUAL.Value -
-    DM_Vendas.FDQuerySaidaProdutoQUANTIDADE.Value);
   if FDQuerySaida_VendaDATA_FATURAMENTO.IsNull and
     (FDQuerySaida_VendaSITUACAO.AsAnsiString = 'FATURADO') then
   begin
@@ -184,12 +198,51 @@ begin // validação do tipo de pagamento
 
 end;
 
-procedure TDM_Vendas.FDQuerySaida_VendaID_CONTAChange(Sender: TField);
+procedure TDM_Vendas.FDQuerySaida_VendaVALORTOTALChange(Sender: TField);
+Var
+  k: Integer;
+  wData: TDate;
+  wValorTotal: Double;
 begin
+  wData := date;
+  wValorTotal := FDQuerySaida_VendaVALORTOTAL.Value;
+  if (FDQuerySaida_VendaPARCELA.Value > 0) and
+    (FDQuerySaida_VendaVALORTOTAL.Value > 0) and
+    (FDQuerySaida_VendaDIAS_ENTRE_PARCELAS.Value > 0) then
+  begin
+    for k := 1 to FDQuerySaida_VendaPARCELA.Value do
+    begin
+      if not DM_Finaceiro.FDQueryFinanceiro.Locate('SEQ_PARCELA', k, []) then
+      begin
+        DM_Finaceiro.FDQueryFinanceiro.Append;
+        DM_Finaceiro.FDQueryFinanceiro.FieldByName('SEQ_PARCELA')
+          .AsInteger := k;
+      end
+      else
+        DM_Finaceiro.FDQueryFinanceiro.Edit;
+      wData := wData + FDQuerySaida_VendaDIAS_ENTRE_PARCELAS.Value;
+      DM_Finaceiro.FDQueryFinanceiroDATA_VENC.AsDateTime := wData;
+      DM_Finaceiro.FDQueryFinanceiroVLR_PARC.AsCurrency :=
+        FDQuerySaida_VendaVALORTOTAL.Value /
+        FDQuerySaida_VendaDIAS_ENTRE_PARCELAS.Value;
+      DM_Finaceiro.FDQueryFinanceiro.Post;
 
+      wValorTotal := wValorTotal - DM_Finaceiro.FDQueryFinanceiroVLR_PARC.Value;
+    end;
 
-  // FDQuerySaida_VendaID_CONTA.Text :=  DM_Cadastro.FDQueryContaTIPO.Value = 'faturado';
-
+    DM_Finaceiro.FDQueryFinanceiro.Last;
+    while DM_Finaceiro.FDQueryFinanceiroSEQ_PARCELA.AsInteger >
+      FDQuerySaida_VendaPARCELA.Value do
+      DM_Finaceiro.FDQueryFinanceiro.Delete;
+    if CompareValue(wValorTotal, 0.00, 0.001) <> EqualsValue then
+    begin
+      DM_Finaceiro.FDQueryFinanceiro.Edit;
+      DM_Finaceiro.FDQueryFinanceiroVLR_PARC.AsCurrency :=
+        DM_Finaceiro.FDQueryFinanceiroVLR_PARC.AsCurrency + wValorTotal;
+      DM_Finaceiro.FDQueryFinanceiro.Post;
+    end;
+    DM_Finaceiro.FDQueryFinanceiro.First;
+  end;
 end;
 
 end.

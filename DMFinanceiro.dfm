@@ -3,24 +3,24 @@ object DM_Finaceiro: TDM_Finaceiro
   Height = 861
   Width = 965
   object FDQueryFinanceiro: TFDQuery
+    OnNewRecord = FDQueryFinanceiroNewRecord
+    IndexFieldNames = 'CODIGO'
     Connection = DM_Dados.DADOS
     SQL.Strings = (
       'select * from lancamento_financeiro')
     Left = 32
     Top = 56
-    object FDQueryFinanceiroID_VENDA: TIntegerField
-      FieldName = 'ID_VENDA'
-      Origin = 'ID_VENDA'
-      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+    object FDQueryFinanceiroCODIGO: TIntegerField
+      FieldName = 'CODIGO'
+      Origin = 'CODIGO'
       Required = True
     end
-    object FDQueryFinanceiroNUN_PARCELA: TIntegerField
-      FieldName = 'NUN_PARCELA'
-      Origin = 'NUN_PARCELA'
-      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+    object FDQueryFinanceiroSEQ_PARCELA: TIntegerField
+      FieldName = 'SEQ_PARCELA'
+      Origin = 'SEQ_PARCELA'
       Required = True
     end
-    object FDQueryFinanceiroVLR_PARC: TFMTBCDField
+    object FDQueryFinanceiroVLR_PARC: TBCDField
       FieldName = 'VLR_PARC'
       Origin = 'VLR_PARC'
       Required = True
@@ -36,39 +36,22 @@ object DM_Finaceiro: TDM_Finaceiro
       FieldName = 'DATA_PGTO'
       Origin = 'DATA_PGTO'
     end
-    object FDQueryFinanceiroJUROS: TFMTBCDField
-      FieldName = 'JUROS'
-      Origin = 'JUROS'
-      Precision = 18
-      Size = 2
-    end
-    object FDQueryFinanceiroDESCONTO: TFMTBCDField
-      FieldName = 'DESCONTO'
-      Origin = 'DESCONTO'
-      Precision = 18
-      Size = 2
-    end
-    object FDQueryFinanceiroVLR_PGTO: TFMTBCDField
+    object FDQueryFinanceiroVLR_PGTO: TBCDField
       FieldName = 'VLR_PGTO'
       Origin = 'VLR_PGTO'
       Precision = 18
       Size = 2
     end
-    object FDQueryFinanceiroPARC_SALDO: TFMTBCDField
-      FieldName = 'PARC_SALDO'
-      Origin = 'PARC_SALDO'
-      Precision = 18
+    object FDQueryFinanceiroTIPO: TStringField
+      FieldName = 'TIPO'
+      Origin = 'TIPO'
+      FixedChar = True
       Size = 2
-    end
-    object FDQueryFinanceiroCOD_BANCO: TStringField
-      FieldName = 'COD_BANCO'
-      Origin = 'COD_BANCO'
-      Size = 11
     end
   end
   object DT_Financeiro: TDataSource
     DataSet = FDQueryFinanceiro
-    Left = 136
+    Left = 144
     Top = 56
   end
 end

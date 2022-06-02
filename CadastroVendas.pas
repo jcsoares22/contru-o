@@ -8,7 +8,8 @@ uses
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Data.DB, Vcl.StdCtrls, Vcl.DBCtrls,
   Vcl.Mask, Vcl.Grids, Vcl.DBGrids, Vcl.ExtCtrls, Vcl.ComCtrls, Vcl.ColorGrd,
   IWVCLBaseControl, IWBaseControl, IWBaseHTMLControl, IWControl, IWDBStdCtrls,
-  Vcl.Buttons, frxClass, frxDBSet;
+  Vcl.Buttons, frxClass, frxDBSet, math, frxDesgn, frxExportBaseDialog,
+  frxExportPDF;
 
 type
   TfrmCadastroVendas = class(TForm)
@@ -77,6 +78,12 @@ type
     btnImprimir: TBitBtn;
     Panel4: TPanel;
     btnPesquisaAvancadaVenda: TButton;
+    Label19: TLabel;
+    DBEdit7: TDBEdit;
+    Label20: TLabel;
+    DBEdit8: TDBEdit;
+    frxPDFExport1: TfrxPDFExport;
+    frxDesigner1: TfrxDesigner;
     procedure DBGridVendasExit(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure btnNovoClick(Sender: TObject);
@@ -87,7 +94,6 @@ type
     procedure btnDeletarClick(Sender: TObject);
     procedure btnEditClick(Sender: TObject);
     procedure btnPesquisaClick(Sender: TObject);
-    procedure btnGerarLancamentoClick(Sender: TObject);
     procedure DBC_DescontoChange(Sender: TObject);
     procedure DBGrid1DblClick(Sender: TObject);
     procedure DBE_DescontoExit(Sender: TObject);
@@ -97,10 +103,12 @@ type
     procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
     procedure btnImprimirClick(Sender: TObject);
     procedure btnPesquisaAvancadaVendaClick(Sender: TObject);
+    procedure btnGerarLancamentoClick(Sender: TObject);
   private
     { Private declarations }
 
     procedure totaliza;
+    procedure lancFinaceiro;
   public
     { Public declarations }
     percento: Currency;
@@ -114,7 +122,8 @@ implementation
 {$R *.dfm}
 
 uses DMVendas, DMCadastro, CadastroFinanceiro, Preferencia, DMDados, Principal,
-  CadastroRapidoCliente, PesquisaCliente, Biblioteca, PesquisaAvancadaVenda;
+  CadastroRapidoCliente, PesquisaCliente, Biblioteca, PesquisaAvancadaVenda,
+  DMFinanceiro, System.Types;
 
 procedure TfrmCadastroVendas.btnCancelarClick(Sender: TObject);
 begin
@@ -160,48 +169,83 @@ begin
 end;
 
 procedure TfrmCadastroVendas.btnGerarLancamentoClick(Sender: TObject);
+Var
+  k: Integer;
+  wData: TDate;
+  wValorTotal: Double;
 begin
-  ShowMessage('Ainda falta desenvolver a tela')
-  /// frmCadastroFinanceiro.DB_IdVenda :=  DBEdit1.Text;
+  wData := Date;
+  wValorTotal := DM_Vendas.FDQuerySaida_VendaVALORTOTAL.Value;
+  if (DM_Vendas.FDQuerySaida_VendaPARCELA.Value > 0) and
+    (DM_Vendas.FDQuerySaida_VendaVALORTOTAL.Value > 0) and
+    (DM_Vendas.FDQuerySaida_VendaDIAS_ENTRE_PARCELAS.Value > 0) then
+  begin
+    for k := 1 to DM_Vendas.FDQuerySaida_VendaPARCELA.Value do
+    begin
+      if not DM_Finaceiro.FDQueryFinanceiro.Locate('SEQ_PARCELA', k, []) then
+      begin
+        DM_Finaceiro.FDQueryFinanceiro.Append;
+        DM_Finaceiro.FDQueryFinanceiroSEQ_PARCELA.Value := k;
+      end
+      else
 
+        DM_Finaceiro.FDQueryFinanceiro.edit;
+
+      wData := wData + DM_Vendas.FDQuerySaida_VendaDIAS_ENTRE_PARCELAS.Value;
+      DM_Finaceiro.FDQueryFinanceiroDATA_VENC.AsDateTime := wData;
+      DM_Finaceiro.FDQueryFinanceiroVLR_PARC.AsCurrency :=
+        DM_Vendas.FDQuerySaida_VendaVALORTOTAL.Value /
+        DM_Vendas.FDQuerySaida_VendaDIAS_ENTRE_PARCELAS.Value;
+      DM_Finaceiro.FDQueryFinanceiro.Post;
+      wValorTotal := wValorTotal - DM_Finaceiro.FDQueryFinanceiroVLR_PARC.Value;
+    end;
+    DM_Finaceiro.FDQueryFinanceiro.Last;
+    while DM_Finaceiro.FDQueryFinanceiroSEQ_PARCELA.Value >
+      DM_Vendas.FDQuerySaida_VendaPARCELA.Value do
+      DM_Finaceiro.FDQueryFinanceiro.Delete;
+    if CompareValue(wValorTotal, 0.00, 0.001) <> EqualsValue then
+    begin
+      DM_Finaceiro.FDQueryFinanceiro.edit;
+      DM_Finaceiro.FDQueryFinanceiroVLR_PARC.Value :=
+        DM_Finaceiro.FDQueryFinanceiroVLR_PARC.Value + wValorTotal;
+      DM_Finaceiro.FDQueryFinanceiro.Post;
+    end;
+    DM_Finaceiro.FDQueryFinanceiro.First;
+  end;
 end;
 
 procedure TfrmCadastroVendas.btnImprimirClick(Sender: TObject);
 begin
-//frVendas.Variables.Variables['Cliente'] := QuotedStr(DBLookupCB_Cliente.Text);
-CarregaRelatorio(frVendas);
+  // frVendas.Variables.Variables['Cliente'] := QuotedStr(DBLookupCB_Cliente.Text);
+  CarregaRelatorio(frVendas);
 end;
 
 procedure TfrmCadastroVendas.btnNovoClick(Sender: TObject);
 begin
-DM_Vendas.FDQuerySaidaProduto.Open();
+  DM_Vendas.FDQuerySaidaProduto.open();
   if not(DM_Vendas.FDQuerySaida_Venda.State in [dsEdit, dsInsert]) then
   begin
     DM_Vendas.FDQuerySaida_Venda.Insert;
   end;
-{  if not(DM_Vendas.FDQuerySaidaProduto.State in [dsEdit, dsInsert]) then
-  begin
-      DM_Vendas.FDQuerySaidaProduto.Insert;
-        end;}
   btnNovo.Enabled := false;
   btnEdit.Enabled := false;
   btnDeletar.Enabled := false;
-  DM_Vendas.FDQuerySaida_VendaDATAVENDA.AsDateTime := date;
-  DM_Vendas.FDQuerySaida_VendaUSU_NOME.Text :=  DM_Dados.FDQueryUsuarioUSU_NOME.AsString;
-   // frmPrincipal.StatusBar1.Panels[1].Text;     //para colocar quem esta logado para pode saber quem fez a venda
+  DM_Vendas.FDQuerySaida_VendaDATAVENDA.AsDateTime := Date;
+  DM_Vendas.FDQuerySaida_VendaUSU_NOME.Text :=
+    DM_Dados.FDQueryUsuarioUSU_NOME.AsString;
 end;
 
 procedure TfrmCadastroVendas.btnPesquisaAvancadaVendaClick(Sender: TObject);
 begin
 
- fecharTela;
+  fecharTela;
   if (frmPesquisaAvancadaVenda = nil) then
     frmPesquisaAvancadaVenda := TFrmPesquisaAvancadaVenda.Create(self);
   if (not frmPesquisaAvancadaVenda.showing) then
     frmPesquisaAvancadaVenda.Show;
   begin
-    if frmPesquisaAvancadaVenda.Visible = False then
-      frmPesquisaAvancadaVenda.Visible := True;
+    if frmPesquisaAvancadaVenda.Visible = false then
+      frmPesquisaAvancadaVenda.Visible := true;
     frmPesquisaAvancadaVenda.BringToFront;
   end;
 end;
@@ -214,9 +258,6 @@ begin
   DM_Vendas.FDQuerySaida_Venda.SQL.Clear;
   DM_Vendas.FDQuerySaida_Venda.SQL.Add('select * from SAIDA_VENDA');
   DM_Vendas.FDQuerySaida_Venda.SQL.Add('WHERE 1 = 1');
-  /// DataModule1.FDQueryProdutoFOTO.Value := Date.;
-  // DM_Vendas.FDQuerySaida_Venda.SQL.Add('where codigo =:pcodigo');
-  // DM_Vendas.FDQuerySaida_Venda.ParamByName('pcodigo').AsInteger := StrToInt(edt_Pesquisa.Text);
 
   case CB_opcao.ItemIndex of // utilizando o combo box na janela bairro
     0:
@@ -320,7 +361,7 @@ begin
 
   end;
 
-  DM_Vendas.FDQuerySaida_Venda.Open();
+  DM_Vendas.FDQuerySaida_Venda.open();
 
 end;
 
@@ -391,7 +432,8 @@ procedure TfrmCadastroVendas.DBE_DescontoExit(Sender: TObject);
 var
   desconto: Currency;
 begin
-percento := DM_Dados.FDQueryPreferenciaDESCONTO_VENDA.CurValue;//DM_Dados.FDQueryPreferencia.Fields[9].AsFloat;    //recebe o valor da preferencia
+  percento := DM_Dados.FDQueryPreferenciaDESCONTO_VENDA.CurValue;
+  // DM_Dados.FDQueryPreferencia.Fields[9].AsFloat;    //recebe o valor da preferencia
   case frmCadastroVendas.DBC_Desconto.ItemIndex of
     // combobox de deconto por percento ou real
     0: // R$
@@ -448,16 +490,17 @@ end;
 
 procedure TfrmCadastroVendas.FormCreate(Sender: TObject);
 begin
-  DM_Cadastro.FDQueryCondição_pagamento.Open();
-  DM_Cadastro.FDQueryCliente.Open();
-  DM_Dados.FDQueryPreferencia.Open();
-  DM_Vendas.FDQuerySaida_Venda.Open();
-  DM_Cadastro.FDQueryProduto.Open();
-  DM_Vendas.FDQuerySaidaProduto.Open();
-  DM_Cadastro.FDQueryTipoPgto.Open();
-  DM_Cadastro.FDQueryConta.Open();
-  DM_Cadastro.FDQuerySubConta.Open();
-  DM_Cadastro.FDQueryTIPO_CONTA.Open();
+  DM_Finaceiro.FDQueryFinanceiro.open();
+  DM_Cadastro.FDQueryCondição_pagamento.open();
+  DM_Cadastro.FDQueryCliente.open();
+  DM_Dados.FDQueryPreferencia.open();
+  DM_Vendas.FDQuerySaida_Venda.open();
+  DM_Cadastro.FDQueryProduto.open();
+  DM_Vendas.FDQuerySaidaProduto.open();
+  DM_Cadastro.FDQueryTipoPgto.open();
+  DM_Cadastro.FDQueryConta.open();
+  DM_Cadastro.FDQuerySubConta.open();
+  DM_Cadastro.FDQueryTIPO_CONTA.open();
 end;
 
 procedure TfrmCadastroVendas.FormKeyDown(Sender: TObject; var Key: Word;
@@ -466,21 +509,27 @@ begin
   if Key = vk_f4 then
   begin
     frmCadastroRapidoCliente := TFrmCadastroRapidoCliente.Create(self);
-  try
-    frmCadastroRapidoCliente.showModal;
-  finally
-    FreeAndNil(frmCadastroRapidoCliente);
+    try
+      frmCadastroRapidoCliente.showModal;
+    finally
+      FreeAndNil(frmCadastroRapidoCliente);
+    end;
   end;
-  end;
-   if Key = vk_f5 then
+  if Key = vk_f5 then
   begin
     frmPesquisaCliente := TFrmPesquisaCliente.Create(self);
-  try
-    frmPesquisaCliente.showModal;
-  finally
-    FreeAndNil(frmPesquisaCliente);
+    try
+      frmPesquisaCliente.showModal;
+    finally
+      FreeAndNil(frmPesquisaCliente);
+    end;
   end;
-  end;
+end;
+
+procedure TfrmCadastroVendas.lancFinaceiro;
+begin
+  DM_Finaceiro.FDQueryFinanceiroCODIGO.Value :=
+    DM_Vendas.FDQueryOrcamentoCODIGO.Value;
 end;
 
 procedure TfrmCadastroVendas.SpeedButton2Click(Sender: TObject);
@@ -553,7 +602,6 @@ begin
       end;
     end;
   end;
-
 
 end;
 

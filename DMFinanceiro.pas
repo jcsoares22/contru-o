@@ -12,16 +12,14 @@ type
   TDM_Finaceiro = class(TDataModule)
     FDQueryFinanceiro: TFDQuery;
     DT_Financeiro: TDataSource;
-    FDQueryFinanceiroID_VENDA: TIntegerField;
-    FDQueryFinanceiroNUN_PARCELA: TIntegerField;
-    FDQueryFinanceiroVLR_PARC: TFMTBCDField;
+    FDQueryFinanceiroCODIGO: TIntegerField;
+    FDQueryFinanceiroSEQ_PARCELA: TIntegerField;
+    FDQueryFinanceiroVLR_PARC: TBCDField;
     FDQueryFinanceiroDATA_VENC: TSQLTimeStampField;
     FDQueryFinanceiroDATA_PGTO: TSQLTimeStampField;
-    FDQueryFinanceiroJUROS: TFMTBCDField;
-    FDQueryFinanceiroDESCONTO: TFMTBCDField;
-    FDQueryFinanceiroVLR_PGTO: TFMTBCDField;
-    FDQueryFinanceiroPARC_SALDO: TFMTBCDField;
-    FDQueryFinanceiroCOD_BANCO: TStringField;
+    FDQueryFinanceiroVLR_PGTO: TBCDField;
+    FDQueryFinanceiroTIPO: TStringField;
+    procedure FDQueryFinanceiroNewRecord(DataSet: TDataSet);
   private
     { Private declarations }
   public
@@ -34,7 +32,14 @@ var
 implementation
 
 {%CLASSGROUP 'Vcl.Controls.TControl'}
-
 {$R *.dfm}
-    USES  DMDados, DMCadastrO, DMVendas;
+
+USES DMDados, DMCadastrO, DMVendas;
+
+procedure TDM_Finaceiro.FDQueryFinanceiroNewRecord(DataSet: TDataSet);
+begin
+  DM_Vendas.FDQuerySaida_Venda.Open();
+  FDQueryFinanceiroCODIGO.Value := DM_Vendas.FDQuerySaida_VendaCODIGO.Value;
+end;
+
 end.

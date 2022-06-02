@@ -211,7 +211,7 @@
         Left = 0
         Top = 0
         Width = 1287
-        Height = 161
+        Height = 169
         Align = alTop
         Color = clSkyBlue
         ParentBackground = False
@@ -319,6 +319,22 @@
           Width = 52
           Height = 13
           Caption = 'SITUACAO'
+        end
+        object Label19: TLabel
+          Left = 760
+          Top = 120
+          Width = 45
+          Height = 13
+          Caption = 'PARCELA'
+          FocusControl = DBEdit7
+        end
+        object Label20: TLabel
+          Left = 912
+          Top = 120
+          Width = 119
+          Height = 13
+          Caption = 'DIAS_ENTRE_PARCELAS'
+          FocusControl = DBEdit8
         end
         object DBEdit1: TDBEdit
           Left = 8
@@ -538,6 +554,24 @@
           TabOrder = 21
           OnClick = btnImprimirClick
         end
+        object DBEdit7: TDBEdit
+          Left = 760
+          Top = 139
+          Width = 134
+          Height = 21
+          DataField = 'PARCELA'
+          DataSource = DM_Vendas.DT_Saida_Venda
+          TabOrder = 22
+        end
+        object DBEdit8: TDBEdit
+          Left = 912
+          Top = 136
+          Width = 134
+          Height = 21
+          DataField = 'DIAS_ENTRE_PARCELAS'
+          DataSource = DM_Vendas.DT_Saida_Venda
+          TabOrder = 23
+        end
       end
       object Panel2: TPanel
         Left = 0
@@ -581,7 +615,7 @@
         end
         object btnGerarLancamento: TButton
           Left = 912
-          Top = 14
+          Top = 6
           Width = 113
           Height = 25
           Caption = 'Gerar Lan'#231'amento'
@@ -623,9 +657,9 @@
       end
       object DBGrid1: TDBGrid
         Left = 0
-        Top = 161
+        Top = 169
         Width = 1287
-        Height = 350
+        Height = 342
         Align = alClient
         DataSource = DM_Vendas.DTProduto
         TabOrder = 2
@@ -648,26 +682,31 @@
           item
             Expanded = False
             FieldName = 'NOME_PRODUTO'
+            Width = 64
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'QTE_ESTOQUE'
+            Width = 64
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'QUANTIDADE'
+            Width = 64
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'VALORPRODUTO'
+            Width = 64
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'VALORTOTAL'
+            Width = 64
             Visible = True
           end>
       end
@@ -705,7 +744,7 @@
     PrintOptions.Printer = 'Default'
     PrintOptions.PrintOnSheet = 0
     ReportOptions.CreateDate = 44709.926040381900000000
-    ReportOptions.LastChange = 44712.950230289350000000
+    ReportOptions.LastChange = 44712.950230289400000000
     ScriptLanguage = 'PascalScript'
     ScriptText.Strings = (
       'begin'
@@ -1159,5 +1198,58 @@
     DataSetOptions = []
     Left = 724
     Top = 472
+  end
+  object frxPDFExport1: TfrxPDFExport
+    FileName = '.pdf'
+    UseFileCache = True
+    ShowProgress = True
+    OverwritePrompt = False
+    CreationTime = 44714.118878159720000000
+    DataOnly = False
+    EmbedFontsIfProtected = False
+    InteractiveFormsFontSubset = 'A-Z,a-z,0-9,#43-#47 '
+    OpenAfterExport = False
+    PrintOptimized = False
+    Outline = False
+    Background = False
+    HTMLTags = True
+    Quality = 95
+    Author = 'FastReport'
+    Subject = 'FastReport PDF export'
+    Creator = 'FastReport'
+    ProtectionFlags = [ePrint, eModify, eCopy, eAnnot]
+    HideToolbar = False
+    HideMenubar = False
+    HideWindowUI = False
+    FitWindow = False
+    CenterWindow = False
+    PrintScaling = False
+    PdfA = False
+    PDFStandard = psNone
+    PDFVersion = pv17
+    Left = 716
+    Top = 400
+  end
+  object frxDesigner1: TfrxDesigner
+    DefaultScriptLanguage = 'PascalScript'
+    DefaultFont.Charset = DEFAULT_CHARSET
+    DefaultFont.Color = clWindowText
+    DefaultFont.Height = -13
+    DefaultFont.Name = 'Arial'
+    DefaultFont.Style = []
+    DefaultLeftMargin = 10.000000000000000000
+    DefaultRightMargin = 10.000000000000000000
+    DefaultTopMargin = 10.000000000000000000
+    DefaultBottomMargin = 10.000000000000000000
+    DefaultPaperSize = 9
+    DefaultOrientation = poPortrait
+    GradientEnd = 11982554
+    GradientStart = clWindow
+    TemplatesExt = 'fr3'
+    Restrictions = []
+    RTLLanguage = False
+    MemoParentFont = False
+    Left = 556
+    Top = 456
   end
 end

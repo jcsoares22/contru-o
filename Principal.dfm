@@ -54,7 +54,7 @@ object frmPrincipal: TfrmPrincipal
     Top = 0
     Width = 1186
     Height = 49
-    ActivePage = TabSheet1
+    ActivePage = TabSheet3
     Align = alTop
     TabOrder = 1
     object TabSheet1: TTabSheet
@@ -593,7 +593,6 @@ object frmPrincipal: TfrmPrincipal
         Color = clSkyBlue
         ParentBackground = False
         TabOrder = 0
-        ExplicitTop = -148
         object SpeedButton8: TSpeedButton
           Left = 0
           Top = 0
@@ -675,7 +674,6 @@ object frmPrincipal: TfrmPrincipal
     object TabSheet3: TTabSheet
       Caption = 'Financeiro'
       ImageIndex = 2
-      ExplicitHeight = 269
       object Panel4: TPanel
         Left = 0
         Top = 0
@@ -691,6 +689,7 @@ object frmPrincipal: TfrmPrincipal
           Top = 3
           Width = 23
           Height = 17
+          OnClick = Lancamento_finaceiroClick
         end
         object Button1: TButton
           Left = 1000

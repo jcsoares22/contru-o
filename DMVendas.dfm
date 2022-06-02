@@ -35,6 +35,7 @@ object DM_Vendas: TDM_Vendas
     object FDQuerySaida_VendaVALORTOTAL: TBCDField
       FieldName = 'VALORTOTAL'
       Origin = 'VALORTOTAL'
+      OnChange = FDQuerySaida_VendaVALORTOTALChange
       Precision = 18
       Size = 2
     end
@@ -108,6 +109,16 @@ object DM_Vendas: TDM_Vendas
       FieldName = 'USU_NOME'
       Origin = 'USU_NOME'
       Size = 30
+    end
+    object FDQuerySaida_VendaPARCELA: TIntegerField
+      FieldName = 'PARCELA'
+      Origin = 'PARCELA'
+      OnChange = FDQuerySaida_VendaVALORTOTALChange
+    end
+    object FDQuerySaida_VendaDIAS_ENTRE_PARCELAS: TIntegerField
+      FieldName = 'DIAS_ENTRE_PARCELAS'
+      Origin = 'DIAS_ENTRE_PARCELAS'
+      OnChange = FDQuerySaidaProdutoVALORPRODUTOValidate
     end
   end
   object DT_Saida_Venda: TDataSource
@@ -222,10 +233,12 @@ object DM_Vendas: TDM_Vendas
   end
   object DtOrcamento: TDataSource
     DataSet = FDQueryOrcamento
-    Left = 816
-    Top = 24
+    Left = 776
+    Top = 40
   end
   object FDQuerySaidaProduto: TFDQuery
+    Active = True
+    OnNewRecord = FDQuerySaidaProdutoNewRecord
     IndexFieldNames = 'CODIGO'
     MasterSource = DT_Saida_Venda
     MasterFields = 'CODIGO'

@@ -92,6 +92,7 @@ type
     procedure Oramento1Click(Sender: TObject);
     procedure Timer1Timer(Sender: TObject);
     procedure Estoque1Click(Sender: TObject);
+    procedure Lancamento_finaceiroClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -112,7 +113,7 @@ uses CadastroCliente, CadastroEstados, CadastroUnidadeMedida,
   CadastroUsuarios, CadastroVendas, CadastroCondPagamento,
   CasdatroContasFincaeiro, CadastroFinanceiro, CadastroDocumento,
   MovimentoEstoque, Orcamento, DMDados, LoginPreferencia, LoginMenu, Biblioteca,
-  EstoqueMinimo;
+  EstoqueMinimo, LancamentoFinanceiro;
 
 procedure TfrmPrincipal.bntClienteClick(Sender: TObject);
 begin
@@ -288,6 +289,21 @@ begin
     if frmCadastroDocumento.Visible = False then
       frmCadastroDocumento.Visible := True;
     frmCadastroDocumento.BringToFront;
+  end;
+end;
+
+procedure TfrmPrincipal.Lancamento_finaceiroClick(Sender: TObject);
+begin
+
+fecharTela;
+  if (frmLancamentoFinanceiro = nil) then
+    frmLancamentoFinanceiro := TFrmLancamentoFinanceiro.Create(self);
+  if (not frmLancamentoFinanceiro.showing) then
+    frmLancamentoFinanceiro.Show;
+  begin
+    if frmLancamentoFinanceiro.Visible = False then
+      frmLancamentoFinanceiro.Visible := True;
+    frmLancamentoFinanceiro.BringToFront;
   end;
 end;
 
