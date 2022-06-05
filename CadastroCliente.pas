@@ -7,7 +7,10 @@ uses
   System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, CadastroPaiPrincipal, Data.DB,
   Vcl.DBCtrls, Vcl.StdCtrls, Vcl.ExtCtrls, Vcl.Grids, Vcl.DBGrids, Vcl.ComCtrls,
-  Vcl.Mask, DMEndereco, DMCadastro, Biblioteca, frxClass, frxDBSet;
+  Vcl.Mask, DMEndereco, DMCadastro, Biblioteca, frxClass, frxDBSet,
+  FireDAC.Stan.Intf, FireDAC.Stan.Option, FireDAC.Stan.Param,
+  FireDAC.Stan.Error, FireDAC.DatS, FireDAC.Phys.Intf, FireDAC.DApt.Intf,
+  FireDAC.Stan.Async, FireDAC.DApt, FireDAC.Comp.DataSet, FireDAC.Comp.Client;
 
 type
   TfrmCadastroCliente = class(TfrmCadastroPai)
@@ -40,6 +43,7 @@ type
     frCliente: TfrxReport;
     frxCliente: TfrxDBDataset;
     DBListBox1: TDBListBox;
+    fdQueryFiltroCliente: TFDQuery;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure btnNovoClick(Sender: TObject);
     procedure btnSalvarClick(Sender: TObject);

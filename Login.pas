@@ -62,12 +62,9 @@ end;
 
 procedure TfrmLogin.btn_CancelarClick(Sender: TObject);
 begin
-  if MessageDlg('Desja sair do sistema ?', TMsgDlgType.mtConfirmation,
-    [mbok, mbNo], 0) = mrok then
-  begin
+
     Application.Terminate;
-  end;
-  Abort;
+
 end;
 
 end.

@@ -1,11 +1,5 @@
-﻿[DBEdit5]
-Coordinates=294,456,62,36
-
-[TabSheet1]
+﻿[TabSheet1]
 Coordinates=207,456,77,36
-
-[DB_Nome]
-Coordinates=124,456,73,36
 
 [Panel2]
 Coordinates=664,320,55,58
@@ -22,29 +16,14 @@ Coordinates=10,456,104,36
 [btnSalvar]
 Coordinates=285,320,69,58
 
-[DBEdit1]
-Coordinates=837,388,62,36
-
 [DM_Dados.FDQueryPreferencia]
 Coordinates=220,20,200,36
-
-[Label3]
-Coordinates=10,320,53,58
 
 [Label6]
 Coordinates=801,320,53,58
 
 [btnDeletar]
 Coordinates=201,320,74,58
-
-[Label5]
-Coordinates=531,320,53,58
-
-[DBEdit3]
-Coordinates=765,388,62,36
-
-[DBEdit4]
-Coordinates=693,388,62,36
 
 [Panel1]
 Coordinates=364,320,55,58
@@ -57,12 +36,6 @@ Coordinates=408,10,101,124
 
 [Label10]
 Coordinates=756,10,60,58
-
-[Label2]
-Coordinates=630,10,53,58
-
-[Label1]
-Coordinates=105,388,53,58
 
 [Label11]
 Coordinates=594,320,60,58
@@ -88,9 +61,6 @@ Coordinates=435,375,150,36
 [Cadastro]
 Coordinates=616,388,67,36
 
-[Label4]
-Coordinates=693,10,53,58
-
 [TabSheet2]
 Coordinates=529,388,77,36
 
@@ -101,7 +71,7 @@ Coordinates=473,388,46,36
 Coordinates=370,388,93,36
 
 []
-Coordinates=260,400,98,36
+Coordinates=693,388,62,36
 Visible=True
 
 [DM_Dados.]

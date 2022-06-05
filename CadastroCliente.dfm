@@ -397,7 +397,7 @@ inherited frmCadastroCliente: TfrmCadastroCliente
       ''
       'end.')
     Left = 612
-    Top = 456
+    Top = 296
     Datasets = <
       item
         DataSet = frxCliente
@@ -544,7 +544,29 @@ inherited frmCadastroCliente: TfrmCadastroCliente
     DataSource = DM_Cadastro.DT_cliente
     BCDToCurrency = False
     DataSetOptions = []
-    Left = 556
-    Top = 456
+    Left = 516
+    Top = 232
+  end
+  object fdQueryFiltroCliente: TFDQuery
+    SQL.Strings = (
+      'select '
+      '    cliente.codigo,'
+      '    cliente.telefone,'
+      '    cliente.cpf,'
+      '    cliente.email,'
+      '    cliente.nome,'
+      '    cliente.descricao,'
+      '    cliente.rua,'
+      '    cliente.numero,'
+      '    cliente.uf_id,'
+      '    cliente.cidade_id,'
+      '    cliente.bairro,'
+      '    estados.uf,'
+      '    cidades.nome'
+      'from cidades'
+      '   inner join cliente on (cidades.id = cliente.cidade_id)'
+      '   inner join estados on (cliente.uf_id = estados.id)')
+    Left = 600
+    Top = 432
   end
 end

@@ -9,6 +9,7 @@ inherited frmCadastroProduto: TfrmCadastroProduto
   inherited Cadastro: TPageControl
     Width = 1127
     Height = 634
+    ActivePage = TabSheet1
     ExplicitWidth = 1127
     ExplicitHeight = 634
     inherited TabSheet1: TTabSheet
@@ -328,7 +329,7 @@ inherited frmCadastroProduto: TfrmCadastroProduto
         Left = 18
         Top = 368
         Width = 441
-        Height = 127
+        Height = 21
         CharCase = ecUpperCase
         DataField = 'OBS'
         DataSource = DM_Cadastro.DT_produto
@@ -480,8 +481,6 @@ inherited frmCadastroProduto: TfrmCadastroProduto
         object TabSheet4: TTabSheet
           Caption = #192' prazo'
           ImageIndex = 1
-          ExplicitLeft = 132
-          ExplicitTop = 8
           object Label22: TLabel
             Left = 3
             Top = 21

@@ -10,7 +10,8 @@ uses
   FireDAC.DApt.Intf, FireDAC.Stan.Async, FireDAC.DApt, Data.DB,
   FireDAC.Comp.DataSet, FireDAC.Comp.Client, DMDados, Vcl.ExtCtrls,
   Vcl.ComCtrls,
-  Vcl.StdCtrls, Vcl.Grids, Vcl.DBGrids, frxClass, frxDBSet, Vcl.DBCtrls;
+  Vcl.StdCtrls, Vcl.Grids, Vcl.DBGrids, frxClass, frxDBSet, Vcl.DBCtrls,
+  Datasnap.DBClient;
 
 type
   TfrmPesquisaAvancadaVenda = class(TForm)
@@ -23,12 +24,9 @@ type
     DSFiltro: TDataSource;
     edtCodigoVenda: TEdit;
     Label3: TLabel;
-    CheckBox1: TCheckBox;
     edtFiltro: TEdit;
     Filtra: TButton;
     btnImprimir: TButton;
-    frPesquisaavancadaVenda: TfrxReport;
-    frxFiltrovenda: TfrxDBDataset;
     FDQueryFiltroVendaItens: TFDQuery;
     DTFiltroVendaItens: TDataSource;
     PageControl1: TPageControl;
@@ -43,7 +41,6 @@ type
     FDQueryFiltroVendaItensNOME_PRODUTO: TStringField;
     FDQueryFiltroVendaItensCODPRODUTO: TIntegerField;
     FDQueryFiltroVendaItensQTE_ESTOQUE: TFloatField;
-    frxFiltroVendaItens: TfrxDBDataset;
     Painel: TPanel;
     FDQueryFiltroCODIGO: TIntegerField;
     FDQueryFiltroCODCLIENTE: TIntegerField;
@@ -54,15 +51,30 @@ type
     FDQueryFiltroVALORTOTAL: TBCDField;
     edtValorTotal: TEdit;
     FDQueryFiltroUSU_NOME: TStringField;
+    cbSituacao: TComboBox;
+    ComboBoxVendedor: TComboBox;
+    cdsVendedor: TClientDataSet;
+    DSVendedor: TDataSource;
+    FDQueryUsuario: TFDQuery;
+    FDQueryUsuarioUSU_CODIGO: TIntegerField;
+    FDQueryUsuarioUSU_NOME: TStringField;
+    FDQueryUsuarioUSU_LOGIN: TStringField;
+    FDQueryUsuarioUSU_SENHA: TStringField;
+    FDQueryUsuarioUSU_NIVEL: TIntegerField;
+    FDQueryUsuarioADM: TStringField;
+    FDQueryUsuarioPREFERENCIA: TStringField;
+    FDQueryUsuarioCAD_USU: TStringField;
     procedure FiltraClick(Sender: TObject);
     procedure btnImprimirClick(Sender: TObject);
     procedure edtValorTotalChange(Sender: TObject);
     procedure FormCreate(Sender: TObject);
+    procedure FormShow(Sender: TObject);
   private
     { Private declarations }
     procedure Filtrar;
     procedure FiltrarItens;
     procedure somaTotal;
+    procedure Vendedor; // usando o combo box para pegar os vendedor
   public
     { Public declarations }
 
@@ -80,20 +92,22 @@ uses Biblioteca, DMCadastro;
 
 procedure TfrmPesquisaAvancadaVenda.btnImprimirClick(Sender: TObject);
 begin
-  CarregaRelatorio(frPesquisaavancadaVenda);
+  // CarregaRelatorio(frPesquisaavancadaVenda);
 end;
-
 
 procedure TfrmPesquisaAvancadaVenda.edtValorTotalChange(Sender: TObject);
 begin
-edtValorTotal.Text:= FormatFloat('0.00', StrtoFloat(edtValorTotal.Text));
+  edtValorTotal.Text := FormatFloat('0.00', StrtoFloat(edtValorTotal.Text));
 end;
 
 procedure TfrmPesquisaAvancadaVenda.FiltraClick(Sender: TObject);
 begin
+      FDQueryFiltro.Close;
+ // FDQueryFiltroVendaItens.Close;
+  FDQueryFiltro.SQL.Clear;
   Filtrar;
   // FiltrarItens;
-   somaTotal;
+  somaTotal;
 
 end;
 
@@ -101,7 +115,7 @@ procedure TfrmPesquisaAvancadaVenda.Filtrar;
 
 begin
   FDQueryFiltro.Close;
-  FDQueryFiltroVendaItens.Close;
+ // FDQueryFiltroVendaItens.Close;
   FDQueryFiltro.SQL.Clear;
   FDQueryFiltro.SQL.Add('select v.codigo,');
   FDQueryFiltro.SQL.Add('v.codcliente,');
@@ -110,6 +124,7 @@ begin
   FDQueryFiltro.SQL.Add('v.datavenda,');
   FDQueryFiltro.SQL.Add('v.VALORTOTAL,');
   FDQueryFiltro.SQL.Add('v.usu_nome, ');
+  FDQueryFiltro.SQL.Add('v.situacao, ');
   FDQueryFiltro.SQL.Add('v.data_faturamento');
   FDQueryFiltro.SQL.Add
     (' from saida_venda v inner join cliente c on (v.codcliente = c.codigo)');
@@ -129,6 +144,38 @@ begin
   begin
     FDQueryFiltro.SQL.Add(' AND v.datavenda <=  ' +
       QuotedStr(FormatDateTime('dd.mm.yyyy', edtData2.DateTime)))
+  end;
+  case cbSituacao.ItemIndex of
+    0:
+      Begin
+        if cbSituacao.Text = 'FATURADO' then
+        begin
+          FDQueryFiltro.SQL.Add(' AND v.situacao = ' +
+            QuotedStr(cbSituacao.Text));
+        end;
+      End;
+    1:
+      begin
+        if cbSituacao.Text = 'CANCELADO' then
+        begin
+          FDQueryFiltro.SQL.Add(' AND v.situacao = ' +
+            QuotedStr(cbSituacao.Text))
+        end;
+      end;
+    2:
+      begin
+        if cbSituacao.Text = 'ORCAMENTO' then
+        begin
+          FDQueryFiltro.SQL.Add(' AND v.situacao = ' +
+            QuotedStr(cbSituacao.Text))
+        end;
+      end;
+
+  end;
+  if ComboBoxVendedor.Text <> EmptyStr then
+  begin
+    FDQueryFiltro.SQL.Add(' AND v.usu_nome = ' +
+      QuotedStr(ComboBoxVendedor.Text));
   end;
 
   { if edtCodigoVenda.Text <> '' then
@@ -172,19 +219,40 @@ end;
 
 procedure TfrmPesquisaAvancadaVenda.FormCreate(Sender: TObject);
 begin
-DM_Dados.FDQueryUsuario.Open();
+  DM_Dados.FDQueryUsuario.Open();
+end;
+
+procedure TfrmPesquisaAvancadaVenda.FormShow(Sender: TObject);
+begin
+  Vendedor;
 end;
 
 procedure TfrmPesquisaAvancadaVenda.somaTotal;
 var
   soma: Currency;
 begin
+  soma := 0;
   while not FDQueryFiltro.Eof do
   begin
     soma := soma + FDQueryFiltroVALORTOTAL.CurValue;
     FDQueryFiltro.Next;
   end;
   edtValorTotal.Text := CurrToStr(soma);
+end;
+
+procedure TfrmPesquisaAvancadaVenda.Vendedor;
+begin
+  ComboBoxVendedor.Items.Clear;
+  FDQueryUsuario.Close;
+  FDQueryUsuario.Open;
+  FDQueryUsuario.First;
+  while not FDQueryUsuario.Eof do
+  begin
+    ComboBoxVendedor.Items.AddObject(FDQueryUsuarioUSU_NOME.AsString,
+      TObject(FDQueryUsuarioUSU_CODIGO.AsInteger));
+    FDQueryUsuario.Next;
+  end;
+  // ComboBoxVendedor.ItemIndex := 0;
 end;
 
 end.

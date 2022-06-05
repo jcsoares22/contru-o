@@ -156,46 +156,6 @@
     object TabSheet2: TTabSheet
       Caption = 'Cadastro'
       ImageIndex = 1
-      object Label1: TLabel
-        Left = 16
-        Top = 56
-        Width = 41
-        Height = 13
-        Caption = 'CODIGO'
-        FocusControl = DBEdit1
-      end
-      object Label3: TLabel
-        Left = 184
-        Top = 56
-        Width = 31
-        Height = 13
-        Caption = 'LOGIN'
-        FocusControl = DBEdit3
-      end
-      object Label4: TLabel
-        Left = 352
-        Top = 56
-        Width = 33
-        Height = 13
-        Caption = 'SENHA'
-        FocusControl = DBEdit4
-      end
-      object Label5: TLabel
-        Left = 456
-        Top = 104
-        Width = 87
-        Height = 13
-        Caption = 'NIVEL DE ACESSO'
-        FocusControl = DBEdit5
-      end
-      object Label2: TLabel
-        Left = 16
-        Top = 104
-        Width = 29
-        Height = 13
-        Caption = 'NOME'
-        FocusControl = DB_Nome
-      end
       object Panel1: TPanel
         Left = 0
         Top = 0
@@ -241,61 +201,24 @@
           TabOrder = 3
         end
       end
-      object DBEdit1: TDBEdit
-        Left = 16
-        Top = 72
-        Width = 134
-        Height = 21
-        DataField = 'USU_CODIGO'
-        DataSource = DM_Dados.DT_Usuario
-        ReadOnly = True
-        TabOrder = 1
-      end
-      object DB_Nome: TDBEdit
-        Left = 16
-        Top = 123
-        Width = 394
-        Height = 21
-        DataField = 'USU_NOME'
-        DataSource = DM_Dados.DT_Usuario
-        TabOrder = 2
-      end
-      object DBEdit3: TDBEdit
-        Left = 184
-        Top = 75
-        Width = 134
-        Height = 21
-        DataField = 'USU_LOGIN'
-        DataSource = DM_Dados.DT_Usuario
-        TabOrder = 3
-      end
-      object DBEdit4: TDBEdit
-        Left = 352
-        Top = 75
-        Width = 134
-        Height = 21
-        DataField = 'USU_SENHA'
-        DataSource = DM_Dados.DT_Usuario
-        TabOrder = 4
-      end
-      object DBEdit5: TDBEdit
-        Left = 456
-        Top = 120
-        Width = 134
-        Height = 21
-        DataField = 'USU_NIVEL'
-        DataSource = DM_Dados.DT_Usuario
-        TabOrder = 5
-      end
       object PageControl1: TPageControl
-        Left = 16
-        Top = 192
-        Width = 1281
-        Height = 713
+        Left = 0
+        Top = 161
+        Width = 1116
+        Height = 438
         ActivePage = Geral
-        TabOrder = 6
+        Align = alClient
+        TabOrder = 1
+        ExplicitLeft = 112
+        ExplicitTop = 294
+        ExplicitWidth = 1281
+        ExplicitHeight = 713
         object Geral: TTabSheet
           Caption = 'Geral'
+          ExplicitLeft = 20
+          ExplicitTop = -112
+          ExplicitWidth = 1273
+          ExplicitHeight = 685
           object Preferencia: TCheckBox
             Left = 3
             Top = 40
@@ -320,38 +243,132 @@
             Caption = 'Manute'#231#227'o de usu'#225'rio'
             TabOrder = 2
           end
+          object DBCheckBox_administrador: TDBCheckBox
+            Left = 193
+            Top = 233
+            Width = 97
+            Height = 17
+            Caption = 'DBCheckBox_administrador'
+            DataField = 'ADM'
+            DataSource = DM_Dados.DT_Usuario
+            TabOrder = 3
+          end
+          object DBCheckBoxPreferencia: TDBCheckBox
+            Left = 193
+            Top = 256
+            Width = 97
+            Height = 17
+            Caption = 'DBCheckBox1'
+            DataField = 'PREFERENCIA'
+            DataSource = DM_Dados.DT_Usuario
+            TabOrder = 4
+            WordWrap = True
+          end
+          object Manuteção_usuario: TDBCheckBox
+            Left = 193
+            Top = 279
+            Width = 97
+            Height = 17
+            Caption = 'DBCheckBox1'
+            DataField = 'CAD_USU'
+            DataSource = DM_Dados.DT_Usuario
+            TabOrder = 5
+          end
         end
       end
-      object DBCheckBox_administrador: TDBCheckBox
-        Left = 193
-        Top = 233
-        Width = 97
-        Height = 17
-        Caption = 'DBCheckBox_administrador'
-        DataField = 'ADM'
-        DataSource = DM_Dados.DT_Usuario
-        TabOrder = 7
-      end
-      object DBCheckBoxPreferencia: TDBCheckBox
-        Left = 193
-        Top = 256
-        Width = 97
-        Height = 17
-        Caption = 'DBCheckBox1'
-        DataField = 'PREFERENCIA'
-        DataSource = DM_Dados.DT_Usuario
-        TabOrder = 8
-        WordWrap = True
-      end
-      object Manuteção_usuario: TDBCheckBox
-        Left = 193
-        Top = 279
-        Width = 97
-        Height = 17
-        Caption = 'DBCheckBox1'
-        DataField = 'CAD_USU'
-        DataSource = DM_Dados.DT_Usuario
-        TabOrder = 9
+      object Panel3: TPanel
+        Left = 0
+        Top = 41
+        Width = 1116
+        Height = 120
+        Align = alTop
+        TabOrder = 2
+        object Label5: TLabel
+          Left = 456
+          Top = 64
+          Width = 87
+          Height = 13
+          Caption = 'NIVEL DE ACESSO'
+          FocusControl = DBEdit5
+        end
+        object Label1: TLabel
+          Left = 16
+          Top = 16
+          Width = 41
+          Height = 13
+          Caption = 'CODIGO'
+          FocusControl = DBEdit1
+        end
+        object Label2: TLabel
+          Left = 16
+          Top = 64
+          Width = 29
+          Height = 13
+          Caption = 'NOME'
+          FocusControl = DB_Nome
+        end
+        object Label3: TLabel
+          Left = 184
+          Top = 16
+          Width = 31
+          Height = 13
+          Caption = 'LOGIN'
+          FocusControl = DBEdit3
+        end
+        object Label4: TLabel
+          Left = 352
+          Top = 16
+          Width = 33
+          Height = 13
+          Caption = 'SENHA'
+          FocusControl = DBEdit4
+        end
+        object DBEdit5: TDBEdit
+          Left = 456
+          Top = 80
+          Width = 134
+          Height = 21
+          DataField = 'USU_NIVEL'
+          DataSource = DM_Dados.DT_Usuario
+          TabOrder = 0
+        end
+        object DB_Nome: TDBEdit
+          Left = 16
+          Top = 83
+          Width = 394
+          Height = 21
+          DataField = 'USU_NOME'
+          DataSource = DM_Dados.DT_Usuario
+          TabOrder = 1
+        end
+        object DBEdit3: TDBEdit
+          Left = 184
+          Top = 35
+          Width = 134
+          Height = 21
+          DataField = 'USU_LOGIN'
+          DataSource = DM_Dados.DT_Usuario
+          TabOrder = 2
+        end
+        object DBEdit1: TDBEdit
+          Left = 16
+          Top = 32
+          Width = 134
+          Height = 21
+          DataField = 'USU_CODIGO'
+          DataSource = DM_Dados.DT_Usuario
+          ReadOnly = True
+          TabOrder = 3
+        end
+        object DBEdit4: TDBEdit
+          Left = 352
+          Top = 35
+          Width = 134
+          Height = 21
+          DataField = 'USU_SENHA'
+          DataSource = DM_Dados.DT_Usuario
+          TabOrder = 4
+        end
       end
     end
   end

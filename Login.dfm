@@ -59,7 +59,7 @@ object frmLogin: TfrmLogin
   end
   object btn_Cancelar: TButton
     Left = 209
-    Top = 42
+    Top = 39
     Width = 75
     Height = 25
     Caption = 'Cancelar'

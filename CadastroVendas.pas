@@ -9,7 +9,10 @@ uses
   Vcl.Mask, Vcl.Grids, Vcl.DBGrids, Vcl.ExtCtrls, Vcl.ComCtrls, Vcl.ColorGrd,
   IWVCLBaseControl, IWBaseControl, IWBaseHTMLControl, IWControl, IWDBStdCtrls,
   Vcl.Buttons, frxClass, frxDBSet, math, frxDesgn, frxExportBaseDialog,
-  frxExportPDF;
+  frxExportPDF, Vcl.Menus, FireDAC.Stan.Intf, FireDAC.Stan.Option,
+  FireDAC.Stan.Param, FireDAC.Stan.Error, FireDAC.DatS, FireDAC.Phys.Intf,
+  FireDAC.DApt.Intf, FireDAC.Stan.Async, FireDAC.DApt, FireDAC.Comp.DataSet,
+  FireDAC.Comp.Client;
 
 type
   TfrmCadastroVendas = class(TForm)
@@ -84,6 +87,20 @@ type
     DBEdit8: TDBEdit;
     frxPDFExport1: TfrxPDFExport;
     frxDesigner1: TfrxDesigner;
+    PopupMenu1: TPopupMenu;
+    Cliente1: TMenuItem;
+    Cliente21: TMenuItem;
+    frxCliente2: TfrxDBDataset;
+    frCliente2: TfrxReport;
+    FDQueryVendasCliente2: TFDQuery;
+    FDQueryVendasCliente2DATAVENDA: TSQLTimeStampField;
+    FDQueryVendasCliente2VALORTOTAL: TBCDField;
+    FDQueryVendasCliente2USU_NOME: TStringField;
+    FDQueryVendasCliente2FRETE: TBCDField;
+    FDQueryVendasCliente2NOME: TStringField;
+    FDQueryVendasCliente2CODCLIENTE: TIntegerField;
+    FDQueryVendasCliente2TIPO_DESC: TStringField;
+    FDQueryVendasCliente2DESCONTO: TBCDField;
     procedure DBGridVendasExit(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure btnNovoClick(Sender: TObject);
@@ -104,6 +121,8 @@ type
     procedure btnImprimirClick(Sender: TObject);
     procedure btnPesquisaAvancadaVendaClick(Sender: TObject);
     procedure btnGerarLancamentoClick(Sender: TObject);
+    procedure Cliente1Click(Sender: TObject);
+    procedure Cliente21Click(Sender: TObject);
   private
     { Private declarations }
 
@@ -216,8 +235,9 @@ end;
 
 procedure TfrmCadastroVendas.btnImprimirClick(Sender: TObject);
 begin
-  // frVendas.Variables.Variables['Cliente'] := QuotedStr(DBLookupCB_Cliente.Text);
-  CarregaRelatorio(frVendas);
+ with TButton(Sender).ClientToScreen(point(0, TButton(Sender).Height)) do
+    PopupMenu1.Popup(X, Y);
+
 end;
 
 procedure TfrmCadastroVendas.btnNovoClick(Sender: TObject);
@@ -395,6 +415,16 @@ end;
 procedure TfrmCadastroVendas.btn_TotalizaClick(Sender: TObject);
 begin
   totaliza;
+end;
+
+procedure TfrmCadastroVendas.Cliente1Click(Sender: TObject);
+begin
+ CarregaRelatorio(frVendas);
+end;
+
+procedure TfrmCadastroVendas.Cliente21Click(Sender: TObject);
+begin
+CarregaRelatorio(frCliente2);
 end;
 
 procedure TfrmCadastroVendas.DBC_DescontoChange(Sender: TObject);
