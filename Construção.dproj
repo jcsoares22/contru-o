@@ -248,6 +248,10 @@
             <Form>frmLancamentoFinanceiro</Form>
             <FormType>dfm</FormType>
         </DCCReference>
+        <DCCReference Include="informacao.pas">
+            <Form>frmInformacao</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>

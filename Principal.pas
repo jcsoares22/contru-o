@@ -8,7 +8,7 @@ uses
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Menus, Vcl.StdCtrls, Vcl.ExtCtrls,
   Preferencia,
   Vcl.ComCtrls, Vcl.Buttons, Vcl.ToolWin, Vcl.ActnMan, Vcl.ActnCtrls,
-  Vcl.ActnMenus;
+  Vcl.ActnMenus, Vcl.Imaging.pngimage;
 
 type
   TfrmPrincipal = class(TForm)
@@ -69,6 +69,7 @@ type
     Panel4: TPanel;
     Button1: TButton;
     Lancamento_finaceiro: TSpeedButton;
+    Image1: TImage;
 
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure bntClienteClick(Sender: TObject);
@@ -93,6 +94,7 @@ type
     procedure Timer1Timer(Sender: TObject);
     procedure Estoque1Click(Sender: TObject);
     procedure Lancamento_finaceiroClick(Sender: TObject);
+    procedure N4Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -113,7 +115,7 @@ uses CadastroCliente, CadastroEstados, CadastroUnidadeMedida,
   CadastroUsuarios, CadastroVendas, CadastroCondPagamento,
   CasdatroContasFincaeiro, CadastroFinanceiro, CadastroDocumento,
   MovimentoEstoque, Orcamento, DMDados, LoginPreferencia, LoginMenu, Biblioteca,
-  EstoqueMinimo, LancamentoFinanceiro;
+  EstoqueMinimo, LancamentoFinanceiro, informacao;
 
 procedure TfrmPrincipal.bntClienteClick(Sender: TObject);
 begin
@@ -342,6 +344,16 @@ begin
     if frmCadastroCidades.Visible = False then
       frmCadastroCidades.Visible := True;
     frmCadastroCidades.BringToFront;
+  end;
+end;
+
+procedure TfrmPrincipal.N4Click(Sender: TObject);
+begin
+frmInformacao := TfrmInformacao.Create(self);
+  try
+    frmInformacao.showModal;
+  finally
+    FreeAndNil(frmInformacao);
   end;
 end;
 

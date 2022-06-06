@@ -46,7 +46,8 @@ uses
   EstoqueMinimo in 'EstoqueMinimo.pas' {frmEstoqueminimo},
   EstoqueProduto in 'EstoqueProduto.pas' {frmEstoque},
   CadastroCondPagamento in 'CadastroCondPagamento.pas' {frmCadastroCondPagamento},
-  LancamentoFinanceiro in 'LancamentoFinanceiro.pas' {frmLancamentoFinanceiro};
+  LancamentoFinanceiro in 'LancamentoFinanceiro.pas' {frmLancamentoFinanceiro},
+  informacao in 'informacao.pas' {frmInformacao};
 
 {$R *.res}
 
@@ -64,6 +65,7 @@ begin
   Application.CreateForm(TDM_Finaceiro, DM_Finaceiro);
   Application.CreateForm(TDM_Mov_Estoque, DM_Mov_Estoque);
   Application.CreateForm(TfrmEstoque, frmEstoque);
+  Application.CreateForm(TfrmInformacao, frmInformacao);
   usuarios := TfrmLogin.Create(nil);
     if usuarios.ShowModal = 1 then
     begin
