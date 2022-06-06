@@ -11,16 +11,12 @@ uses
   FireDAC.Comp.DataSet, FireDAC.Comp.Client, DMDados, Vcl.ExtCtrls,
   Vcl.ComCtrls,
   Vcl.StdCtrls, Vcl.Grids, Vcl.DBGrids, frxClass, frxDBSet, Vcl.DBCtrls,
-  Datasnap.DBClient;
+  Datasnap.DBClient, Vcl.Mask;
 
 type
   TfrmPesquisaAvancadaVenda = class(TForm)
     FDQueryFiltro: TFDQuery;
     Panel1: TPanel;
-    Label1: TLabel;
-    edtData1: TDateTimePicker;
-    edtData2: TDateTimePicker;
-    Label2: TLabel;
     DSFiltro: TDataSource;
     edtCodigoVenda: TEdit;
     Label3: TLabel;
@@ -48,7 +44,6 @@ type
     FDQueryFiltroNOME: TStringField;
     FDQueryFiltroDATAVENDA: TSQLTimeStampField;
     FDQueryFiltroDATA_FATURAMENTO: TSQLTimeStampField;
-    FDQueryFiltroVALORTOTAL: TBCDField;
     edtValorTotal: TEdit;
     FDQueryFiltroUSU_NOME: TStringField;
     cbSituacao: TComboBox;
@@ -64,6 +59,27 @@ type
     FDQueryUsuarioADM: TStringField;
     FDQueryUsuarioPREFERENCIA: TStringField;
     FDQueryUsuarioCAD_USU: TStringField;
+    frPesquisaavancadaVenda: TfrxReport;
+    frxVenda: TfrxDBDataset;
+    frxVendaItens: TfrxDBDataset;
+    FDQueryFiltroVALORTOTAL: TBCDField;
+    FDQueryFiltroDATA_CANCELAMENTO: TSQLTimeStampField;
+    FDQueryFiltroDATA_ORCAMENTO: TSQLTimeStampField;
+    FDQueryFiltroDATA_FATURAMENTO_1: TSQLTimeStampField;
+    Label5: TLabel;
+    DateFaturamentoFinal: TDateTimePicker;
+    DateFaturamentoIni: TDateTimePicker;
+    Label4: TLabel;
+    Label1: TLabel;
+    edtData1: TDateTimePicker;
+    Label2: TLabel;
+    edtData2: TDateTimePicker;
+    Label6: TLabel;
+    Label7: TLabel;
+    DateTimePicker1: TDateTimePicker;
+    DateTimePicker2: TDateTimePicker;
+    DateTimePicker3: TDateTimePicker;
+    DateTimePicker4: TDateTimePicker;
     procedure FiltraClick(Sender: TObject);
     procedure btnImprimirClick(Sender: TObject);
     procedure edtValorTotalChange(Sender: TObject);
@@ -92,7 +108,7 @@ uses Biblioteca, DMCadastro;
 
 procedure TfrmPesquisaAvancadaVenda.btnImprimirClick(Sender: TObject);
 begin
-  // CarregaRelatorio(frPesquisaavancadaVenda);
+  CarregaRelatorio(frPesquisaavancadaVenda);
 end;
 
 procedure TfrmPesquisaAvancadaVenda.edtValorTotalChange(Sender: TObject);
@@ -125,6 +141,9 @@ begin
   FDQueryFiltro.SQL.Add('v.VALORTOTAL,');
   FDQueryFiltro.SQL.Add('v.usu_nome, ');
   FDQueryFiltro.SQL.Add('v.situacao, ');
+    FDQueryFiltro.SQL.Add('v.DATA_FATURAMENTO, ');
+  FDQueryFiltro.SQL.Add('v.DATA_CANCELAMENTO,');
+  FDQueryFiltro.SQL.Add('v.DATA_ORCAMENTO, ');
   FDQueryFiltro.SQL.Add('v.data_faturamento');
   FDQueryFiltro.SQL.Add
     (' from saida_venda v inner join cliente c on (v.codcliente = c.codigo)');
@@ -144,6 +163,16 @@ begin
   begin
     FDQueryFiltro.SQL.Add(' AND v.datavenda <=  ' +
       QuotedStr(FormatDateTime('dd.mm.yyyy', edtData2.DateTime)))
+  end;
+  if DateFaturamentoIni.Date > 0 then
+  begin
+    FDQueryFiltro.SQL.Add(' AND v.DATA_FATURAMENTO >=  ' +
+      QuotedStr(FormatDateTime('dd.mm.yyyy', DateFaturamentoIni.DateTime)))
+  end;
+  if DateFaturamentoFinal.Date > 0 then
+  begin
+    FDQueryFiltro.SQL.Add(' AND v.DATA_FATURAMENTO <=  ' +
+      QuotedStr(FormatDateTime('dd.mm.yyyy', DateFaturamentoFinal.DateTime)))
   end;
   case cbSituacao.ItemIndex of
     0:

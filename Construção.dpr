@@ -47,7 +47,8 @@ uses
   EstoqueProduto in 'EstoqueProduto.pas' {frmEstoque},
   CadastroCondPagamento in 'CadastroCondPagamento.pas' {frmCadastroCondPagamento},
   LancamentoFinanceiro in 'LancamentoFinanceiro.pas' {frmLancamentoFinanceiro},
-  informacao in 'informacao.pas' {frmInformacao};
+  informacao in 'informacao.pas' {frmInformacao},
+  uCrpt in 'uCrpt.pas';
 
 {$R *.res}
 

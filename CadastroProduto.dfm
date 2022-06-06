@@ -9,7 +9,6 @@ inherited frmCadastroProduto: TfrmCadastroProduto
   inherited Cadastro: TPageControl
     Width = 1127
     Height = 634
-    ActivePage = TabSheet1
     ExplicitWidth = 1127
     ExplicitHeight = 634
     inherited TabSheet1: TTabSheet
@@ -401,6 +400,7 @@ inherited frmCadastroProduto: TfrmCadastroProduto
         Values.Strings = (
           'A'
           'I')
+        OnChange = DBRadioGroup1Change
       end
       object Nome_produto: TDBEdit
         Left = 82

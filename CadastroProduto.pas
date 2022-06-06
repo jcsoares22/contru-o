@@ -74,6 +74,7 @@ type
     procedure btnPesquisaClick(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure btnEstoqueClick(Sender: TObject);
+    procedure DBRadioGroup1Change(Sender: TObject);
   private
     { Private declarations }
     procedure mod_ReadOnlyFalse;
@@ -302,6 +303,21 @@ begin
     DM_Cadastro.FDQueryProduto.Post;
     mod_ReadOnlyTrue;
   end;
+
+end;
+
+procedure TfrmCadastroProduto.DBRadioGroup1Change(Sender: TObject);
+begin
+  inherited;
+ { if DBRadioGroup1 = 0 then
+   begin
+       DM_Cadastro.FDQueryProdutoSITUACAO.Value := 'A'
+         end
+
+           else
+             begin
+                 DM_Cadastro.FDQueryProdutoSITUACAO.Value := 'I'
+                   end;}
 
 end;
 

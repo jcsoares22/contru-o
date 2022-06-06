@@ -37,8 +37,6 @@ type
     Button2: TButton;
     Button3: TButton;
     Produto: TTabSheet;
-    Label2: TLabel;
-    edtEstoqueMinimo: TDBEdit;
     procedure FormCreate(Sender: TObject);
     procedure Button1Click(Sender: TObject);
     procedure Button3Click(Sender: TObject);

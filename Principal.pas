@@ -8,7 +8,7 @@ uses
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Menus, Vcl.StdCtrls, Vcl.ExtCtrls,
   Preferencia,
   Vcl.ComCtrls, Vcl.Buttons, Vcl.ToolWin, Vcl.ActnMan, Vcl.ActnCtrls,
-  Vcl.ActnMenus, Vcl.Imaging.pngimage;
+  Vcl.ActnMenus, Vcl.Imaging.pngimage, Vcl.Imaging.jpeg;
 
 type
   TfrmPrincipal = class(TForm)

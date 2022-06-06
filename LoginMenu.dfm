@@ -2,8 +2,8 @@ object frmLoginMenu: TfrmLoginMenu
   Left = 0
   Top = 0
   Caption = 'Login Menu'
-  ClientHeight = 82
-  ClientWidth = 309
+  ClientHeight = 124
+  ClientWidth = 203
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -47,8 +47,8 @@ object frmLoginMenu: TfrmLoginMenu
     TabOrder = 0
   end
   object btnClickLogin: TButton
-    Left = 209
-    Top = 8
+    Left = 57
+    Top = 79
     Width = 75
     Height = 25
     Caption = 'Entrar'
@@ -57,13 +57,5 @@ object frmLoginMenu: TfrmLoginMenu
     TabOrder = 2
     StyleElements = []
     OnClick = btnClickLoginClick
-  end
-  object btn_Cancelar: TButton
-    Left = 209
-    Top = 42
-    Width = 75
-    Height = 25
-    Caption = 'Cancelar'
-    TabOrder = 3
   end
 end

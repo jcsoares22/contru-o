@@ -46,9 +46,6 @@ Coordinates=138,320,53,58
 [edt_Pesquisa]
 Coordinates=429,320,92,58
 
-[btnEdit]
-Coordinates=73,320,55,58
-
 [CB_Opcao2]
 Coordinates=519,10,101,124
 
@@ -76,4 +73,7 @@ Visible=True
 
 [DM_Dados.]
 Coordinates=220,10,178,190
+
+[btnEdit]
+Coordinates=73,320,55,58
 

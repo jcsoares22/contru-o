@@ -14,7 +14,6 @@ type
     edtSenha: TEdit;
     edtLogin: TEdit;
     btnClickLogin: TButton;
-    btn_Cancelar: TButton;
     procedure btnClickLoginClick(Sender: TObject);
   private
     { Private declarations }

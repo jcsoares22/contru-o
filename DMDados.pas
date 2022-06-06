@@ -38,7 +38,6 @@ type
     FDQueryUsuarioADM: TStringField;
     FDQueryUsuarioPREFERENCIA: TStringField;
     FDQueryUsuarioCAD_USU: TStringField;
-    FDQueryPreferenciaESTOQUE_MINIMO: TBCDField;
   private
     { Private declarations }
   public

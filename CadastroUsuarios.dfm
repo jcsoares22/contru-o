@@ -50,6 +50,7 @@
           item
             Expanded = False
             FieldName = 'USU_NOME'
+            Width = 64
             Visible = True
           end
           item
@@ -170,7 +171,7 @@
           Top = 8
           Width = 75
           Height = 25
-          Caption = 'btnNovo'
+          Caption = 'Novo'
           TabOrder = 0
           OnClick = btnNovoClick
         end
@@ -179,7 +180,7 @@
           Top = 8
           Width = 75
           Height = 25
-          Caption = 'Button1'
+          Caption = 'Salvar'
           TabOrder = 1
           OnClick = btnSalvarClick
         end
@@ -188,16 +189,16 @@
           Top = 8
           Width = 75
           Height = 25
-          Caption = 'Button1'
+          Caption = 'Edit'
           TabOrder = 2
           OnClick = btnEditClick
         end
-        object Button4: TButton
+        object btnCancelar: TButton
           Left = 310
           Top = 8
           Width = 75
           Height = 25
-          Caption = 'Button1'
+          Caption = 'Cancelar'
           TabOrder = 3
         end
       end
@@ -209,16 +210,8 @@
         ActivePage = Geral
         Align = alClient
         TabOrder = 1
-        ExplicitLeft = 112
-        ExplicitTop = 294
-        ExplicitWidth = 1281
-        ExplicitHeight = 713
         object Geral: TTabSheet
           Caption = 'Geral'
-          ExplicitLeft = 20
-          ExplicitTop = -112
-          ExplicitWidth = 1273
-          ExplicitHeight = 685
           object Preferencia: TCheckBox
             Left = 3
             Top = 40
@@ -244,8 +237,8 @@
             TabOrder = 2
           end
           object DBCheckBox_administrador: TDBCheckBox
-            Left = 193
-            Top = 233
+            Left = 161
+            Top = 17
             Width = 97
             Height = 17
             Caption = 'DBCheckBox_administrador'
@@ -254,8 +247,8 @@
             TabOrder = 3
           end
           object DBCheckBoxPreferencia: TDBCheckBox
-            Left = 193
-            Top = 256
+            Left = 161
+            Top = 40
             Width = 97
             Height = 17
             Caption = 'DBCheckBox1'
@@ -265,8 +258,8 @@
             WordWrap = True
           end
           object Manuteção_usuario: TDBCheckBox
-            Left = 193
-            Top = 279
+            Left = 161
+            Top = 63
             Width = 97
             Height = 17
             Caption = 'DBCheckBox1'
@@ -367,6 +360,7 @@
           Height = 21
           DataField = 'USU_SENHA'
           DataSource = DM_Dados.DT_Usuario
+          PasswordChar = '*'
           TabOrder = 4
         end
       end

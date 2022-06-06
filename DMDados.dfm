@@ -91,12 +91,6 @@ object DM_Dados: TDM_Dados
       Precision = 18
       Size = 2
     end
-    object FDQueryPreferenciaESTOQUE_MINIMO: TBCDField
-      FieldName = 'ESTOQUE_MINIMO'
-      Origin = 'ESTOQUE_MINIMO'
-      Precision = 18
-      Size = 2
-    end
   end
   object DT_Preferencia: TDataSource
     DataSet = FDQueryPreferencia

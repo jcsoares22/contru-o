@@ -32,7 +32,7 @@ type
     btnNovo: TButton;
     btnSalvar: TButton;
     btnEdit: TButton;
-    Button4: TButton;
+    btnCancelar: TButton;
     DBCheckBox_administrador: TDBCheckBox;
     DBCheckBoxPreferencia: TDBCheckBox;
     Manuteção_usuario: TDBCheckBox;
