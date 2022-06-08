@@ -242,18 +242,13 @@ begin
 end;
 
 procedure TfrmPrincipal.FormClose(Sender: TObject; var Action: TCloseAction);
-var CanClose: Boolean;
 begin
-if MessageDlg('Deseja sair?',mtConfirmation,[mbSim,mbNo],0) = mrSim then
- CanClose := True
- else
- CanClose := False;
-  {if MessageDlg('Desja sair do sistema ?', TMsgDlgType.mtConfirmation,
-      [mbok, mbNo], 0) = mrok then
-        begin
-            Application.Terminate;
-              end;
-                Abort;}
+  if MessageDlg('Desja sair do sistema ?', TMsgDlgType.mtConfirmation,
+    [mbok, mbNo], 0) = mrok then
+  begin
+    Application.Terminate;
+  end;
+  Abort;
 end;
 
 procedure TfrmPrincipal.Grupo1Click(Sender: TObject);
