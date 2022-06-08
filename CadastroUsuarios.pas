@@ -55,6 +55,7 @@ type
     procedure btnEditClick(Sender: TObject);
     procedure FormActivate(Sender: TObject);
     procedure DBGrid_ClienteDblClick(Sender: TObject);
+    procedure FormShow(Sender: TObject);
   private
     { Private declarations }
   public
@@ -72,7 +73,7 @@ uses Dmdados, LoginMenu;
 
 procedure TfrmCadastroUsuario.btnNovoClick(Sender: TObject);
 begin
-  inherited;
+  // inherited;
   if not(DM_Dados.FDQueryUsuario.State in [dsEdit, dsInsert]) then
   begin
     DM_Dados.FDQueryUsuario.Insert;
@@ -227,7 +228,7 @@ end;
 
 procedure TfrmCadastroUsuario.DBGrid_ClienteDblClick(Sender: TObject);
 begin
-      Cadastro.TabIndex := 1;
+  Cadastro.TabIndex := 1;
 end;
 
 procedure TfrmCadastroUsuario.btnEditClick(Sender: TObject);
@@ -245,7 +246,7 @@ end;
 
 procedure TfrmCadastroUsuario.FormActivate(Sender: TObject);
 begin
-    frmLoginMenu.Visible := false;
+  frmLoginMenu.Visible := false;
 end;
 
 procedure TfrmCadastroUsuario.FormClose(Sender: TObject;
@@ -253,6 +254,19 @@ procedure TfrmCadastroUsuario.FormClose(Sender: TObject;
 begin
   DM_Dados.FDQueryUsuario.Close;
   frmLoginMenu.Close;
+
+end;
+
+procedure TfrmCadastroUsuario.FormShow(Sender: TObject);
+begin
+  if DM_Dados.FDQueryUsuarioADM.Value = 'T' then
+  // COLOCANDO SISTEMA COMO ADMINISTRADOR
+  begin
+    DBCheckBox_administrador.Checked := True;
+
+  end
+  else
+    DBCheckBox_administrador.Checked := False;
 
 end;
 

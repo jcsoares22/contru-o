@@ -98,6 +98,7 @@ object DM_Dados: TDM_Dados
     Top = 56
   end
   object FDQueryUsuario: TFDQuery
+    BeforePost = FDQueryUsuarioBeforePost
     Connection = DADOS
     UpdateOptions.AssignedValues = [uvFetchGeneratorsPoint, uvGeneratorName]
     UpdateOptions.FetchGeneratorsPoint = gpImmediate

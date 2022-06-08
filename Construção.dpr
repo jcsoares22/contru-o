@@ -48,7 +48,7 @@ uses
   CadastroCondPagamento in 'CadastroCondPagamento.pas' {frmCadastroCondPagamento},
   LancamentoFinanceiro in 'LancamentoFinanceiro.pas' {frmLancamentoFinanceiro},
   informacao in 'informacao.pas' {frmInformacao},
-  uCrpt in 'uCrpt.pas';
+  Criptografia in 'Criptografia.pas';
 
 {$R *.res}
 

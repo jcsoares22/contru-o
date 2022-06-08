@@ -48,8 +48,6 @@ type
     FDQueryFiltroUSU_NOME: TStringField;
     cbSituacao: TComboBox;
     ComboBoxVendedor: TComboBox;
-    cdsVendedor: TClientDataSet;
-    DSVendedor: TDataSource;
     FDQueryUsuario: TFDQuery;
     FDQueryUsuarioUSU_CODIGO: TIntegerField;
     FDQueryUsuarioUSU_NOME: TStringField;
@@ -80,11 +78,13 @@ type
     DateTimePicker2: TDateTimePicker;
     DateTimePicker3: TDateTimePicker;
     DateTimePicker4: TDateTimePicker;
+    ProgressBar1: TProgressBar;
     procedure FiltraClick(Sender: TObject);
     procedure btnImprimirClick(Sender: TObject);
     procedure edtValorTotalChange(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure FormShow(Sender: TObject);
+    procedure edtData2Change(Sender: TObject);
   private
     { Private declarations }
     procedure Filtrar;
@@ -109,6 +109,11 @@ uses Biblioteca, DMCadastro;
 procedure TfrmPesquisaAvancadaVenda.btnImprimirClick(Sender: TObject);
 begin
   CarregaRelatorio(frPesquisaavancadaVenda);
+end;
+
+procedure TfrmPesquisaAvancadaVenda.edtData2Change(Sender: TObject);
+begin
+edtData2.Format := EmptyStr;
 end;
 
 procedure TfrmPesquisaAvancadaVenda.edtValorTotalChange(Sender: TObject);

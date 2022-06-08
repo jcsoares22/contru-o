@@ -86,7 +86,6 @@ type
     Label20: TLabel;
     DBEdit8: TDBEdit;
     frxPDFExport1: TfrxPDFExport;
-    frxDesigner1: TfrxDesigner;
     PopupMenu1: TPopupMenu;
     Cliente1: TMenuItem;
     Cliente21: TMenuItem;

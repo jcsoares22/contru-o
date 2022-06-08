@@ -144,6 +144,7 @@ begin
       frmCadastroFinanceiro.Visible := True;
     frmCadastroFinanceiro.BringToFront;
   end;
+
 end;
 
 procedure TfrmPrincipal.Condiaaodepagamento1Click(Sender: TObject);
@@ -216,13 +217,13 @@ end;
 
 procedure TfrmPrincipal.Estoque1Click(Sender: TObject);
 begin
-frmEstoqueminimo := TFrmEstoqueminimo.Create(self);
-    try
-      frmEstoqueminimo.ShowModal;
-    finally
-      FreeAndNil(frmEstoqueminimo);
+  frmEstoqueminimo := TFrmEstoqueminimo.Create(self);
+  try
+    frmEstoqueminimo.showModal;
+  finally
+    FreeAndNil(frmEstoqueminimo);
 
-    end;
+  end;
 end;
 
 procedure TfrmPrincipal.Estoque2Click(Sender: TObject);
@@ -240,15 +241,19 @@ begin
   end;
 end;
 
-
 procedure TfrmPrincipal.FormClose(Sender: TObject; var Action: TCloseAction);
+var CanClose: Boolean;
 begin
-  if MessageDlg('Desja sair do sistema ?', TMsgDlgType.mtConfirmation,
-    [mbok, mbNo], 0) = mrok then
-  begin
-    Application.Terminate;
-  end;
-  Abort;
+if MessageDlg('Deseja sair?',mtConfirmation,[mbSim,mbNo],0) = mrSim then
+ CanClose := True
+ else
+ CanClose := False;
+  {if MessageDlg('Desja sair do sistema ?', TMsgDlgType.mtConfirmation,
+      [mbok, mbNo], 0) = mrok then
+        begin
+            Application.Terminate;
+              end;
+                Abort;}
 end;
 
 procedure TfrmPrincipal.Grupo1Click(Sender: TObject);
@@ -297,7 +302,7 @@ end;
 procedure TfrmPrincipal.Lancamento_finaceiroClick(Sender: TObject);
 begin
 
-fecharTela;
+  fecharTela;
   if (frmLancamentoFinanceiro = nil) then
     frmLancamentoFinanceiro := TFrmLancamentoFinanceiro.Create(self);
   if (not frmLancamentoFinanceiro.showing) then
@@ -349,12 +354,13 @@ end;
 
 procedure TfrmPrincipal.N4Click(Sender: TObject);
 begin
-frmInformacao := TfrmInformacao.Create(self);
+  frmInformacao := TfrmInformacao.Create(self);
   try
     frmInformacao.showModal;
   finally
     FreeAndNil(frmInformacao);
   end;
+
 end;
 
 procedure TfrmPrincipal.Oramento1Click(Sender: TObject);
@@ -395,7 +401,7 @@ end;
 procedure TfrmPrincipal.Timer1Timer(Sender: TObject);
 begin
   StatusBar1.Panels[2].Text := 'Hora.: ' + TimeToStr(time);
-  StatusBar1.Panels[3].Text := 'Data.: ' + DateToStr(date);
+  StatusBar1.Panels[3].Text := 'Data.: ' + DateToStr(Date);
 
 end;
 

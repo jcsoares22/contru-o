@@ -3,9 +3,9 @@ object frmLogin: TfrmLogin
   Top = 0
   BorderIcons = []
   Caption = 'Login'
-  ClientHeight = 80
-  ClientWidth = 303
-  Color = clBtnFace
+  ClientHeight = 77
+  ClientWidth = 299
+  Color = clSkyBlue
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
   Font.Height = -11
@@ -29,21 +29,14 @@ object frmLogin: TfrmLogin
     Height = 13
     Caption = 'Senha'
   end
-  object edtLogin: TEdit
-    Left = 75
-    Top = 12
-    Width = 121
-    Height = 21
-    CharCase = ecUpperCase
-    TabOrder = 0
-  end
-  object edtSenha: TEdit
-    Left = 75
-    Top = 44
-    Width = 121
-    Height = 21
-    PasswordChar = '*'
-    TabOrder = 1
+  object btn_Cancelar: TButton
+    Left = 209
+    Top = 39
+    Width = 75
+    Height = 25
+    Caption = 'Cancelar'
+    TabOrder = 3
+    OnClick = btn_CancelarClick
   end
   object btnClickLogin: TButton
     Left = 209
@@ -57,13 +50,22 @@ object frmLogin: TfrmLogin
     StyleElements = []
     OnClick = btnClickLoginClick
   end
-  object btn_Cancelar: TButton
-    Left = 209
+  object edtLogin: TEdit
+    Left = 75
+    Top = 12
+    Width = 121
+    Height = 21
+    Hint = 'Login'
+    CharCase = ecUpperCase
+    TabOrder = 0
+  end
+  object edtSenha: TEdit
+    Left = 75
     Top = 39
-    Width = 75
-    Height = 25
-    Caption = 'Cancelar'
-    TabOrder = 3
-    OnClick = btn_CancelarClick
+    Width = 121
+    Height = 21
+    Hint = 'Senha'
+    PasswordChar = '*'
+    TabOrder = 1
   end
 end

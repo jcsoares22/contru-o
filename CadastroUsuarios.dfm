@@ -13,6 +13,7 @@
   OldCreateOrder = False
   OnActivate = FormActivate
   OnClose = FormClose
+  OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
   object Cadastro: TPageControl
@@ -50,7 +51,6 @@
           item
             Expanded = False
             FieldName = 'USU_NOME'
-            Width = 64
             Visible = True
           end
           item
@@ -226,6 +226,8 @@
             Width = 97
             Height = 17
             Caption = 'Administrador'
+            ParentShowHint = False
+            ShowHint = False
             TabOrder = 1
           end
           object Usuario: TCheckBox

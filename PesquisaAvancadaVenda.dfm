@@ -38,7 +38,6 @@ object frmPesquisaAvancadaVenda: TfrmPesquisaAvancadaVenda
     Height = 233
     Align = alTop
     TabOrder = 0
-    ExplicitTop = -6
     object Label3: TLabel
       Left = 8
       Top = 13
@@ -160,6 +159,7 @@ object frmPesquisaAvancadaVenda: TfrmPesquisaAvancadaVenda
       Date = 44710.029247777780000000
       Time = 44710.029247777780000000
       TabOrder = 9
+      OnChange = edtData2Change
     end
     object DateTimePicker1: TDateTimePicker
       Left = 478
@@ -197,6 +197,13 @@ object frmPesquisaAvancadaVenda: TfrmPesquisaAvancadaVenda
       Time = 44710.029247777780000000
       TabOrder = 13
     end
+    object ProgressBar1: TProgressBar
+      Left = 128
+      Top = 210
+      Width = 150
+      Height = 17
+      TabOrder = 14
+    end
   end
   object PageControl1: TPageControl
     Left = 0
@@ -206,13 +213,8 @@ object frmPesquisaAvancadaVenda: TfrmPesquisaAvancadaVenda
     ActivePage = TabSheet1
     Align = alClient
     TabOrder = 1
-    ExplicitTop = 137
-    ExplicitWidth = 1121
-    ExplicitHeight = 519
     object TabSheet1: TTabSheet
       Caption = 'Venda'
-      ExplicitWidth = 1113
-      ExplicitHeight = 491
       object DBGrid1: TDBGrid
         Left = 0
         Top = 0
@@ -275,8 +277,6 @@ object frmPesquisaAvancadaVenda: TfrmPesquisaAvancadaVenda
         Height = 41
         Align = alBottom
         TabOrder = 1
-        ExplicitTop = 450
-        ExplicitWidth = 1113
         object edtValorTotal: TEdit
           Left = 640
           Top = 6
@@ -291,8 +291,6 @@ object frmPesquisaAvancadaVenda: TfrmPesquisaAvancadaVenda
     object TabSheet2: TTabSheet
       Caption = 'Itens venda'
       ImageIndex = 1
-      ExplicitWidth = 1113
-      ExplicitHeight = 491
       object DBGrid3: TDBGrid
         Left = 0
         Top = 0
@@ -346,6 +344,7 @@ object frmPesquisaAvancadaVenda: TfrmPesquisaAvancadaVenda
     end
   end
   object FDQueryFiltro: TFDQuery
+    Active = True
     Connection = DM_Dados.DADOS
     SQL.Strings = (
       'select v.codigo,'
@@ -437,7 +436,6 @@ object frmPesquisaAvancadaVenda: TfrmPesquisaAvancadaVenda
     Top = 376
   end
   object FDQueryFiltroVendaItens: TFDQuery
-    Active = True
     IndexFieldNames = 'CODIGO'
     MasterSource = DSFiltro
     MasterFields = 'CODIGO'
@@ -498,23 +496,12 @@ object frmPesquisaAvancadaVenda: TfrmPesquisaAvancadaVenda
     Left = 1016
     Top = 376
   end
-  object cdsVendedor: TClientDataSet
-    Aggregates = <>
-    Params = <>
-    Left = 72
-    Top = 352
-  end
-  object DSVendedor: TDataSource
-    DataSet = FDQueryUsuario
-    Left = 72
-    Top = 400
-  end
   object FDQueryUsuario: TFDQuery
     Connection = DM_Dados.DADOS
     SQL.Strings = (
       'select * from usuario')
-    Left = 72
-    Top = 312
+    Left = 384
+    Top = 512
     object FDQueryUsuarioUSU_CODIGO: TIntegerField
       FieldName = 'USU_CODIGO'
       Origin = 'USU_CODIGO'
@@ -613,7 +600,7 @@ object frmPesquisaAvancadaVenda: TfrmPesquisaAvancadaVenda
         FillGap.Right = 0
         Frame.Typ = []
         Height = 34.015770000000000000
-        Top = 102.047310000000000000
+        Top = 147.401670000000000000
         Width = 718.110700000000000000
         DataSet = frxVenda
         DataSetName = 'frxVenda'
@@ -639,6 +626,19 @@ object frmPesquisaAvancadaVenda: TfrmPesquisaAvancadaVenda
           Memo.UTF8W = (
             '[frxVenda."CODIGO"]')
         end
+        object frxVendaNOME: TfrxMemoView
+          IndexTag = 1
+          AllowVectorExport = True
+          Left = 113.385900000000000000
+          Width = 400.630180000000000000
+          Height = 18.897650000000000000
+          DataField = 'NOME'
+          DataSet = frxVenda
+          DataSetName = 'frxVenda'
+          Frame.Typ = []
+          Memo.UTF8W = (
+            '[frxVenda."NOME"]')
+        end
       end
       object DetailData1: TfrxDetailData
         FillType = ftBrush
@@ -648,7 +648,7 @@ object frmPesquisaAvancadaVenda: TfrmPesquisaAvancadaVenda
         FillGap.Right = 0
         Frame.Typ = []
         Height = 26.456710000000000000
-        Top = 158.740260000000000000
+        Top = 204.094620000000000000
         Width = 718.110700000000000000
         DataSet = frxVendaItens
         DataSetName = 'frxVendaItens'
@@ -692,11 +692,25 @@ object frmPesquisaAvancadaVenda: TfrmPesquisaAvancadaVenda
           Memo.UTF8W = (
             '[frxVendaItens."QUANTIDADE"]')
         end
+        object frxVendaItensVALORTOTAL: TfrxMemoView
+          IndexTag = 1
+          AllowVectorExport = True
+          Left = 627.401980000000000000
+          Top = 3.779530000000000000
+          Width = 151.181200000000000000
+          Height = 18.897650000000000000
+          DataField = 'VALORTOTAL'
+          DataSet = frxVendaItens
+          DataSetName = 'frxVendaItens'
+          Frame.Typ = []
+          Memo.UTF8W = (
+            '[frxVendaItens."VALORTOTAL"]')
+        end
         object frxVendaItensVALORPRODUTO: TfrxMemoView
           IndexTag = 1
           AllowVectorExport = True
-          Left = 442.205010000000000000
-          Width = 94.488250000000000000
+          Left = 472.441250000000000000
+          Width = 79.370130000000000000
           Height = 18.897650000000000000
           DataField = 'VALORPRODUTO'
           DataSet = frxVendaItens
@@ -713,7 +727,7 @@ object frmPesquisaAvancadaVenda: TfrmPesquisaAvancadaVenda
         FillGap.Bottom = 0
         FillGap.Right = 0
         Frame.Typ = []
-        Height = 22.677180000000000000
+        Height = 68.031540000000000000
         Top = 18.897650000000000000
         Width = 718.110700000000000000
       end
@@ -725,19 +739,19 @@ object frmPesquisaAvancadaVenda: TfrmPesquisaAvancadaVenda
         FillGap.Right = 0
         Frame.Typ = []
         Height = 22.677180000000000000
-        Top = 245.669450000000000000
+        Top = 291.023810000000000000
         Width = 718.110700000000000000
         object SysMemo1: TfrxSysMemoView
           AllowVectorExport = True
           Left = 616.063390000000000000
-          Top = 3.779529999999990000
+          Top = 3.779530000000000000
           Width = 94.488250000000000000
           Height = 18.897650000000000000
           DisplayFormat.FormatStr = '%2.2m'
           DisplayFormat.Kind = fkNumeric
           Frame.Typ = []
           Memo.UTF8W = (
-            '[SUM(<frxFiltroVendaItens."VALORTOTAL">,DetailData1)]')
+            '[SUM(<frxVendaItens."VALORTOTAL">)]')
         end
       end
     end
@@ -757,7 +771,7 @@ object frmPesquisaAvancadaVenda: TfrmPesquisaAvancadaVenda
     DataSet = FDQueryFiltroVendaItens
     BCDToCurrency = False
     DataSetOptions = []
-    Left = 416
-    Top = 400
+    Left = 408
+    Top = 416
   end
 end

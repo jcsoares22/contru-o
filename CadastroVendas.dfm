@@ -25,7 +25,7 @@
     Top = 0
     Width = 1295
     Height = 644
-    ActivePage = TabSheet2
+    ActivePage = TabSheet1
     Align = alClient
     TabOrder = 0
     object TabSheet1: TTabSheet
@@ -58,37 +58,31 @@
           item
             Expanded = False
             FieldName = 'NOME'
-            Width = 64
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'DATAVENDA'
-            Width = 64
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'VALORTOTAL'
-            Width = 64
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'OBS'
-            Width = 64
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'FRETE'
-            Width = 64
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'COND_PAGAMENTO'
-            Width = 64
             Visible = True
           end
           item
@@ -99,25 +93,21 @@
           item
             Expanded = False
             FieldName = 'ID_SUBCONTA'
-            Width = 64
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'ID_TIPO_PGTO'
-            Width = 64
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'DESCONTO'
-            Width = 64
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'TIPO_DESC'
-            Width = 64
             Visible = True
           end
           item
@@ -128,19 +118,16 @@
           item
             Expanded = False
             FieldName = 'DATA_FATURAMENTO'
-            Width = 64
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'DATA_CANCELAMENTO'
-            Width = 64
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'DATA_ORCAMENTO'
-            Width = 64
             Visible = True
           end>
       end
@@ -696,26 +683,31 @@
           item
             Expanded = False
             FieldName = 'NOME_PRODUTO'
+            Width = 64
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'QTE_ESTOQUE'
+            Width = 64
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'QUANTIDADE'
+            Width = 64
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'VALORPRODUTO'
+            Width = 64
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'VALORTOTAL'
+            Width = 64
             Visible = True
           end>
       end
@@ -1205,8 +1197,8 @@
     DataSet = DM_Vendas.FDQuerySaidaProduto
     BCDToCurrency = False
     DataSetOptions = []
-    Left = 996
-    Top = 296
+    Left = 1004
+    Top = 312
   end
   object frxPDFExport1: TfrxPDFExport
     FileName = '.pdf'
@@ -1238,28 +1230,6 @@
     PDFVersion = pv17
     Left = 996
     Top = 432
-  end
-  object frxDesigner1: TfrxDesigner
-    DefaultScriptLanguage = 'PascalScript'
-    DefaultFont.Charset = DEFAULT_CHARSET
-    DefaultFont.Color = clWindowText
-    DefaultFont.Height = -13
-    DefaultFont.Name = 'Arial'
-    DefaultFont.Style = []
-    DefaultLeftMargin = 10.000000000000000000
-    DefaultRightMargin = 10.000000000000000000
-    DefaultTopMargin = 10.000000000000000000
-    DefaultBottomMargin = 10.000000000000000000
-    DefaultPaperSize = 9
-    DefaultOrientation = poPortrait
-    GradientEnd = 11982554
-    GradientStart = clWindow
-    TemplatesExt = 'fr3'
-    Restrictions = []
-    RTLLanguage = False
-    MemoParentFont = False
-    Left = 876
-    Top = 448
   end
   object PopupMenu1: TPopupMenu
     Left = 520
@@ -1300,7 +1270,7 @@
     PrintOptions.Printer = 'Default'
     PrintOptions.PrintOnSheet = 0
     ReportOptions.CreateDate = 44709.926040381900000000
-    ReportOptions.LastChange = 44717.707082627310000000
+    ReportOptions.LastChange = 44719.940968784700000000
     ScriptLanguage = 'PascalScript'
     ScriptText.Strings = (
       'begin'
@@ -1778,14 +1748,14 @@
         object SysMemo1: TfrxSysMemoView
           AllowVectorExport = True
           Left = 619.842920000000000000
-          Top = -0.000002439999999992
+          Top = -0.000002440000002935
           Width = 94.488250000000000000
           Height = 18.897650000000000000
           DisplayFormat.FormatStr = '%2.2m'
           DisplayFormat.Kind = fkNumeric
           Frame.Typ = []
           Memo.UTF8W = (
-            '[SUM(<frxItens_vendas."VALORTOTAL">,MasterData1)]')
+            '[SUM(<frxItens_vendas."VALORTOTAL">)]')
         end
         object Line2: TfrxLineView
           AllowVectorExport = True
