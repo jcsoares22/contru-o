@@ -75,6 +75,7 @@ type
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure btnEstoqueClick(Sender: TObject);
     procedure DBRadioGroup1Change(Sender: TObject);
+    procedure DB_Qte_AtualChange(Sender: TObject);
   private
     { Private declarations }
     procedure mod_ReadOnlyFalse;
@@ -338,6 +339,12 @@ begin
     ((DM_Cadastro.FDQueryProdutoPRECO_CUSTO.Value *
     DM_Cadastro.FDQueryProdutoPRECENTO_LUCRO.Value) / 100) +
     DM_Cadastro.FDQueryProdutoPRECO_CUSTO.Value;
+end;
+
+procedure TfrmCadastroProduto.DB_Qte_AtualChange(Sender: TObject);
+begin
+  inherited;
+//  DB_Qte_Atual :=  DB_Qte_Entrada - DB_Qte_Saida;
 end;
 
 procedure TfrmCadastroProduto.FormClose(Sender: TObject;

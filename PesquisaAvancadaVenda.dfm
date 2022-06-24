@@ -27,9 +27,9 @@ object frmPesquisaAvancadaVenda: TfrmPesquisaAvancadaVenda
   object Label7: TLabel
     Left = 472
     Top = 29
-    Width = 103
+    Width = 109
     Height = 13
-    Caption = 'Data da Faturamento'
+    Caption = 'Data da Cancelamento'
   end
   object Panel1: TPanel
     Left = 0
@@ -38,6 +38,7 @@ object frmPesquisaAvancadaVenda: TfrmPesquisaAvancadaVenda
     Height = 233
     Align = alTop
     TabOrder = 0
+    ExplicitTop = -6
     object Label3: TLabel
       Left = 8
       Top = 13
@@ -80,21 +81,13 @@ object frmPesquisaAvancadaVenda: TfrmPesquisaAvancadaVenda
       Height = 21
       TabOrder = 0
     end
-    object edtFiltro: TEdit
-      Left = 8
-      Top = 66
-      Width = 121
-      Height = 21
-      CharCase = ecUpperCase
-      TabOrder = 1
-    end
     object Filtra: TButton
       Left = 880
       Top = 88
       Width = 75
       Height = 25
       Caption = 'Filtra'
-      TabOrder = 2
+      TabOrder = 1
       OnClick = FiltraClick
     end
     object btnImprimir: TButton
@@ -103,7 +96,7 @@ object frmPesquisaAvancadaVenda: TfrmPesquisaAvancadaVenda
       Width = 75
       Height = 25
       Caption = 'Imprimir'
-      TabOrder = 3
+      TabOrder = 2
       OnClick = btnImprimirClick
     end
     object cbSituacao: TComboBox
@@ -111,7 +104,7 @@ object frmPesquisaAvancadaVenda: TfrmPesquisaAvancadaVenda
       Top = 138
       Width = 145
       Height = 21
-      TabOrder = 4
+      TabOrder = 3
       Items.Strings = (
         'FATURADO'
         'CANCELADO'
@@ -122,87 +115,63 @@ object frmPesquisaAvancadaVenda: TfrmPesquisaAvancadaVenda
       Top = 171
       Width = 145
       Height = 21
+      TabOrder = 4
+    end
+    object edtDataVendaIni: TDateEdit
+      Left = 231
+      Top = 48
+      Width = 98
+      Height = 21
+      NumGlyphs = 2
       TabOrder = 5
     end
-    object DateFaturamentoFinal: TDateTimePicker
-      Left = 358
+    object edtDataVendaFinal: TDateEdit
+      Left = 231
       Top = 88
-      Width = 97
+      Width = 98
       Height = 21
-      Date = 44710.029247777780000000
-      Time = 44710.029247777780000000
+      NumGlyphs = 2
       TabOrder = 6
     end
-    object DateFaturamentoIni: TDateTimePicker
-      Left = 358
+    object DateEditFaturamentoIni: TDateEdit
+      Left = 352
       Top = 48
-      Width = 97
+      Width = 89
       Height = 21
-      Date = 44710.029247777780000000
-      Time = 44710.029247777780000000
+      NumGlyphs = 2
       TabOrder = 7
     end
-    object edtData1: TDateTimePicker
-      Left = 232
-      Top = 48
-      Width = 97
+    object DateEditFaturamentoFinal: TDateEdit
+      Left = 352
+      Top = 88
+      Width = 89
       Height = 21
-      Date = 44710.029247777780000000
-      Time = 44710.029247777780000000
+      NumGlyphs = 2
       TabOrder = 8
     end
-    object edtData2: TDateTimePicker
-      Left = 232
-      Top = 88
-      Width = 97
+    object DateEditCancelamentoIni: TDateEdit
+      Left = 472
+      Top = 48
+      Width = 89
       Height = 21
-      Date = 44710.029247777780000000
-      Time = 44710.029247777780000000
+      NumGlyphs = 2
       TabOrder = 9
-      OnChange = edtData2Change
     end
-    object DateTimePicker1: TDateTimePicker
-      Left = 478
+    object DateEditCancelamentoFinal: TDateEdit
+      Left = 472
       Top = 88
-      Width = 97
+      Width = 89
       Height = 21
-      Date = 44710.029247777780000000
-      Time = 44710.029247777780000000
+      NumGlyphs = 2
       TabOrder = 10
     end
-    object DateTimePicker2: TDateTimePicker
-      Left = 478
-      Top = 48
-      Width = 97
+    object comboBoxCliente: TComboBox
+      Left = 16
+      Top = 128
+      Width = 230
       Height = 21
-      Date = 44710.029247777780000000
-      Time = 44710.029247777780000000
       TabOrder = 11
-    end
-    object DateTimePicker3: TDateTimePicker
-      Left = 598
-      Top = 48
-      Width = 97
-      Height = 21
-      Date = 44710.029247777780000000
-      Time = 44710.029247777780000000
-      TabOrder = 12
-    end
-    object DateTimePicker4: TDateTimePicker
-      Left = 598
-      Top = 88
-      Width = 97
-      Height = 21
-      Date = 44710.029247777780000000
-      Time = 44710.029247777780000000
-      TabOrder = 13
-    end
-    object ProgressBar1: TProgressBar
-      Left = 128
-      Top = 210
-      Width = 150
-      Height = 17
-      TabOrder = 14
+      Text = 'comboBoxCliente'
     end
   end
   object PageControl1: TPageControl
@@ -344,7 +313,6 @@ object frmPesquisaAvancadaVenda: TfrmPesquisaAvancadaVenda
     end
   end
   object FDQueryFiltro: TFDQuery
-    Active = True
     Connection = DM_Dados.DADOS
     SQL.Strings = (
       'select v.codigo,'

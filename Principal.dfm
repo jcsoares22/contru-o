@@ -2437,15 +2437,11 @@ object frmPrincipal: TfrmPrincipal
     Top = 0
     Width = 1186
     Height = 49
-    ActivePage = TabSheet2
+    ActivePage = TabSheet1
     Align = alTop
     TabOrder = 1
     object TabSheet1: TTabSheet
       Caption = 'Cadastro'
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object Panel1: TPanel
         Left = 0
         Top = 0
@@ -3061,10 +3057,6 @@ object frmPrincipal: TfrmPrincipal
     object TabSheet3: TTabSheet
       Caption = 'Financeiro'
       ImageIndex = 2
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object Panel4: TPanel
         Left = 0
         Top = 0
@@ -3221,5 +3213,12 @@ object frmPrincipal: TfrmPrincipal
     OnTimer = Timer1Timer
     Left = 1048
     Top = 168
+  end
+  object PopupMenu1: TPopupMenu
+    Left = 312
+    Top = 232
+    object sfasd1: TMenuItem
+      Caption = 'sfasd'
+    end
   end
 end

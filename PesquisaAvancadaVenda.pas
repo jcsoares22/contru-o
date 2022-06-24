@@ -11,7 +11,7 @@ uses
   FireDAC.Comp.DataSet, FireDAC.Comp.Client, DMDados, Vcl.ExtCtrls,
   Vcl.ComCtrls,
   Vcl.StdCtrls, Vcl.Grids, Vcl.DBGrids, frxClass, frxDBSet, Vcl.DBCtrls,
-  Datasnap.DBClient, Vcl.Mask;
+  Datasnap.DBClient, Vcl.Mask, RxToolEdit;
 
 type
   TfrmPesquisaAvancadaVenda = class(TForm)
@@ -20,7 +20,6 @@ type
     DSFiltro: TDataSource;
     edtCodigoVenda: TEdit;
     Label3: TLabel;
-    edtFiltro: TEdit;
     Filtra: TButton;
     btnImprimir: TButton;
     FDQueryFiltroVendaItens: TFDQuery;
@@ -65,32 +64,30 @@ type
     FDQueryFiltroDATA_ORCAMENTO: TSQLTimeStampField;
     FDQueryFiltroDATA_FATURAMENTO_1: TSQLTimeStampField;
     Label5: TLabel;
-    DateFaturamentoFinal: TDateTimePicker;
-    DateFaturamentoIni: TDateTimePicker;
     Label4: TLabel;
     Label1: TLabel;
-    edtData1: TDateTimePicker;
     Label2: TLabel;
-    edtData2: TDateTimePicker;
     Label6: TLabel;
     Label7: TLabel;
-    DateTimePicker1: TDateTimePicker;
-    DateTimePicker2: TDateTimePicker;
-    DateTimePicker3: TDateTimePicker;
-    DateTimePicker4: TDateTimePicker;
-    ProgressBar1: TProgressBar;
+    edtDataVendaIni: TDateEdit;
+    edtDataVendaFinal: TDateEdit;
+    DateEditFaturamentoIni: TDateEdit;
+    DateEditFaturamentoFinal: TDateEdit;
+    DateEditCancelamentoIni: TDateEdit;
+    DateEditCancelamentoFinal: TDateEdit;
+    comboBoxCliente: TComboBox;
     procedure FiltraClick(Sender: TObject);
     procedure btnImprimirClick(Sender: TObject);
     procedure edtValorTotalChange(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure FormShow(Sender: TObject);
-    procedure edtData2Change(Sender: TObject);
   private
     { Private declarations }
     procedure Filtrar;
     procedure FiltrarItens;
     procedure somaTotal;
     procedure Vendedor; // usando o combo box para pegar os vendedor
+    procedure Cliente; /// usado o combo box para pegas os compradores
   public
     { Public declarations }
 
@@ -111,10 +108,6 @@ begin
   CarregaRelatorio(frPesquisaavancadaVenda);
 end;
 
-procedure TfrmPesquisaAvancadaVenda.edtData2Change(Sender: TObject);
-begin
-edtData2.Format := EmptyStr;
-end;
 
 procedure TfrmPesquisaAvancadaVenda.edtValorTotalChange(Sender: TObject);
 begin
@@ -154,31 +147,45 @@ begin
     (' from saida_venda v inner join cliente c on (v.codcliente = c.codigo)');
   FDQueryFiltro.SQL.Add(' WHERE 1=1');
 
-  if trim(edtFiltro.Text) <> '' then
+  if trim(comboBoxCliente.Text) <> '' then
   begin
     FDQueryFiltro.SQL.Add(' AND c.nome like ' +
-      QuotedStr('%' + UpperCase((trim(edtFiltro.Text))) + '%'));
+      QuotedStr('%' + UpperCase((trim(comboBoxCliente.Text))) + '%'));
   end;
-  if edtData1.Date > 0 then
+  if edtDataVendaIni.Date > 0 then
   begin
     FDQueryFiltro.SQL.Add(' AND v.datavenda >=  ' +
-      QuotedStr(FormatDateTime('dd.mm.yyyy', edtData1.DateTime)))
+      QuotedStr(FormatDateTime('dd.mm.yyyy', edtDataVendaIni.Date)))
   end;
-  if edtData2.Date > 0 then
+  if edtDataVendaFinal.Date > 0 then
   begin
     FDQueryFiltro.SQL.Add(' AND v.datavenda <=  ' +
-      QuotedStr(FormatDateTime('dd.mm.yyyy', edtData2.DateTime)))
+      QuotedStr(FormatDateTime('dd.mm.yyyy', edtDataVendaIni.Date)))
   end;
-  if DateFaturamentoIni.Date > 0 then
+  if DateEditFaturamentoIni.Date > 0 then
   begin
     FDQueryFiltro.SQL.Add(' AND v.DATA_FATURAMENTO >=  ' +
-      QuotedStr(FormatDateTime('dd.mm.yyyy', DateFaturamentoIni.DateTime)))
+      QuotedStr(FormatDateTime('dd.mm.yyyy', DateEditFaturamentoIni.Date)))
   end;
-  if DateFaturamentoFinal.Date > 0 then
+  if DateEditFaturamentoFinal.Date > 0 then
   begin
     FDQueryFiltro.SQL.Add(' AND v.DATA_FATURAMENTO <=  ' +
-      QuotedStr(FormatDateTime('dd.mm.yyyy', DateFaturamentoFinal.DateTime)))
+      QuotedStr(FormatDateTime('dd.mm.yyyy', DateEditFaturamentoFinal.Date)))
   end;
+
+    if DateEditCancelamentoIni.Date > 0 then
+  begin
+    FDQueryFiltro.SQL.Add(' AND v.DATA_CANCELAMENTO >=  ' +
+      QuotedStr(FormatDateTime('dd.mm.yyyy', DateEditCancelamentoIni.Date)))
+  end;
+      if DateEditCancelamentoFinal.Date > 0 then
+  begin
+    FDQueryFiltro.SQL.Add(' AND  v.DATA_CANCELAMENTO <=  ' +
+      QuotedStr(FormatDateTime('dd.mm.yyyy', DateEditCancelamentoFinal.Date)))
+  end;
+
+
+
   case cbSituacao.ItemIndex of
     0:
       Begin
@@ -212,10 +219,10 @@ begin
       QuotedStr(ComboBoxVendedor.Text));
   end;
 
-  { if edtCodigoVenda.Text <> '' then
+  if edtCodigoVenda.Text <> '' then
     begin
     FDQueryFiltro.SQL.Add(' AND v.codigo = ' + edtCodigoVenda.Text);
-    end; }
+    end;
 
   FDQueryFiltro.Open();
   FDQueryFiltroVendaItens.Open();
@@ -259,6 +266,9 @@ end;
 procedure TfrmPesquisaAvancadaVenda.FormShow(Sender: TObject);
 begin
   Vendedor;
+
+  Cliente;
+
 end;
 
 procedure TfrmPesquisaAvancadaVenda.somaTotal;
@@ -289,4 +299,17 @@ begin
   // ComboBoxVendedor.ItemIndex := 0;
 end;
 
+
+procedure TfrmPesquisaAvancadaVenda.Cliente;
+begin
+    comboBoxCliente.Items.Clear;
+    FDQueryFiltro.Close;
+    FDQueryFiltro.Open();
+    FDQueryFiltro.First;
+    while not FDQueryFiltro.Eof do
+    begin
+       comboBoxCliente.Items.AddObject(FDQueryFiltroNOME.AsString, TObject(FDQueryFiltroCODCLIENTE.AsInteger));
+       FDQueryFiltro.Next;
+    end;
+end;
 end.

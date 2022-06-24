@@ -5,7 +5,7 @@ inherited frmCadastroFinanceiro: TfrmCadastroFinanceiro
   PixelsPerInch = 96
   TextHeight = 13
   inherited Cadastro: TPageControl
-    ActivePage = TabSheet2
+    ActivePage = TabSheet1
     inherited TabSheet1: TTabSheet
       ExplicitLeft = 4
       ExplicitTop = 24
