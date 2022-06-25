@@ -38,7 +38,6 @@ object frmPesquisaAvancadaVenda: TfrmPesquisaAvancadaVenda
     Height = 233
     Align = alTop
     TabOrder = 0
-    ExplicitTop = -6
     object Label3: TLabel
       Left = 8
       Top = 13

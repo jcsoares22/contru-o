@@ -140,12 +140,17 @@ begin
   FDQueryFiltro.SQL.Add('v.usu_nome, ');
   FDQueryFiltro.SQL.Add('v.situacao, ');
     FDQueryFiltro.SQL.Add('v.DATA_FATURAMENTO, ');
-  FDQueryFiltro.SQL.Add('v.DATA_CANCELAMENTO,');
+  FDQueryFiltro.SQL.Add('v.DATA_CANCELAMENTO, ');
   FDQueryFiltro.SQL.Add('v.DATA_ORCAMENTO, ');
   FDQueryFiltro.SQL.Add('v.data_faturamento');
   FDQueryFiltro.SQL.Add
     (' from saida_venda v inner join cliente c on (v.codcliente = c.codigo)');
   FDQueryFiltro.SQL.Add(' WHERE 1=1');
+
+   if edtCodigoVenda.Text <> '' then
+    begin
+    FDQueryFiltro.SQL.Add(' AND v.codigo = ' + edtCodigoVenda.Text);
+    end;
 
   if trim(comboBoxCliente.Text) <> '' then
   begin
@@ -219,10 +224,7 @@ begin
       QuotedStr(ComboBoxVendedor.Text));
   end;
 
-  if edtCodigoVenda.Text <> '' then
-    begin
-    FDQueryFiltro.SQL.Add(' AND v.codigo = ' + edtCodigoVenda.Text);
-    end;
+
 
   FDQueryFiltro.Open();
   FDQueryFiltroVendaItens.Open();

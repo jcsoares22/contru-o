@@ -7,7 +7,7 @@ uses
   System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, CadastroPaiPrincipal, Data.DB,
   Vcl.StdCtrls, Vcl.ExtCtrls, Vcl.Grids, Vcl.DBGrids, Vcl.ComCtrls, Vcl.DBCtrls,
-  Vcl.Mask, DMCadastro, Biblioteca;
+  Vcl.Mask, DMCadastro, Biblioteca, jpeg;
 
 type
   TfrmCadastroProduto = class(TfrmCadastroPai)
@@ -20,7 +20,6 @@ type
     DBLookupComboBoxUNMedida: TDBLookupComboBox;
     DB_Qte_Saida: TDBEdit;
     DBRadioGroup1: TDBRadioGroup;
-    Foto: TImage;
     Label1: TLabel;
     Label12: TLabel;
     Label13: TLabel;
@@ -58,12 +57,14 @@ type
     DB_Qte_Entrada: TDBEdit;
     Label28: TLabel;
     DB_Qte_Atual: TDBEdit;
-    DBImage1: TDBImage;
     DBNavigator1: TDBNavigator;
     Panel3: TPanel;
     btnEstoque: TButton;
     Label20: TLabel;
     DBEdtQTE_Minima: TDBEdit;
+    OpenDialogImage: TOpenDialog;
+    DBImage: TImage;
+    caminhoFoto: TLabel;
     procedure DB_APrazoExit(Sender: TObject);
     procedure DB_AvistaExit(Sender: TObject);
     procedure btnNovoClick(Sender: TObject);
@@ -76,6 +77,9 @@ type
     procedure btnEstoqueClick(Sender: TObject);
     procedure DBRadioGroup1Change(Sender: TObject);
     procedure DB_Qte_AtualChange(Sender: TObject);
+    procedure btn_fotoClick(Sender: TObject);
+    procedure DBGrid_ClienteDblClick(Sender: TObject);
+    procedure DBNavigator1DblClick(Sender: TObject);
   private
     { Private declarations }
     procedure mod_ReadOnlyFalse;
@@ -147,6 +151,7 @@ begin
   begin
     DM_Cadastro.FDQueryProduto.Insert;
   end;
+
   { prox := 1;
     DM_Cadastro.FDQueryProduto.Active := true;
     DM_Cadastro.FDQueryProduto.Last;
@@ -287,7 +292,7 @@ end;
 procedure TfrmCadastroProduto.btnSalvarClick(Sender: TObject);
 begin
   inherited;
-
+  DM_Cadastro.FDQueryProdutoFOTO.Value := caminhoFoto.Caption;
   if DBEdtQTE_Minima.Text = '' then
   begin
     ShowMessage('Quantidade minima deve ser informada');
@@ -307,18 +312,50 @@ begin
 
 end;
 
+procedure TfrmCadastroProduto.btn_fotoClick(Sender: TObject);
+begin
+  inherited;
+  if OpenDialogImage.Execute = True then
+    DBImage.Picture.LoadFromFile(OpenDialogImage.FileName);
+  caminhoFoto.Caption := ExtractFilePath(OpenDialogImage.FileName) +
+    ExtractFileName(OpenDialogImage.FileName);
+  // + ExtractFieldName(OpenDialogImage.FileName);
+end;
+
+procedure TfrmCadastroProduto.DBGrid_ClienteDblClick(Sender: TObject);
+begin
+  inherited;
+
+    try
+    //DM_Cadastro.FDQueryProduto.Prior;
+    caminhoFoto.Caption := DM_Cadastro.FDQueryProdutoFOTO.Value;
+    DBImage.Picture.LoadFromFile(caminhoFoto.Caption);
+    except
+    end;
+end;
+
+procedure TfrmCadastroProduto.DBNavigator1DblClick(Sender: TObject);
+begin
+  inherited;
+
+    //DM_Cadastro.FDQueryProduto.Prior;
+    caminhoFoto.Caption := DM_Cadastro.FDQueryProdutoFOTO.Value;
+    DBImage.Picture.LoadFromFile(caminhoFoto.Caption);
+
+end;
+
 procedure TfrmCadastroProduto.DBRadioGroup1Change(Sender: TObject);
 begin
   inherited;
- { if DBRadioGroup1 = 0 then
-   begin
-       DM_Cadastro.FDQueryProdutoSITUACAO.Value := 'A'
-         end
+  { if DBRadioGroup1 = 0 then
+    begin
+    DM_Cadastro.FDQueryProdutoSITUACAO.Value := 'A'
+    end
 
-           else
-             begin
-                 DM_Cadastro.FDQueryProdutoSITUACAO.Value := 'I'
-                   end;}
+    else
+    begin
+    DM_Cadastro.FDQueryProdutoSITUACAO.Value := 'I'
+    end; }
 
 end;
 
@@ -344,7 +381,7 @@ end;
 procedure TfrmCadastroProduto.DB_Qte_AtualChange(Sender: TObject);
 begin
   inherited;
-//  DB_Qte_Atual :=  DB_Qte_Entrada - DB_Qte_Saida;
+  // DB_Qte_Atual :=  DB_Qte_Entrada - DB_Qte_Saida;
 end;
 
 procedure TfrmCadastroProduto.FormClose(Sender: TObject;
