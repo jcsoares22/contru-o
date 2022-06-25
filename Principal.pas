@@ -70,8 +70,6 @@ type
     Button1: TButton;
     Lancamento_finaceiro: TSpeedButton;
     Image1: TImage;
-    PopupMenu1: TPopupMenu;
-    sfasd1: TMenuItem;
 
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure bntClienteClick(Sender: TObject);

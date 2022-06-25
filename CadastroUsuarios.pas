@@ -6,7 +6,7 @@ uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
   System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Data.DB, Vcl.DBCtrls, Vcl.StdCtrls,
-  Vcl.Mask, Vcl.ExtCtrls, Vcl.Grids, Vcl.DBGrids, Vcl.ComCtrls;
+  Vcl.Mask, Vcl.ExtCtrls, Vcl.Grids, Vcl.DBGrids, Vcl.ComCtrls, RxCtrls;
 
 type
   TfrmCadastroUsuario = class(TForm)
@@ -26,16 +26,10 @@ type
     Panel1: TPanel;
     PageControl1: TPageControl;
     Geral: TTabSheet;
-    Preferencia: TCheckBox;
-    dministrador: TCheckBox;
-    Usuario: TCheckBox;
     btnNovo: TButton;
     btnSalvar: TButton;
     btnEdit: TButton;
     btnCancelar: TButton;
-    DBCheckBox_administrador: TDBCheckBox;
-    DBCheckBoxPreferencia: TDBCheckBox;
-    Manuteção_usuario: TDBCheckBox;
     Panel3: TPanel;
     DBEdit5: TDBEdit;
     Label5: TLabel;
@@ -47,6 +41,10 @@ type
     Label3: TLabel;
     Label4: TLabel;
     DBEdit4: TDBEdit;
+    DBCheckBox_administrador: TRxCheckBox;
+    DBCheckBoxPreferencia: TRxCheckBox;
+    Manutecao_usuario: TRxCheckBox;
+    DBNavigator1: TDBNavigator;
     procedure btnNovoClick(Sender: TObject);
     procedure btnSalvarClick(Sender: TObject);
     procedure edt_PesquisaChange(Sender: TObject);
@@ -55,9 +53,9 @@ type
     procedure btnEditClick(Sender: TObject);
     procedure FormActivate(Sender: TObject);
     procedure DBGrid_ClienteDblClick(Sender: TObject);
-    procedure FormShow(Sender: TObject);
   private
     { Private declarations }
+    procedure verificacaoCheckBox;
   public
     { Public declarations }
   end;
@@ -94,7 +92,7 @@ begin
   else
     DM_Dados.FDQueryUsuarioPREFERENCIA.Value := 'F';
 
-  if Manuteção_usuario.Checked = true then
+  if Manutecao_usuario.Checked = true then
   // COLOCANDO SISTEMA COM PREMISSÃO PARA PODER EDITAR A PREFERENCIA
   begin
     DM_Dados.FDQueryUsuarioCAD_USU.Value := 'T';
@@ -247,6 +245,7 @@ end;
 procedure TfrmCadastroUsuario.FormActivate(Sender: TObject);
 begin
   frmLoginMenu.Visible := false;
+  verificacaoCheckBox;
 end;
 
 procedure TfrmCadastroUsuario.FormClose(Sender: TObject;
@@ -257,16 +256,16 @@ begin
 
 end;
 
-procedure TfrmCadastroUsuario.FormShow(Sender: TObject);
+procedure TfrmCadastroUsuario.verificacaoCheckBox;
 begin
   if DM_Dados.FDQueryUsuarioADM.Value = 'T' then
-  // COLOCANDO SISTEMA COMO ADMINISTRADOR
   begin
-    DBCheckBox_administrador.Checked := True;
-
+    DBCheckBox_administrador.Checked := true;
   end
   else
-    DBCheckBox_administrador.Checked := False;
+  begin
+    DBCheckBox_administrador.Checked := false;
+  end;
 
 end;
 

@@ -2,8 +2,8 @@ object frmPesquisaCliente: TfrmPesquisaCliente
   Left = 0
   Top = 0
   Caption = 'frmPesquisaCliente'
-  ClientHeight = 435
-  ClientWidth = 933
+  ClientHeight = 672
+  ClientWidth = 1100
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -13,85 +13,30 @@ object frmPesquisaCliente: TfrmPesquisaCliente
   OldCreateOrder = False
   OnClose = FormClose
   OnCreate = FormCreate
+  OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
   object Panel2: TPanel
     Left = 0
     Top = 0
-    Width = 933
-    Height = 49
+    Width = 1100
+    Height = 409
     Align = alTop
     TabOrder = 0
-    ExplicitWidth = 845
-    object Label9: TLabel
-      Left = 11
-      Top = 1
-      Width = 65
-      Height = 13
-      Caption = 'Pesquisar por'
-    end
-    object Label10: TLabel
-      Left = 108
-      Top = 3
-      Width = 35
-      Height = 13
-      Caption = 'Crit'#233'rio'
-    end
-    object Label11: TLabel
-      Left = 230
-      Top = 3
-      Width = 60
-      Height = 13
-      Caption = 'Procurar por'
-    end
-    object CB_Opcao2: TComboBox
-      Left = 108
-      Top = 18
-      Width = 116
+    object ComboBoxCliente: TComboBox
+      Left = 16
+      Top = 83
+      Width = 305
       Height = 21
-      CharCase = ecUpperCase
       TabOrder = 0
-      Text = 'INICIADO COM'
-      Items.Strings = (
-        'INICIADO COM'
-        'QUE CONT'#202'M'
-        'IGUAL')
-    end
-    object CB_opcao: TComboBox
-      Left = 11
-      Top = 18
-      Width = 91
-      Height = 21
-      CharCase = ecUpperCase
-      ItemIndex = 0
-      TabOrder = 1
-      Text = 'CODIGO'
-      Items.Strings = (
-        'CODIGO'
-        'NOME')
-    end
-    object edt_Pesquisa: TEdit
-      Left = 230
-      Top = 18
-      Width = 449
-      Height = 21
-      CharCase = ecUpperCase
-      TabOrder = 2
-    end
-    object btnPesquisa: TButton
-      Left = 699
-      Top = 14
-      Width = 75
-      Height = 25
-      Caption = 'Pesquisa'
-      TabOrder = 3
+      Text = 'ComboBoxCliente'
     end
   end
   object DBGridPesquisa: TDBGrid
     Left = 0
-    Top = 49
-    Width = 933
-    Height = 386
+    Top = 409
+    Width = 1100
+    Height = 263
     Align = alClient
     DataSource = DM_Cadastro.DT_cliente
     TabOrder = 1

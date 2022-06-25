@@ -13,6 +13,7 @@
   FormStyle = fsMDIChild
   KeyPreview = True
   OldCreateOrder = False
+  PopupMenu = PopupMenuMause
   Visible = True
   WindowState = wsMaximized
   OnClose = FormClose
@@ -25,7 +26,7 @@
     Top = 0
     Width = 1295
     Height = 644
-    ActivePage = TabSheet1
+    ActivePage = TabSheet2
     Align = alClient
     TabOrder = 0
     object TabSheet1: TTabSheet
@@ -58,31 +59,37 @@
           item
             Expanded = False
             FieldName = 'NOME'
+            Width = 64
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'DATAVENDA'
+            Width = 64
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'VALORTOTAL'
+            Width = 64
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'OBS'
+            Width = 64
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'FRETE'
+            Width = 64
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'COND_PAGAMENTO'
+            Width = 64
             Visible = True
           end
           item
@@ -93,21 +100,25 @@
           item
             Expanded = False
             FieldName = 'ID_SUBCONTA'
+            Width = 64
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'ID_TIPO_PGTO'
+            Width = 64
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'DESCONTO'
+            Width = 64
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'TIPO_DESC'
+            Width = 64
             Visible = True
           end
           item
@@ -118,16 +129,19 @@
           item
             Expanded = False
             FieldName = 'DATA_FATURAMENTO'
+            Width = 64
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'DATA_CANCELAMENTO'
+            Width = 64
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'DATA_ORCAMENTO'
+            Width = 64
             Visible = True
           end>
       end
@@ -1232,8 +1246,8 @@
     Top = 432
   end
   object PopupMenu1: TPopupMenu
-    Left = 520
-    Top = 32
+    Left = 616
+    Top = 248
     object Cliente1: TMenuItem
       Caption = 'Cliente'
       OnClick = Cliente1Click
@@ -1846,6 +1860,13 @@
       Origin = 'DESCONTO'
       Precision = 18
       Size = 2
+    end
+  end
+  object PopupMenuMause: TPopupMenu
+    Left = 500
+    Top = 336
+    object Produto1: TMenuItem
+      Caption = 'Produto'
     end
   end
 end

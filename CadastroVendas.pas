@@ -100,6 +100,8 @@ type
     FDQueryVendasCliente2CODCLIENTE: TIntegerField;
     FDQueryVendasCliente2TIPO_DESC: TStringField;
     FDQueryVendasCliente2DESCONTO: TBCDField;
+    PopupMenuMause: TPopupMenu;
+    Produto1: TMenuItem;
     procedure DBGridVendasExit(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure btnNovoClick(Sender: TObject);

@@ -10,19 +10,15 @@ uses
 type
   TfrmPesquisaCliente = class(TForm)
     Panel2: TPanel;
-    Label9: TLabel;
-    Label10: TLabel;
-    Label11: TLabel;
-    CB_Opcao2: TComboBox;
-    CB_opcao: TComboBox;
-    edt_Pesquisa: TEdit;
-    btnPesquisa: TButton;
     DBGridPesquisa: TDBGrid;
+    ComboBoxCliente: TComboBox;
     procedure FormCreate(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure DBGridPesquisaDblClick(Sender: TObject);
+    procedure FormShow(Sender: TObject);
   private
     { Private declarations }
+   procedure Cliente;
   public
     { Public declarations }
   end;
@@ -50,4 +46,21 @@ begin
     DM_Cadastro.FDQueryCliente.open();
 end;
 
+procedure TfrmPesquisaCliente.FormShow(Sender: TObject);
+begin
+  Cliente;
+end;
+
+procedure TfrmPesquisaCliente.Cliente;
+begin
+       ComboBoxCliente.Items.Clear;
+       DM_Cadastro.FDQueryCliente.Open();
+        DM_Cadastro.FDQueryCliente.First;
+        while not  DM_Cadastro.FDQueryCliente.Eof do
+        begin
+            ComboBoxCliente.Items.AddObject(DM_Cadastro.FDQueryClienteNOME.AsString, TObject(DM_Cadastro.FDQueryClienteCODIGO.AsInteger));
+            DM_Cadastro.FDQueryCliente.Next;
+        end;
+
+end;
 end.

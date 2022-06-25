@@ -15,7 +15,6 @@ inherited frmCadastroCliente: TfrmCadastroCliente
   inherited Cadastro: TPageControl
     Width = 1009
     Height = 605
-    ActivePage = TabSheet1
     ExplicitWidth = 1009
     ExplicitHeight = 605
     inherited TabSheet1: TTabSheet

@@ -13,7 +13,6 @@ object frmPrincipal: TfrmPrincipal
   FormStyle = fsMDIForm
   Menu = MainMenu1
   OldCreateOrder = False
-  PopupMenu = PopupMenu1
   Position = poScreenCenter
   WindowState = wsMaximized
   OnClose = FormClose
@@ -3214,12 +3213,5 @@ object frmPrincipal: TfrmPrincipal
     OnTimer = Timer1Timer
     Left = 1048
     Top = 168
-  end
-  object PopupMenu1: TPopupMenu
-    Left = 312
-    Top = 232
-    object sfasd1: TMenuItem
-      Caption = 'teste'
-    end
   end
 end

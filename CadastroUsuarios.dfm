@@ -1,4 +1,4 @@
-﻿object frmCadastroUsuario: TfrmCadastroUsuario
+object frmCadastroUsuario: TfrmCadastroUsuario
   Left = 0
   Top = 0
   Caption = 'frmCadastroUsuario'
@@ -13,7 +13,6 @@
   OldCreateOrder = False
   OnActivate = FormActivate
   OnClose = FormClose
-  OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
   object Cadastro: TPageControl
@@ -51,6 +50,7 @@
           item
             Expanded = False
             FieldName = 'USU_NOME'
+            Width = 64
             Visible = True
           end
           item
@@ -212,63 +212,7 @@
         TabOrder = 1
         object Geral: TTabSheet
           Caption = 'Geral'
-          object Preferencia: TCheckBox
-            Left = 3
-            Top = 40
-            Width = 164
-            Height = 17
-            Caption = 'Preferencia'
-            TabOrder = 0
-          end
-          object dministrador: TCheckBox
-            Left = 3
-            Top = 17
-            Width = 97
-            Height = 17
-            Caption = 'Administrador'
-            ParentShowHint = False
-            ShowHint = False
-            TabOrder = 1
-          end
-          object Usuario: TCheckBox
-            Left = 3
-            Top = 63
-            Width = 164
-            Height = 17
-            Caption = 'Manute'#231#227'o de usu'#225'rio'
-            TabOrder = 2
-          end
-          object DBCheckBox_administrador: TDBCheckBox
-            Left = 161
-            Top = 17
-            Width = 97
-            Height = 17
-            Caption = 'DBCheckBox_administrador'
-            DataField = 'ADM'
-            DataSource = DM_Dados.DT_Usuario
-            TabOrder = 3
-          end
-          object DBCheckBoxPreferencia: TDBCheckBox
-            Left = 161
-            Top = 40
-            Width = 97
-            Height = 17
-            Caption = 'DBCheckBox1'
-            DataField = 'PREFERENCIA'
-            DataSource = DM_Dados.DT_Usuario
-            TabOrder = 4
-            WordWrap = True
-          end
-          object Manuteção_usuario: TDBCheckBox
-            Left = 161
-            Top = 63
-            Width = 97
-            Height = 17
-            Caption = 'DBCheckBox1'
-            DataField = 'CAD_USU'
-            DataSource = DM_Dados.DT_Usuario
-            TabOrder = 5
-          end
+          ExplicitLeft = 0
         end
       end
       object Panel3: TPanel
@@ -365,6 +309,50 @@
           PasswordChar = '*'
           TabOrder = 4
         end
+      end
+      object DBCheckBox_administrador: TRxCheckBox
+        Left = 16
+        Top = 210
+        Width = 209
+        Height = 17
+        Caption = 'DBCheckBox_administrador'
+        TabOrder = 3
+        WordWrap = True
+        HorizontalAlignment = taLeftJustify
+        VerticalAlignment = taAlignTop
+        Style = vsNormal
+      end
+      object DBCheckBoxPreferencia: TRxCheckBox
+        Left = 16
+        Top = 233
+        Width = 97
+        Height = 17
+        Caption = 'RxCheckBox1'
+        TabOrder = 4
+        WordWrap = True
+        HorizontalAlignment = taLeftJustify
+        VerticalAlignment = taAlignTop
+        Style = vsNormal
+      end
+      object Manutecao_usuario: TRxCheckBox
+        Left = 16
+        Top = 256
+        Width = 97
+        Height = 17
+        Caption = 'RxCheckBox1'
+        TabOrder = 5
+        WordWrap = True
+        HorizontalAlignment = taLeftJustify
+        VerticalAlignment = taAlignTop
+        Style = vsNormal
+      end
+      object DBNavigator1: TDBNavigator
+        Left = 464
+        Top = 16
+        Width = 240
+        Height = 25
+        DataSource = DM_Dados.DT_Usuario
+        TabOrder = 6
       end
     end
   end
