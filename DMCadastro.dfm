@@ -410,6 +410,12 @@
       ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
       IdentityInsert = True
     end
+    object FDQueryProdutoSITUACAO: TStringField
+      FieldName = 'SITUACAO'
+      Origin = 'SITUACAO'
+      FixedChar = True
+      Size = 1
+    end
     object FDQueryProdutoPRODUTO: TStringField
       FieldName = 'PRODUTO'
       Origin = 'PRODUTO'
@@ -435,12 +441,6 @@
       currency = True
       Precision = 18
       Size = 2
-    end
-    object FDQueryProdutoSITUACAO: TStringField
-      FieldName = 'SITUACAO'
-      Origin = 'SITUACAO'
-      FixedChar = True
-      Size = 1
     end
     object FDQueryProdutoOBS: TStringField
       FieldName = 'OBS'

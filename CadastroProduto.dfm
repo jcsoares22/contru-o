@@ -9,6 +9,7 @@ inherited frmCadastroProduto: TfrmCadastroProduto
   inherited Cadastro: TPageControl
     Width = 1127
     Height = 634
+    ActivePage = TabSheet1
     ExplicitWidth = 1127
     ExplicitHeight = 634
     inherited TabSheet1: TTabSheet
@@ -20,30 +21,11 @@ inherited frmCadastroProduto: TfrmCadastroProduto
         Width = 1119
         Height = 565
         DataSource = DM_Cadastro.DT_produto
+        OnDrawColumnCell = DBGrid_ClienteDrawColumnCell
         Columns = <
           item
             Expanded = False
             FieldName = 'CODIGO'
-            Visible = True
-          end
-          item
-            Expanded = False
-            FieldName = 'PRODUTO'
-            Visible = True
-          end
-          item
-            Expanded = False
-            FieldName = 'UN_MEDIDA'
-            Visible = True
-          end
-          item
-            Expanded = False
-            FieldName = 'PRECO_CUSTO'
-            Visible = True
-          end
-          item
-            Expanded = False
-            FieldName = 'PRECO_VENDA'
             Visible = True
           end
           item
@@ -53,12 +35,38 @@ inherited frmCadastroProduto: TfrmCadastroProduto
           end
           item
             Expanded = False
+            FieldName = 'PRODUTO'
+            Width = 64
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'UN_MEDIDA'
+            Width = 64
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'PRECO_CUSTO'
+            Width = 64
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'PRECO_VENDA'
+            Width = 64
+            Visible = True
+          end
+          item
+            Expanded = False
             FieldName = 'OBS'
+            Width = 64
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'DATACAD'
+            Width = 64
             Visible = True
           end
           item
@@ -69,6 +77,7 @@ inherited frmCadastroProduto: TfrmCadastroProduto
           item
             Expanded = False
             FieldName = 'DATAVENDA'
+            Width = 64
             Visible = True
           end
           item
@@ -79,6 +88,7 @@ inherited frmCadastroProduto: TfrmCadastroProduto
           item
             Expanded = False
             FieldName = 'COR'
+            Width = 64
             Visible = True
           end
           item
@@ -89,36 +99,43 @@ inherited frmCadastroProduto: TfrmCadastroProduto
           item
             Expanded = False
             FieldName = 'FOTO'
+            Width = 64
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'MARCA'
+            Width = 64
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'BAIRRO'
+            Width = 64
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'PRECENTO_LUCRO'
+            Width = 64
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'PRECO_PRAZO_CUSTO'
+            Width = 64
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'PRECO_PRAZO_VENDA'
+            Width = 64
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'PRECENTO_PRAZO_LUCRO'
+            Width = 64
             Visible = True
           end
           item
@@ -134,6 +151,7 @@ inherited frmCadastroProduto: TfrmCadastroProduto
           item
             Expanded = False
             FieldName = 'ID_SUBGRUPO'
+            Width = 64
             Visible = True
           end>
       end
@@ -311,7 +329,7 @@ inherited frmCadastroProduto: TfrmCadastroProduto
       end
       object btn_foto: TButton
         Left = 773
-        Top = 228
+        Top = 231
         Width = 75
         Height = 25
         Caption = 'Carregar'
@@ -412,7 +430,6 @@ inherited frmCadastroProduto: TfrmCadastroProduto
         Values.Strings = (
           'A'
           'I')
-        OnChange = DBRadioGroup1Change
       end
       object Nome_produto: TDBEdit
         Left = 82

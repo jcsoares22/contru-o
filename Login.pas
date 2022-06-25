@@ -47,29 +47,27 @@ begin
   DM_Dados.FDQueryUsuario.ParamByName('nome').AsString := edtLogin.Text;
   DM_Dados.FDQueryUsuario.ParamByName('senha').AsString := edtSenha.Text;
   DM_Dados.FDQueryUsuario.Open;
-  {
-    DM_Dados.FDQueryUsuario.First;
-    while not DM_Dados.FDQueryUsuario.eof do
-    begin
-    if edtSenha = Criptografia('D', DM_Dados.FDQueryUsuario.FieldByName('USU_SENHA').AsAnsiString) then
-    begin
-    Break
-    end;
-    DM_Dados.FDQueryUsuario.next;
-    end; }
+{
+   DM_Dados.FDQueryUsuario.First;
+       while not DM_Dados.FDQueryUsuario.eof do
+           begin
+               if edtSenha = Criptografia('D', DM_Dados.FDQueryUsuario.FieldByName('USU_SENHA').AsAnsiString) then
+                   begin
+                       Break
+                           end;
+                               DM_Dados.FDQueryUsuario.next;
+                                   end;}
 
-  if (DM_Dados.FDQueryUsuario.recordCount > 0) then
-  begin
-    frmPrincipal.StatusBar1.Panels[0].Text := 'Emp ' + nomeEmpres; //
-    frmPrincipal.StatusBar1.Panels[1].Text :=
-      DM_Dados.FDQueryUsuarioUSU_NOME.AsString;
-    // TODO  verificar como colocar o nome da empresa
-  end
-  else
-  begin
+   if (DM_Dados.FDQueryUsuario.recordCount > 0) then
+    begin
+    frmPrincipal.StatusBar1.Panels[0].Text :=  'Emp ' + nomeEmpres;  //
+    frmPrincipal.StatusBar1.Panels[1].Text := DM_Dados.FDQueryUsuarioUSU_NOME.AsString;// TODO  verificar como colocar o nome da empresa
+    end
+    else
+    begin
     ModalResult := mrNone; // colocando para pode entrar no sistema
     showmessage('senha ou login incorreto');
-  end;
+    end;
 end;
 
 procedure TfrmLogin.btn_CancelarClick(Sender: TObject);

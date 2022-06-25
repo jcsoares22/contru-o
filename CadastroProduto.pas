@@ -7,7 +7,7 @@ uses
   System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, CadastroPaiPrincipal, Data.DB,
   Vcl.StdCtrls, Vcl.ExtCtrls, Vcl.Grids, Vcl.DBGrids, Vcl.ComCtrls, Vcl.DBCtrls,
-  Vcl.Mask, DMCadastro, Biblioteca, jpeg;
+  Vcl.Mask, DMCadastro, Biblioteca, jpeg, Vcl.Menus, Math;
 
 type
   TfrmCadastroProduto = class(TfrmCadastroPai)
@@ -80,6 +80,8 @@ type
     procedure btn_fotoClick(Sender: TObject);
     procedure DBGrid_ClienteDblClick(Sender: TObject);
     procedure DBNavigator1DblClick(Sender: TObject);
+    procedure DBGrid_ClienteDrawColumnCell(Sender: TObject; const Rect: TRect;
+      DataCol: Integer; Column: TColumn; State: TGridDrawState);
   private
     { Private declarations }
     procedure mod_ReadOnlyFalse;
@@ -325,22 +327,57 @@ end;
 procedure TfrmCadastroProduto.DBGrid_ClienteDblClick(Sender: TObject);
 begin
   inherited;
-
-    try
-    //DM_Cadastro.FDQueryProduto.Prior;
+  try
+    // DM_Cadastro.FDQueryProduto.Prior;
     caminhoFoto.Caption := DM_Cadastro.FDQueryProdutoFOTO.Value;
     DBImage.Picture.LoadFromFile(caminhoFoto.Caption);
-    except
-    end;
+  except
+  end;
+  {        verificar o check box no dbgrid
+    if not Assigned(DM_Cadastro.FDQueryProduto.FindField('SITUACAO')) then
+    ModalResult := mrok
+    else
+    begin
+    DM_Cadastro.FDQueryProduto.Edit;
+    DM_Cadastro.FDQueryProduto.FieldByName('SITUACAO').AsInteger :=
+    IfThen(DM_Cadastro.FDQueryProduto.FieldByName('SITUACAO')
+    .AsInteger = 1, 0, 1);
+    DM_Cadastro.FDQueryProduto.Post;
+    end; }
+end;
+
+procedure TfrmCadastroProduto.DBGrid_ClienteDrawColumnCell(Sender: TObject;
+  const Rect: TRect; DataCol: Integer; Column: TColumn; State: TGridDrawState);
+var
+  lR: TRect;
+  lCheck: Integer;
+begin
+  inherited;
+  {      configuuração do checjk box do dbgrid
+    if Assigned(DM_Cadastro.FDQueryProduto.FindField('SITUACAO')) and
+    (Column.Index = 0) then
+    begin
+    if (DM_Cadastro.FDQueryProduto.FieldByName('SITUACAO').Value = 1) then
+    lCheck := DFCS_BUTTONCHECK or DFCS_CHECKED
+    else
+    lCheck := DFCS_BUTTONCHECK;
+    DBGrid_Cliente.Canvas.FillRect(Rect);
+    lR := Rect;
+    InflateRect(lR, -2, -2);
+    DrawFrameControl(DBGrid_Cliente.Canvas.Handle, lR, DFC_BUTTON, lCheck);
+    end
+    else
+    DBGrid_Cliente.DefaultDrawColumnCell(Rect, DataCol, Column, State);
+  }
 end;
 
 procedure TfrmCadastroProduto.DBNavigator1DblClick(Sender: TObject);
 begin
   inherited;
 
-    //DM_Cadastro.FDQueryProduto.Prior;
-    caminhoFoto.Caption := DM_Cadastro.FDQueryProdutoFOTO.Value;
-    DBImage.Picture.LoadFromFile(caminhoFoto.Caption);
+  // DM_Cadastro.FDQueryProduto.Prior;
+  caminhoFoto.Caption := DM_Cadastro.FDQueryProdutoFOTO.Value;
+  DBImage.Picture.LoadFromFile(caminhoFoto.Caption);
 
 end;
 
