@@ -9,7 +9,8 @@ uses
   Vcl.ExtCtrls, FireDAC.Stan.Intf, FireDAC.Stan.Option, FireDAC.Stan.Param,
   FireDAC.Stan.Error, FireDAC.DatS, FireDAC.Phys.Intf, FireDAC.DApt.Intf,
   FireDAC.Stan.Async, FireDAC.DApt, Data.DB, FireDAC.Comp.DataSet,
-  FireDAC.Comp.Client, Vcl.Grids, Vcl.DBGrids, RxDBCtrl;
+  FireDAC.Comp.Client, Vcl.Grids, Vcl.DBGrids, RxDBCtrl, Vcl.Buttons, frxClass,
+  frxDBSet;
 
 type
   TfrmPesquisaAvancada = class(TForm)
@@ -19,7 +20,7 @@ type
     Label1: TLabel;
     Label2: TLabel;
     ComboBoxEstado: TComboBox;
-    Label3: TLabel;
+    UF: TLabel;
     codigoCliente: TEdit;
     btnPesquisar: TButton;
     btnLimparCriterios: TButton;
@@ -39,6 +40,8 @@ type
     FDQueryPesquisaAvancadasNOME_2: TStringField;
     DataSource1: TDataSource;
     RxDBGrid1: TRxDBGrid;
+    frxReportClientes: TfrxReport;
+    frxDBDatasetClientes: TfrxDBDataset;
     procedure btnLimparCriteriosClick(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure btnPesquisarClick(Sender: TObject);

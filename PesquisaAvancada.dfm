@@ -38,12 +38,12 @@ object frmPesquisaAvancada: TfrmPesquisaAvancada
       Height = 13
       Caption = 'Cidade'
     end
-    object Label3: TLabel
+    object UF: TLabel
       Left = 24
       Top = 117
-      Width = 33
+      Width = 13
       Height = 13
-      Caption = 'Cidade'
+      Caption = 'UF'
     end
     object Label4: TLabel
       Left = 280
@@ -51,6 +51,13 @@ object frmPesquisaAvancada: TfrmPesquisaAvancada
       Width = 69
       Height = 13
       Caption = 'Codigo Cliente'
+    end
+    object TSpeedButton
+      Left = 666
+      Top = 198
+      Width = 97
+      Height = 22
+      Caption = 'Imprimir'
     end
     object ComboBoxCliente: TComboBox
       Left = 24
@@ -181,6 +188,7 @@ object frmPesquisaAvancada: TfrmPesquisaAvancada
       end>
   end
   object FDQueryPesquisaAvancadas: TFDQuery
+    Active = True
     Connection = DM_Dados.DADOS
     SQL.Strings = (
       ''
@@ -202,8 +210,8 @@ object frmPesquisaAvancada: TfrmPesquisaAvancada
       'from cidades'
       '   inner join cliente on (cidades.id = cliente.cidade_id)'
       '   inner join estados on (cliente.uf_id = estados.id)')
-    Left = 744
-    Top = 440
+    Left = 904
+    Top = 496
     object FDQueryPesquisaAvancadasCODIGO: TIntegerField
       FieldName = 'CODIGO'
       Origin = 'CODIGO'
@@ -263,7 +271,174 @@ object frmPesquisaAvancada: TfrmPesquisaAvancada
   end
   object DataSource1: TDataSource
     DataSet = FDQueryPesquisaAvancadas
+    Left = 680
+    Top = 528
+  end
+  object frxReportClientes: TfrxReport
+    Version = '2022.2.5'
+    DotMatrixReport = False
+    IniFile = '\Software\Fast Reports'
+    PreviewOptions.Buttons = [pbPrint, pbLoad, pbSave, pbExport, pbZoom, pbFind, pbOutline, pbPageSetup, pbTools, pbEdit, pbNavigator, pbExportQuick, pbCopy, pbSelection]
+    PreviewOptions.Zoom = 1.000000000000000000
+    PrintOptions.Printer = 'Default'
+    PrintOptions.PrintOnSheet = 0
+    ReportOptions.CreateDate = 44740.896163044000000000
+    ReportOptions.LastChange = 44740.899417800920000000
+    ScriptLanguage = 'PascalScript'
+    ScriptText.Strings = (
+      'begin'
+      ''
+      'end.')
     Left = 536
     Top = 400
+    Datasets = <
+      item
+        DataSet = frxDBDatasetClientes
+        DataSetName = 'frxDBDatasetClientes'
+      end>
+    Variables = <>
+    Style = <>
+    object Data: TfrxDataPage
+      Height = 1000.000000000000000000
+      Width = 1000.000000000000000000
+    end
+    object Page1: TfrxReportPage
+      PaperWidth = 210.000000000000000000
+      PaperHeight = 297.000000000000000000
+      PaperSize = 9
+      LeftMargin = 10.000000000000000000
+      RightMargin = 10.000000000000000000
+      TopMargin = 10.000000000000000000
+      BottomMargin = 10.000000000000000000
+      Frame.Typ = []
+      MirrorMode = []
+      object ReportTitle1: TfrxReportTitle
+        FillType = ftBrush
+        FillGap.Top = 0
+        FillGap.Left = 0
+        FillGap.Bottom = 0
+        FillGap.Right = 0
+        Frame.Typ = []
+        Height = 22.677180000000000000
+        Top = 18.897650000000000000
+        Width = 718.110700000000000000
+        object Memo1: TfrxMemoView
+          AllowVectorExport = True
+          Left = 11.338590000000000000
+          Top = -3.779530000000000000
+          Width = 94.488250000000000000
+          Height = 18.897650000000000000
+          Frame.Typ = []
+          Memo.UTF8W = (
+            'Codigo')
+        end
+        object Memo2: TfrxMemoView
+          AllowVectorExport = True
+          Left = 71.811070000000000000
+          Top = -3.779530000000000000
+          Width = 94.488250000000000000
+          Height = 18.897650000000000000
+          Frame.Typ = []
+          Memo.UTF8W = (
+            'Nome')
+        end
+        object Memo3: TfrxMemoView
+          AllowVectorExport = True
+          Left = 351.496290000000000000
+          Width = 94.488250000000000000
+          Height = 18.897650000000000000
+          Frame.Typ = []
+          Memo.UTF8W = (
+            'CPF')
+        end
+        object Memo4: TfrxMemoView
+          AllowVectorExport = True
+          Left = 623.622450000000000000
+          Top = -3.779530000000000000
+          Width = 94.488250000000000000
+          Height = 18.897650000000000000
+          Frame.Typ = []
+          Memo.UTF8W = (
+            'Numero')
+        end
+      end
+      object MasterData1: TfrxMasterData
+        FillType = ftBrush
+        FillGap.Top = 0
+        FillGap.Left = 0
+        FillGap.Bottom = 0
+        FillGap.Right = 0
+        Frame.Typ = []
+        Height = 22.677180000000000000
+        Top = 102.047310000000000000
+        Width = 718.110700000000000000
+        RowCount = 0
+        object frxDBDatasetClientesCODIGO: TfrxMemoView
+          IndexTag = 1
+          AllowVectorExport = True
+          Left = 7.559060000000000000
+          Top = 3.779530000000000000
+          Width = 45.354360000000000000
+          Height = 18.897650000000000000
+          DataField = 'CODIGO'
+          DataSet = frxDBDatasetClientes
+          DataSetName = 'frxDBDatasetClientes'
+          Frame.Typ = []
+          Memo.UTF8W = (
+            '[frxDBDatasetClientes."CODIGO"]')
+        end
+        object frxDBDatasetClientesNOME: TfrxMemoView
+          IndexTag = 1
+          AllowVectorExport = True
+          Left = 64.252010000000000000
+          Top = 4.000000000000000000
+          Width = 268.346630000000000000
+          Height = 18.897650000000000000
+          DataField = 'NOME'
+          DataSet = frxDBDatasetClientes
+          DataSetName = 'frxDBDatasetClientes'
+          Frame.Typ = []
+          Memo.UTF8W = (
+            '[frxDBDatasetClientes."NOME"]')
+        end
+        object frxDBDatasetClientesCPF: TfrxMemoView
+          IndexTag = 1
+          AllowVectorExport = True
+          Left = 362.834880000000000000
+          Top = 3.779530000000000000
+          Width = 86.929190000000000000
+          Height = 18.897650000000000000
+          DataField = 'CPF'
+          DataSet = frxDBDatasetClientes
+          DataSetName = 'frxDBDatasetClientes'
+          Frame.Typ = []
+          Memo.UTF8W = (
+            '[frxDBDatasetClientes."CPF"]')
+        end
+        object frxDBDatasetClientesNUMERO: TfrxMemoView
+          IndexTag = 1
+          AllowVectorExport = True
+          Left = 619.842920000000000000
+          Top = 3.779530000000000000
+          Width = 94.488250000000000000
+          Height = 18.897650000000000000
+          DataField = 'NUMERO'
+          DataSet = frxDBDatasetClientes
+          DataSetName = 'frxDBDatasetClientes'
+          Frame.Typ = []
+          Memo.UTF8W = (
+            '[frxDBDatasetClientes."NUMERO"]')
+        end
+      end
+    end
+  end
+  object frxDBDatasetClientes: TfrxDBDataset
+    UserName = 'frxDBDatasetClientes'
+    CloseDataSource = False
+    DataSet = FDQueryPesquisaAvancadas
+    BCDToCurrency = False
+    DataSetOptions = []
+    Left = 464
+    Top = 448
   end
 end

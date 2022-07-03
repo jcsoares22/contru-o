@@ -10,7 +10,10 @@ object frmLancamentoFinanceiro: TfrmLancamentoFinanceiro
   Font.Height = -11
   Font.Name = 'Tahoma'
   Font.Style = []
+  FormStyle = fsMDIChild
   OldCreateOrder = False
+  Visible = True
+  WindowState = wsMaximized
   OnCreate = FormCreate
   PixelsPerInch = 96
   TextHeight = 13
@@ -22,14 +25,8 @@ object frmLancamentoFinanceiro: TfrmLancamentoFinanceiro
     ActivePage = TabSheet1
     Align = alClient
     TabOrder = 0
-    ExplicitLeft = 224
-    ExplicitTop = 440
-    ExplicitWidth = 289
-    ExplicitHeight = 193
     object TabSheet1: TTabSheet
       Caption = 'TabSheet1'
-      ExplicitWidth = 281
-      ExplicitHeight = 165
       object DBGrid1: TDBGrid
         Left = 0
         Top = 0
@@ -57,26 +54,31 @@ object frmLancamentoFinanceiro: TfrmLancamentoFinanceiro
           item
             Expanded = False
             FieldName = 'VLR_PARC'
+            Width = 64
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'DATA_VENC'
+            Width = 64
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'DATA_PGTO'
+            Width = 64
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'VLR_PGTO'
+            Width = 64
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'TIPO'
+            Width = 64
             Visible = True
           end>
       end
@@ -85,6 +87,7 @@ object frmLancamentoFinanceiro: TfrmLancamentoFinanceiro
       Caption = 'TabSheet2'
       ImageIndex = 1
       ExplicitLeft = 0
+      ExplicitTop = 0
       ExplicitWidth = 281
       ExplicitHeight = 165
       object Label1: TLabel

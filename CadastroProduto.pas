@@ -79,13 +79,16 @@ type
     procedure DB_Qte_AtualChange(Sender: TObject);
     procedure btn_fotoClick(Sender: TObject);
     procedure DBGrid_ClienteDblClick(Sender: TObject);
-    procedure DBNavigator1DblClick(Sender: TObject);
     procedure DBGrid_ClienteDrawColumnCell(Sender: TObject; const Rect: TRect;
       DataCol: Integer; Column: TColumn; State: TGridDrawState);
+    procedure FormShow(Sender: TObject);
+    procedure DBNavigator1Click(Sender: TObject; Button: TNavigateBtn);
   private
     { Private declarations }
     procedure mod_ReadOnlyFalse;
     procedure mod_ReadOnlyTrue;
+    procedure carregafoto;
+
   public
     { Public declarations }
   end;
@@ -324,16 +327,23 @@ begin
   // + ExtractFieldName(OpenDialogImage.FileName);
 end;
 
-procedure TfrmCadastroProduto.DBGrid_ClienteDblClick(Sender: TObject);
+procedure TfrmCadastroProduto.carregafoto;
 begin
-  inherited;
   try
-    // DM_Cadastro.FDQueryProduto.Prior;
+    //DM_Cadastro.FDQueryProduto.Prior;
     caminhoFoto.Caption := DM_Cadastro.FDQueryProdutoFOTO.Value;
     DBImage.Picture.LoadFromFile(caminhoFoto.Caption);
   except
+    DBImage.Picture := Nil;
   end;
-  {        verificar o check box no dbgrid
+end;
+
+procedure TfrmCadastroProduto.DBGrid_ClienteDblClick(Sender: TObject);
+begin
+  inherited;
+  carregafoto;
+
+  { verificar o check box no dbgrid
     if not Assigned(DM_Cadastro.FDQueryProduto.FindField('SITUACAO')) then
     ModalResult := mrok
     else
@@ -353,7 +363,7 @@ var
   lCheck: Integer;
 begin
   inherited;
-  {      configuuração do checjk box do dbgrid
+  { configuuração do checjk box do dbgrid
     if Assigned(DM_Cadastro.FDQueryProduto.FindField('SITUACAO')) and
     (Column.Index = 0) then
     begin
@@ -371,14 +381,11 @@ begin
   }
 end;
 
-procedure TfrmCadastroProduto.DBNavigator1DblClick(Sender: TObject);
+procedure TfrmCadastroProduto.DBNavigator1Click(Sender: TObject;
+  Button: TNavigateBtn);
 begin
   inherited;
-
-  // DM_Cadastro.FDQueryProduto.Prior;
-  caminhoFoto.Caption := DM_Cadastro.FDQueryProdutoFOTO.Value;
-  DBImage.Picture.LoadFromFile(caminhoFoto.Caption);
-
+ carregafoto;
 end;
 
 procedure TfrmCadastroProduto.DBRadioGroup1Change(Sender: TObject);
@@ -427,6 +434,12 @@ begin
   inherited;
   frmCadastroProduto.Free;
   frmCadastroProduto := nil;
+end;
+
+procedure TfrmCadastroProduto.FormShow(Sender: TObject);
+begin
+  inherited;
+  carregafoto;
 end;
 
 procedure TfrmCadastroProduto.mod_ReadOnlyFalse;
