@@ -22,6 +22,7 @@ inherited frmCadastroProduto: TfrmCadastroProduto
         Height = 565
         DataSource = DM_Cadastro.DT_produto
         OnDrawColumnCell = DBGrid_ClienteDrawColumnCell
+        OnTitleClick = DBGrid_ClienteTitleClick
         Columns = <
           item
             Expanded = False
@@ -494,6 +495,10 @@ inherited frmCadastroProduto: TfrmCadastroProduto
         object TabSheet4: TTabSheet
           Caption = #192' prazo'
           ImageIndex = 1
+          ExplicitLeft = 0
+          ExplicitTop = 0
+          ExplicitWidth = 0
+          ExplicitHeight = 0
           object Label22: TLabel
             Left = 3
             Top = 21

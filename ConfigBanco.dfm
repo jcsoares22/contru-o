@@ -1,4 +1,4 @@
-object ConfiguraBanco: TConfiguraBanco
+object frmConfiguraBanco: TfrmConfiguraBanco
   Left = 0
   Top = 0
   Anchors = []
@@ -32,7 +32,17 @@ object ConfiguraBanco: TConfiguraBanco
     Height = 21
     TabOrder = 1
   end
-  object OpenDialog1: TOpenDialog
-    Left = 184
+  object Button1: TButton
+    Left = 296
+    Top = 84
+    Width = 75
+    Height = 25
+    Caption = 'Button1'
+    TabOrder = 2
+    OnClick = Button1Click
+  end
+  object OpenDialogBanco: TOpenDialog
+    Left = 96
+    Top = 8
   end
 end

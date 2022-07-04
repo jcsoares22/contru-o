@@ -3,7 +3,8 @@ unit Orcamento;
 interface
 
 uses
-  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
+  System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Data.DB, Vcl.Grids, Vcl.DBGrids,
   Vcl.ExtCtrls, Vcl.ComCtrls, Vcl.StdCtrls;
 
@@ -36,15 +37,19 @@ var
 implementation
 
 {$R *.dfm}
-  uses dmvendas;
+
+uses dmvendas;
+
 procedure TfrmOrcamento.btnPesquisaClick(Sender: TObject);
 begin
- DM_Vendas.FDQueryOrcamento.Close;
+  DM_Vendas.FDQueryOrcamento.Close;
   DM_Vendas.FDQueryOrcamento.Params.Clear;
   DM_Vendas.FDQueryOrcamento.SQL.Add('');
   DM_Vendas.FDQueryOrcamento.SQL.Clear;
   DM_Vendas.FDQueryOrcamento.SQL.Add('select * from SAIDA_VENDA');
   DM_Vendas.FDQueryOrcamento.SQL.Add('WHERE 1 = 1');
+
+      // DM_Vendas.FDQueryOrcamento.SQL.Add('where situacao like = '+'ORCAMENTO');
   /// DataModule1.FDQueryProdutoFOTO.Value := Date.;
   // DM_Vendas.FDQueryOrcamento.SQL.Add('where codigo =:pcodigo');
   // DM_Vendas.FDQueryOrcamento.ParamByName('pcodigo').AsInteger := StrToInt(edt_Pesquisa.Text);
@@ -156,15 +161,15 @@ end;
 
 procedure TfrmOrcamento.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
-FreeAndNil(frmOrcamento);
-DM_Vendas.FDQueryOrcamento.close;
-DM_Vendas.FDQuerySaida_Venda.close;
+  FreeAndNil(frmOrcamento);
+  DM_Vendas.FDQueryOrcamento.Close;
+  DM_Vendas.FDQuerySaida_Venda.Close;
 end;
 
 procedure TfrmOrcamento.FormCreate(Sender: TObject);
 begin
-DM_Vendas.FDQueryOrcamento.Open();
-DM_Vendas.FDQuerySaida_Venda.Open();
+  DM_Vendas.FDQueryOrcamento.Open();
+  DM_Vendas.FDQuerySaida_Venda.Open();
 end;
 
 end.

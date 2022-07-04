@@ -1,8 +1,9 @@
 ﻿object DM_Cadastro: TDM_Cadastro
   OldCreateOrder = False
-  Height = 608
+  Height = 659
   Width = 765
   object FDQueryGrupo: TFDQuery
+    Active = True
     Connection = DM_Dados.DADOS
     SQL.Strings = (
       'select * from grupo_material')
@@ -31,6 +32,7 @@
     Top = 8
   end
   object FDQuerySub_grupo: TFDQuery
+    Active = True
     IndexFieldNames = 'CODIGO_GRUPO'
     MasterSource = DT_Grupo
     MasterFields = 'CODIGO'
@@ -73,6 +75,7 @@
     Top = 64
   end
   object FDQueryUnMedida: TFDQuery
+    Active = True
     ConstraintsEnabled = True
     Connection = DM_Dados.DADOS
     SQL.Strings = (
@@ -122,6 +125,7 @@
     Top = 16
   end
   object FDQueryCores: TFDQuery
+    Active = True
     ConstraintsEnabled = True
     Connection = DM_Dados.DADOS
     SQL.Strings = (
@@ -145,6 +149,7 @@
     Top = 88
   end
   object FDQueryMarca: TFDQuery
+    Active = True
     ConstraintsEnabled = True
     Connection = DM_Dados.DADOS
     SQL.Strings = (
@@ -168,6 +173,7 @@
     Top = 152
   end
   object FDQueryCondição_pagamento: TFDQuery
+    Active = True
     Connection = DM_Dados.DADOS
     SQL.Strings = (
       'select * from condicao_pagamento ')
@@ -207,6 +213,7 @@
     Top = 184
   end
   object FDQueryCliente: TFDQuery
+    Active = True
     Connection = DM_Dados.DADOS
     SQL.Strings = (
       'select * from cliente')
@@ -275,6 +282,7 @@
     Top = 248
   end
   object FDQueryTipoPgto: TFDQuery
+    Active = True
     Connection = DM_Dados.DADOS
     SQL.Strings = (
       'select * from TIPO_PAGAMENTO'
@@ -298,6 +306,7 @@
     Top = 328
   end
   object FDQueryConta: TFDQuery
+    Active = True
     Connection = DM_Dados.DADOS
     SQL.Strings = (
       'select * from conta')
@@ -337,6 +346,7 @@
     end
   end
   object FDQuerySubConta: TFDQuery
+    Active = True
     IndexFieldNames = 'CODIGO_SUB'
     MasterSource = DT_Conta
     MasterFields = 'CODIGO'
@@ -372,15 +382,16 @@
   end
   object DT_Conta: TDataSource
     DataSet = FDQueryConta
-    Left = 640
+    Left = 696
     Top = 432
   end
   object DT_SubConta: TDataSource
     DataSet = FDQuerySubConta
-    Left = 648
-    Top = 496
+    Left = 704
+    Top = 488
   end
   object FDQueryTIPO_CONTA: TFDQuery
+    Active = True
     Connection = DM_Dados.DADOS
     SQL.Strings = (
       'SELECT * FROM TIPO_CONTA')
@@ -389,8 +400,8 @@
   end
   object DataSourcetIPO_CONTA: TDataSource
     DataSet = FDQueryTIPO_CONTA
-    Left = 648
-    Top = 392
+    Left = 712
+    Top = 376
   end
   object FDQueryProduto: TFDQuery
     Active = True

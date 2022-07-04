@@ -8,90 +8,73 @@ uses
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls;
 
 type
-  TConfiguraBanco = class(TForm)
-    OpenDialog1: TOpenDialog;
+  TfrmConfiguraBanco = class(TForm)
     btnSave: TButton;
     edtConfiguraBanco: TEdit;
+    OpenDialogBanco: TOpenDialog;
+    Button1: TButton;
+    procedure Button1Click(Sender: TObject);
     procedure btnSaveClick(Sender: TObject);
   private
     { Private declarations }
+
   public
     { Public declarations }
   end;
 
 var
-  ConfiguraBanco: TConfiguraBanco;
+  frmConfiguraBanco: TfrmConfiguraBanco;
 
 implementation
 
 {$R *.dfm}
 
-uses Registry;
+uses Registry, Login;
 
-procedure TConfiguraBanco.btnSaveClick(Sender: TObject);
+procedure TfrmConfiguraBanco.btnSaveClick(Sender: TObject);
+
 var
   chave: String;
   Reg: TRegistry;
+  nomeBanco: String;
 begin
+  // verificaBanco;
   Reg := TRegistry.Create;
   try
-    chave := 'SYSTEC';
-    { Define a chave-raiz do registro }
-    Reg.RootKey := HKEY_CURRENT_USER;
-    { Abre a chave (path). Se não existir, cria e abre. }
-    Reg.OpenKey('SYSTEC', true);
-    { Escreve um inteiro
-      Reg.WriteInteger('Numero', StrToInt(edtConfiguraBanco.Text)); }
-    { Escreve uma string }
-    Reg.WriteString('Dados', edtConfiguraBanco.Text);
-    if Reg.KeyExists(chave) then
+    //
+    // verificaBanco;
+    if edtConfiguraBanco.Text <> '' then
     begin
-      ShowMessage('já existe');
-    end
-    else
-    begin
-      ShowMessage('A chave foi criada com sucesso.');
-      ConfiguraBanco.Free;
-    end;
-    { if Reg.CreateKey(chave) then
-      begin
-      ShowMessage('A chave foi criada com sucesso.');
-      end
-      else }
+      // edtConfiguraBanco.Text := Reg.ReadString('Dados');
+      { Define a chave-raiz do registro }
+      Reg.RootKey := HKEY_CURRENT_USER;
+      // Reg.RootKey := HKEY_CURRENT_USER;
+      chave := 'SYSTEC';
 
+      { Abre a chave (path). Se não existir, cria e abre. }
+      Reg.OpenKey('SYSTEC\Conexao', True);
+      { Escrevendo uma Strinf }
+      Reg.WriteString('Dados', edtConfiguraBanco.Text);
+      ShowMessage('Salvo com sucesso');
+      nomeBanco := edtConfiguraBanco.Text;
+
+    end;
+    { else
+      ShowMessage('Informe o nome do banco de dados'); }
   finally
     Reg.Free;
-
-  end
-end;
-{ chave:
-  String;
-  reg: TRegistry;
-  begin
-  // uses Registry
-
-  // vamos definir o nome da chave a ser criada
-  chave := 'SYSTEC';
-
-  // vamos criar uma instância da classe TRegistry
-  reg := TRegistry.Create;
-
-  // a chave raiz padrão é HKEY_CURRENT_USER mas, por via das dúvidas
-  // vamos reafirmar isso
-  reg.RootKey := HKEY_CURRENT_USER;
-
-  // vamos criar a chave informada
-  if reg.CreateKey(chave) then
-  begin
-  ShowMessage('A chave foi criada com sucesso.');
-  end
-  else
-  begin
-  ShowMessage('Não foi possível criar a chave informada.');
+    close;
+    // FreeAndNil(frmConfiguraBanco);
+    // Close;
   end;
+end;
 
-  // vamos liberar o registro
-  reg.Free;
-  end; }
+procedure TfrmConfiguraBanco.Button1Click(Sender: TObject);
+begin
+  if OpenDialogBanco.Execute = True then
+  begin
+    edtConfiguraBanco.Text := OpenDialogBanco.FileName;
+  end;
+end;
 
 end.

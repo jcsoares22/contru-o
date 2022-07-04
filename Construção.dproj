@@ -177,7 +177,7 @@
             <Form>frmContas</Form>
         </DCCReference>
         <DCCReference Include="ConfigBanco.pas">
-            <Form>ConfiguraBanco</Form>
+            <Form>frmConfiguraBanco</Form>
         </DCCReference>
         <DCCReference Include="DMFinanceiro.pas">
             <Form>DM_Finaceiro</Form>

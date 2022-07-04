@@ -31,13 +31,6 @@ object frmPesquisaAvancada: TfrmPesquisaAvancada
       Height = 13
       Caption = 'Cliente'
     end
-    object Label2: TLabel
-      Left = 24
-      Top = 69
-      Width = 33
-      Height = 13
-      Caption = 'Cidade'
-    end
     object UF: TLabel
       Left = 24
       Top = 117
@@ -52,33 +45,27 @@ object frmPesquisaAvancada: TfrmPesquisaAvancada
       Height = 13
       Caption = 'Codigo Cliente'
     end
-    object TSpeedButton
+    object SpeedButton1: TSpeedButton
       Left = 666
       Top = 198
       Width = 97
       Height = 22
       Caption = 'Imprimir'
+      OnClick = SpeedButton1Click
     end
     object ComboBoxCliente: TComboBox
       Left = 24
       Top = 40
       Width = 209
       Height = 21
-      TabOrder = 4
-    end
-    object ComboBoxCidades: TComboBox
-      Left = 24
-      Top = 88
-      Width = 209
-      Height = 21
-      TabOrder = 0
+      TabOrder = 3
     end
     object codigoCliente: TEdit
       Left = 280
       Top = 48
       Width = 121
       Height = 21
-      TabOrder = 1
+      TabOrder = 0
     end
     object btnPesquisar: TButton
       Left = 666
@@ -86,7 +73,7 @@ object frmPesquisaAvancada: TfrmPesquisaAvancada
       Width = 97
       Height = 25
       Caption = 'Pesquisar'
-      TabOrder = 2
+      TabOrder = 1
       OnClick = btnPesquisarClick
     end
     object btnLimparCriterios: TButton
@@ -95,7 +82,7 @@ object frmPesquisaAvancada: TfrmPesquisaAvancada
       Width = 97
       Height = 25
       Caption = 'Limpar Criterios'
-      TabOrder = 3
+      TabOrder = 2
       OnClick = btnLimparCriteriosClick
     end
     object MaskEdit1: TMaskEdit
@@ -105,7 +92,7 @@ object frmPesquisaAvancada: TfrmPesquisaAvancada
       Height = 21
       EditMask = '000\.000\.000\-00;'
       MaxLength = 14
-      TabOrder = 5
+      TabOrder = 4
       Text = '   .   .   -  '
     end
   end
@@ -283,14 +270,14 @@ object frmPesquisaAvancada: TfrmPesquisaAvancada
     PrintOptions.Printer = 'Default'
     PrintOptions.PrintOnSheet = 0
     ReportOptions.CreateDate = 44740.896163044000000000
-    ReportOptions.LastChange = 44740.899417800920000000
+    ReportOptions.LastChange = 44740.899417800900000000
     ScriptLanguage = 'PascalScript'
     ScriptText.Strings = (
       'begin'
       ''
       'end.')
-    Left = 536
-    Top = 400
+    Left = 720
+    Top = 240
     Datasets = <
       item
         DataSet = frxDBDatasetClientes
@@ -372,6 +359,8 @@ object frmPesquisaAvancada: TfrmPesquisaAvancada
         Height = 22.677180000000000000
         Top = 102.047310000000000000
         Width = 718.110700000000000000
+        DataSet = frxDBDatasetClientes
+        DataSetName = 'frxDBDatasetClientes'
         RowCount = 0
         object frxDBDatasetClientesCODIGO: TfrxMemoView
           IndexTag = 1

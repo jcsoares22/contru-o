@@ -9,7 +9,8 @@ uses
   FireDAC.Stan.Pool, FireDAC.Stan.Async, FireDAC.Phys, FireDAC.Phys.FB,
   FireDAC.Phys.FBDef, FireDAC.VCLUI.Wait, FireDAC.Phys.IBBase,
   FireDAC.Comp.Client, Data.DB, FireDAC.Stan.Param, FireDAC.DatS,
-  FireDAC.DApt.Intf, FireDAC.DApt, FireDAC.Comp.DataSet, Criptografia;
+  FireDAC.DApt.Intf, FireDAC.DApt, FireDAC.Comp.DataSet, Criptografia,
+  Vcl.Dialogs;
 
 type
   TDM_Dados = class(TDataModule)
@@ -40,8 +41,12 @@ type
     FDQueryUsuarioPREFERENCIA: TStringField;
     FDQueryUsuarioCAD_USU: TStringField;
     procedure FDQueryUsuarioBeforePost(DataSet: TDataSet);
+    procedure DADOSRecover(ASender, AInitiator: TObject; AException: Exception;
+      var AAction: TFDPhysConnectionRecoverAction);
+
   private
     { Private declarations }
+
   public
     { Public declarations }
   end;
@@ -54,7 +59,30 @@ implementation
 {%CLASSGROUP 'Vcl.Controls.TControl'}
 {$R *.dfm}
 
-procedure TDM_Dados.FDQueryUsuarioBeforePost(DataSet: TDataSet);     ///fazendo a criptografia do sistema
+Uses Registry, ConfigBanco;
+
+procedure TDM_Dados.DADOSRecover(ASender, AInitiator: TObject;
+  AException: Exception; var AAction: TFDPhysConnectionRecoverAction);
+var
+  iRes: Integer;
+begin // abre uma mensagem de dialaggo que reconecta o banco de cados
+  iRes := MessageDlg
+    ('Conexão Perdida, Escolha o que deseja fazer: YES - OffLine, Reconectar - OK, Falha - Cancel',
+    mtConfirmation, [mbYes, mbOK, mbCancel], 0);
+  case iRes of
+    0:
+      AAction := faOfflineAbort;
+    1:
+      AAction := faRetry;
+    2:
+      AAction := faFail;
+  end;
+
+end;
+
+
+procedure TDM_Dados.FDQueryUsuarioBeforePost(DataSet: TDataSet);
+/// fazendo a criptografia do sistema
 begin
   if FDQueryUsuario.State in [dsInsert] then
   begin
@@ -63,7 +91,7 @@ begin
   end
   else if FDQueryUsuario.State in [dsEdit] then
   begin
-    if (FDQueryUsuarioUSU_SENHA.AsAnsiString <> FDQueryUsuarioUSU_SENHA.OldValue )
+    if (FDQueryUsuarioUSU_SENHA.AsAnsiString <> FDQueryUsuarioUSU_SENHA.OldValue)
     then
     begin
       FDQueryUsuarioUSU_SENHA.AsAnsiString :=
@@ -73,7 +101,5 @@ begin
 
   end;
 end;
-
-
 
 end.

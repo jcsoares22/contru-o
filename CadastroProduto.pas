@@ -83,6 +83,7 @@ type
       DataCol: Integer; Column: TColumn; State: TGridDrawState);
     procedure FormShow(Sender: TObject);
     procedure DBNavigator1Click(Sender: TObject; Button: TNavigateBtn);
+    procedure DBGrid_ClienteTitleClick(Column: TColumn);
   private
     { Private declarations }
     procedure mod_ReadOnlyFalse;
@@ -330,7 +331,7 @@ end;
 procedure TfrmCadastroProduto.carregafoto;
 begin
   try
-    //DM_Cadastro.FDQueryProduto.Prior;
+    // DM_Cadastro.FDQueryProduto.Prior;
     caminhoFoto.Caption := DM_Cadastro.FDQueryProdutoFOTO.Value;
     DBImage.Picture.LoadFromFile(caminhoFoto.Caption);
   except
@@ -381,11 +382,20 @@ begin
   }
 end;
 
+procedure TfrmCadastroProduto.DBGrid_ClienteTitleClick(Column: TColumn);
+begin
+  inherited;
+  if DM_Cadastro.FDQueryProduto.IndexFieldNames = Column.FieldName then
+    DM_Cadastro.FDQueryProduto.IndexFieldNames := Column.FieldName + ':D'
+  else
+    DM_Cadastro.FDQueryProduto.IndexFieldNames := Column.FieldName;
+end;
+
 procedure TfrmCadastroProduto.DBNavigator1Click(Sender: TObject;
   Button: TNavigateBtn);
 begin
   inherited;
- carregafoto;
+  carregafoto;
 end;
 
 procedure TfrmCadastroProduto.DBRadioGroup1Change(Sender: TObject);

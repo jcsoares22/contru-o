@@ -22,7 +22,7 @@ object frmPrincipal: TfrmPrincipal
     Left = 0
     Top = 49
     Width = 1186
-    Height = 687
+    Height = 646
     Align = alClient
     Center = True
     Picture.Data = {
@@ -2398,8 +2398,9 @@ object frmPrincipal: TfrmPrincipal
       DA6D31163D30D888886186223FCEC9F7EFECB2CB2FF65FECB33333333C433333
       333333333333333333333C09FBD5FFD9}
     Stretch = True
-    ExplicitWidth = 2000
-    ExplicitHeight = 371
+    ExplicitLeft = 8
+    ExplicitTop = 51
+    ExplicitHeight = 687
   end
   object Panel2: TPanel
     Left = 0
@@ -2978,7 +2979,7 @@ object frmPrincipal: TfrmPrincipal
         TabOrder = 0
         object SpeedButton8: TSpeedButton
           Left = 0
-          Top = 0
+          Top = -1
           Width = 23
           Height = 22
           Glyph.Data = {
@@ -3085,6 +3086,17 @@ object frmPrincipal: TfrmPrincipal
       end
     end
   end
+  object Panel5: TPanel
+    Left = 0
+    Top = 695
+    Width = 1186
+    Height = 41
+    Align = alBottom
+    Caption = 'Panel5'
+    TabOrder = 2
+    ExplicitLeft = 8
+    ExplicitTop = 615
+  end
   object MainMenu1: TMainMenu
     Left = 997
     Top = 168
@@ -3173,6 +3185,10 @@ object frmPrincipal: TfrmPrincipal
       object Vendas2: TMenuItem
         Caption = '&Vendas'
       end
+      object Oramentos1: TMenuItem
+        Caption = 'Or'#231'amentos'
+        OnClick = Oramento1Click
+      end
     end
     object vendas1: TMenuItem
       Caption = '&vendas'
@@ -3213,5 +3229,14 @@ object frmPrincipal: TfrmPrincipal
     OnTimer = Timer1Timer
     Left = 1048
     Top = 168
+  end
+  object RxTrayIcon1: TRxTrayIcon
+    OnClick = RxTrayIcon1Click
+    Left = 8
+    Top = 696
+  end
+  object RxTrayIcon2: TRxTrayIcon
+    Left = 600
+    Top = 295
   end
 end

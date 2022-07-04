@@ -16,9 +16,7 @@ type
   TfrmPesquisaAvancada = class(TForm)
     Panel1: TPanel;
     ComboBoxCliente: TComboBox;
-    ComboBoxCidades: TComboBox;
     Label1: TLabel;
-    Label2: TLabel;
     ComboBoxEstado: TComboBox;
     UF: TLabel;
     codigoCliente: TEdit;
@@ -42,9 +40,11 @@ type
     RxDBGrid1: TRxDBGrid;
     frxReportClientes: TfrxReport;
     frxDBDatasetClientes: TfrxDBDataset;
+    SpeedButton1: TSpeedButton;
     procedure btnLimparCriteriosClick(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure btnPesquisarClick(Sender: TObject);
+    procedure SpeedButton1Click(Sender: TObject);
   private
     { Private declarations }
     procedure Cliente;
@@ -59,12 +59,11 @@ implementation
 
 {$R *.dfm}
 
-uses DMCadastro, DMEndereco, DMDados;
+uses DMCadastro, DMEndereco, DMDados, Biblioteca;
 
 procedure TfrmPesquisaAvancada.btnLimparCriteriosClick(Sender: TObject);
 begin
   ComboBoxCliente.Text := '';
-  ComboBoxCidades.Text := '';
   ComboBoxEstado.Text := '';
   codigoCliente.Text := '';
 end;
@@ -96,7 +95,7 @@ begin
     FDQueryPesquisaAvancadas.SQL.Add(' AND cliente.nome like ' +
       QuotedStr('%' + UpperCase((trim(ComboBoxCliente.Text))) + '%'));
   end;
-  {
+
     if codigoCliente.Text <> '' then
     begin
     FDQueryPesquisaAvancadas.SQL.Add(' AND cliente.codigo = ' +
@@ -107,16 +106,11 @@ begin
     FDQueryPesquisaAvancadas.SQL.Add(' AND cliente.nome like ' +
     QuotedStr(UpperCase(Trim(ComboBoxCliente.Text))));
     end;
-    if trim(ComboBoxCidades.Text) <> '' then
-    begin
-    FDQueryPesquisaAvancadas.SQL.Add(' AND cidades.nome like ' +
-    QuotedStr('%' + UpperCase((Trim(ComboBoxCidades.Text)))+ '%'));
-    end;
     if Trim(ComboBoxEstado.Text) <> '' then
     begin
     FDQueryPesquisaAvancadas.SQL.Add(' AND estados.nome = ' +
     QuotedStr(UpperCase(Trim(ComboBoxEstado.Text))));
-    end; }
+    end;
 
   FDQueryPesquisaAvancadas.Open();
 end;
@@ -132,16 +126,6 @@ begin
     ComboBoxCliente.Items.AddObject(DM_Cadastro.FDQueryClienteNOME.AsString,
       TObject(DM_Cadastro.FDQueryClienteCODIGO.AsInteger));
     DM_Cadastro.FDQueryCliente.Next;
-  end;
-  ComboBoxCidades.Items.Clear;
-  DM_Endereco.FDQueryCidade.Close;
-  DM_Endereco.FDQueryCidade.Open();
-  DM_Endereco.FDQueryCidade.First;
-  while not DM_Endereco.FDQueryCidade.Eof do
-  begin
-    ComboBoxCidades.Items.AddObject(DM_Endereco.FDQueryCidadeNOME.AsString,
-      TObject(DM_Endereco.FDQueryCidadeID.AsInteger));
-    DM_Endereco.FDQueryCidade.Next;
   end;
 
   ComboBoxEstado.Items.Clear;
@@ -160,6 +144,12 @@ end;
 procedure TfrmPesquisaAvancada.FormShow(Sender: TObject);
 begin
   Cliente;
+end;
+
+
+procedure TfrmPesquisaAvancada.SpeedButton1Click(Sender: TObject);
+begin
+CarregaRelatorio(frxReportClientes);
 end;
 
 end.

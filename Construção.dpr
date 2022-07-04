@@ -25,7 +25,7 @@ uses
   DMVendas in 'DMVendas.pas' {DM_Vendas: TDataModule},
   CadastroTipoPagamento in 'CadastroTipoPagamento.pas' {frmCadastroTipoPagamento},
   CasdatroContasFinceiro in 'CasdatroContasFinceiro.pas' {frmContas},
-  ConfigBanco in 'ConfigBanco.pas' {ConfiguraBanco},
+  ConfigBanco in 'ConfigBanco.pas' {frmConfiguraBanco},
   DMFinanceiro in 'DMFinanceiro.pas' {DM_Finaceiro: TDataModule},
   CadastroFinanceiro in 'CadastroFinanceiro.pas' {frmCadastroFinanceiro},
   CadastroDocumento in 'CadastroDocumento.pas' {frmCadastroDocumento},
@@ -58,25 +58,25 @@ var
 begin
   Application.Initialize;
   Application.MainFormOnTaskbar := True;
-  Application.CreateForm(TDM_Dados, DM_Dados);
+
   Application.CreateForm(TfrmPrincipal, frmPrincipal);
+  Application.CreateForm(TDM_Dados, DM_Dados);
   Application.CreateForm(TDM_Cadastro, DM_Cadastro);
   Application.CreateForm(TDM_Endereco, DM_Endereco);
   Application.CreateForm(TDM_Vendas, DM_Vendas);
   Application.CreateForm(TDM_Finaceiro, DM_Finaceiro);
   Application.CreateForm(TDM_Mov_Estoque, DM_Mov_Estoque);
-  Application.CreateForm(TfrmEstoque, frmEstoque);
-  Application.CreateForm(TfrmInformacao, frmInformacao);
+  Application.CreateForm(TfrmConfiguraBanco, frmConfiguraBanco);
   usuarios := TfrmLogin.Create(nil);
-    if usuarios.ShowModal = 1 then
-    begin
+  if usuarios.ShowModal = 1 then
+  begin
     usuarios.Free;
     Application.Run;
-    end
-    else
-    begin
+  end
+  else
+  begin
     usuarios.Free;
-    end;
+  end;
   // retirar do comentario mais tarde }
   Application.Run;
 

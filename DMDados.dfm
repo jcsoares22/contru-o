@@ -4,22 +4,23 @@ object DM_Dados: TDM_Dados
   Width = 812
   object DADOS: TFDConnection
     Params.Strings = (
+      'Database=C:\SYS TEC\BIN\DATA\DADOS\DADOS.FDB'
       'User_Name=SYSDBA'
       'Password=pmpsyfwr'
-      'CharacterSet=WIN1252'
-      'Port=3050'
       'Protocol=TCPIP'
-      'Database=C:\SYS TEC\BIN\DATA\DADOS\DADOS.FDB'
+      'Port=3050'
       'DriverID=FB')
     FetchOptions.AssignedValues = [evAutoClose]
     FetchOptions.AutoClose = False
     Connected = True
+    LoginPrompt = False
+    OnRecover = DADOSRecover
     Left = 8
     Top = 16
   end
   object FDTransaction1: TFDTransaction
     Connection = DADOS
-    Left = 64
+    Left = 80
     Top = 16
   end
   object FDPhysFBDriverLink1: TFDPhysFBDriverLink
@@ -32,6 +33,7 @@ object DM_Dados: TDM_Dados
     Top = 120
   end
   object FDQueryPreferencia: TFDQuery
+    Active = True
     Connection = DADOS
     SQL.Strings = (
       'SELECT * FROM controle_sistema')
@@ -98,6 +100,7 @@ object DM_Dados: TDM_Dados
     Top = 56
   end
   object FDQueryUsuario: TFDQuery
+    Active = True
     BeforePost = FDQueryUsuarioBeforePost
     Connection = DADOS
     UpdateOptions.AssignedValues = [uvFetchGeneratorsPoint, uvGeneratorName]
@@ -109,10 +112,10 @@ object DM_Dados: TDM_Dados
     Left = 32
     Top = 120
     object FDQueryUsuarioUSU_CODIGO: TIntegerField
+      AutoGenerateValue = arAutoInc
       FieldName = 'USU_CODIGO'
       Origin = 'USU_CODIGO'
       ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
-      Required = True
     end
     object FDQueryUsuarioUSU_NOME: TStringField
       FieldName = 'USU_NOME'

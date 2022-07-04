@@ -8,7 +8,7 @@ uses
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Menus, Vcl.StdCtrls, Vcl.ExtCtrls,
   Preferencia,
   Vcl.ComCtrls, Vcl.Buttons, Vcl.ToolWin, Vcl.ActnMan, Vcl.ActnCtrls,
-  Vcl.ActnMenus, Vcl.Imaging.pngimage, Vcl.Imaging.jpeg;
+  Vcl.ActnMenus, Vcl.Imaging.pngimage, Vcl.Imaging.jpeg, RxShell;
 
 type
   TfrmPrincipal = class(TForm)
@@ -70,6 +70,10 @@ type
     Button1: TButton;
     Lancamento_finaceiro: TSpeedButton;
     Image1: TImage;
+    Oramentos1: TMenuItem;
+    Panel5: TPanel;
+    RxTrayIcon1: TRxTrayIcon;
+    RxTrayIcon2: TRxTrayIcon;
 
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure bntClienteClick(Sender: TObject);
@@ -95,6 +99,8 @@ type
     procedure Estoque1Click(Sender: TObject);
     procedure Lancamento_finaceiroClick(Sender: TObject);
     procedure N4Click(Sender: TObject);
+    procedure RxTrayIcon1Click(Sender: TObject; Button: TMouseButton;
+      Shift: TShiftState; X, Y: Integer);
   private
     { Private declarations }
   public
@@ -386,6 +392,17 @@ begin
       frmCadastroProduto.Visible := True;
     frmCadastroProduto.BringToFront;
   end;
+end;
+
+procedure TfrmPrincipal.RxTrayIcon1Click(Sender: TObject; Button: TMouseButton;
+  Shift: TShiftState; X, Y: Integer);
+begin
+
+    RxTrayIcon1.PopupMenu.Items.Clear;
+     RxTrayIcon1.PopupMenu.Items.Add(Clientes1);
+     RxTrayIcon1.PopupMenu.Items.Add(Cadastro1);
+     RxTrayIcon1.PopupMenu.Items.Add(Estados1);
+    RxTrayIcon1.Show;
 end;
 
 procedure TfrmPrincipal.Sair1Click(Sender: TObject);

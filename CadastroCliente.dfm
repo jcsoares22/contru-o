@@ -2,6 +2,7 @@ inherited frmCadastroCliente: TfrmCadastroCliente
   Caption = 'CadastroCliente'
   ClientHeight = 639
   ClientWidth = 1009
+  PopupMenu = PopupMenu1
   ExplicitWidth = 1025
   ExplicitHeight = 678
   PixelsPerInch = 96
@@ -370,14 +371,14 @@ inherited frmCadastroCliente: TfrmCadastroCliente
     Color = clSkyBlue
     ParentBackground = False
     TabOrder = 1
-    object btnPesquisaAvancada: TButton
-      Left = 20
+    object Button1: TButton
+      Left = 8
       Top = 6
-      Width = 115
+      Width = 75
       Height = 25
-      Caption = 'PesquisaAvan'#231'ada'
+      Caption = 'Button1'
       TabOrder = 0
-      OnClick = btnPesquisaAvancadaClick
+      OnClick = Button1Click
     end
   end
   object frCliente: TfrxReport
@@ -567,5 +568,13 @@ inherited frmCadastroCliente: TfrmCadastroCliente
       '   inner join estados on (cliente.uf_id = estados.id)')
     Left = 600
     Top = 432
+  end
+  object PopupMenu1: TPopupMenu
+    Left = 496
+    Top = 328
+    object PesquisaAvanadas1: TMenuItem
+      Caption = 'Pesquisa Avan'#231'adas'
+      OnClick = Button1Click
+    end
   end
 end

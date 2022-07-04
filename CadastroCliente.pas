@@ -39,12 +39,14 @@ type
     Edt_bairro: TDBEdit;
     PaintBox1: TPaintBox;
     Panel4: TPanel;
-    btnPesquisaAvancada: TButton;
     btnImprimir: TButton;
     frCliente: TfrxReport;
     frxCliente: TfrxDBDataset;
     DBListBox1: TDBListBox;
     fdQueryFiltroCliente: TFDQuery;
+    Button1: TButton;
+    PopupMenu1: TPopupMenu;
+    PesquisaAvanadas1: TMenuItem;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure btnNovoClick(Sender: TObject);
     procedure btnSalvarClick(Sender: TObject);
@@ -54,8 +56,8 @@ type
     procedure btnPesquisaClick(Sender: TObject);
     procedure DB_CpfKeyPress(Sender: TObject; var Key: Char);
     procedure DBGrid_ClienteDblClick(Sender: TObject);
-    procedure btnPesquisaAvancadaClick(Sender: TObject);
     procedure btnImprimirClick(Sender: TObject);
+    procedure Button1Click(Sender: TObject);
   private
     { Private declarations }
     procedure mod_ReadOnly;
@@ -129,21 +131,6 @@ begin // usando a variavel prox para poder acrescentar +1 no cadastro
   DM_Cadastro.FDQueryClienteCODIGO.AsInteger := prox;
   DB_Nome.SetFocus; // colocando o foco no campo nome
 
-end;
-
-procedure TfrmCadastroCliente.btnPesquisaAvancadaClick(Sender: TObject);
-begin
-  inherited;
-   fecharTela;
-  if (frmPesquisaAvancada = nil) then
-    frmPesquisaAvancada := TFrmPesquisaAvancada.Create(self);
-  if (not frmPesquisaAvancada.showing) then
-    frmPesquisaAvancada.Show;
-  begin
-    if frmPesquisaAvancada.Visible = False then
-      frmPesquisaAvancada.Visible := True;
-    frmPesquisaAvancada.BringToFront;
-  end;
 end;
 
 procedure TfrmCadastroCliente.btnPesquisaClick(Sender: TObject);
@@ -280,6 +267,21 @@ begin
     end;
     end; }
 
+end;
+
+procedure TfrmCadastroCliente.Button1Click(Sender: TObject);
+begin
+  inherited;
+  fecharTela;
+  if (frmPesquisaAvancada = nil) then
+    frmPesquisaAvancada := TFrmPesquisaAvancada.Create(self);
+  if (not frmPesquisaAvancada.showing) then
+    frmPesquisaAvancada.Show;
+  begin
+    if frmPesquisaAvancada.Visible = False then
+      frmPesquisaAvancada.Visible := True;
+    frmPesquisaAvancada.BringToFront;
+  end;
 end;
 
 procedure TfrmCadastroCliente.DBGrid_ClienteDblClick(Sender: TObject);
