@@ -71,8 +71,6 @@ type
     Lancamento_finaceiro: TSpeedButton;
     Image1: TImage;
     Oramentos1: TMenuItem;
-    Panel5: TPanel;
-    ActionMainMenuBar1: TActionMainMenuBar;
 
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure bntClienteClick(Sender: TObject);

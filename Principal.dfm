@@ -22,7 +22,7 @@ object frmPrincipal: TfrmPrincipal
     Left = 0
     Top = 49
     Width = 1186
-    Height = 667
+    Height = 707
     Align = alClient
     Center = True
     Picture.Data = {
@@ -2443,10 +2443,6 @@ object frmPrincipal: TfrmPrincipal
     TabOrder = 1
     object TabSheet1: TTabSheet
       Caption = 'Cadastro'
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object Panel1: TPanel
         Left = 0
         Top = 0
@@ -3062,10 +3058,6 @@ object frmPrincipal: TfrmPrincipal
     object TabSheet3: TTabSheet
       Caption = 'Financeiro'
       ImageIndex = 2
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object Panel4: TPanel
         Left = 0
         Top = 0
@@ -3092,33 +3084,6 @@ object frmPrincipal: TfrmPrincipal
           TabOrder = 0
         end
       end
-    end
-  end
-  object Panel5: TPanel
-    Left = 0
-    Top = 716
-    Width = 1186
-    Height = 40
-    Align = alBottom
-    Caption = 'Panel5'
-    TabOrder = 2
-    object ActionMainMenuBar1: TActionMainMenuBar
-      Left = 1
-      Top = 1
-      Width = 1184
-      Height = 29
-      Caption = 'ActionMainMenuBar1'
-      Color = clMenuBar
-      ColorMap.DisabledFontColor = 7171437
-      ColorMap.HighlightColor = clWhite
-      ColorMap.BtnSelectedFont = clBlack
-      ColorMap.UnusedColor = clWhite
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -12
-      Font.Name = 'Segoe UI'
-      Font.Style = []
-      Spacing = 0
     end
   end
   object MainMenu1: TMainMenu

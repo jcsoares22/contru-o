@@ -416,8 +416,10 @@ end;
 procedure TfrmCadastroProduto.DB_APrazoExit(Sender: TObject);
 begin
   inherited;
-    DM_Cadastro.FDQueryProdutoPRECO_PRAZO_VENDA.Value :=((100- DM_Cadastro.FDQueryProdutoPRECENTO_PRAZO_LUCRO.Value) + DM_Cadastro.FDQueryProdutoPRECO_PRAZO_CUSTO.Value);
-
+  DM_Cadastro.FDQueryProdutoPRECO_PRAZO_VENDA.Value :=
+    ((100 - DM_Cadastro.FDQueryProdutoPRECENTO_PRAZO_LUCRO.Value) /
+    DM_Cadastro.FDQueryProdutoPRECO_PRAZO_VENDA.Value) +
+    DM_Cadastro.FDQueryProdutoPRECO_PRAZO_CUSTO.Value;
 end;
 
 procedure TfrmCadastroProduto.DB_AvistaExit(Sender: TObject);
