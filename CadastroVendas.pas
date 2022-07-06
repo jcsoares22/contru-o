@@ -626,6 +626,7 @@ begin
 
         DM_Vendas.FDQuerySaida_VendaVALORTOTAL.Value :=
           soma + DM_Vendas.FDQuerySaida_VendaFRETE.Value + desconto;
+         // DBSomaTotal.Text := FormatFloat('R$ #.00');
     Except
       on E: Exception do
       begin

@@ -72,8 +72,7 @@ type
     Image1: TImage;
     Oramentos1: TMenuItem;
     Panel5: TPanel;
-    RxTrayIcon1: TRxTrayIcon;
-    RxTrayIcon2: TRxTrayIcon;
+    ActionMainMenuBar1: TActionMainMenuBar;
 
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure bntClienteClick(Sender: TObject);
@@ -99,8 +98,6 @@ type
     procedure Estoque1Click(Sender: TObject);
     procedure Lancamento_finaceiroClick(Sender: TObject);
     procedure N4Click(Sender: TObject);
-    procedure RxTrayIcon1Click(Sender: TObject; Button: TMouseButton;
-      Shift: TShiftState; X, Y: Integer);
   private
     { Private declarations }
   public
@@ -394,17 +391,6 @@ begin
   end;
 end;
 
-procedure TfrmPrincipal.RxTrayIcon1Click(Sender: TObject; Button: TMouseButton;
-  Shift: TShiftState; X, Y: Integer);
-begin
-
-    RxTrayIcon1.PopupMenu.Items.Clear;
-     RxTrayIcon1.PopupMenu.Items.Add(Clientes1);
-     RxTrayIcon1.PopupMenu.Items.Add(Cadastro1);
-     RxTrayIcon1.PopupMenu.Items.Add(Estados1);
-    RxTrayIcon1.Show;
-end;
-
 procedure TfrmPrincipal.Sair1Click(Sender: TObject);
 begin
   close;
@@ -414,7 +400,6 @@ procedure TfrmPrincipal.Timer1Timer(Sender: TObject);
 begin
   StatusBar1.Panels[2].Text := 'Hora.: ' + TimeToStr(time);
   StatusBar1.Panels[3].Text := 'Data.: ' + DateToStr(Date);
-
 end;
 
 procedure TfrmPrincipal.Unidademedida1Click(Sender: TObject);
@@ -444,5 +429,4 @@ begin
     frmCadastroVendas.BringToFront;
   end;
 end;
-
 end.

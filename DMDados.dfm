@@ -33,7 +33,6 @@ object DM_Dados: TDM_Dados
     Top = 120
   end
   object FDQueryPreferencia: TFDQuery
-    Active = True
     Connection = DADOS
     SQL.Strings = (
       'SELECT * FROM controle_sistema')
@@ -100,7 +99,6 @@ object DM_Dados: TDM_Dados
     Top = 56
   end
   object FDQueryUsuario: TFDQuery
-    Active = True
     BeforePost = FDQueryUsuarioBeforePost
     Connection = DADOS
     UpdateOptions.AssignedValues = [uvFetchGeneratorsPoint, uvGeneratorName]

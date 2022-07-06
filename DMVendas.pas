@@ -53,7 +53,6 @@ type
     FDQuerySaidaProduto: TFDQuery;
     DTProduto: TDataSource;
     FDQuerySaidaProdutoCODIGO: TIntegerField;
-    FDQuerySaidaProdutoVALORPRODUTO: TBCDField;
     FDQuerySaidaProdutoQUANTIDADE: TIntegerField;
     FDQuerySaidaProdutoVALORTOTAL: TBCDField;
     FDQuerySaidaProdutoNOME_PRODUTO: TStringField;
@@ -150,9 +149,9 @@ begin
       ('Quantidade negativa informe um valor Valido, sera adiconado a quantia de 1');
     FDQuerySaidaProdutoQUANTIDADE.Value := 1;
   end;
-  FDQuerySaidaProdutoVALORTOTAL.AsFloat :=
-    FDQuerySaidaProdutoVALORPRODUTO.AsFloat *
-    FDQuerySaidaProdutoQUANTIDADE.AsFloat;
+  {FDQuerySaidaProdutoVALORTOTAL.AsFloat :=
+      FDQuerySaidaProdutoVALORPRODUTO.AsFloat *
+          FDQuerySaidaProdutoQUANTIDADE.AsFloat;}
 
 end;
 
