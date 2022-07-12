@@ -19,7 +19,6 @@ uses
   CadastroEnderecoPai in 'CadastroEnderecoPai.pas' {frmCadastroEnderecoPai},
   CadastroEstados in 'CadastroEstados.pas' {frmCadastroEstados},
   CadastroCidades in 'CadastroCidades.pas' {frmCadastroCidades},
-  CadastroCondPagamento2 in 'CadastroCondPagamento2.pas' {frmCadastroCondPagamento2},
   CadastroUsuarios2 in 'CadastroUsuarios2.pas' {frmCadastroUsuario2},
   CadastroVendas in 'CadastroVendas.pas' {frmCadastroVendas},
   DMVendas in 'DMVendas.pas' {DM_Vendas: TDataModule},
@@ -61,11 +60,11 @@ begin
 
   Application.CreateForm(TfrmPrincipal, frmPrincipal);
   Application.CreateForm(TDM_Dados, DM_Dados);
-  Application.CreateForm(TDM_Cadastro, DM_Cadastro);
   Application.CreateForm(TDM_Endereco, DM_Endereco);
   Application.CreateForm(TDM_Vendas, DM_Vendas);
   Application.CreateForm(TDM_Finaceiro, DM_Finaceiro);
   Application.CreateForm(TDM_Mov_Estoque, DM_Mov_Estoque);
+  Application.CreateForm(TDM_Cadastro, DM_Cadastro);
   Application.CreateForm(TfrmConfiguraBanco, frmConfiguraBanco);
   usuarios := TfrmLogin.Create(nil);
   if usuarios.ShowModal = 1 then

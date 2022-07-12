@@ -1,9 +1,8 @@
 ﻿object DM_Cadastro: TDM_Cadastro
   OldCreateOrder = False
   Height = 659
-  Width = 765
+  Width = 945
   object FDQueryGrupo: TFDQuery
-    Active = True
     Connection = DM_Dados.DADOS
     SQL.Strings = (
       'select * from grupo_material')
@@ -32,7 +31,6 @@
     Top = 8
   end
   object FDQuerySub_grupo: TFDQuery
-    Active = True
     IndexFieldNames = 'CODIGO_GRUPO'
     MasterSource = DT_Grupo
     MasterFields = 'CODIGO'
@@ -75,7 +73,6 @@
     Top = 64
   end
   object FDQueryUnMedida: TFDQuery
-    Active = True
     ConstraintsEnabled = True
     Connection = DM_Dados.DADOS
     SQL.Strings = (
@@ -125,7 +122,6 @@
     Top = 16
   end
   object FDQueryCores: TFDQuery
-    Active = True
     ConstraintsEnabled = True
     Connection = DM_Dados.DADOS
     SQL.Strings = (
@@ -149,7 +145,6 @@
     Top = 88
   end
   object FDQueryMarca: TFDQuery
-    Active = True
     ConstraintsEnabled = True
     Connection = DM_Dados.DADOS
     SQL.Strings = (
@@ -173,7 +168,6 @@
     Top = 152
   end
   object FDQueryCondição_pagamento: TFDQuery
-    Active = True
     Connection = DM_Dados.DADOS
     SQL.Strings = (
       'select * from condicao_pagamento ')
@@ -213,7 +207,6 @@
     Top = 184
   end
   object FDQueryCliente: TFDQuery
-    Active = True
     Connection = DM_Dados.DADOS
     SQL.Strings = (
       'select * from cliente')
@@ -282,7 +275,6 @@
     Top = 248
   end
   object FDQueryTipoPgto: TFDQuery
-    Active = True
     Connection = DM_Dados.DADOS
     SQL.Strings = (
       'select * from TIPO_PAGAMENTO'
@@ -306,7 +298,6 @@
     Top = 328
   end
   object FDQueryConta: TFDQuery
-    Active = True
     Connection = DM_Dados.DADOS
     SQL.Strings = (
       'select * from conta')
@@ -346,7 +337,6 @@
     end
   end
   object FDQuerySubConta: TFDQuery
-    Active = True
     IndexFieldNames = 'CODIGO_SUB'
     MasterSource = DT_Conta
     MasterFields = 'CODIGO'
@@ -391,7 +381,6 @@
     Top = 488
   end
   object FDQueryTIPO_CONTA: TFDQuery
-    Active = True
     Connection = DM_Dados.DADOS
     SQL.Strings = (
       'SELECT * FROM TIPO_CONTA')
@@ -404,7 +393,6 @@
     Top = 376
   end
   object FDQueryProduto: TFDQuery
-    Active = True
     ConstraintsEnabled = True
     Connection = DM_Dados.DADOS
     UpdateOptions.AssignedValues = [uvFetchGeneratorsPoint, uvGeneratorName]

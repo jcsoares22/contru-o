@@ -237,6 +237,7 @@ object DM_Vendas: TDM_Vendas
     Top = 40
   end
   object FDQuerySaidaProduto: TFDQuery
+    BeforePost = FDQuerySaidaProdutoBeforePost
     OnNewRecord = FDQuerySaidaProdutoNewRecord
     IndexFieldNames = 'CODIGO'
     MasterSource = DT_Saida_Venda
@@ -289,6 +290,21 @@ object DM_Vendas: TDM_Vendas
       KeyFields = 'CODPRODUTO'
       Origin = 'QTE_ESTOQUE'
       ReadOnly = True
+      Lookup = True
+    end
+    object FDQuerySaidaProdutoVALORPRODUTO: TBCDField
+      FieldKind = fkLookup
+      FieldName = 'VALORPRODUTO'
+      LookupDataSet = DM_Cadastro.FDQueryProduto
+      LookupKeyFields = 'CODIGO'
+      LookupResultField = 'PRECO_VENDA'
+      KeyFields = 'CODPRODUTO'
+      Origin = 'VALORPRODUTO'
+      ReadOnly = True
+      OnValidate = FDQuerySaida_VendaVALORTOTALChange
+      currency = True
+      Precision = 18
+      Size = 2
       Lookup = True
     end
   end

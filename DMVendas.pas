@@ -60,6 +60,7 @@ type
     FDQuerySaidaProdutoQTE_ESTOQUE: TFloatField;
     FDQuerySaida_VendaPARCELA: TIntegerField;
     FDQuerySaida_VendaDIAS_ENTRE_PARCELAS: TIntegerField;
+    FDQuerySaidaProdutoVALORPRODUTO: TBCDField;
     procedure FDQuerySaidaProdutoAfterPost(DataSet: TDataSet);
     procedure FDQuerySaidaProdutoCODPRODUTOValidate(Sender: TField);
     procedure FDQuerySaidaProdutoQUANTIDADESetText(Sender: TField;
@@ -149,9 +150,9 @@ begin
       ('Quantidade negativa informe um valor Valido, sera adiconado a quantia de 1');
     FDQuerySaidaProdutoQUANTIDADE.Value := 1;
   end;
-  {FDQuerySaidaProdutoVALORTOTAL.AsFloat :=
+  FDQuerySaidaProdutoVALORTOTAL.AsFloat :=
       FDQuerySaidaProdutoVALORPRODUTO.AsFloat *
-          FDQuerySaidaProdutoQUANTIDADE.AsFloat;}
+          FDQuerySaidaProdutoQUANTIDADE.AsFloat;
 
 end;
 

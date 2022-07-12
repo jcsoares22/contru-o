@@ -96,6 +96,7 @@ object frmContas: TfrmContas
       item
         Expanded = False
         FieldName = 'BLOQUEADA'
+        Width = 64
         Visible = True
       end
       item
@@ -104,6 +105,7 @@ object frmContas: TfrmContas
         PickList.Strings = (
           'PAGAR'
           'RECEBER')
+        Width = 64
         Visible = True
       end>
   end
@@ -129,16 +131,19 @@ object frmContas: TfrmContas
       item
         Expanded = False
         FieldName = 'TIPO'
+        Width = 64
         Visible = True
       end
       item
         Expanded = False
         FieldName = 'DESCRICAO'
+        Width = 64
         Visible = True
       end
       item
         Expanded = False
         FieldName = 'BLOQUEADA'
+        Width = 64
         Visible = True
       end>
   end

@@ -86,6 +86,7 @@ end;
 procedure TfrmLogin.FormCreate(Sender: TObject);
 var
   Reg: TRegistry;
+  banco: String;
 begin
   Reg := TRegistry.Create;
   try
@@ -96,8 +97,8 @@ begin
       if Reg.ValueExists('Dados') then
       begin
         frmConfiguraBanco.edtConfiguraBanco.Text := Reg.ReadString('Dados');
-        // ShowMessage(frmConfiguraBanco.edtConfiguraBanco.Text);
-       // lerRegistro;
+       // showmessage(frmConfiguraBanco.edtConfiguraBanco.Text);
+         lerRegistro;
       end;
     end
     else
@@ -143,13 +144,22 @@ begin
       // informa ao DB dentro do DataModule o caminho
 
       // DM_Dados.DADOS.AllowStreamedConnected := false;
-      DM_Dados.DADOS.connected := false;
-      DM_Dados.DADOS.Params.Database := Caminho;
-      DM_Dados.DADOS.Params.Add('User_Name=SYSDBA');
-      DM_Dados.DADOS.Params.Add('Password=pmpsyfwr');
-      DM_Dados.DADOS.connected := true;
+      // showmessage(frmConfiguraBanco.edtConfiguraBanco.Text);
+      DM_Dados.DADOS.Connected := false;
+      with DM_Dados.DADOS.Params do
+      begin
+        Clear;
+        Add('Database=' + frmConfiguraBanco.edtConfiguraBanco.Text);
+        Add('User_Name=SYSDBA');
+        Add('Password=pmpsyfwr');
+        Add('Protocol=TCPIP');
+        Add('Port=3050');
+        Add('DriverID=FB');
 
+      end;
+      DM_Dados.DADOS.Connected := True;
     end;
+
   finally
     Reg.Free;
 

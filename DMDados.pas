@@ -10,7 +10,7 @@ uses
   FireDAC.Phys.FBDef, FireDAC.VCLUI.Wait, FireDAC.Phys.IBBase,
   FireDAC.Comp.Client, Data.DB, FireDAC.Stan.Param, FireDAC.DatS,
   FireDAC.DApt.Intf, FireDAC.DApt, FireDAC.Comp.DataSet, Criptografia,
-  Vcl.Dialogs;
+  Vcl.Dialogs, Winapi.Windows;
 
 type
   TDM_Dados = class(TDataModule)
@@ -79,7 +79,6 @@ begin // abre uma mensagem de dialaggo que reconecta o banco de cados
   end;
 
 end;
-
 
 procedure TDM_Dados.FDQueryUsuarioBeforePost(DataSet: TDataSet);
 /// fazendo a criptografia do sistema

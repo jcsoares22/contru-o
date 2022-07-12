@@ -4,15 +4,14 @@ object DM_Dados: TDM_Dados
   Width = 812
   object DADOS: TFDConnection
     Params.Strings = (
-      'Database=C:\SYS TEC\BIN\DATA\DADOS\DADOS.FDB'
-      'User_Name=SYSDBA'
-      'Password=pmpsyfwr'
       'Protocol=TCPIP'
+      'User_Name=sysdba'
+      'Password=masterkey'
+      'Database=C:\SYS TEC\BIN\DATA\DADOS\DADOS.FDB'
       'Port=3050'
       'DriverID=FB')
     FetchOptions.AssignedValues = [evAutoClose]
     FetchOptions.AutoClose = False
-    Connected = True
     LoginPrompt = False
     OnRecover = DADOSRecover
     Left = 8

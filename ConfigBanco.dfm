@@ -5,9 +5,10 @@ object frmConfiguraBanco: TfrmConfiguraBanco
   BorderIcons = []
   BorderStyle = bsSingle
   Caption = 'Configura Banco'
-  ClientHeight = 117
-  ClientWidth = 636
-  Color = clBtnFace
+  ClientHeight = 128
+  ClientWidth = 453
+  Color = 16776176
+  TransparentColorValue = 16776176
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
   Font.Height = -11
@@ -17,7 +18,7 @@ object frmConfiguraBanco: TfrmConfiguraBanco
   PixelsPerInch = 96
   TextHeight = 13
   object btnSave: TButton
-    Left = 512
+    Left = 369
     Top = 46
     Width = 75
     Height = 25
@@ -26,23 +27,22 @@ object frmConfiguraBanco: TfrmConfiguraBanco
     OnClick = btnSaveClick
   end
   object edtConfiguraBanco: TEdit
-    Left = 152
+    Left = 9
     Top = 48
     Width = 354
     Height = 21
     TabOrder = 1
   end
   object Button1: TButton
-    Left = 296
+    Left = 153
     Top = 84
     Width = 75
     Height = 25
-    Caption = 'Button1'
+    Caption = 'Procurar'
     TabOrder = 2
     OnClick = Button1Click
   end
   object OpenDialogBanco: TOpenDialog
-    Left = 96
-    Top = 8
+    Left = 200
   end
 end

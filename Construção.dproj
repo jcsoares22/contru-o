@@ -157,9 +157,6 @@
         <DCCReference Include="CadastroCidades.pas">
             <Form>frmCadastroCidades</Form>
         </DCCReference>
-        <DCCReference Include="CadastroCondPagamento2.pas">
-            <Form>frmCadastroCondPagamento2</Form>
-        </DCCReference>
         <DCCReference Include="CadastroUsuarios2.pas">
             <Form>frmCadastroUsuario2</Form>
         </DCCReference>
