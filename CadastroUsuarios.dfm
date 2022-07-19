@@ -13,6 +13,7 @@ object frmCadastroUsuario: TfrmCadastroUsuario
   OldCreateOrder = False
   OnActivate = FormActivate
   OnClose = FormClose
+  OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
   object Cadastro: TPageControl
@@ -50,7 +51,6 @@ object frmCadastroUsuario: TfrmCadastroUsuario
           item
             Expanded = False
             FieldName = 'USU_NOME'
-            Width = 64
             Visible = True
           end
           item
@@ -212,7 +212,63 @@ object frmCadastroUsuario: TfrmCadastroUsuario
         TabOrder = 1
         object Geral: TTabSheet
           Caption = 'Geral'
+          object checkBoxManutencaoUsuario: TRxCheckBox
+            Left = 12
+            Top = 54
+            Width = 134
+            Height = 17
+            Caption = 'Manutecao usuario'
+            TabOrder = 0
+            WordWrap = True
+            HorizontalAlignment = taLeftJustify
+            VerticalAlignment = taAlignTop
+            Style = vsNormal
+          end
+          object checkBoxPreferencia: TRxCheckBox
+            Left = 12
+            Top = 31
+            Width = 97
+            Height = 17
+            Caption = 'Preferencia'
+            TabOrder = 1
+            WordWrap = True
+            HorizontalAlignment = taLeftJustify
+            VerticalAlignment = taAlignTop
+            Style = vsNormal
+          end
+          object checkBoxAdministrador: TRxCheckBox
+            Left = 12
+            Top = 8
+            Width = 89
+            Height = 17
+            Caption = 'Administrador'
+            TabOrder = 2
+            WordWrap = True
+            HorizontalAlignment = taLeftJustify
+            VerticalAlignment = taAlignTop
+            Style = vsNormal
+          end
+        end
+        object TabSheet3: TTabSheet
+          Caption = 'Produtos'
+          ImageIndex = 1
           ExplicitLeft = 0
+        end
+        object TabSheet4: TTabSheet
+          Caption = 'Vendas'
+          ImageIndex = 2
+          object checkBoxUtrapassarLimite: TRxCheckBox
+            Left = 20
+            Top = 16
+            Width = 163
+            Height = 17
+            Caption = 'Ultra passar limite de desconto'
+            TabOrder = 0
+            WordWrap = True
+            HorizontalAlignment = taLeftJustify
+            VerticalAlignment = taAlignTop
+            Style = vsNormal
+          end
         end
       end
       object Panel3: TPanel
@@ -310,49 +366,14 @@ object frmCadastroUsuario: TfrmCadastroUsuario
           TabOrder = 4
         end
       end
-      object DBCheckBox_administrador: TRxCheckBox
-        Left = 16
-        Top = 210
-        Width = 209
-        Height = 17
-        Caption = 'DBCheckBox_administrador'
-        TabOrder = 3
-        WordWrap = True
-        HorizontalAlignment = taLeftJustify
-        VerticalAlignment = taAlignTop
-        Style = vsNormal
-      end
-      object DBCheckBoxPreferencia: TRxCheckBox
-        Left = 16
-        Top = 233
-        Width = 97
-        Height = 17
-        Caption = 'RxCheckBox1'
-        TabOrder = 4
-        WordWrap = True
-        HorizontalAlignment = taLeftJustify
-        VerticalAlignment = taAlignTop
-        Style = vsNormal
-      end
-      object Manutecao_usuario: TRxCheckBox
-        Left = 16
-        Top = 256
-        Width = 97
-        Height = 17
-        Caption = 'RxCheckBox1'
-        TabOrder = 5
-        WordWrap = True
-        HorizontalAlignment = taLeftJustify
-        VerticalAlignment = taAlignTop
-        Style = vsNormal
-      end
       object DBNavigator1: TDBNavigator
         Left = 464
         Top = 16
         Width = 240
         Height = 25
         DataSource = DM_Dados.DT_Usuario
-        TabOrder = 6
+        TabOrder = 3
+        OnClick = DBNavigator1Click
       end
     end
   end

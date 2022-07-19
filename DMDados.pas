@@ -40,6 +40,8 @@ type
     FDQueryUsuarioADM: TStringField;
     FDQueryUsuarioPREFERENCIA: TStringField;
     FDQueryUsuarioCAD_USU: TStringField;
+    FDQueryPreferenciaVALIDAR_ESTOQUE_MINIMO: TStringField;
+    FDQueryUsuarioALTERAR_LIMITE_DESC: TStringField;
     procedure FDQueryUsuarioBeforePost(DataSet: TDataSet);
     procedure DADOSRecover(ASender, AInitiator: TObject; AException: Exception;
       var AAction: TFDPhysConnectionRecoverAction);

@@ -43,7 +43,7 @@ begin
   DM_Dados.FDQueryUsuario.ParamByName('senha').AsString := edtSenha.Text;
   DM_Dados.FDQueryUsuario.Open;
   if (DM_Dados.FDQueryUsuario.recordCount > 0) and
-    (DM_Dados.FDQueryUsuarioCAD_USU.Value <> 'F') then
+    (DM_Dados.FDQueryUsuarioCAD_USU.Value = 'T') then
   begin
     DM_Dados.FDQueryUsuario.Close;
     frmCadastroUsuario := TFrmCadastroUsuario.Create(self);

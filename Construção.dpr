@@ -47,7 +47,8 @@ uses
   CadastroCondPagamento in 'CadastroCondPagamento.pas' {frmCadastroCondPagamento},
   LancamentoFinanceiro in 'LancamentoFinanceiro.pas' {frmLancamentoFinanceiro},
   informacao in 'informacao.pas' {frmInformacao},
-  Criptografia in 'Criptografia.pas';
+  Criptografia in 'Criptografia.pas',
+  loginVendasDesc in 'loginVendasDesc.pas' {frmLoginDescVenda};
 
 {$R *.res}
 
@@ -66,6 +67,7 @@ begin
   Application.CreateForm(TDM_Mov_Estoque, DM_Mov_Estoque);
   Application.CreateForm(TDM_Cadastro, DM_Cadastro);
   Application.CreateForm(TfrmConfiguraBanco, frmConfiguraBanco);
+  Application.CreateForm(TfrmLoginDescVenda, frmLoginDescVenda);
   usuarios := TfrmLogin.Create(nil);
   if usuarios.ShowModal = 1 then
   begin

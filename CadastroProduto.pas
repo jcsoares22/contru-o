@@ -62,9 +62,9 @@ type
     btnEstoque: TButton;
     Label20: TLabel;
     DBEdtQTE_Minima: TDBEdit;
-    OpenDialogImage: TOpenDialog;
     DBImage: TImage;
     caminhoFoto: TLabel;
+    OpenDialogImage: TOpenDialog;
     procedure DB_APrazoExit(Sender: TObject);
     procedure DB_AvistaExit(Sender: TObject);
     procedure btnNovoClick(Sender: TObject);

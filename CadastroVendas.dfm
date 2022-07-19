@@ -44,7 +44,7 @@
         TitleFont.Height = -11
         TitleFont.Name = 'Tahoma'
         TitleFont.Style = []
-        OnDblClick = DBGrid1DblClick
+        OnDblClick = DBGrid_VendaDblClick
         Columns = <
           item
             Expanded = False
@@ -54,37 +54,31 @@
           item
             Expanded = False
             FieldName = 'NOME'
-            Width = 64
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'DATAVENDA'
-            Width = 64
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'VALORTOTAL'
-            Width = 64
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'OBS'
-            Width = 64
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'FRETE'
-            Width = 64
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'COND_PAGAMENTO'
-            Width = 64
             Visible = True
           end
           item
@@ -95,25 +89,21 @@
           item
             Expanded = False
             FieldName = 'ID_SUBCONTA'
-            Width = 64
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'ID_TIPO_PGTO'
-            Width = 64
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'DESCONTO'
-            Width = 64
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'TIPO_DESC'
-            Width = 64
             Visible = True
           end
           item
@@ -124,19 +114,16 @@
           item
             Expanded = False
             FieldName = 'DATA_FATURAMENTO'
-            Width = 64
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'DATA_CANCELAMENTO'
-            Width = 64
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'DATA_ORCAMENTO'
-            Width = 64
             Visible = True
           end>
       end
@@ -330,20 +317,33 @@
           Caption = 'SITUACAO'
         end
         object Label19: TLabel
-          Left = 760
-          Top = 120
+          Left = 728
+          Top = 98
           Width = 45
           Height = 13
           Caption = 'PARCELA'
           FocusControl = DBEdit7
         end
         object Label20: TLabel
-          Left = 912
-          Top = 120
+          Left = 632
+          Top = 149
           Width = 119
           Height = 13
           Caption = 'DIAS_ENTRE_PARCELAS'
           FocusControl = DBEdit8
+        end
+        object DBImage: TImage
+          Left = 897
+          Top = 38
+          Width = 165
+          Height = 107
+          Stretch = True
+        end
+        object caminhoFoto: TLabel
+          Left = 960
+          Top = 96
+          Width = 3
+          Height = 13
         end
         object DBEdit1: TDBEdit
           Left = 8
@@ -565,8 +565,8 @@
           OnClick = btnImprimirClick
         end
         object DBEdit7: TDBEdit
-          Left = 760
-          Top = 139
+          Left = 728
+          Top = 117
           Width = 134
           Height = 21
           DataField = 'PARCELA'
@@ -574,8 +574,8 @@
           TabOrder = 22
         end
         object DBEdit8: TDBEdit
-          Left = 912
-          Top = 136
+          Left = 757
+          Top = 144
           Width = 134
           Height = 21
           DataField = 'DIAS_ENTRE_PARCELAS'
@@ -605,7 +605,7 @@
           Caption = 'FRETE'
         end
         object DBSomaTotal: TDBEdit
-          Left = 553
+          Left = 321
           Top = 6
           Width = 314
           Height = 21
@@ -615,7 +615,7 @@
           TabOrder = 0
         end
         object btn_Totaliza: TButton
-          Left = 467
+          Left = 227
           Top = 6
           Width = 75
           Height = 25
@@ -664,6 +664,13 @@
           DataSource = DM_Vendas.DT_Saida_Venda
           TabOrder = 5
         end
+        object edtValorDesconto: TEdit
+          Left = 321
+          Top = 33
+          Width = 121
+          Height = 21
+          TabOrder = 6
+        end
       end
       object DBGrid1: TDBGrid
         Left = 0
@@ -678,6 +685,8 @@
         TitleFont.Height = -11
         TitleFont.Name = 'Tahoma'
         TitleFont.Style = []
+        OnColumnMoved = DBGrid_VendaColumnMoved
+        OnDrawColumnCell = DBGrid1DrawColumnCell
         Columns = <
           item
             Expanded = False
@@ -687,31 +696,26 @@
           item
             Expanded = False
             FieldName = 'NOME_PRODUTO'
-            Width = 64
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'QTE_ESTOQUE'
-            Width = 64
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'QUANTIDADE'
-            Width = 64
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'VALORPRODUTO'
-            Width = 64
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'VALORTOTAL'
-            Width = 64
             Visible = True
           end>
       end
@@ -1857,5 +1861,10 @@
     object Produto1: TMenuItem
       Caption = 'Produto'
     end
+  end
+  object OpenDialogImage: TOpenDialog
+    Filter = 'bitmap|*.bmp|jpg|*.jpg'
+    Left = 884
+    Top = 256
   end
 end

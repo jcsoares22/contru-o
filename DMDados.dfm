@@ -12,6 +12,7 @@ object DM_Dados: TDM_Dados
       'DriverID=FB')
     FetchOptions.AssignedValues = [evAutoClose]
     FetchOptions.AutoClose = False
+    Connected = True
     LoginPrompt = False
     OnRecover = DADOSRecover
     Left = 8
@@ -91,6 +92,11 @@ object DM_Dados: TDM_Dados
       Precision = 18
       Size = 2
     end
+    object FDQueryPreferenciaVALIDAR_ESTOQUE_MINIMO: TStringField
+      FieldName = 'VALIDAR_ESTOQUE_MINIMO'
+      Origin = 'VALIDAR_ESTOQUE_MINIMO'
+      Size = 1
+    end
   end
   object DT_Preferencia: TDataSource
     DataSet = FDQueryPreferencia
@@ -153,6 +159,11 @@ object DM_Dados: TDM_Dados
       FieldName = 'CAD_USU'
       Origin = 'CAD_USU'
       FixedChar = True
+      Size = 1
+    end
+    object FDQueryUsuarioALTERAR_LIMITE_DESC: TStringField
+      FieldName = 'ALTERAR_LIMITE_DESC'
+      Origin = 'ALTERAR_LIMITE_DESC'
       Size = 1
     end
   end

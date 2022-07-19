@@ -37,6 +37,7 @@ type
     Button2: TButton;
     Button3: TButton;
     Produto: TTabSheet;
+    CheckBoxEstoqueProduto: TCheckBox;
     procedure FormCreate(Sender: TObject);
     procedure Button1Click(Sender: TObject);
     procedure Button3Click(Sender: TObject);
@@ -44,8 +45,12 @@ type
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure Button4Click(Sender: TObject);
     procedure FormActivate(Sender: TObject);
+    procedure FormShow(Sender: TObject);
   private
     { Private declarations }
+
+    procedure ValidaCheckBoxProduto;
+    procedure VerificaCheckBoxProduto;
   public
     { Public declarations }
   end;
@@ -61,6 +66,7 @@ uses DMDados, DMEndereco, LoginPreferencia;
 
 procedure TfrmPreferencia.Button1Click(Sender: TObject);
 begin
+  ValidaCheckBoxProduto;
   DM_Dados.FDQueryPreferencia.Edit;
   DM_Dados.FDQueryPreferencia.Post;
 end;
@@ -73,6 +79,14 @@ end;
 procedure TfrmPreferencia.Button3Click(Sender: TObject);
 begin
   DM_Dados.FDQueryPreferencia.Edit;
+  { if DBCheckBoxEstoqueProduto.ValueChecked then
+    begin
+    DM_Dados.FDQueryPreferenciaVALIDAR_ESTOQUE_MINIMO.Value := 'T'
+    end
+    else
+    begin
+    DM_Dados.FDQueryPreferenciaVALIDAR_ESTOQUE_MINIMO.Value := 'F'
+    end; }
 end;
 
 procedure TfrmPreferencia.Button4Click(Sender: TObject);
@@ -98,6 +112,36 @@ begin
   DM_Dados.FDQueryPreferencia.open();
   DM_Endereco.FDQueryCidade.open();
   DM_Endereco.FDQueryEstados.open();
+end;
+
+procedure TfrmPreferencia.FormShow(Sender: TObject);
+begin
+VerificaCheckBoxProduto;
+end;
+
+procedure TfrmPreferencia.ValidaCheckBoxProduto;
+begin
+  if CheckBoxEstoqueProduto.Checked = true then
+  begin
+    DM_Dados.FDQueryPreferenciaVALIDAR_ESTOQUE_MINIMO.Value := 'T'
+  end
+  else
+  begin
+    DM_Dados.FDQueryPreferenciaVALIDAR_ESTOQUE_MINIMO.Value := 'F'
+  end;
+end;
+
+procedure TfrmPreferencia.VerificaCheckBoxProduto;
+begin
+if DM_Dados.FDQueryPreferenciaVALIDAR_ESTOQUE_MINIMO.Value = 'T' then
+  begin
+    CheckBoxEstoqueProduto.Checked := true
+  end
+  else
+  begin
+    CheckBoxEstoqueProduto.Checked := false;
+  end;
+
 end;
 
 end.

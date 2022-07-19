@@ -97,8 +97,8 @@ begin
       if Reg.ValueExists('Dados') then
       begin
         frmConfiguraBanco.edtConfiguraBanco.Text := Reg.ReadString('Dados');
-       // showmessage(frmConfiguraBanco.edtConfiguraBanco.Text);
-         lerRegistro;
+        // showmessage(frmConfiguraBanco.edtConfiguraBanco.Text);
+        lerRegistro;
       end;
     end
     else
@@ -160,8 +160,15 @@ begin
       DM_Dados.DADOS.Connected := True;
     end;
 
-  finally
-    Reg.Free;
+  Except
+    on E: Exception do
+    begin
+      showmessage('Erro: Banco de dados não encontrado, verifique o regedit');
+      Close;
+      Application.Terminate;
+      Reg.Free;
+    end;
+    // Reg.Free;
 
     { DM_Dados.DADOS.Active          := true;
       DM_Dados.DADOS.Active         := true;

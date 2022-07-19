@@ -16,6 +16,7 @@ object frmPreferencia: TfrmPreferencia
   OnActivate = FormActivate
   OnClose = FormClose
   OnCreate = FormCreate
+  OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
   object PageControl1: TPageControl
@@ -23,7 +24,7 @@ object frmPreferencia: TfrmPreferencia
     Top = 0
     Width = 891
     Height = 663
-    ActivePage = TabSheet1
+    ActivePage = Produto
     Align = alClient
     TabOrder = 0
     object TabSheet1: TTabSheet
@@ -209,6 +210,16 @@ object frmPreferencia: TfrmPreferencia
     object Produto: TTabSheet
       Caption = 'Produto'
       ImageIndex = 2
+      ExplicitLeft = 8
+      ExplicitTop = 22
+      object CheckBoxEstoqueProduto: TCheckBox
+        Left = 3
+        Top = 16
+        Width = 97
+        Height = 17
+        Caption = 'CheckBox1'
+        TabOrder = 0
+      end
     end
   end
   object Panel1: TPanel

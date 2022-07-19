@@ -102,6 +102,10 @@ type
     FDQueryVendasCliente2DESCONTO: TBCDField;
     PopupMenuMause: TPopupMenu;
     Produto1: TMenuItem;
+    DBImage: TImage;
+    OpenDialogImage: TOpenDialog;
+    caminhoFoto: TLabel;
+    edtValorDesconto: TEdit;
     procedure DBGridVendasExit(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure btnNovoClick(Sender: TObject);
@@ -113,7 +117,6 @@ type
     procedure btnEditClick(Sender: TObject);
     procedure btnPesquisaClick(Sender: TObject);
     procedure DBC_DescontoChange(Sender: TObject);
-    procedure DBGrid1DblClick(Sender: TObject);
     procedure DBE_DescontoExit(Sender: TObject);
     procedure DBECod_ClienteExit(Sender: TObject);
     procedure DBE_DescontoEnter(Sender: TObject);
@@ -124,11 +127,19 @@ type
     procedure btnGerarLancamentoClick(Sender: TObject);
     procedure Cliente1Click(Sender: TObject);
     procedure Cliente21Click(Sender: TObject);
+    procedure DBGrid1ColEnter(Sender: TObject);
+    procedure DBGrid1DrawColumnCell(Sender: TObject; const Rect: TRect;
+      DataCol: Integer; Column: TColumn; State: TGridDrawState);
+    procedure DBGrid_VendaColumnMoved(Sender: TObject;
+      FromIndex, ToIndex: Integer);
+    procedure DBGrid_VendaEnter(Sender: TObject);
+    procedure DBGrid_VendaDblClick(Sender: TObject);
   private
     { Private declarations }
 
     procedure totaliza;
     procedure lancFinaceiro;
+    procedure carregafoto;
   public
     { Public declarations }
     percento: Currency;
@@ -143,7 +154,7 @@ implementation
 
 uses DMVendas, DMCadastro, CadastroFinanceiro, Preferencia, DMDados, Principal,
   CadastroRapidoCliente, PesquisaCliente, Biblioteca, PesquisaAvancadaVenda,
-  DMFinanceiro, System.Types;
+  DMFinanceiro, System.Types, loginVendasDesc;
 
 procedure TfrmCadastroVendas.btnCancelarClick(Sender: TObject);
 begin
@@ -236,7 +247,7 @@ end;
 
 procedure TfrmCadastroVendas.btnImprimirClick(Sender: TObject);
 begin
- with TButton(Sender).ClientToScreen(point(0, TButton(Sender).Height)) do
+  with TButton(Sender).ClientToScreen(point(0, TButton(Sender).Height)) do
     PopupMenu1.Popup(X, Y);
 
 end;
@@ -420,12 +431,12 @@ end;
 
 procedure TfrmCadastroVendas.Cliente1Click(Sender: TObject);
 begin
- CarregaRelatorio(frVendas);
+  CarregaRelatorio(frVendas);
 end;
 
 procedure TfrmCadastroVendas.Cliente21Click(Sender: TObject);
 begin
-CarregaRelatorio(frCliente2);
+  CarregaRelatorio(frCliente2);
 end;
 
 procedure TfrmCadastroVendas.DBC_DescontoChange(Sender: TObject);
@@ -485,8 +496,15 @@ begin
         if DM_Vendas.FDQuerySaida_VendaDESCONTO.CurValue > percento then
         Begin
           ShowMessage('Valor do desconto acima do permitido ');
-          DM_Vendas.FDQuerySaida_VendaDESCONTO.Clear;
-          DBE_Desconto.SetFocus;
+        //  DM_Vendas.FDQuerySaida_VendaDESCONTO.Clear;
+          frmLoginDescVenda := TFrmLoginDescVenda.Create(self);
+          try
+            frmLoginDescVenda.showModal;
+          finally
+            FreeAndNil(frmLoginDescVenda);
+          end;
+            percento;
+        //  DBE_Desconto.SetFocus;
         End
         else
           frmCadastroVendas.DBE_Desconto.Text;
@@ -495,9 +513,20 @@ begin
   end;
 end;
 
-procedure TfrmCadastroVendas.DBGrid1DblClick(Sender: TObject);
+procedure TfrmCadastroVendas.DBGrid1ColEnter(Sender: TObject);
 begin
-  PageControl1.TabIndex := 1;
+  try
+    // DM_Cadastro.FDQueryProduto.Prior;
+    DBImage.Picture.LoadFromFile(DM_Cadastro.FDQueryProdutoFOTO.Value);
+  except
+    DBImage.Picture := Nil;
+  end;
+end;
+
+procedure TfrmCadastroVendas.DBGrid1DrawColumnCell(Sender: TObject;
+  const Rect: TRect; DataCol: Integer; Column: TColumn; State: TGridDrawState);
+begin
+  carregafoto;
 end;
 
 procedure TfrmCadastroVendas.DBGridVendasExit(Sender: TObject);
@@ -505,6 +534,22 @@ begin
   { DM_Vendas.FDQuerySaidaProdutoVALORTOTAL.Value :=
     DM_Vendas.FDQuerySaidaProdutoQUANTIDADE.Value *
     DM_Vendas.FDQuerySaidaProdutoVALORPRODUTO.Value; }
+end;
+
+procedure TfrmCadastroVendas.DBGrid_VendaColumnMoved(Sender: TObject;
+  FromIndex, ToIndex: Integer);
+begin
+  carregafoto;
+end;
+
+procedure TfrmCadastroVendas.DBGrid_VendaDblClick(Sender: TObject);
+begin
+  PageControl1.TabIndex := 1;
+end;
+
+procedure TfrmCadastroVendas.DBGrid_VendaEnter(Sender: TObject);
+begin
+  carregafoto;
 end;
 
 procedure TfrmCadastroVendas.FormClose(Sender: TObject;
@@ -580,7 +625,8 @@ var
 begin
 
   begin
-    percento := DM_Dados.FDQueryPreferencia.Fields[0].AsFloat;
+   // percento := 0;
+   // percento := DM_Dados.FDQueryPreferencia.Fields[0].AsFloat;
     desconto := 0;
     soma := 0;
     DM_Vendas.FDQuerySaida_Venda.edit;
@@ -612,13 +658,19 @@ begin
             begin
               if DM_Vendas.FDQuerySaida_VendaDESCONTO.CurValue > percento then
               Begin
-                ShowMessage('Valor do desconto acima do permitido ');
+               // ShowMessage('Valor do desconto acima do permitido ');
+                    DM_Vendas.FDQuerySaida_VendaVALORTOTAL.Value :=
+                (soma - (soma * desconto) / 100) +
+                DM_Vendas.FDQuerySaida_VendaFRETE.Value;
               End
               else
                 desconto := DM_Vendas.FDQuerySaida_VendaDESCONTO.CurValue;
               DM_Vendas.FDQuerySaida_VendaVALORTOTAL.Value :=
                 (soma - (soma * desconto) / 100) +
                 DM_Vendas.FDQuerySaida_VendaFRETE.Value;
+
+              edtValorDesconto.Text := soma -
+                DM_Vendas.FDQuerySaida_VendaVALORTOTAL.CurValue;
             end;
         end;
       end
@@ -626,7 +678,7 @@ begin
 
         DM_Vendas.FDQuerySaida_VendaVALORTOTAL.Value :=
           soma + DM_Vendas.FDQuerySaida_VendaFRETE.Value + desconto;
-         // DBSomaTotal.Text := FormatFloat('R$ #.00');
+      // DBSomaTotal.Text := FormatFloat('R$ #.00');
     Except
       on E: Exception do
       begin
@@ -634,6 +686,13 @@ begin
       end;
     end;
   end;
+
+end;
+
+procedure TfrmCadastroVendas.carregafoto;
+begin
+  if DM_Cadastro.FDQueryProdutoFOTO.Value <> '' then
+    DBImage.Picture.LoadFromFile(DM_Cadastro.FDQueryProdutoFOTO.Value);
 
 end;
 

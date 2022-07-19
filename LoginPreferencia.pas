@@ -47,7 +47,7 @@ begin
   DM_Dados.FDQueryUsuario.ParamByName('senha').AsString := edtSenha.Text;
   DM_Dados.FDQueryUsuario.Open;
   if (DM_Dados.FDQueryUsuario.recordCount > 0) and
-    (DM_Dados.FDQueryUsuarioADM.Value <> 'F') then
+    (DM_Dados.FDQueryUsuarioPREFERENCIA.Value = 'T') then
   begin
     frmPreferencia := TFrmPreferencia.Create(self);
     try

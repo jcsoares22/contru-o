@@ -41,10 +41,13 @@ type
     Label3: TLabel;
     Label4: TLabel;
     DBEdit4: TDBEdit;
-    DBCheckBox_administrador: TRxCheckBox;
-    DBCheckBoxPreferencia: TRxCheckBox;
-    Manutecao_usuario: TRxCheckBox;
     DBNavigator1: TDBNavigator;
+    TabSheet3: TTabSheet;
+    checkBoxManutencaoUsuario: TRxCheckBox;
+    checkBoxPreferencia: TRxCheckBox;
+    checkBoxAdministrador: TRxCheckBox;
+    TabSheet4: TTabSheet;
+    checkBoxUtrapassarLimite: TRxCheckBox;
     procedure btnNovoClick(Sender: TObject);
     procedure btnSalvarClick(Sender: TObject);
     procedure edt_PesquisaChange(Sender: TObject);
@@ -53,9 +56,14 @@ type
     procedure btnEditClick(Sender: TObject);
     procedure FormActivate(Sender: TObject);
     procedure DBGrid_ClienteDblClick(Sender: TObject);
+    procedure DBNavigator1Click(Sender: TObject; Button: TNavigateBtn);
+    procedure FormShow(Sender: TObject);
   private
     { Private declarations }
-    procedure verificacaoCheckBox;
+    procedure verificacaoCheckBoxGeral;
+    procedure verificacaoCheckBoxProduto;
+    procedure verificacaoCheckBoxVendas;
+    procedure checkBoxGeral;
   public
     { Public declarations }
   end;
@@ -72,33 +80,11 @@ uses Dmdados, LoginMenu;
 procedure TfrmCadastroUsuario.btnNovoClick(Sender: TObject);
 begin
   // inherited;
+  DM_Dados.FDQueryUsuarioCAD_USU.Value := 'F';
   if not(DM_Dados.FDQueryUsuario.State in [dsEdit, dsInsert]) then
   begin
     DM_Dados.FDQueryUsuario.Insert;
   end;
-  if DBCheckBox_administrador.Checked = true then
-  // COLOCANDO SISTEMA COMO ADMINISTRADOR
-  begin
-    DM_Dados.FDQueryUsuarioADM.Value := 'T';
-  end
-  else
-    DM_Dados.FDQueryUsuarioADM.Value := 'F';
-
-  if DBCheckBoxPreferencia.Checked = true then
-  // COLOCANDO SISTEMA COM PREMISSÃO PARA PODER EDITAR A PREFERENCIA
-  begin
-    DM_Dados.FDQueryUsuarioPREFERENCIA.Value := 'T';
-  end
-  else
-    DM_Dados.FDQueryUsuarioPREFERENCIA.Value := 'F';
-
-  if Manutecao_usuario.Checked = true then
-  // COLOCANDO SISTEMA COM PREMISSÃO PARA PODER EDITAR A PREFERENCIA
-  begin
-    DM_Dados.FDQueryUsuarioCAD_USU.Value := 'T';
-  end
-  else
-    DM_Dados.FDQueryUsuarioCAD_USU.Value := 'F';
 end;
 
 procedure TfrmCadastroUsuario.btnPesquisaClick(Sender: TObject);
@@ -224,15 +210,56 @@ begin
   DM_Dados.FDQueryUsuario.Post;
 end;
 
+procedure TfrmCadastroUsuario.checkBoxGeral;
+begin
+
+  if checkBoxUtrapassarLimite.Checked = true then
+  begin
+    DM_Dados.FDQueryUsuarioALTERAR_LIMITE_DESC.Value := 'T'
+  end;
+  if checkBoxAdministrador.Checked = true then
+  // COLOCANDO SISTEMA COMO ADMINISTRADOR
+  begin
+    DM_Dados.FDQueryUsuarioADM.Value := 'T';
+  end
+  else
+    DM_Dados.FDQueryUsuarioADM.Value := 'F';
+
+  if checkBoxPreferencia.Checked = true then
+  // COLOCANDO SISTEMA COM PREMISSÃO PARA PODER EDITAR A PREFERENCIA
+  begin
+    DM_Dados.FDQueryUsuarioPREFERENCIA.Value := 'T';
+  end
+  else
+    DM_Dados.FDQueryUsuarioPREFERENCIA.Value := 'F';
+
+  if checkBoxManutencaoUsuario.Checked = true then
+  // COLOCANDO SISTEMA COM PREMISSÃO PARA PODER EDITAR A PREFERENCIA
+  begin
+    DM_Dados.FDQueryUsuarioCAD_USU.Value := 'T';
+  end
+  else
+    DM_Dados.FDQueryUsuarioCAD_USU.Value := 'F';
+end;
+
 procedure TfrmCadastroUsuario.DBGrid_ClienteDblClick(Sender: TObject);
 begin
   Cadastro.TabIndex := 1;
+  verificacaoCheckBoxGeral;
+  verificacaoCheckBoxVendas;
+end;
+
+procedure TfrmCadastroUsuario.DBNavigator1Click(Sender: TObject;
+  Button: TNavigateBtn);
+begin
+  verificacaoCheckBoxGeral;
+  verificacaoCheckBoxVendas;
 end;
 
 procedure TfrmCadastroUsuario.btnEditClick(Sender: TObject);
 begin
   DM_Dados.FDQueryUsuario.Edit;
-
+  checkBoxGeral;
 end;
 
 procedure TfrmCadastroUsuario.edt_PesquisaChange(Sender: TObject);
@@ -245,7 +272,6 @@ end;
 procedure TfrmCadastroUsuario.FormActivate(Sender: TObject);
 begin
   frmLoginMenu.Visible := false;
-  verificacaoCheckBox;
 end;
 
 procedure TfrmCadastroUsuario.FormClose(Sender: TObject;
@@ -256,15 +282,57 @@ begin
 
 end;
 
-procedure TfrmCadastroUsuario.verificacaoCheckBox;
+procedure TfrmCadastroUsuario.FormShow(Sender: TObject);
 begin
+  verificacaoCheckBoxGeral;
+  verificacaoCheckBoxVendas;
+end;
+
+procedure TfrmCadastroUsuario.verificacaoCheckBoxGeral;
+begin
+  // check box administrador
   if DM_Dados.FDQueryUsuarioADM.Value = 'T' then
   begin
-    DBCheckBox_administrador.Checked := true;
+    checkBoxAdministrador.Checked := true;
   end
   else
   begin
-    DBCheckBox_administrador.Checked := false;
+    checkBoxAdministrador.Checked := false;
+  end;
+  // check box cadastro de usuario
+  if DM_Dados.FDQueryUsuarioCAD_USU.Value = 'T' then
+  begin
+    checkBoxManutencaoUsuario.Checked := true
+  end
+  else
+  begin
+    checkBoxManutencaoUsuario.Checked := false;
+  end;
+  // checkbox cadastro de preferencia
+  if DM_Dados.FDQueryUsuarioPREFERENCIA.Value = 'T' then
+  begin
+    checkBoxPreferencia.Checked := true;
+  end
+  else
+  begin
+    checkBoxPreferencia.Checked := false;
+  end;
+end;
+
+procedure TfrmCadastroUsuario.verificacaoCheckBoxProduto;
+begin
+
+end;
+
+procedure TfrmCadastroUsuario.verificacaoCheckBoxVendas;
+begin
+  if DM_Dados.FDQueryUsuarioALTERAR_LIMITE_DESC.Value = 'T' then
+  begin
+    checkBoxUtrapassarLimite.Checked := true;
+  end
+  else
+  begin
+    checkBoxUtrapassarLimite.Checked := false;
   end;
 
 end;

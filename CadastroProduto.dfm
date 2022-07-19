@@ -37,37 +37,31 @@ inherited frmCadastroProduto: TfrmCadastroProduto
           item
             Expanded = False
             FieldName = 'PRODUTO'
-            Width = 64
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'UN_MEDIDA'
-            Width = 64
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'PRECO_CUSTO'
-            Width = 64
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'PRECO_VENDA'
-            Width = 64
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'OBS'
-            Width = 64
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'DATACAD'
-            Width = 64
             Visible = True
           end
           item
@@ -78,7 +72,6 @@ inherited frmCadastroProduto: TfrmCadastroProduto
           item
             Expanded = False
             FieldName = 'DATAVENDA'
-            Width = 64
             Visible = True
           end
           item
@@ -89,7 +82,6 @@ inherited frmCadastroProduto: TfrmCadastroProduto
           item
             Expanded = False
             FieldName = 'COR'
-            Width = 64
             Visible = True
           end
           item
@@ -100,43 +92,36 @@ inherited frmCadastroProduto: TfrmCadastroProduto
           item
             Expanded = False
             FieldName = 'FOTO'
-            Width = 64
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'MARCA'
-            Width = 64
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'BAIRRO'
-            Width = 64
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'PRECENTO_LUCRO'
-            Width = 64
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'PRECO_PRAZO_CUSTO'
-            Width = 64
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'PRECO_PRAZO_VENDA'
-            Width = 64
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'PRECENTO_PRAZO_LUCRO'
-            Width = 64
             Visible = True
           end
           item
@@ -152,7 +137,6 @@ inherited frmCadastroProduto: TfrmCadastroProduto
           item
             Expanded = False
             FieldName = 'ID_SUBGRUPO'
-            Width = 64
             Visible = True
           end>
       end
