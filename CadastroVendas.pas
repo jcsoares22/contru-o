@@ -105,7 +105,7 @@ type
     DBImage: TImage;
     OpenDialogImage: TOpenDialog;
     caminhoFoto: TLabel;
-    edtValorDesconto: TEdit;
+    DbValorDesconto: TDBEdit;
     procedure DBGridVendasExit(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure btnNovoClick(Sender: TObject);
@@ -117,7 +117,6 @@ type
     procedure btnEditClick(Sender: TObject);
     procedure btnPesquisaClick(Sender: TObject);
     procedure DBC_DescontoChange(Sender: TObject);
-    procedure DBE_DescontoExit(Sender: TObject);
     procedure DBECod_ClienteExit(Sender: TObject);
     procedure DBE_DescontoEnter(Sender: TObject);
     procedure SpeedButton2Click(Sender: TObject);
@@ -142,7 +141,9 @@ type
     procedure carregafoto;
   public
     { Public declarations }
-    percento: Currency;
+    porcento: Currency;
+    soma: Currency;
+    desconto: Currency;
   end;
 
 var
@@ -259,6 +260,7 @@ begin
   begin
     DM_Vendas.FDQuerySaida_Venda.Insert;
   end;
+  DbValorDesconto.Clear;
   btnNovo.Enabled := false;
   btnEdit.Enabled := false;
   btnDeletar.Enabled := false;
@@ -399,28 +401,35 @@ end;
 
 procedure TfrmCadastroVendas.btnSalvarClick(Sender: TObject);
 begin
-  ShowMessage('Totalizando a venda!');
-  totaliza;
-  try
-    DM_Vendas.FDQuerySaida_Venda.edit;
-    DM_Vendas.FDQuerySaidaProduto.edit;
+  Try
+    if MessageDlg('Desja totalizar a venda ?', TMsgDlgType.mtConfirmation,
+      [mbok, mbNo], 0) = mrok then
+    begin
+      totaliza;
+    end;
+    Abort;
+  Finally
+    try
+      DM_Vendas.FDQuerySaida_Venda.edit;
+      DM_Vendas.FDQuerySaidaProduto.edit;
 
-    if DM_Vendas.FDQuerySaida_Venda.State in [dsEdit, dsInsert] then
-    begin
-      DM_Vendas.FDQuerySaidaProduto.Post;
-      DM_Vendas.FDQuerySaida_Venda.Post;
-      { DM_Vendas.FDQuerySaidaProduto.Append;
-        DM_Vendas.FDQuerySaidaProdutoCODIGO.AsInteger :=  DM_Vendas.FDQuerySaidaProdutoCODIGO.Keyv }
+      if DM_Vendas.FDQuerySaida_Venda.State in [dsEdit, dsInsert] then
+      begin
+        DM_Vendas.FDQuerySaidaProduto.Post;
+        DM_Vendas.FDQuerySaida_Venda.Post;
+        { DM_Vendas.FDQuerySaidaProduto.Append;
+          DM_Vendas.FDQuerySaidaProdutoCODIGO.AsInteger :=  DM_Vendas.FDQuerySaidaProdutoCODIGO.Keyv }
+      end;
+      btnNovo.Enabled := true;
+      btnEdit.Enabled := true;
+      btnDeletar.Enabled := true;
+    Except
+      if DM_Vendas.FDQuerySaidaProdutoCODPRODUTO.IsNull then
+      begin
+        ShowMessage('Verifique produto sem codigo')
+      end;
     end;
-    btnNovo.Enabled := true;
-    btnEdit.Enabled := true;
-    btnDeletar.Enabled := true;
-  Except
-    if DM_Vendas.FDQuerySaidaProdutoCODPRODUTO.IsNull then
-    begin
-      ShowMessage('Verifique produto sem codigo')
-    end;
-  end;
+  End;
 
 end;
 
@@ -470,49 +479,6 @@ begin
   end;
 end;
 
-procedure TfrmCadastroVendas.DBE_DescontoExit(Sender: TObject);
-var
-  desconto: Currency;
-begin
-  percento := DM_Dados.FDQueryPreferenciaDESCONTO_VENDA.CurValue;
-  // DM_Dados.FDQueryPreferencia.Fields[9].AsFloat;    //recebe o valor da preferencia
-  case frmCadastroVendas.DBC_Desconto.ItemIndex of
-    // combobox de deconto por percento ou real
-    0: // R$
-      begin
-        DM_Vendas.FDQuerySaida_VendaDESCONTO.Currency := true;
-        if DM_Vendas.FDQuerySaida_VendaDESCONTO.CurValue > 10 then
-        Begin
-          ShowMessage('Valor do desconto acima do permitido em reais ');
-          DM_Vendas.FDQuerySaida_VendaDESCONTO.Clear;
-          DBE_Desconto.SetFocus;
-        End
-        else
-          frmCadastroVendas.DBE_Desconto.Text;
-      end;
-    1: // %
-      begin
-        DM_Vendas.FDQuerySaida_VendaDESCONTO.Currency := false;
-        if DM_Vendas.FDQuerySaida_VendaDESCONTO.CurValue > percento then
-        Begin
-          ShowMessage('Valor do desconto acima do permitido ');
-        //  DM_Vendas.FDQuerySaida_VendaDESCONTO.Clear;
-          frmLoginDescVenda := TFrmLoginDescVenda.Create(self);
-          try
-            frmLoginDescVenda.showModal;
-          finally
-            FreeAndNil(frmLoginDescVenda);
-          end;
-            percento;
-        //  DBE_Desconto.SetFocus;
-        End
-        else
-          frmCadastroVendas.DBE_Desconto.Text;
-      end;
-
-  end;
-end;
-
 procedure TfrmCadastroVendas.DBGrid1ColEnter(Sender: TObject);
 begin
   try
@@ -526,7 +492,7 @@ end;
 procedure TfrmCadastroVendas.DBGrid1DrawColumnCell(Sender: TObject;
   const Rect: TRect; DataCol: Integer; Column: TColumn; State: TGridDrawState);
 begin
-  carregafoto;
+  // carregafoto;
 end;
 
 procedure TfrmCadastroVendas.DBGridVendasExit(Sender: TObject);
@@ -620,72 +586,75 @@ begin
 end;
 
 procedure TfrmCadastroVendas.totaliza;
-var
-  soma, desconto: Currency;
+
 begin
+  porcento := 0;
+  porcento := DM_Dados.FDQueryPreferenciaDESCONTO_VENDA.Value;
 
+  soma := 0;
+  DM_Vendas.FDQuerySaida_Venda.edit;
+  DM_Vendas.FDQuerySaidaProduto.edit;
+  DM_Vendas.FDQuerySaidaProduto.edit;
+  DM_Vendas.FDQuerySaida_Venda.edit;
+  DM_Vendas.FDQuerySaidaProduto.First; // pega o primeiro registro
+  while not DM_Vendas.FDQuerySaidaProduto.Eof do
+  // verificando ate o final da tabela
   begin
-   // percento := 0;
-   // percento := DM_Dados.FDQueryPreferencia.Fields[0].AsFloat;
-    desconto := 0;
-    soma := 0;
-    DM_Vendas.FDQuerySaida_Venda.edit;
-    DM_Vendas.FDQuerySaidaProduto.edit;
-    DM_Vendas.FDQuerySaidaProduto.edit;
-    DM_Vendas.FDQuerySaida_Venda.edit;
-    DM_Vendas.FDQuerySaidaProduto.First; // pega o primeiro registro
-    while not DM_Vendas.FDQuerySaidaProduto.Eof do
-    // verificando ate o final da tabela
+    soma := soma + DM_Vendas.FDQuerySaidaProdutoVALORTOTAL.CurValue;
+    DM_Vendas.FDQuerySaidaProduto.Next
+    // nanda para o proximo registro
+  end;
+  Try
+    if DBE_Desconto.Text <> EmptyStr then
     begin
-      soma := soma + DM_Vendas.FDQuerySaidaProdutoVALORTOTAL.CurValue;
-      DM_Vendas.FDQuerySaidaProduto.Next
-      // nanda para o proximo registro
-    end;
-    Try
-      if DBE_Desconto.Text <> EmptyStr then
-      begin
-        case DBC_Desconto.ItemIndex of
-          // combobox de deconto por percento ou real
-          0:
-            begin
-              // R$
-              // DBE_Desconto.Text := val;
-              desconto := DM_Vendas.FDQuerySaida_VendaDESCONTO.CurValue;
-              DM_Vendas.FDQuerySaida_VendaVALORTOTAL.Value :=
-                soma + DM_Vendas.FDQuerySaida_VendaFRETE.Value - desconto;
-            end;
-          1: // %
-            begin
-              if DM_Vendas.FDQuerySaida_VendaDESCONTO.CurValue > percento then
-              Begin
-               // ShowMessage('Valor do desconto acima do permitido ');
-                    DM_Vendas.FDQuerySaida_VendaVALORTOTAL.Value :=
-                (soma - (soma * desconto) / 100) +
-                DM_Vendas.FDQuerySaida_VendaFRETE.Value;
-              End
-              else
-                desconto := DM_Vendas.FDQuerySaida_VendaDESCONTO.CurValue;
-              DM_Vendas.FDQuerySaida_VendaVALORTOTAL.Value :=
-                (soma - (soma * desconto) / 100) +
-                DM_Vendas.FDQuerySaida_VendaFRETE.Value;
+      case DBC_Desconto.ItemIndex of
+        // combobox de deconto por porcentoou real
+        0:
+          begin
+            // R$
+            // DBE_Desconto.Text := val;
+            desconto := DM_Vendas.FDQuerySaida_VendaDESCONTO.CurValue;
+            DM_Vendas.FDQuerySaida_VendaVALORTOTAL.Value :=
+              soma + DM_Vendas.FDQuerySaida_VendaFRETE.Value - desconto;
+          end;
+        1: // %
+          begin
+            if DM_Vendas.FDQuerySaida_VendaDESCONTO.CurValue > porcento then
+            Begin
+              frmLoginDescVenda := TFrmLoginDescVenda.Create(self);
+              try
+                frmLoginDescVenda.showModal;
+              finally
+                FreeAndNil(frmLoginDescVenda);
+              end;
+            End
+            else
+              desconto := 0;
+            desconto := DM_Vendas.FDQuerySaida_VendaDESCONTO.CurValue;
 
-              edtValorDesconto.Text := soma -
-                DM_Vendas.FDQuerySaida_VendaVALORTOTAL.CurValue;
-            end;
-        end;
-      end
-      else
+            DM_Vendas.FDQuerySaida_VendaVALORTOTAL.Value :=
+              (soma - (soma * desconto) / 100);
 
-        DM_Vendas.FDQuerySaida_VendaVALORTOTAL.Value :=
-          soma + DM_Vendas.FDQuerySaida_VendaFRETE.Value + desconto;
-      // DBSomaTotal.Text := FormatFloat('R$ #.00');
-    Except
-      on E: Exception do
-      begin
-        ShowMessage('Algum item sem quantidade ou sem valor na venda');
+            DM_Vendas.FDQuerySaida_VendaVALOR_PERC_DESCONTO.Value :=
+              soma - DM_Vendas.FDQuerySaida_VendaVALORTOTAL.Value;
+
+          end;
       end;
+    end
+    else
+    begin
+      DM_Vendas.FDQuerySaida_VendaVALORTOTAL.Value :=
+          soma + DM_Vendas.FDQuerySaida_VendaFRETE.Value + desconto;
+    end;
+  Except
+    on E: Exception do
+    begin
+      // ShowMessage('Algum item sem quantidade ou sem valor na venda'+ E);
     end;
   end;
+  DM_Vendas.FDQuerySaida_VendaVALORTOTAL.Value :=
+    DM_Vendas.FDQuerySaida_VendaVALORTOTAL.Value +
+    DM_Vendas.FDQuerySaida_VendaFRETE.Value;
 
 end;
 

@@ -14,7 +14,6 @@ type
     TabSheet1: TTabSheet;
     TabSheet2: TTabSheet;
     Label1: TLabel;
-    DBE_DESCONTO: TDBEdit;
     Label3: TLabel;
     DBEdit2: TDBEdit;
     Label4: TLabel;
@@ -38,6 +37,9 @@ type
     Button3: TButton;
     Produto: TTabSheet;
     CheckBoxEstoqueProduto: TCheckBox;
+    DBE_DESCONTO: TDBEdit;
+    Label2: TLabel;
+    DB_DescMaxUsuario: TDBEdit;
     procedure FormCreate(Sender: TObject);
     procedure Button1Click(Sender: TObject);
     procedure Button3Click(Sender: TObject);

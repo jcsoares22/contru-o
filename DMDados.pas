@@ -42,6 +42,8 @@ type
     FDQueryUsuarioCAD_USU: TStringField;
     FDQueryPreferenciaVALIDAR_ESTOQUE_MINIMO: TStringField;
     FDQueryUsuarioALTERAR_LIMITE_DESC: TStringField;
+    FDQueryUsuarioDESCONTO_VENDA_USU: TCurrencyField;
+    FDQueryPreferenciaDESC_MAX_USUSARIO: TCurrencyField;
     procedure FDQueryUsuarioBeforePost(DataSet: TDataSet);
     procedure DADOSRecover(ASender, AInitiator: TObject; AException: Exception;
       var AAction: TFDPhysConnectionRecoverAction);
@@ -85,22 +87,23 @@ end;
 procedure TDM_Dados.FDQueryUsuarioBeforePost(DataSet: TDataSet);
 /// fazendo a criptografia do sistema
 begin
-  if FDQueryUsuario.State in [dsInsert] then
-  begin
+//retirado devido ao login não ter dado para desciptografar
+  { if FDQueryUsuario.State in [dsInsert] then
+    begin
     FDQueryUsuarioUSU_SENHA.AsAnsiString :=
-      Criptografa('C', FDQueryUsuarioUSU_LOGIN.AsAnsiString);
-  end
-  else if FDQueryUsuario.State in [dsEdit] then
-  begin
+    Criptografa('C', FDQueryUsuarioUSU_LOGIN.AsAnsiString);
+    end
+    else if FDQueryUsuario.State in [dsEdit] then
+    begin
     if (FDQueryUsuarioUSU_SENHA.AsAnsiString <> FDQueryUsuarioUSU_SENHA.OldValue)
     then
     begin
-      FDQueryUsuarioUSU_SENHA.AsAnsiString :=
-        Criptografa('C', FDQueryUsuarioUSU_LOGIN.AsAnsiString);
+    FDQueryUsuarioUSU_SENHA.AsAnsiString :=
+    Criptografa('C', FDQueryUsuarioUSU_LOGIN.AsAnsiString);
 
     end;
 
-  end;
+    end; }
 end;
 
 end.

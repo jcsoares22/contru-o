@@ -48,7 +48,8 @@ uses
   LancamentoFinanceiro in 'LancamentoFinanceiro.pas' {frmLancamentoFinanceiro},
   informacao in 'informacao.pas' {frmInformacao},
   Criptografia in 'Criptografia.pas',
-  loginVendasDesc in 'loginVendasDesc.pas' {frmLoginDescVenda};
+  loginVendasDesc in 'loginVendasDesc.pas' {frmLoginDescVenda},
+  LocalProduto in 'LocalProduto.pas' {frmCadastroLocalProduto};
 
 {$R *.res}
 
@@ -59,15 +60,14 @@ begin
   Application.Initialize;
   Application.MainFormOnTaskbar := True;
 
-  Application.CreateForm(TfrmPrincipal, frmPrincipal);
   Application.CreateForm(TDM_Dados, DM_Dados);
+  Application.CreateForm(TfrmPrincipal, frmPrincipal);
   Application.CreateForm(TDM_Endereco, DM_Endereco);
   Application.CreateForm(TDM_Vendas, DM_Vendas);
   Application.CreateForm(TDM_Finaceiro, DM_Finaceiro);
   Application.CreateForm(TDM_Mov_Estoque, DM_Mov_Estoque);
   Application.CreateForm(TDM_Cadastro, DM_Cadastro);
   Application.CreateForm(TfrmConfiguraBanco, frmConfiguraBanco);
-  Application.CreateForm(TfrmLoginDescVenda, frmLoginDescVenda);
   usuarios := TfrmLogin.Create(nil);
   if usuarios.ShowModal = 1 then
   begin

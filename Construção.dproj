@@ -199,60 +199,49 @@
         <DCCReference Include="Biblioteca.pas"/>
         <DCCReference Include="Orcamento.pas">
             <Form>frmOrcamento</Form>
-            <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="CadastroRapidoCliente.pas">
             <Form>frmCadastroRapidoCliente</Form>
-            <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="PesquisaCliente.pas">
             <Form>frmPesquisaCliente</Form>
-            <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="LoginPreferencia.pas">
             <Form>frmLoginPreferencia</Form>
-            <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="LoginMenu.pas">
             <Form>frmLoginMenu</Form>
-            <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="CadastroUsuarios.pas">
             <Form>frmCadastroUsuario</Form>
-            <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="PesquisaAvancada.pas">
             <Form>frmPesquisaAvancada</Form>
-            <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="PesquisaAvancadaVenda.pas">
             <Form>frmPesquisaAvancadaVenda</Form>
-            <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="EstoqueMinimo.pas">
             <Form>frmEstoqueminimo</Form>
-            <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="EstoqueProduto.pas">
             <Form>frmEstoque</Form>
-            <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="CadastroCondPagamento.pas">
             <Form>frmCadastroCondPagamento</Form>
-            <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="LancamentoFinanceiro.pas">
             <Form>frmLancamentoFinanceiro</Form>
-            <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="informacao.pas">
             <Form>frmInformacao</Form>
-            <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="Criptografia.pas"/>
         <DCCReference Include="loginVendasDesc.pas">
             <Form>frmLoginDescVenda</Form>
-            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="LocalProduto.pas">
+            <Form>frmCadastroLocalProduto</Form>
         </DCCReference>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>

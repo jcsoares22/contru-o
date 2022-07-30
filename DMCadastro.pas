@@ -102,6 +102,12 @@ type
     FDQueryClienteBAIRRO: TStringField;
     FDQueryProdutoQTE_MINIMA: TIntegerField;
     FDQueryCondição_pagamentoTIPO_PAGAMENTO: TStringField;
+    FDQueryLocalProd: TFDQuery;
+    DT_LocalProd: TDataSource;
+    FDQueryLocalProdCODIGO: TIntegerField;
+    FDQueryLocalProdLOCAL: TStringField;
+    FDQueryProdutoCOD_LOCAL: TIntegerField;
+    FDQueryProdutoNUM_LOCAL: TIntegerField;
   private
     { Private declarations }
   public

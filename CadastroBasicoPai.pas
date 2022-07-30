@@ -95,20 +95,22 @@ begin
   Dm_Cadastro.FDQueryGrupo.close;
   Dm_Cadastro.FDQuerySub_grupo.close;
   Dm_Cadastro.FDQueryUnMedida.close;
+  Dm_Cadastro.FDQueryLocalProd.close;
   frmCadastroBasicoPai.Free;
   frmCadastroBasicoPai := nil;
 end;
 
 procedure TfrmCadastroBasicoPai.FormCreate(Sender: TObject);
 begin
-  DM_Cadastro.FDQueryProduto.Open();
+  Dm_Cadastro.FDQueryProduto.Open();
   Dm_Cadastro.FDQueryCores.Open();
   Dm_Cadastro.FDQueryMarca.Open();
   Dm_Cadastro.FDQueryGrupo.Open();
   Dm_Cadastro.FDQuerySub_grupo.Open();
   Dm_Cadastro.FDQueryUnMedida.Open();
-  DM_Cadastro.FDQueryTipoPgto.Open();
-  DM_Cadastro.FDQueryCliente.Open();
+  Dm_Cadastro.FDQueryTipoPgto.Open();
+  Dm_Cadastro.FDQueryCliente.Open();
+  Dm_Cadastro.FDQueryLocalProd.Open();
 end;
 
 end.

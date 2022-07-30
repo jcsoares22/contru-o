@@ -120,6 +120,12 @@ object DM_Vendas: TDM_Vendas
       Origin = 'DIAS_ENTRE_PARCELAS'
       OnChange = FDQuerySaidaProdutoVALORPRODUTOValidate
     end
+    object FDQuerySaida_VendaVALOR_PERC_DESCONTO: TFMTBCDField
+      FieldName = 'VALOR_PERC_DESCONTO'
+      Origin = 'VALOR_PERC_DESCONTO'
+      Precision = 18
+      Size = 6
+    end
   end
   object DT_Saida_Venda: TDataSource
     DataSet = FDQuerySaida_Venda

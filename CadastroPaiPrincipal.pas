@@ -100,6 +100,7 @@ begin
   DM_Cadastro.FDQueryGrupo.close;
   DM_Cadastro.FDQuerySub_grupo.close;
   DM_Cadastro.FDQueryUnMedida.close;
+  DM_Cadastro.FDQueryLocalProd.close;
   DM_Cadastro.FDQueryCondição_pagamento.close;
   DM_Mov_Estoque.FDQueryMovimentoEstoque.close;
   DM_Dados.FDQueryUsuario.close;
@@ -115,6 +116,7 @@ begin
   DM_Cadastro.FDQueryCores.Open();
   DM_Cadastro.FDQueryMarca.Open();
   DM_Cadastro.FDQueryGrupo.Open();
+  DM_Cadastro.FDQueryLocalProd.Open();
   DM_Cadastro.FDQuerySub_grupo.Open();
   DM_Cadastro.FDQueryUnMedida.Open();
   DM_Cadastro.FDQueryCondição_pagamento.Open();

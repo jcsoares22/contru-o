@@ -24,7 +24,7 @@ object frmPreferencia: TfrmPreferencia
     Top = 0
     Width = 891
     Height = 663
-    ActivePage = Produto
+    ActivePage = TabSheet2
     Align = alClient
     TabOrder = 0
     object TabSheet1: TTabSheet
@@ -197,6 +197,14 @@ object frmPreferencia: TfrmPreferencia
         Height = 13
         Caption = '% desconto'
       end
+      object Label2: TLabel
+        Left = 8
+        Top = 39
+        Width = 111
+        Height = 25
+        Caption = 'DESC_MAX_USUSARIO'
+        FocusControl = DB_DescMaxUsuario
+      end
       object DBE_DESCONTO: TDBEdit
         Left = 72
         Top = 3
@@ -206,12 +214,19 @@ object frmPreferencia: TfrmPreferencia
         DataSource = DM_Dados.DT_Preferencia
         TabOrder = 0
       end
+      object DB_DescMaxUsuario: TDBEdit
+        Left = 125
+        Top = 34
+        Width = 134
+        Height = 21
+        DataField = 'DESC_MAX_USUSARIO'
+        DataSource = DM_Dados.DT_Preferencia
+        TabOrder = 1
+      end
     end
     object Produto: TTabSheet
       Caption = 'Produto'
       ImageIndex = 2
-      ExplicitLeft = 8
-      ExplicitTop = 22
       object CheckBoxEstoqueProduto: TCheckBox
         Left = 3
         Top = 16

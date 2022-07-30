@@ -13,6 +13,7 @@ object frmCadastroUsuario: TfrmCadastroUsuario
   OldCreateOrder = False
   OnActivate = FormActivate
   OnClose = FormClose
+  OnCreate = FormCreate
   OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
@@ -207,7 +208,7 @@ object frmCadastroUsuario: TfrmCadastroUsuario
         Top = 161
         Width = 1116
         Height = 438
-        ActivePage = Geral
+        ActivePage = TabSheet4
         Align = alClient
         TabOrder = 1
         object Geral: TTabSheet
@@ -252,11 +253,17 @@ object frmCadastroUsuario: TfrmCadastroUsuario
         object TabSheet3: TTabSheet
           Caption = 'Produtos'
           ImageIndex = 1
-          ExplicitLeft = 0
         end
         object TabSheet4: TTabSheet
           Caption = 'Vendas'
           ImageIndex = 2
+          object Label7: TLabel
+            Left = 204
+            Top = -1
+            Width = 67
+            Height = 13
+            Caption = 'Max desconto'
+          end
           object checkBoxUtrapassarLimite: TRxCheckBox
             Left = 20
             Top = 16
@@ -268,6 +275,16 @@ object frmCadastroUsuario: TfrmCadastroUsuario
             HorizontalAlignment = taLeftJustify
             VerticalAlignment = taAlignTop
             Style = vsNormal
+          end
+          object DBE_DescUsuario: TDBEdit
+            Left = 198
+            Top = 18
+            Width = 73
+            Height = 21
+            DataField = 'DESCONTO_VENDA_USU'
+            DataSource = DM_Dados.DT_Usuario
+            TabOrder = 1
+            OnExit = DBE_DescUsuarioExit
           end
         end
       end

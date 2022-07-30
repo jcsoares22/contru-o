@@ -1,5 +1,5 @@
-inherited frmCadastroDocumento: TfrmCadastroDocumento
-  Caption = 'Cadastro Documento'
+inherited frmCadastroLocalProduto: TfrmCadastroLocalProduto
+  Caption = 'Local produto'
   ExplicitWidth = 1201
   ExplicitHeight = 682
   PixelsPerInch = 96
@@ -10,16 +10,16 @@ inherited frmCadastroDocumento: TfrmCadastroDocumento
     end
   end
   inherited DB_Grid: TDBGrid
-    DataSource = DM_Cadastro.DT_Tipo_Pgto
+    DataSource = DM_Cadastro.DT_LocalProd
     Columns = <
       item
         Expanded = False
-        FieldName = 'ID'
+        FieldName = 'CODIGO'
         Visible = True
       end
       item
         Expanded = False
-        FieldName = 'DESCRICAO'
+        FieldName = 'LOCAL'
         Visible = True
       end>
   end

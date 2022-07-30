@@ -1,3 +1,4 @@
+
 unit DMVendas;
 
 interface
@@ -61,6 +62,7 @@ type
     FDQuerySaida_VendaPARCELA: TIntegerField;
     FDQuerySaida_VendaDIAS_ENTRE_PARCELAS: TIntegerField;
     FDQuerySaidaProdutoVALORPRODUTO: TBCDField;
+    FDQuerySaida_VendaVALOR_PERC_DESCONTO: TFMTBCDField;
     procedure FDQuerySaidaProdutoAfterPost(DataSet: TDataSet);
     procedure FDQuerySaidaProdutoCODPRODUTOValidate(Sender: TField);
     procedure FDQuerySaidaProdutoQUANTIDADESetText(Sender: TField;

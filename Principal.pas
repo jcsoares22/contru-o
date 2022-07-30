@@ -71,6 +71,7 @@ type
     Lancamento_finaceiro: TSpeedButton;
     Image1: TImage;
     Oramentos1: TMenuItem;
+    LocalProduto1: TMenuItem;
 
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure bntClienteClick(Sender: TObject);
@@ -96,6 +97,7 @@ type
     procedure Estoque1Click(Sender: TObject);
     procedure Lancamento_finaceiroClick(Sender: TObject);
     procedure N4Click(Sender: TObject);
+    procedure LocalProduto1Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -116,7 +118,7 @@ uses CadastroCliente, CadastroEstados, CadastroUnidadeMedida,
   CadastroUsuarios, CadastroVendas, CadastroCondPagamento,
   CasdatroContasFincaeiro, CadastroFinanceiro, CadastroDocumento,
   MovimentoEstoque, Orcamento, DMDados, LoginPreferencia, LoginMenu, Biblioteca,
-  EstoqueMinimo, LancamentoFinanceiro, informacao;
+  EstoqueMinimo, LancamentoFinanceiro, informacao, LocalProduto, Login;
 
 procedure TfrmPrincipal.bntClienteClick(Sender: TObject);
 begin
@@ -310,6 +312,15 @@ begin
   end;
 end;
 
+procedure TfrmPrincipal.LocalProduto1Click(Sender: TObject);
+begin
+  fecharTela;
+  if (frmCadastroLocalProduto = nil) then
+    frmCadastroLocalProduto := TFrmCadastroLocalProduto.Create(self);
+  if (not frmCadastroLocalProduto.showing) then
+    frmCadastroLocalProduto.Show;
+end;
+
 procedure TfrmPrincipal.Manutencousurio1Click(Sender: TObject);
 begin
   frmLoginMenu := TFrmLoginMenu.Create(self);
@@ -427,4 +438,5 @@ begin
     frmCadastroVendas.BringToFront;
   end;
 end;
+
 end.

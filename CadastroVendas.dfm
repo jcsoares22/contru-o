@@ -59,26 +59,31 @@
           item
             Expanded = False
             FieldName = 'DATAVENDA'
+            Width = 64
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'VALORTOTAL'
+            Width = 64
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'OBS'
+            Width = 64
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'FRETE'
+            Width = 64
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'COND_PAGAMENTO'
+            Width = 64
             Visible = True
           end
           item
@@ -89,21 +94,25 @@
           item
             Expanded = False
             FieldName = 'ID_SUBCONTA'
+            Width = 64
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'ID_TIPO_PGTO'
+            Width = 64
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'DESCONTO'
+            Width = 64
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'TIPO_DESC'
+            Width = 64
             Visible = True
           end
           item
@@ -114,16 +123,19 @@
           item
             Expanded = False
             FieldName = 'DATA_FATURAMENTO'
+            Width = 64
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'DATA_CANCELAMENTO'
+            Width = 64
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'DATA_ORCAMENTO'
+            Width = 64
             Visible = True
           end>
       end
@@ -615,7 +627,7 @@
           TabOrder = 0
         end
         object btn_Totaliza: TButton
-          Left = 227
+          Left = 240
           Top = 6
           Width = 75
           Height = 25
@@ -653,7 +665,6 @@
           DataSource = DM_Vendas.DT_Saida_Venda
           TabOrder = 4
           OnEnter = DBE_DescontoEnter
-          OnExit = DBE_DescontoExit
         end
         object DBEdit6: TDBEdit
           Left = 19
@@ -664,11 +675,13 @@
           DataSource = DM_Vendas.DT_Saida_Venda
           TabOrder = 5
         end
-        object edtValorDesconto: TEdit
+        object DbValorDesconto: TDBEdit
           Left = 321
           Top = 33
           Width = 121
           Height = 21
+          DataField = 'VALOR_PERC_DESCONTO'
+          DataSource = DM_Vendas.DT_Saida_Venda
           TabOrder = 6
         end
       end
@@ -696,26 +709,31 @@
           item
             Expanded = False
             FieldName = 'NOME_PRODUTO'
+            Width = 64
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'QTE_ESTOQUE'
+            Width = 64
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'QUANTIDADE'
+            Width = 64
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'VALORPRODUTO'
+            Width = 64
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'VALORTOTAL'
+            Width = 64
             Visible = True
           end>
       end

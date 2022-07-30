@@ -172,7 +172,7 @@ inherited frmCadastroProduto: TfrmCadastroProduto
         FocusControl = DBEdit9
       end
       object Label13: TLabel [2]
-        Left = 577
+        Left = 641
         Top = 48
         Width = 28
         Height = 13
@@ -278,17 +278,11 @@ inherited frmCadastroProduto: TfrmCadastroProduto
         FocusControl = DBEdtQTE_Minima
       end
       object DBImage: TImage [16]
-        Left = 631
+        Left = 641
         Top = 67
         Width = 266
         Height = 138
         Stretch = True
-      end
-      object caminhoFoto: TLabel [17]
-        Left = 960
-        Top = 96
-        Width = 3
-        Height = 13
       end
       inherited Panel1: TPanel
         Width = 1119
@@ -419,7 +413,7 @@ inherited frmCadastroProduto: TfrmCadastroProduto
       object Nome_produto: TDBEdit
         Left = 82
         Top = 67
-        Width = 524
+        Width = 391
         Height = 21
         CharCase = ecUpperCase
         DataField = 'PRODUTO'
@@ -436,6 +430,10 @@ inherited frmCadastroProduto: TfrmCadastroProduto
         TabOrder = 13
         object TabSheet3: TTabSheet
           Caption = #192' vista'
+          ExplicitLeft = 0
+          ExplicitTop = 0
+          ExplicitWidth = 0
+          ExplicitHeight = 0
           object Label7: TLabel
             Left = 181
             Top = 48
@@ -628,6 +626,15 @@ inherited frmCadastroProduto: TfrmCadastroProduto
         DataSource = DM_Cadastro.DT_produto
         TabOrder = 18
       end
+      object DBLocal: TDBEdit
+        Left = 597
+        Top = 67
+        Width = 39
+        Height = 21
+        DataField = 'NUM_LOCAL'
+        DataSource = DM_Cadastro.DT_produto
+        TabOrder = 19
+      end
     end
   end
   object Panel3: TPanel
@@ -646,6 +653,18 @@ inherited frmCadastroProduto: TfrmCadastroProduto
       TabOrder = 0
       OnClick = btnEstoqueClick
     end
+  end
+  object DBLookupComboBoxLocalProd: TDBLookupComboBox
+    Left = 481
+    Top = 91
+    Width = 119
+    Height = 21
+    DataField = 'COD_LOCAL'
+    DataSource = DM_Cadastro.DT_produto
+    KeyField = 'CODIGO'
+    ListField = 'LOCAL'
+    ListSource = DM_Cadastro.DT_LocalProd
+    TabOrder = 2
   end
   object OpenDialogImage: TOpenDialog
     Filter = 'bitmap|*.bmp|jpg|*.jpg'

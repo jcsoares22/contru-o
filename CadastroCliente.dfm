@@ -41,31 +41,37 @@ inherited frmCadastroCliente: TfrmCadastroCliente
           item
             Expanded = False
             FieldName = 'TELEFONE'
+            Width = 64
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'CPF'
+            Width = 64
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'EMAIL'
+            Width = 64
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'DESCRICAO'
+            Width = 64
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'RUA'
+            Width = 64
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'NUMERO'
+            Width = 64
             Visible = True
           end
           item
@@ -81,6 +87,7 @@ inherited frmCadastroCliente: TfrmCadastroCliente
           item
             Expanded = False
             FieldName = 'BAIRRO'
+            Width = 64
             Visible = True
           end>
       end
@@ -396,8 +403,8 @@ inherited frmCadastroCliente: TfrmCadastroCliente
       'begin'
       ''
       'end.')
-    Left = 612
-    Top = 296
+    Left = 876
+    Top = 216
     Datasets = <
       item
         DataSet = frxCliente
@@ -544,8 +551,8 @@ inherited frmCadastroCliente: TfrmCadastroCliente
     DataSource = DM_Cadastro.DT_cliente
     BCDToCurrency = False
     DataSetOptions = []
-    Left = 516
-    Top = 232
+    Left = 804
+    Top = 216
   end
   object fdQueryFiltroCliente: TFDQuery
     SQL.Strings = (
@@ -566,12 +573,12 @@ inherited frmCadastroCliente: TfrmCadastroCliente
       'from cidades'
       '   inner join cliente on (cidades.id = cliente.cidade_id)'
       '   inner join estados on (cliente.uf_id = estados.id)')
-    Left = 600
-    Top = 432
+    Left = 800
+    Top = 264
   end
   object PopupMenu1: TPopupMenu
-    Left = 496
-    Top = 328
+    Left = 880
+    Top = 264
     object PesquisaAvanadas1: TMenuItem
       Caption = 'Pesquisa Avan'#231'adas'
       OnClick = Button1Click

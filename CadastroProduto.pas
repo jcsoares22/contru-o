@@ -63,8 +63,9 @@ type
     Label20: TLabel;
     DBEdtQTE_Minima: TDBEdit;
     DBImage: TImage;
-    caminhoFoto: TLabel;
     OpenDialogImage: TOpenDialog;
+    DBLocal: TDBEdit;
+    DBLookupComboBoxLocalProd: TDBLookupComboBox;
     procedure DB_APrazoExit(Sender: TObject);
     procedure DB_AvistaExit(Sender: TObject);
     procedure btnNovoClick(Sender: TObject);
@@ -157,7 +158,7 @@ begin
   begin
     DM_Cadastro.FDQueryProduto.Insert;
   end;
-
+  DBImage.Picture := Nil;
   { prox := 1;
     DM_Cadastro.FDQueryProduto.Active := true;
     DM_Cadastro.FDQueryProduto.Last;
@@ -298,7 +299,6 @@ end;
 procedure TfrmCadastroProduto.btnSalvarClick(Sender: TObject);
 begin
   inherited;
-  DM_Cadastro.FDQueryProdutoFOTO.Value := caminhoFoto.Caption;
   if DBEdtQTE_Minima.Text = '' then
   begin
     ShowMessage('Quantidade minima deve ser informada');
@@ -323,17 +323,14 @@ begin
   inherited;
   if OpenDialogImage.Execute = True then
     DBImage.Picture.LoadFromFile(OpenDialogImage.FileName);
-  caminhoFoto.Caption := ExtractFilePath(OpenDialogImage.FileName) +
-    ExtractFileName(OpenDialogImage.FileName);
-  // + ExtractFieldName(OpenDialogImage.FileName);
 end;
 
 procedure TfrmCadastroProduto.carregafoto;
 begin
   try
     // DM_Cadastro.FDQueryProduto.Prior;
-    caminhoFoto.Caption := DM_Cadastro.FDQueryProdutoFOTO.Value;
-    DBImage.Picture.LoadFromFile(caminhoFoto.Caption);
+
+    DBImage.Picture.LoadFromFile(DM_Cadastro.FDQueryProdutoFOTO.Value);
   except
     DBImage.Picture := Nil;
   end;
@@ -343,18 +340,6 @@ procedure TfrmCadastroProduto.DBGrid_ClienteDblClick(Sender: TObject);
 begin
   inherited;
   carregafoto;
-
-  { verificar o check box no dbgrid
-    if not Assigned(DM_Cadastro.FDQueryProduto.FindField('SITUACAO')) then
-    ModalResult := mrok
-    else
-    begin
-    DM_Cadastro.FDQueryProduto.Edit;
-    DM_Cadastro.FDQueryProduto.FieldByName('SITUACAO').AsInteger :=
-    IfThen(DM_Cadastro.FDQueryProduto.FieldByName('SITUACAO')
-    .AsInteger = 1, 0, 1);
-    DM_Cadastro.FDQueryProduto.Post;
-    end; }
 end;
 
 procedure TfrmCadastroProduto.DBGrid_ClienteDrawColumnCell(Sender: TObject;
@@ -364,22 +349,6 @@ var
   lCheck: Integer;
 begin
   inherited;
-  { configuuração do checjk box do dbgrid
-    if Assigned(DM_Cadastro.FDQueryProduto.FindField('SITUACAO')) and
-    (Column.Index = 0) then
-    begin
-    if (DM_Cadastro.FDQueryProduto.FieldByName('SITUACAO').Value = 1) then
-    lCheck := DFCS_BUTTONCHECK or DFCS_CHECKED
-    else
-    lCheck := DFCS_BUTTONCHECK;
-    DBGrid_Cliente.Canvas.FillRect(Rect);
-    lR := Rect;
-    InflateRect(lR, -2, -2);
-    DrawFrameControl(DBGrid_Cliente.Canvas.Handle, lR, DFC_BUTTON, lCheck);
-    end
-    else
-    DBGrid_Cliente.DefaultDrawColumnCell(Rect, DataCol, Column, State);
-  }
 end;
 
 procedure TfrmCadastroProduto.DBGrid_ClienteTitleClick(Column: TColumn);

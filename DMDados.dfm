@@ -4,11 +4,10 @@ object DM_Dados: TDM_Dados
   Width = 812
   object DADOS: TFDConnection
     Params.Strings = (
-      'Protocol=TCPIP'
+      'Protocol='
       'User_Name=sysdba'
       'Password=masterkey'
       'Database=C:\SYS TEC\BIN\DATA\DADOS\DADOS.FDB'
-      'Port=3050'
       'DriverID=FB')
     FetchOptions.AssignedValues = [evAutoClose]
     FetchOptions.AutoClose = False
@@ -97,6 +96,10 @@ object DM_Dados: TDM_Dados
       Origin = 'VALIDAR_ESTOQUE_MINIMO'
       Size = 1
     end
+    object FDQueryPreferenciaDESC_MAX_USUSARIO: TCurrencyField
+      FieldName = 'DESC_MAX_USUSARIO'
+      Origin = 'DESC_MAX_USUSARIO'
+    end
   end
   object DT_Preferencia: TDataSource
     DataSet = FDQueryPreferencia
@@ -111,7 +114,10 @@ object DM_Dados: TDM_Dados
     UpdateOptions.GeneratorName = 'GEN_USUARIO_ID'
     UpdateOptions.AutoIncFields = 'USU_CODIGO'
     SQL.Strings = (
-      'select * from usuario')
+      'select '
+      '    USU_LOGIN,'
+      '    USU_SENHA'
+      'from usuario')
     Left = 32
     Top = 120
     object FDQueryUsuarioUSU_CODIGO: TIntegerField
@@ -165,6 +171,10 @@ object DM_Dados: TDM_Dados
       FieldName = 'ALTERAR_LIMITE_DESC'
       Origin = 'ALTERAR_LIMITE_DESC'
       Size = 1
+    end
+    object FDQueryUsuarioDESCONTO_VENDA_USU: TCurrencyField
+      FieldName = 'DESCONTO_VENDA_USU'
+      Origin = 'DESCONTO_VENDA_USU'
     end
   end
 end

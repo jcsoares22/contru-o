@@ -48,6 +48,8 @@ type
     checkBoxAdministrador: TRxCheckBox;
     TabSheet4: TTabSheet;
     checkBoxUtrapassarLimite: TRxCheckBox;
+    DBE_DescUsuario: TDBEdit;
+    Label7: TLabel;
     procedure btnNovoClick(Sender: TObject);
     procedure btnSalvarClick(Sender: TObject);
     procedure edt_PesquisaChange(Sender: TObject);
@@ -58,6 +60,9 @@ type
     procedure DBGrid_ClienteDblClick(Sender: TObject);
     procedure DBNavigator1Click(Sender: TObject; Button: TNavigateBtn);
     procedure FormShow(Sender: TObject);
+    procedure DBE_DescUsuarioChange(Sender: TObject);
+    procedure DBE_DescUsuarioExit(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
   private
     { Private declarations }
     procedure verificacaoCheckBoxGeral;
@@ -75,16 +80,18 @@ implementation
 
 {$R *.dfm}
 
-uses Dmdados, LoginMenu;
+uses Dmdados, LoginMenu, Preferencia;
 
 procedure TfrmCadastroUsuario.btnNovoClick(Sender: TObject);
 begin
   // inherited;
-  DM_Dados.FDQueryUsuarioCAD_USU.Value := 'F';
+
   if not(DM_Dados.FDQueryUsuario.State in [dsEdit, dsInsert]) then
   begin
     DM_Dados.FDQueryUsuario.Insert;
   end;
+  DM_Dados.FDQueryUsuarioCAD_USU.Value := 'F';
+
 end;
 
 procedure TfrmCadastroUsuario.btnPesquisaClick(Sender: TObject);
@@ -242,6 +249,47 @@ begin
     DM_Dados.FDQueryUsuarioCAD_USU.Value := 'F';
 end;
 
+procedure TfrmCadastroUsuario.DBE_DescUsuarioChange(Sender: TObject);
+begin
+  { if DBE_DescUsuario.Text > Preferencia.frmPreferencia.DB_DescMaxUsuario.text then
+    begin
+    ShowMessage("Limite maior que permitodo nas preferencia");
+    end;
+  }
+
+end;
+
+procedure TfrmCadastroUsuario.DBE_DescUsuarioExit(Sender: TObject);
+begin
+ // DM_Dados.FDQueryUsuario.Open();
+ try
+     if (DM_Dados.FDQueryUsuario.State in [dsEdit, dsInsert]) then
+  begin DM_Dados.FDQueryPreferencia.Open;
+    if checkBoxUtrapassarLimite.Checked <> true then
+    begin
+      ShowMessage('Marque a opção, Ultra passar limite de desconto');
+      DM_Dados.FDQueryPreferenciaDESC_MAX_USUSARIO.Clear;
+      checkBoxUtrapassarLimite.SetFocus;
+    end;
+    if DBE_DescUsuario.Text >= DM_Dados.FDQueryPreferenciaDESC_MAX_USUSARIO.CurValue
+    then
+    begin
+      ShowMessage('Ultra passou limite de desconto das prreferencia' +
+        FloatToStr(DM_Dados.FDQueryPreferenciaDESC_MAX_USUSARIO.Value) + '%');
+      DM_Dados.FDQueryPreferenciaDESC_MAX_USUSARIO.Clear;
+      checkBoxUtrapassarLimite.SetFocus;
+    end;
+  end;
+ Except
+    on E: Exception do
+    begin
+
+    end;
+
+ end;
+
+end;
+
 procedure TfrmCadastroUsuario.DBGrid_ClienteDblClick(Sender: TObject);
 begin
   Cadastro.TabIndex := 1;
@@ -259,6 +307,7 @@ end;
 procedure TfrmCadastroUsuario.btnEditClick(Sender: TObject);
 begin
   DM_Dados.FDQueryUsuario.Edit;
+  DM_Dados.FDQueryPreferencia.Edit;
   checkBoxGeral;
 end;
 
@@ -278,8 +327,19 @@ procedure TfrmCadastroUsuario.FormClose(Sender: TObject;
   var Action: TCloseAction);
 begin
   DM_Dados.FDQueryUsuario.Close;
+   DM_Dados.FDQueryPreferencia.Close;
   frmLoginMenu.Close;
 
+end;
+
+procedure TfrmCadastroUsuario.FormCreate(Sender: TObject);
+begin
+  DM_Dados.FDQueryUsuario.Close;
+  DM_Dados.FDQueryUsuario.SQL.Add('');
+  DM_Dados.FDQueryUsuario.SQL.Clear;
+  DM_Dados.FDQueryUsuario.SQL.Add('select * from usuario');
+  DM_Dados.FDQueryUsuario.Open();
+  DM_Dados.FDQueryPreferencia.Open();
 end;
 
 procedure TfrmCadastroUsuario.FormShow(Sender: TObject);

@@ -522,10 +522,43 @@
       FieldName = 'QTE_MINIMA'
       Origin = 'QTE_MINIMA'
     end
+    object FDQueryProdutoCOD_LOCAL: TIntegerField
+      FieldName = 'COD_LOCAL'
+      Origin = 'COD_LOCAL'
+    end
+    object FDQueryProdutoNUM_LOCAL: TIntegerField
+      FieldName = 'NUM_LOCAL'
+      Origin = 'NUM_LOCAL'
+    end
   end
   object DT_produto: TDataSource
     DataSet = FDQueryProduto
     Left = 144
     Top = 424
+  end
+  object FDQueryLocalProd: TFDQuery
+    Connection = DM_Dados.DADOS
+    UpdateOptions.AssignedValues = [uvFetchGeneratorsPoint, uvGeneratorName]
+    UpdateOptions.FetchGeneratorsPoint = gpImmediate
+    UpdateOptions.GeneratorName = 'GEN_LOCALPRODUTO_ID'
+    UpdateOptions.AutoIncFields = 'CODIGO'
+    SQL.Strings = (
+      'select * from LOCALPRODUTO')
+    Left = 24
+    Top = 520
+    object FDQueryLocalProdCODIGO: TIntegerField
+      FieldName = 'CODIGO'
+      Origin = 'CODIGO'
+    end
+    object FDQueryLocalProdLOCAL: TStringField
+      FieldName = 'LOCAL'
+      Origin = 'LOCAL'
+      Size = 12
+    end
+  end
+  object DT_LocalProd: TDataSource
+    DataSet = FDQueryLocalProd
+    Left = 128
+    Top = 520
   end
 end
