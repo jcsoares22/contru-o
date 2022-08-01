@@ -49,8 +49,8 @@ begin
     if (DM_Dados.FDQueryUsuario.recordCount > 0) and
       (DM_Dados.FDQueryUsuarioALTERAR_LIMITE_DESC.Value = 'T') then
     begin
-
-      if DM_Vendas.FDQuerySaida_VendaDESCONTO.CurValue >=  percentoVenda then
+        percentoVenda := DM_Dados.FDQueryUsuarioDESCONTO_VENDA_USU.CurValue;
+      if   DM_Vendas.FDQuerySaida_VendaDESCONTO.CurValue > percentoVenda   then
       begin
         ShowMessage('Limte utrapassou o Percentual de desconto do usuario, de '
           + FloatToStr(DM_Dados.FDQueryUsuarioDESCONTO_VENDA_USU.Value) + '%');
