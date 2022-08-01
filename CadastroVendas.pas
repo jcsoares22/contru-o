@@ -206,40 +206,50 @@ Var
   wData: TDate;
   wValorTotal: Double;
 begin
-  wData := Date;
+  { DM_Finaceiro.FDQueryFinanceiro.edit;
+    DM_Vendas.FDQuerySaida_Venda.Edit;
+    DM_Finaceiro.FDQueryFinanceiroCODIGO.Value :=
+    DM_Vendas.FDQuerySaida_VendaCODIGO.Value;
+    wData := date; }
   wValorTotal := DM_Vendas.FDQuerySaida_VendaVALORTOTAL.Value;
   if (DM_Vendas.FDQuerySaida_VendaPARCELA.Value > 0) and
     (DM_Vendas.FDQuerySaida_VendaVALORTOTAL.Value > 0) and
     (DM_Vendas.FDQuerySaida_VendaDIAS_ENTRE_PARCELAS.Value > 0) then
   begin
+
     for k := 1 to DM_Vendas.FDQuerySaida_VendaPARCELA.Value do
     begin
       if not DM_Finaceiro.FDQueryFinanceiro.Locate('SEQ_PARCELA', k, []) then
       begin
         DM_Finaceiro.FDQueryFinanceiro.Append;
-        DM_Finaceiro.FDQueryFinanceiroSEQ_PARCELA.Value := k;
+        DM_Finaceiro.FDQueryFinanceiro.FieldByName('SEQ_PARCELA')
+          .AsInteger := k;
       end
       else
-
         DM_Finaceiro.FDQueryFinanceiro.edit;
-
       wData := wData + DM_Vendas.FDQuerySaida_VendaDIAS_ENTRE_PARCELAS.Value;
       DM_Finaceiro.FDQueryFinanceiroDATA_VENC.AsDateTime := wData;
+
       DM_Finaceiro.FDQueryFinanceiroVLR_PARC.AsCurrency :=
-        DM_Vendas.FDQuerySaida_VendaVALORTOTAL.Value /
-        DM_Vendas.FDQuerySaida_VendaDIAS_ENTRE_PARCELAS.Value;
+
+        DM_Vendas.FDQuerySaida_VendaVALORTOTAL.CurValue /
+        DM_Vendas.FDQuerySaida_VendaPARCELA.Value;
+
       DM_Finaceiro.FDQueryFinanceiro.Post;
-      wValorTotal := wValorTotal - DM_Finaceiro.FDQueryFinanceiroVLR_PARC.Value;
+
+      wValorTotal := wValorTotal -
+        DM_Finaceiro.FDQueryFinanceiroVLR_PARC.CurValue;
     end;
+
     DM_Finaceiro.FDQueryFinanceiro.Last;
-    while DM_Finaceiro.FDQueryFinanceiroSEQ_PARCELA.Value >
+    while DM_Finaceiro.FDQueryFinanceiroSEQ_PARCELA.AsInteger >
       DM_Vendas.FDQuerySaida_VendaPARCELA.Value do
       DM_Finaceiro.FDQueryFinanceiro.Delete;
     if CompareValue(wValorTotal, 0.00, 0.001) <> EqualsValue then
     begin
       DM_Finaceiro.FDQueryFinanceiro.edit;
-      DM_Finaceiro.FDQueryFinanceiroVLR_PARC.Value :=
-        DM_Finaceiro.FDQueryFinanceiroVLR_PARC.Value + wValorTotal;
+      DM_Finaceiro.FDQueryFinanceiroVLR_PARC.AsCurrency :=
+        DM_Finaceiro.FDQueryFinanceiroVLR_PARC.AsCurrency + wValorTotal;
       DM_Finaceiro.FDQueryFinanceiro.Post;
     end;
     DM_Finaceiro.FDQueryFinanceiro.First;
@@ -264,7 +274,7 @@ begin
   btnNovo.Enabled := false;
   btnEdit.Enabled := false;
   btnDeletar.Enabled := false;
-  DM_Vendas.FDQuerySaida_VendaDATAVENDA.AsDateTime := Date;
+  DM_Vendas.FDQuerySaida_VendaDATAVENDA.AsDateTime := date;
   DM_Vendas.FDQuerySaida_VendaUSU_NOME.Text :=
     DM_Dados.FDQueryUsuarioUSU_NOME.AsString;
 end;
@@ -644,7 +654,7 @@ begin
     else
     begin
       DM_Vendas.FDQuerySaida_VendaVALORTOTAL.Value :=
-          soma + DM_Vendas.FDQuerySaida_VendaFRETE.Value + desconto;
+        soma + DM_Vendas.FDQuerySaida_VendaFRETE.Value + desconto;
     end;
   Except
     on E: Exception do

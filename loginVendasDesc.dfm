@@ -3,6 +3,7 @@ inherited frmLoginDescVenda: TfrmLoginDescVenda
   Caption = 'Desconto'
   ClientHeight = 134
   ClientWidth = 213
+  OnCreate = FormCreate
   ExplicitWidth = 219
   ExplicitHeight = 163
   PixelsPerInch = 96

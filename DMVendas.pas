@@ -1,4 +1,3 @@
-
 unit DMVendas;
 
 interface
@@ -74,8 +73,6 @@ type
     procedure FDQuerySaidaProdutoVALORPRODUTOValidate(Sender: TField);
     procedure FDQuerySaidaProdutoAfterScroll(DataSet: TDataSet);
     procedure FDQuerySaidaProdutoBeforePost(DataSet: TDataSet);
-    procedure FDQuerySaidaProdutoNewRecord(DataSet: TDataSet);
-    procedure FDQuerySaida_VendaVALORTOTALChange(Sender: TField);
   private
     { Private declarations }
   public
@@ -119,22 +116,22 @@ end;
 
 procedure TDM_Vendas.FDQuerySaidaProdutoBeforePost(DataSet: TDataSet);
 begin
-  DM_Cadastro.FDQueryProduto.Open();
-  DM_Cadastro.FDQueryProduto.Edit;
-  DM_Cadastro.FDQueryProdutoQUANTIDADE_ATUAL.Value :=
-    (DM_Cadastro.FDQueryProdutoQUANTIDADE_ATUAL.Value -
-    DM_Vendas.FDQuerySaidaProdutoQUANTIDADE.Value);
+   DM_Cadastro.FDQueryProduto.Open();
+  if  DM_Cadastro.FDQueryProduto.Locate('CODIGO',
+    DM_Vendas.DTProduto.DataSet.FieldByName('CODPRODUTO').Value, []) then
+  begin
+    DM_Cadastro.FDQueryProduto.Edit;
+    DM_Cadastro.FDQueryProdutoQUANTIDADE_ATUAL.Value :=
+      (DM_Cadastro.FDQueryProdutoQUANTIDADE_ATUAL.Value -
+      DM_Vendas.FDQuerySaidaProdutoQUANTIDADE.Value);
+
+  end;
 end;
 
 procedure TDM_Vendas.FDQuerySaidaProdutoCODPRODUTOValidate(Sender: TField);
 begin
   { DM_Vendas.FDQuerySaidaProdutoVALORPRODUTO :=
     DM_Cadastro.FDQueryProdutoPRECO_VENDA; }
-end;
-
-procedure TDM_Vendas.FDQuerySaidaProdutoNewRecord(DataSet: TDataSet);
-begin
-  FDQuerySaidaProdutoCODIGO.Value := FDQuerySaida_VendaCODIGO.Value;
 end;
 
 procedure TDM_Vendas.FDQuerySaidaProdutoQUANTIDADESetText(Sender: TField;
@@ -153,8 +150,8 @@ begin
     FDQuerySaidaProdutoQUANTIDADE.Value := 1;
   end;
   FDQuerySaidaProdutoVALORTOTAL.AsFloat :=
-      FDQuerySaidaProdutoVALORPRODUTO.AsFloat *
-          FDQuerySaidaProdutoQUANTIDADE.AsFloat;
+    FDQuerySaidaProdutoVALORPRODUTO.AsFloat *
+    FDQuerySaidaProdutoQUANTIDADE.AsFloat;
 
 end;
 
@@ -198,53 +195,6 @@ begin // validação do tipo de pagamento
 
   end;
 
-end;
-
-procedure TDM_Vendas.FDQuerySaida_VendaVALORTOTALChange(Sender: TField);
-Var
-  k: Integer;
-  wData: TDate;
-  wValorTotal: Double;
-begin
-  wData := date;
-  wValorTotal := FDQuerySaida_VendaVALORTOTAL.Value;
-  if (FDQuerySaida_VendaPARCELA.Value > 0) and
-    (FDQuerySaida_VendaVALORTOTAL.Value > 0) and
-    (FDQuerySaida_VendaDIAS_ENTRE_PARCELAS.Value > 0) then
-  begin
-    for k := 1 to FDQuerySaida_VendaPARCELA.Value do
-    begin
-      if not DM_Finaceiro.FDQueryFinanceiro.Locate('SEQ_PARCELA', k, []) then
-      begin
-        DM_Finaceiro.FDQueryFinanceiro.Append;
-        DM_Finaceiro.FDQueryFinanceiro.FieldByName('SEQ_PARCELA')
-          .AsInteger := k;
-      end
-      else
-        DM_Finaceiro.FDQueryFinanceiro.Edit;
-      wData := wData + FDQuerySaida_VendaDIAS_ENTRE_PARCELAS.Value;
-      DM_Finaceiro.FDQueryFinanceiroDATA_VENC.AsDateTime := wData;
-      DM_Finaceiro.FDQueryFinanceiroVLR_PARC.AsCurrency :=
-        FDQuerySaida_VendaVALORTOTAL.Value /
-        FDQuerySaida_VendaDIAS_ENTRE_PARCELAS.Value;
-      DM_Finaceiro.FDQueryFinanceiro.Post;
-
-      wValorTotal := wValorTotal - DM_Finaceiro.FDQueryFinanceiroVLR_PARC.Value;
-    end;
-
-    DM_Finaceiro.FDQueryFinanceiro.Last;
-    while DM_Finaceiro.FDQueryFinanceiroSEQ_PARCELA.AsInteger >
-      FDQuerySaida_VendaPARCELA.Value do
-      DM_Finaceiro.FDQueryFinanceiro.Delete;
-    if CompareValue(wValorTotal, 0.00, 0.001) <> EqualsValue then
-    begin
-      DM_Finaceiro.FDQueryFinanceiro.Edit;
-      DM_Finaceiro.FDQueryFinanceiroVLR_PARC.AsCurrency :=
-        DM_Finaceiro.FDQueryFinanceiroVLR_PARC.AsCurrency + wValorTotal;
-      DM_Finaceiro.FDQueryFinanceiro.Post;
-    end;
-    DM_Finaceiro.FDQueryFinanceiro.First;
-  end;
 end;
 
 end.

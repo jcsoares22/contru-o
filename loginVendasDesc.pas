@@ -10,6 +10,7 @@ uses
 type
   TfrmLoginDescVenda = class(TfrmLoginMenu)
     procedure btnClickLoginClick(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
   private
     { Private declarations }
   public
@@ -44,11 +45,12 @@ begin
     DM_Dados.FDQueryUsuario.ParamByName('senha').AsString := edtSenha.Text;
     DM_Dados.FDQueryUsuario.Open;
 
+
     if (DM_Dados.FDQueryUsuario.recordCount > 0) and
       (DM_Dados.FDQueryUsuarioALTERAR_LIMITE_DESC.Value = 'T') then
     begin
-      if DM_Vendas.FDQuerySaida_VendaDESCONTO.CurValue >
-        DM_Dados.FDQueryUsuarioDESCONTO_VENDA_USU.CurValue then
+
+      if DM_Vendas.FDQuerySaida_VendaDESCONTO.CurValue >=  percentoVenda then
       begin
         ShowMessage('Limte utrapassou o Percentual de desconto do usuario, de '
           + FloatToStr(DM_Dados.FDQueryUsuarioDESCONTO_VENDA_USU.Value) + '%');
@@ -83,6 +85,12 @@ begin
     end;
 
   end;
+end;
+
+procedure TfrmLoginDescVenda.FormCreate(Sender: TObject);
+begin
+  inherited;
+    DM_Vendas.FDQuerySaida_Venda.Open();
 end;
 
 end.
