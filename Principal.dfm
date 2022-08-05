@@ -16,9 +16,10 @@ object frmPrincipal: TfrmPrincipal
   Position = poScreenCenter
   WindowState = wsMaximized
   OnClose = FormClose
+  OnCreate = FormCreate
   PixelsPerInch = 96
   TextHeight = 13
-  object Image1: TImage
+  object Foto: TImage
     Left = 0
     Top = 49
     Width = 1186
@@ -2398,9 +2399,7 @@ object frmPrincipal: TfrmPrincipal
       DA6D31163D30D888886186223FCEC9F7EFECB2CB2FF65FECB33333333C433333
       333333333333333333333C09FBD5FFD9}
     Stretch = True
-    ExplicitLeft = 8
     ExplicitTop = 51
-    ExplicitHeight = 687
   end
   object Panel2: TPanel
     Left = 0
@@ -2443,10 +2442,6 @@ object frmPrincipal: TfrmPrincipal
     TabOrder = 1
     object TabSheet1: TTabSheet
       Caption = 'Cadastro'
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object Panel1: TPanel
         Left = 0
         Top = 0
@@ -3062,10 +3057,6 @@ object frmPrincipal: TfrmPrincipal
     object TabSheet3: TTabSheet
       Caption = 'Financeiro'
       ImageIndex = 2
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object Panel4: TPanel
         Left = 0
         Top = 0

@@ -100,6 +100,11 @@ object DM_Dados: TDM_Dados
       FieldName = 'DESC_MAX_USUSARIO'
       Origin = 'DESC_MAX_USUSARIO'
     end
+    object FDQueryPreferenciaFOTO: TStringField
+      FieldName = 'FOTO'
+      Origin = 'FOTO'
+      Size = 150
+    end
   end
   object DT_Preferencia: TDataSource
     DataSet = FDQueryPreferencia

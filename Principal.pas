@@ -69,7 +69,7 @@ type
     Panel4: TPanel;
     Button1: TButton;
     Lancamento_finaceiro: TSpeedButton;
-    Image1: TImage;
+    Foto: TImage;
     Oramentos1: TMenuItem;
     LocalProduto1: TMenuItem;
 
@@ -98,8 +98,14 @@ type
     procedure Lancamento_finaceiroClick(Sender: TObject);
     procedure N4Click(Sender: TObject);
     procedure LocalProduto1Click(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
   private
     { Private declarations }
+    procedure WMNCActivate(var M: TMessage); message WM_NCACTIVATE;
+
+    procedure WMNCPaint(var M: TMessage); message WM_NCPAINT;
+
+    procedure Titulo(wParam: Integer);
   public
     { Public declarations }
 
@@ -252,6 +258,18 @@ begin
     Application.Terminate;
   end;
   Abort;
+end;
+
+procedure TfrmPrincipal.FormCreate(Sender: TObject);
+begin
+  DM_Dados.FDQueryPreferencia.Open();
+  try
+    // DM_Cadastro.FDQueryProduto.Prior;
+
+    Foto.Picture.LoadFromFile(DM_Dados.FDQueryPreferenciaFOTO.Value);
+  except
+    Foto.Picture := Nil;
+  end;
 end;
 
 procedure TfrmPrincipal.Grupo1Click(Sender: TObject);
@@ -411,6 +429,50 @@ begin
   StatusBar1.Panels[3].Text := 'Data.: ' + DateToStr(Date);
 end;
 
+procedure TfrmPrincipal.Titulo(wParam: Integer);
+var
+  DC: THandle;
+  R1, R2: TRect;
+begin
+  DC := GetWindowDC(Handle);
+  try
+    SetWindowText(Handle, nil);
+    GetWindowRect(Handle, R2);
+
+    R1.Left := GetSystemMetrics(SM_CXSIZE)
+
+      + GetSystemMetrics(SM_CXBORDER) + GetSystemMetrics(SM_CXFRAME);
+
+    R1.Top := GetSystemMetrics(SM_CYFRAME);
+
+    R1.Right := R2.Right - R2.Left - R1.Left
+
+      - 2 * GetSystemMetrics(SM_CXSIZE);
+
+    R1.Bottom := R1.Top + GetSystemMetrics(SM_CYSIZE);
+
+    if wParam = 1 then
+
+      SetBkColor(DC, GetSysColor(COLOR_ACTIVECAPTION))
+
+    else
+
+      SetBkColor(DC, GetSysColor(COLOR_INACTIVECAPTION));
+
+    SetTextColor(DC, GetSysColor(COLOR_CAPTIONTEXT));
+
+    DrawText(DC, 'A la izquierda', -1, R1, DT_LEFT or DT_VCENTER);
+
+    DrawText(DC, 'A la derecha', -1, R1, DT_RIGHT or DT_VCENTER);
+
+    DrawIcon(DC, R1.Left, R1.Top + 3, Application.Icon.Handle);
+
+  finally
+    ReleaseDC(Handle, DC);
+
+  end;
+end;
+
 procedure TfrmPrincipal.Unidademedida1Click(Sender: TObject);
 begin
   fecharTela;
@@ -437,6 +499,22 @@ begin
       frmCadastroVendas.Visible := True;
     frmCadastroVendas.BringToFront;
   end;
+end;
+
+procedure TfrmPrincipal.WMNCActivate(var M: TMessage);
+begin
+  DefWindowProc(Handle, M.Msg, M.wParam, M.lParam);
+
+  Titulo(1);
+end;
+
+procedure TfrmPrincipal.WMNCPaint(var M: TMessage);
+begin
+  DefWindowProc(Handle, M.Msg, M.wParam, M.lParam);
+
+  Titulo(M.wParam);
+
+  M.Result := 1;
 end;
 
 end.

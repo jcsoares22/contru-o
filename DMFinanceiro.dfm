@@ -5,6 +5,7 @@ object DM_Finaceiro: TDM_Finaceiro
   object FDQueryFinanceiro: TFDQuery
     OnNewRecord = FDQueryFinanceiroNewRecord
     IndexFieldNames = 'CODIGO'
+    MasterSource = DM_Cadastro.DataSourcetIPO_CONTA
     Connection = DM_Dados.DADOS
     SQL.Strings = (
       'select * from lancamento_financeiro')

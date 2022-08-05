@@ -79,7 +79,6 @@ type
     FDQueryProdutoCOR: TStringField;
     FDQueryProdutoFOTO: TStringField;
     FDQueryProdutoMARCA: TStringField;
-    FDQueryProdutoBAIRRO: TStringField;
     FDQueryProdutoPRECENTO_LUCRO: TCurrencyField;
     FDQueryProdutoPRECO_PRAZO_CUSTO: TBCDField;
     FDQueryProdutoPRECO_PRAZO_VENDA: TBCDField;

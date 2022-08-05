@@ -63,9 +63,9 @@ type
     Label20: TLabel;
     DBEdtQTE_Minima: TDBEdit;
     DBImage: TImage;
-    OpenDialogImage: TOpenDialog;
     DBLocal: TDBEdit;
     DBLookupComboBoxLocalProd: TDBLookupComboBox;
+    OpenDialogImage: TOpenDialog;
     procedure DB_APrazoExit(Sender: TObject);
     procedure DB_AvistaExit(Sender: TObject);
     procedure btnNovoClick(Sender: TObject);

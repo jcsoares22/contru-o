@@ -469,11 +469,6 @@
       Origin = 'MARCA'
       Size = 15
     end
-    object FDQueryProdutoBAIRRO: TStringField
-      FieldName = 'BAIRRO'
-      Origin = 'BAIRRO'
-      Size = 40
-    end
     object FDQueryProdutoPRECENTO_LUCRO: TCurrencyField
       FieldName = 'PRECENTO_LUCRO'
       Origin = 'PRECENTO_LUCRO'

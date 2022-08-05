@@ -24,11 +24,13 @@ object frmPreferencia: TfrmPreferencia
     Top = 0
     Width = 891
     Height = 663
-    ActivePage = TabSheet2
+    ActivePage = TabSheet1
     Align = alClient
     TabOrder = 0
     object TabSheet1: TTabSheet
       Caption = 'Informa'#231#227'o'
+      ExplicitLeft = 8
+      ExplicitTop = 22
       object Label3: TLabel
         Left = 24
         Top = 56
@@ -98,6 +100,19 @@ object frmPreferencia: TfrmPreferencia
         Height = 13
         Caption = 'BAIRRO'
         FocusControl = DBEdit11
+      end
+      object imageLogo: TImage
+        Left = 24
+        Top = 256
+        Width = 105
+        Height = 105
+      end
+      object SpeedButton1: TSpeedButton
+        Left = 105
+        Top = 367
+        Width = 23
+        Height = 22
+        OnClick = SpeedButton1Click
       end
       object DBEdit2: TDBEdit
         Left = 24
@@ -186,6 +201,15 @@ object frmPreferencia: TfrmPreferencia
         ListSource = DM_Endereco.DT_Estados
         TabOrder = 8
       end
+      object btnLogo: TButton
+        Left = 24
+        Top = 367
+        Width = 75
+        Height = 25
+        Caption = 'Carregar'
+        TabOrder = 9
+        OnClick = btnLogoClick
+      end
     end
     object TabSheet2: TTabSheet
       Caption = 'venda'
@@ -201,7 +225,7 @@ object frmPreferencia: TfrmPreferencia
         Left = 8
         Top = 39
         Width = 111
-        Height = 25
+        Height = 13
         Caption = 'DESC_MAX_USUSARIO'
         FocusControl = DB_DescMaxUsuario
       end
@@ -273,5 +297,10 @@ object frmPreferencia: TfrmPreferencia
       TabOrder = 2
       OnClick = Button3Click
     end
+  end
+  object OpenDialogImage: TOpenDialog
+    Filter = 'bitmap|*.bmp|jpg|*.jpg'
+    Left = 79
+    Top = 472
   end
 end

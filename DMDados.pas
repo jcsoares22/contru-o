@@ -44,6 +44,7 @@ type
     FDQueryUsuarioALTERAR_LIMITE_DESC: TStringField;
     FDQueryUsuarioDESCONTO_VENDA_USU: TCurrencyField;
     FDQueryPreferenciaDESC_MAX_USUSARIO: TCurrencyField;
+    FDQueryPreferenciaFOTO: TStringField;
     procedure FDQueryUsuarioBeforePost(DataSet: TDataSet);
     procedure DADOSRecover(ASender, AInitiator: TObject; AException: Exception;
       var AAction: TFDPhysConnectionRecoverAction);

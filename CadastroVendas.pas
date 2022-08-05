@@ -227,7 +227,7 @@ begin
       end
       else
         DM_Finaceiro.FDQueryFinanceiro.edit;
-      wData := wData + DM_Vendas.FDQuerySaida_VendaDIAS_ENTRE_PARCELAS.Value;
+     wData := wData + DM_Vendas.FDQuerySaida_VendaDIAS_ENTRE_PARCELAS.Value;
       DM_Finaceiro.FDQueryFinanceiroDATA_VENC.AsDateTime := wData;
 
       DM_Finaceiro.FDQueryFinanceiroVLR_PARC.AsCurrency :=

@@ -6,7 +6,7 @@ uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
   System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ComCtrls, Vcl.StdCtrls, Vcl.Mask,
-  Vcl.DBCtrls, Vcl.ExtCtrls;
+  Vcl.DBCtrls, Vcl.ExtCtrls, Vcl.Buttons;
 
 type
   TfrmPreferencia = class(TForm)
@@ -40,6 +40,10 @@ type
     DBE_DESCONTO: TDBEdit;
     Label2: TLabel;
     DB_DescMaxUsuario: TDBEdit;
+    OpenDialogImage: TOpenDialog;
+    imageLogo: TImage;
+    btnLogo: TButton;
+    SpeedButton1: TSpeedButton;
     procedure FormCreate(Sender: TObject);
     procedure Button1Click(Sender: TObject);
     procedure Button3Click(Sender: TObject);
@@ -48,6 +52,8 @@ type
     procedure Button4Click(Sender: TObject);
     procedure FormActivate(Sender: TObject);
     procedure FormShow(Sender: TObject);
+    procedure btnLogoClick(Sender: TObject);
+    procedure SpeedButton1Click(Sender: TObject);
   private
     { Private declarations }
 
@@ -65,6 +71,14 @@ implementation
 {$R *.dfm}
 
 uses DMDados, DMEndereco, LoginPreferencia;
+
+procedure TfrmPreferencia.btnLogoClick(Sender: TObject);
+begin
+if OpenDialogImage.Execute = True then
+    DM_Dados.FDQueryPreferenciaFOTO.Value :=  OpenDialogImage.FileName;
+    imageLogo.Picture.LoadFromFile(DM_Dados.FDQueryPreferenciaFOTO.Value);
+
+end;
 
 procedure TfrmPreferencia.Button1Click(Sender: TObject);
 begin
@@ -114,11 +128,24 @@ begin
   DM_Dados.FDQueryPreferencia.open();
   DM_Endereco.FDQueryCidade.open();
   DM_Endereco.FDQueryEstados.open();
+  try
+    // DM_Cadastro.FDQueryProduto.Prior;
+
+    imageLogo.Picture.LoadFromFile(DM_Dados.FDQueryPreferenciaFOTO.Value);
+  except
+    imageLogo.Picture := Nil;
+  end;
 end;
 
 procedure TfrmPreferencia.FormShow(Sender: TObject);
 begin
 VerificaCheckBoxProduto;
+end;
+
+procedure TfrmPreferencia.SpeedButton1Click(Sender: TObject);
+begin
+DM_Dados.FDQueryPreferenciaFOTO.Clear;
+ imageLogo.Picture := Nil;
 end;
 
 procedure TfrmPreferencia.ValidaCheckBoxProduto;

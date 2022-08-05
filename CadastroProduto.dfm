@@ -10,6 +10,7 @@ inherited frmCadastroProduto: TfrmCadastroProduto
   inherited Cadastro: TPageControl
     Width = 1127
     Height = 634
+    ActivePage = TabSheet1
     ExplicitWidth = 1127
     ExplicitHeight = 634
     inherited TabSheet1: TTabSheet
@@ -37,31 +38,37 @@ inherited frmCadastroProduto: TfrmCadastroProduto
           item
             Expanded = False
             FieldName = 'PRODUTO'
+            Width = 64
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'UN_MEDIDA'
+            Width = 64
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'PRECO_CUSTO'
+            Width = 64
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'PRECO_VENDA'
+            Width = 64
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'OBS'
+            Width = 64
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'DATACAD'
+            Width = 64
             Visible = True
           end
           item
@@ -72,6 +79,7 @@ inherited frmCadastroProduto: TfrmCadastroProduto
           item
             Expanded = False
             FieldName = 'DATAVENDA'
+            Width = 64
             Visible = True
           end
           item
@@ -82,6 +90,7 @@ inherited frmCadastroProduto: TfrmCadastroProduto
           item
             Expanded = False
             FieldName = 'COR'
+            Width = 64
             Visible = True
           end
           item
@@ -92,11 +101,13 @@ inherited frmCadastroProduto: TfrmCadastroProduto
           item
             Expanded = False
             FieldName = 'FOTO'
+            Width = 64
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'MARCA'
+            Width = 64
             Visible = True
           end
           item
@@ -107,21 +118,25 @@ inherited frmCadastroProduto: TfrmCadastroProduto
           item
             Expanded = False
             FieldName = 'PRECENTO_LUCRO'
+            Width = 64
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'PRECO_PRAZO_CUSTO'
+            Width = 64
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'PRECO_PRAZO_VENDA'
+            Width = 64
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'PRECENTO_PRAZO_LUCRO'
+            Width = 64
             Visible = True
           end
           item
@@ -137,6 +152,7 @@ inherited frmCadastroProduto: TfrmCadastroProduto
           item
             Expanded = False
             FieldName = 'ID_SUBGRUPO'
+            Width = 64
             Visible = True
           end>
       end
@@ -151,8 +167,8 @@ inherited frmCadastroProduto: TfrmCadastroProduto
       end
     end
     inherited TabSheet2: TTabSheet
-      ExplicitLeft = 4
-      ExplicitTop = 24
+      ExplicitLeft = 8
+      ExplicitTop = 22
       ExplicitWidth = 1119
       ExplicitHeight = 606
       object Label1: TLabel [0]
@@ -430,10 +446,6 @@ inherited frmCadastroProduto: TfrmCadastroProduto
         TabOrder = 13
         object TabSheet3: TTabSheet
           Caption = #192' vista'
-          ExplicitLeft = 0
-          ExplicitTop = 0
-          ExplicitWidth = 0
-          ExplicitHeight = 0
           object Label7: TLabel
             Left = 181
             Top = 48
