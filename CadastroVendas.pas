@@ -101,6 +101,8 @@ type
     btnCancelar: TButton;
     btnImprimir: TBitBtn;
     DBNavigator1: TDBNavigator;
+    frVendas: TfrxReport;
+    frCliente2: TfrxReport;
     procedure DBGridVendasExit(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure btnNovoClick(Sender: TObject);
@@ -445,12 +447,12 @@ end;
 
 procedure TfrmCadastroVendas.Cliente1Click(Sender: TObject);
 begin
- // CarregaRelatorio(frVendas);
+  CarregaRelatorio(frVendas);
 end;
 
 procedure TfrmCadastroVendas.Cliente21Click(Sender: TObject);
 begin
- // CarregaRelatorio(frCliente2);
+ CarregaRelatorio(frCliente2);
 end;
 
 procedure TfrmCadastroVendas.DBC_DescontoChange(Sender: TObject);

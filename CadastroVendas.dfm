@@ -29,8 +29,6 @@
     ActivePage = TabSheet2
     Align = alClient
     TabOrder = 0
-    ExplicitTop = 0
-    ExplicitHeight = 644
     object TabSheet1: TTabSheet
       Caption = 'Pesquisar'
       object DBGrid_Venda: TDBGrid
@@ -217,7 +215,6 @@
     object TabSheet2: TTabSheet
       Caption = 'Cadastro'
       ImageIndex = 1
-      ExplicitHeight = 616
       object Panel1: TPanel
         Left = 0
         Top = 0
@@ -541,7 +538,6 @@
         Height = 105
         Align = alBottom
         TabOrder = 1
-        ExplicitTop = 511
         object Label14: TLabel
           Left = 17
           Top = 1
@@ -711,9 +707,6 @@
     Color = clMenuHighlight
     ParentBackground = False
     TabOrder = 2
-    ExplicitLeft = 8
-    ExplicitTop = 8
-    ExplicitWidth = 1158
     object btnNovo: TButton
       Left = 12
       Top = 9
@@ -804,7 +797,7 @@
       '    saida_venda.tipo_desc,'
       '    saida_venda.desconto'
       'from saida_venda')
-    Left = 116
+    Left = 596
     Top = 392
     object FDQueryVendasCliente2DATAVENDA: TSQLTimeStampField
       FieldName = 'DATAVENDA'
@@ -852,8 +845,8 @@
     end
   end
   object PopupMenuMause: TPopupMenu
-    Left = 500
-    Top = 336
+    Left = 596
+    Top = 312
     object Produto1: TMenuItem
       Caption = 'Produto'
     end
@@ -862,5 +855,47 @@
     Filter = 'bitmap|*.bmp|jpg|*.jpg'
     Left = 884
     Top = 256
+  end
+  object frVendas: TfrxReport
+    Version = '2022.2.10'
+    DotMatrixReport = False
+    IniFile = '\Software\Fast Reports'
+    PreviewOptions.Buttons = [pbPrint, pbLoad, pbSave, pbExport, pbZoom, pbFind, pbOutline, pbPageSetup, pbTools, pbEdit, pbNavigator, pbExportQuick, pbCopy, pbSelection]
+    PreviewOptions.Zoom = 1.000000000000000000
+    PrintOptions.Printer = 'Default'
+    PrintOptions.PrintOnSheet = 0
+    ReportOptions.CreateDate = 44784.998324895830000000
+    ReportOptions.LastChange = 44784.998324895830000000
+    ScriptLanguage = 'PascalScript'
+    ScriptText.Strings = (
+      'begin'
+      ''
+      'end.')
+    Left = 756
+    Top = 249
+    Datasets = <>
+    Variables = <>
+    Style = <>
+  end
+  object frCliente2: TfrxReport
+    Version = '2022.2.10'
+    DotMatrixReport = False
+    IniFile = '\Software\Fast Reports'
+    PreviewOptions.Buttons = [pbPrint, pbLoad, pbSave, pbExport, pbZoom, pbFind, pbOutline, pbPageSetup, pbTools, pbEdit, pbNavigator, pbExportQuick, pbCopy, pbSelection]
+    PreviewOptions.Zoom = 1.000000000000000000
+    PrintOptions.Printer = 'Default'
+    PrintOptions.PrintOnSheet = 0
+    ReportOptions.CreateDate = 44784.998324895830000000
+    ReportOptions.LastChange = 44784.998324895830000000
+    ScriptLanguage = 'PascalScript'
+    ScriptText.Strings = (
+      'begin'
+      ''
+      'end.')
+    Left = 748
+    Top = 321
+    Datasets = <>
+    Variables = <>
+    Style = <>
   end
 end
