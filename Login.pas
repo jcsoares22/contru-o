@@ -19,6 +19,7 @@ type
     procedure btnClickLoginClick(Sender: TObject);
     procedure btn_CancelarClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
   private
     { Private declarations }
     procedure lerRegistro;
@@ -77,7 +78,7 @@ begin
     showmessage('Senha ou login incorreto');
   end;
   Reg := TRegistry.Create;
-  Reg.WriteString('Usuario', DM_Dados.FDQueryUsuarioUSU_NOME.AsString);
+
 end;
 
 procedure TfrmLogin.btn_CancelarClick(Sender: TObject);
@@ -85,6 +86,13 @@ begin
 
   Application.Terminate;
 
+end;
+
+procedure TfrmLogin.FormClose(Sender: TObject; var Action: TCloseAction);
+var
+  Reg: TRegistry;
+begin
+ //Reg.WriteString('Usuario', DM_Dados.FDQueryUsuarioUSU_NOME.Value);
 end;
 
 procedure TfrmLogin.FormCreate(Sender: TObject);
@@ -101,7 +109,7 @@ begin
       Reg.OpenKey('SYSTEC\Conexao', false);
       if Reg.ValueExists('Dados') then
       begin
-        edtLogin.Text := Reg.ReadString('Usuario');
+       // edtLogin.Text := Reg.ReadString('Usuario');
         frmConfiguraBanco.edtConfiguraBanco.Text := Reg.ReadString('Dados');
         // showmessage(frmConfiguraBanco.edtConfiguraBanco.Text);
         lerRegistro;
