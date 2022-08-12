@@ -37,9 +37,7 @@ var
   chave: String;
   Reg: TRegistry;
   nomeBanco: String;
-  usuario: String;
 begin
-  usuario := '25';
   // verificaBanco;
   Reg := TRegistry.Create;
   try
@@ -56,7 +54,7 @@ begin
       { Abre a chave (path). Se não existir, cria e abre. }
       Reg.OpenKey('SYSTEC\Conexao', True);
       { Escrevendo uma Strinf }
-      // Reg.WriteString('Usuario', usuario);
+
       Reg.WriteString('Dados', edtConfiguraBanco.Text);
 
       ShowMessage('Salvo com sucesso');

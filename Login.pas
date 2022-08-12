@@ -77,7 +77,11 @@ begin
     ModalResult := mrNone; // colocando para pode entrar no sistema
     showmessage('Senha ou login incorreto');
   end;
+  //savando o ultimo login
   Reg := TRegistry.Create;
+  Reg.RootKey := HKEY_CURRENT_USER;
+  Reg.OpenKey('SYSTEC\Conexao', True);
+  Reg.WriteString('Usuario', edtLogin.Text);
 
 end;
 
@@ -92,7 +96,7 @@ procedure TfrmLogin.FormClose(Sender: TObject; var Action: TCloseAction);
 var
   Reg: TRegistry;
 begin
- //Reg.WriteString('Usuario', DM_Dados.FDQueryUsuarioUSU_NOME.Value);
+
 end;
 
 procedure TfrmLogin.FormCreate(Sender: TObject);
@@ -109,10 +113,10 @@ begin
       Reg.OpenKey('SYSTEC\Conexao', false);
       if Reg.ValueExists('Dados') then
       begin
-       // edtLogin.Text := Reg.ReadString('Usuario');
         frmConfiguraBanco.edtConfiguraBanco.Text := Reg.ReadString('Dados');
         // showmessage(frmConfiguraBanco.edtConfiguraBanco.Text);
         lerRegistro;
+        edtLogin.Text := Reg.ReadString('Usuario');
       end;
     end
     else
