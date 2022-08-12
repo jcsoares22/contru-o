@@ -22,6 +22,7 @@ type
   private
     { Private declarations }
     procedure lerRegistro;
+
   public
     { Public declarations }
   end;
@@ -36,7 +37,9 @@ implementation
 uses Preferencia, Criptografia, ConfigBanco, Registry;
 
 procedure TfrmLogin.btnClickLoginClick(Sender: TObject);
-
+var
+  Reg: TRegistry;
+  banco: String;
 begin
   DM_Dados.FDQueryUsuario.Close;
   DM_Dados.FDQueryUsuario.Params.Clear;
@@ -73,7 +76,8 @@ begin
     ModalResult := mrNone; // colocando para pode entrar no sistema
     showmessage('Senha ou login incorreto');
   end;
-
+  Reg := TRegistry.Create;
+  Reg.WriteString('Usuario', DM_Dados.FDQueryUsuarioUSU_NOME.AsString);
 end;
 
 procedure TfrmLogin.btn_CancelarClick(Sender: TObject);
@@ -91,11 +95,13 @@ begin
   Reg := TRegistry.Create;
   try
     Reg.RootKey := HKEY_CURRENT_USER;
+
     if Reg.KeyExists('SYSTEC\Conexao') then
     begin
       Reg.OpenKey('SYSTEC\Conexao', false);
       if Reg.ValueExists('Dados') then
       begin
+        edtLogin.Text := Reg.ReadString('Usuario');
         frmConfiguraBanco.edtConfiguraBanco.Text := Reg.ReadString('Dados');
         // showmessage(frmConfiguraBanco.edtConfiguraBanco.Text);
         lerRegistro;
@@ -119,6 +125,7 @@ begin
     FreeAndNil(frmConfiguraBanco);
 
   end;
+
 end;
 
 procedure TfrmLogin.lerRegistro;

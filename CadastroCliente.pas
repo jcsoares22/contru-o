@@ -121,6 +121,7 @@ var
   prox: integer;
 begin // usando a variavel prox para poder acrescentar +1 no cadastro
   inherited;
+  Cadastro.TabIndex := 1;
   prox := 1;
   DM_Cadastro.FDQueryCliente.Active := true;
   mod_ReadOnly;

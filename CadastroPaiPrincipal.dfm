@@ -20,19 +20,22 @@ object frmCadastroPai: TfrmCadastroPai
   TextHeight = 13
   object Cadastro: TPageControl
     Left = 0
-    Top = 0
+    Top = 41
     Width = 1320
-    Height = 936
-    ActivePage = TabSheet2
+    Height = 895
+    ActivePage = TabSheet1
     Align = alClient
     TabOrder = 0
+    ExplicitTop = 0
+    ExplicitHeight = 936
     object TabSheet1: TTabSheet
       Caption = 'Pesquisa'
+      ExplicitHeight = 908
       object DBGrid_Cliente: TDBGrid
         Left = 0
         Top = 41
         Width = 1312
-        Height = 867
+        Height = 826
         Align = alClient
         ParentColor = True
         ReadOnly = True
@@ -119,60 +122,64 @@ object frmCadastroPai: TfrmCadastroPai
     object TabSheet2: TTabSheet
       Caption = 'Cadastro'
       ImageIndex = 1
-      object Panel1: TPanel
-        Left = 0
-        Top = 0
-        Width = 1312
-        Height = 41
-        Align = alTop
-        Color = clMenuHighlight
-        ParentBackground = False
-        TabOrder = 0
-        object btnNovo: TButton
-          Left = 16
-          Top = 9
-          Width = 71
-          Height = 25
-          Caption = 'Novo'
-          TabOrder = 0
-          OnClick = btnNovoClick
-        end
-        object btnEdit: TButton
-          Left = 112
-          Top = 9
-          Width = 75
-          Height = 25
-          Caption = 'Edite'
-          TabOrder = 1
-          OnClick = btnEditClick
-        end
-        object btnDeletar: TButton
-          Left = 200
-          Top = 9
-          Width = 75
-          Height = 25
-          Caption = 'Deletar'
-          TabOrder = 2
-        end
-        object btnSalvar: TButton
-          Left = 281
-          Top = 9
-          Width = 75
-          Height = 25
-          Caption = 'Salvar'
-          TabOrder = 3
-          OnClick = btnSalvarClick
-        end
-        object btnCancelar: TButton
-          Left = 384
-          Top = 9
-          Width = 75
-          Height = 25
-          Caption = 'Cancelar'
-          TabOrder = 4
-          OnClick = btnCancelarClick
-        end
-      end
+      ExplicitHeight = 908
+    end
+  end
+  object Panel1: TPanel
+    Left = 0
+    Top = 0
+    Width = 1320
+    Height = 41
+    Align = alTop
+    Color = clMenuHighlight
+    ParentBackground = False
+    TabOrder = 1
+    ExplicitLeft = 8
+    ExplicitTop = 8
+    ExplicitWidth = 1312
+    object btnNovo: TButton
+      Left = 16
+      Top = 9
+      Width = 71
+      Height = 25
+      Caption = 'Novo'
+      TabOrder = 0
+      OnClick = btnNovoClick
+    end
+    object btnEdit: TButton
+      Left = 112
+      Top = 9
+      Width = 75
+      Height = 25
+      Caption = 'Edite'
+      TabOrder = 1
+      OnClick = btnEditClick
+    end
+    object btnDeletar: TButton
+      Left = 200
+      Top = 9
+      Width = 75
+      Height = 25
+      Caption = 'Deletar'
+      TabOrder = 2
+    end
+    object btnSalvar: TButton
+      Left = 281
+      Top = 9
+      Width = 75
+      Height = 25
+      Caption = 'Salvar'
+      TabOrder = 3
+      OnClick = btnSalvarClick
+    end
+    object btnCancelar: TButton
+      Left = 384
+      Top = 9
+      Width = 75
+      Height = 25
+      Caption = 'Cancelar'
+      TabOrder = 4
+      OnClick = btnCancelarClick
     end
   end
 end

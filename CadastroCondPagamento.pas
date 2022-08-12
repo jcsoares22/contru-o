@@ -3,7 +3,8 @@ unit CadastroCondPagamento;
 interface
 
 uses
-  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
+  System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Data.DB, Vcl.StdCtrls, Vcl.Grids,
   Vcl.DBGrids, Vcl.Mask, Vcl.DBCtrls, Vcl.ExtCtrls, Vcl.ComCtrls;
 
@@ -15,12 +16,6 @@ type
     Label2: TLabel;
     Label3: TLabel;
     DBRadioGroupSitiacao: TDBRadioGroup;
-    Panel1: TPanel;
-    btnNovo: TButton;
-    btnEdit: TButton;
-    btnDeletar: TButton;
-    btnSalvar: TButton;
-    btnCancelar: TButton;
     DB_Codigo: TDBEdit;
     DB_nome: TDBEdit;
     DB_desc_avista: TDBEdit;
@@ -36,10 +31,17 @@ type
     CB_opcao: TComboBox;
     edt_Pesquisa: TEdit;
     btnPesquisa: TButton;
+    Panel1: TPanel;
+    btnNovo: TButton;
+    btnEdit: TButton;
+    btnDeletar: TButton;
+    btnSalvar: TButton;
+    btnCancelar: TButton;
     procedure btnNovoClick(Sender: TObject);
     procedure btnSalvarClick(Sender: TObject);
     procedure btnEditClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
   private
     { Private declarations }
   public
@@ -76,19 +78,27 @@ end;
 
 procedure TfrmCadastroCondPagamento.btnSalvarClick(Sender: TObject);
 begin
-{if DBRadioGroupSitiacao. = 'A' then
-begin
-   DM_Cadastro.FDQueryCondição_pagamentoTIPO_PAGAMENTO.Value := 'A'
-   end;}
+  { if DBRadioGroupSitiacao. = 'A' then
+    begin
+    DM_Cadastro.FDQueryCondição_pagamentoTIPO_PAGAMENTO.Value := 'A'
+    end; }
 
-DM_Cadastro.FDQueryCondição_pagamento.Post;
+  DM_Cadastro.FDQueryCondição_pagamento.Post;
   DB_nome.ReadOnly := true;
   DB_desc_avista.ReadOnly := true;
 end;
 
+procedure TfrmCadastroCondPagamento.FormClose(Sender: TObject;
+  var Action: TCloseAction);
+begin
+  frmCadastroCondPagamento.Free;
+  frmCadastroCondPagamento := nil;
+  DM_Cadastro.FDQueryCondição_pagamento.Close;
+end;
+
 procedure TfrmCadastroCondPagamento.FormCreate(Sender: TObject);
 begin
-DM_Cadastro.FDQueryCondição_pagamento.Open();
+  DM_Cadastro.FDQueryCondição_pagamento.Open();
 
 end;
 

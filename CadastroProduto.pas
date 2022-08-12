@@ -64,8 +64,9 @@ type
     DBEdtQTE_Minima: TDBEdit;
     DBImage: TImage;
     DBLocal: TDBEdit;
-    DBLookupComboBoxLocalProd: TDBLookupComboBox;
     OpenDialogImage: TOpenDialog;
+    DBLookupComboBoxLocalProd: TDBLookupComboBox;
+    Button1: TButton;
     procedure DB_APrazoExit(Sender: TObject);
     procedure DB_AvistaExit(Sender: TObject);
     procedure btnNovoClick(Sender: TObject);
@@ -85,6 +86,7 @@ type
     procedure FormShow(Sender: TObject);
     procedure DBNavigator1Click(Sender: TObject; Button: TNavigateBtn);
     procedure DBGrid_ClienteTitleClick(Column: TColumn);
+    procedure Button1Click(Sender: TObject);
   private
     { Private declarations }
     procedure mod_ReadOnlyFalse;
@@ -323,6 +325,12 @@ begin
   inherited;
   if OpenDialogImage.Execute = True then
     DBImage.Picture.LoadFromFile(OpenDialogImage.FileName);
+end;
+
+procedure TfrmCadastroProduto.Button1Click(Sender: TObject);
+begin
+  inherited;
+  frmCadastroProduto.CloseModal;
 end;
 
 procedure TfrmCadastroProduto.carregafoto;

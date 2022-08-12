@@ -72,6 +72,7 @@ type
     Foto: TImage;
     Oramentos1: TMenuItem;
     LocalProduto1: TMenuItem;
+    fecharJanelas1: TMenuItem;
 
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure bntClienteClick(Sender: TObject);
@@ -99,13 +100,11 @@ type
     procedure N4Click(Sender: TObject);
     procedure LocalProduto1Click(Sender: TObject);
     procedure FormCreate(Sender: TObject);
+    procedure fecharJanelas1Click(Sender: TObject);
   private
     { Private declarations }
-    procedure WMNCActivate(var M: TMessage); message WM_NCACTIVATE;
+    procedure fecharTela;
 
-    procedure WMNCPaint(var M: TMessage); message WM_NCPAINT;
-
-    procedure Titulo(wParam: Integer);
   public
     { Public declarations }
 
@@ -113,18 +112,18 @@ type
 
 var
   frmPrincipal: TfrmPrincipal;
+  formAberto: TForm = nil;
 
 implementation
 
 {$R *.dfm}
 
-uses CadastroCliente, CadastroEstados, CadastroUnidadeMedida,
-  CadastroEnderecoPai, CadastroCores, CadastroMarca,
-  CadastroCidades, CadastroGrupo, CadastroSubGrupo, CadastroProduto,
-  CadastroUsuarios, CadastroVendas, CadastroCondPagamento,
-  CasdatroContasFincaeiro, CadastroFinanceiro, CadastroDocumento,
-  MovimentoEstoque, Orcamento, DMDados, LoginPreferencia, LoginMenu, Biblioteca,
-  EstoqueMinimo, LancamentoFinanceiro, informacao, LocalProduto, Login;
+uses CadastroCliente, CadastroFinanceiro, CadastroCondPagamento,
+  LoginPreferencia, CasdatroContasFinceiro, CadastroCores, CadastroEstados,
+  EstoqueMinimo, MovimentoEstoque, DMDados, CadastroGrupo, CadastroSubGrupo,
+  CadastroDocumento, LancamentoFinanceiro, LocalProduto, LoginMenu,
+  CadastroMarca, CadastroCidades, informacao, Orcamento, CadastroProduto,
+  CadastroUnidadeMedida, CadastroVendas;
 
 procedure TfrmPrincipal.bntClienteClick(Sender: TObject);
 begin
@@ -351,7 +350,7 @@ end;
 
 procedure TfrmPrincipal.Marca1Click(Sender: TObject);
 begin
-  fecharTela;
+  // fecharTela;
   if (frmCadastroMarca = nil) then
     frmCadastroMarca := TFrmCadastroMarca.Create(self);
   if (not frmCadastroMarca.showing) then
@@ -365,7 +364,7 @@ end;
 
 procedure TfrmPrincipal.N1Click(Sender: TObject);
 begin
-  fecharTela;
+  // fecharTela;
   if (frmCadastroCidades = nil) then
     frmCadastroCidades := TFrmCadastroCidades.Create(self);
   if (not frmCadastroCidades.showing) then
@@ -391,7 +390,7 @@ end;
 procedure TfrmPrincipal.Oramento1Click(Sender: TObject);
 begin
 
-  fecharTela;
+  // fecharTela;
   if (frmOrcamento = nil) then
     frmOrcamento := TFrmOrcamento.Create(self);
   if (not frmOrcamento.showing) then
@@ -406,7 +405,7 @@ end;
 procedure TfrmPrincipal.Produto2Click(Sender: TObject);
 begin
 
-  fecharTela;
+  // fecharTela;
   if (frmCadastroProduto = nil) then
     frmCadastroProduto := TFrmCadastroProduto.Create(self);
   if (not frmCadastroProduto.showing) then
@@ -429,53 +428,9 @@ begin
   StatusBar1.Panels[3].Text := 'Data.: ' + DateToStr(Date);
 end;
 
-procedure TfrmPrincipal.Titulo(wParam: Integer);
-var
-  DC: THandle;
-  R1, R2: TRect;
-begin
-  DC := GetWindowDC(Handle);
-  try
-    SetWindowText(Handle, nil);
-    GetWindowRect(Handle, R2);
-
-    R1.Left := GetSystemMetrics(SM_CXSIZE)
-
-      + GetSystemMetrics(SM_CXBORDER) + GetSystemMetrics(SM_CXFRAME);
-
-    R1.Top := GetSystemMetrics(SM_CYFRAME);
-
-    R1.Right := R2.Right - R2.Left - R1.Left
-
-      - 2 * GetSystemMetrics(SM_CXSIZE);
-
-    R1.Bottom := R1.Top + GetSystemMetrics(SM_CYSIZE);
-
-    if wParam = 1 then
-
-      SetBkColor(DC, GetSysColor(COLOR_ACTIVECAPTION))
-
-    else
-
-      SetBkColor(DC, GetSysColor(COLOR_INACTIVECAPTION));
-
-    SetTextColor(DC, GetSysColor(COLOR_CAPTIONTEXT));
-
-    DrawText(DC, 'A la izquierda', -1, R1, DT_LEFT or DT_VCENTER);
-
-    DrawText(DC, 'A la derecha', -1, R1, DT_RIGHT or DT_VCENTER);
-
-    DrawIcon(DC, R1.Left, R1.Top + 3, Application.Icon.Handle);
-
-  finally
-    ReleaseDC(Handle, DC);
-
-  end;
-end;
-
 procedure TfrmPrincipal.Unidademedida1Click(Sender: TObject);
 begin
-  fecharTela;
+  // fecharTela;
   if (frmCadastroUnidadeMedida = nil) then
     frmCadastroUnidadeMedida := TFrmCadastroUnidadeMedida.Create(self);
   if (not frmCadastroUnidadeMedida.showing) then
@@ -489,7 +444,7 @@ end;
 
 procedure TfrmPrincipal.Venda1Click(Sender: TObject);
 begin
-  fecharTela;
+  // fecharTela;
   if (frmCadastroVendas = nil) then
     frmCadastroVendas := TFrmCadastroVendas.Create(self);
   if (not frmCadastroVendas.showing) then
@@ -501,20 +456,35 @@ begin
   end;
 end;
 
-procedure TfrmPrincipal.WMNCActivate(var M: TMessage);
+procedure TfrmPrincipal.fecharJanelas1Click(Sender: TObject);
 begin
-  DefWindowProc(Handle, M.Msg, M.wParam, M.lParam);
-
-  Titulo(1);
+  //frmCadastroProduto.CloseModal;
+  { frmCadastroVendas.CloseQuery;
+    frmCadastroUnidadeMedida.CloseModal;
+    frmCadastroProduto.CloseModal;
+    frmOrcamento.CloseModal;
+    frmCadastroCidades.CloseModal;
+    frmCadastroMarca.CloseModal;
+    frmCadastroLocalProduto.CloseModal;
+    frmLancamentoFinanceiro.CloseModal;
+    frmCadastroDocumento.CloseModal;
+    frmCadastroSubGrupo.CloseModal;
+    frmCadastroGrupo.CloseModal;
+    frmMovimento_estoque.CloseModal;
+    frmCadastroEstados.CloseModal;
+    frmContas.CloseModal;
+    frmCadastroCondPagamento.CloseModal;
+    frmCadastroFinanceiro.CloseModal;
+    frmCadastroCliente.CloseModal; }
 end;
 
-procedure TfrmPrincipal.WMNCPaint(var M: TMessage);
+procedure TfrmPrincipal.fecharTela;
 begin
-  DefWindowProc(Handle, M.Msg, M.wParam, M.lParam);
-
-  Titulo(M.wParam);
-
-  M.Result := 1;
+  if formAberto <> nil then
+  begin
+    formAberto.close;
+    FreeAndNil(formAberto);
+  end;
 end;
 
 end.

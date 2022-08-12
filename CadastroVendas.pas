@@ -33,11 +33,6 @@ type
     Panel2: TPanel;
     DBSomaTotal: TDBEdit;
     btn_Totaliza: TButton;
-    btnNovo: TButton;
-    btnEdit: TButton;
-    btnDeletar: TButton;
-    btnSalvar: TButton;
-    btnCancelar: TButton;
     DBLookupComboBox3: TDBLookupComboBox;
     DBLookupComboBox4: TDBLookupComboBox;
     Label8: TLabel;
@@ -57,7 +52,6 @@ type
     edt_Pesquisa: TEdit;
     btnPesquisa: TButton;
     DBEdit4: TDBEdit;
-    DBNavigator1: TDBNavigator;
     SpeedButton2: TSpeedButton;
     Label14: TLabel;
     DBC_Desconto: TDBComboBox;
@@ -75,22 +69,15 @@ type
     Label16: TLabel;
     Label15: TLabel;
     DBComboBox2: TDBComboBox;
-    frVendas: TfrxReport;
-    frxDadosvenda: TfrxDBDataset;
-    frxItens_vendas: TfrxDBDataset;
-    btnImprimir: TBitBtn;
     Panel4: TPanel;
     btnPesquisaAvancadaVenda: TButton;
     Label19: TLabel;
     DBEdit7: TDBEdit;
     Label20: TLabel;
     DBEdit8: TDBEdit;
-    frxPDFExport1: TfrxPDFExport;
     PopupMenu1: TPopupMenu;
     Cliente1: TMenuItem;
     Cliente21: TMenuItem;
-    frxCliente2: TfrxDBDataset;
-    frCliente2: TfrxReport;
     FDQueryVendasCliente2: TFDQuery;
     FDQueryVendasCliente2DATAVENDA: TSQLTimeStampField;
     FDQueryVendasCliente2VALORTOTAL: TBCDField;
@@ -106,6 +93,14 @@ type
     OpenDialogImage: TOpenDialog;
     caminhoFoto: TLabel;
     DbValorDesconto: TDBEdit;
+    Panel5: TPanel;
+    btnNovo: TButton;
+    btnEdit: TButton;
+    btnDeletar: TButton;
+    btnSalvar: TButton;
+    btnCancelar: TButton;
+    btnImprimir: TBitBtn;
+    DBNavigator1: TDBNavigator;
     procedure DBGridVendasExit(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure btnNovoClick(Sender: TObject);
@@ -450,12 +445,12 @@ end;
 
 procedure TfrmCadastroVendas.Cliente1Click(Sender: TObject);
 begin
-  CarregaRelatorio(frVendas);
+ // CarregaRelatorio(frVendas);
 end;
 
 procedure TfrmCadastroVendas.Cliente21Click(Sender: TObject);
 begin
-  CarregaRelatorio(frCliente2);
+ // CarregaRelatorio(frCliente2);
 end;
 
 procedure TfrmCadastroVendas.DBC_DescontoChange(Sender: TObject);

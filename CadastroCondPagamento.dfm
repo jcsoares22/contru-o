@@ -14,26 +14,24 @@ object frmCadastroCondPagamento: TfrmCadastroCondPagamento
   OldCreateOrder = False
   Visible = True
   WindowState = wsMaximized
+  OnClose = FormClose
   OnCreate = FormCreate
   PixelsPerInch = 96
   TextHeight = 13
   object Cadastro: TPageControl
     Left = 0
-    Top = 0
+    Top = 41
     Width = 1166
-    Height = 678
-    ActivePage = TabSheet2
+    Height = 637
+    ActivePage = TabSheet1
     Align = alClient
     TabOrder = 0
-    ExplicitLeft = -154
-    ExplicitTop = -258
-    ExplicitWidth = 1320
-    ExplicitHeight = 936
+    ExplicitTop = 0
+    ExplicitHeight = 678
     object TabSheet2: TTabSheet
       Caption = 'Cadastro'
       ImageIndex = 1
-      ExplicitWidth = 1312
-      ExplicitHeight = 908
+      ExplicitHeight = 650
       object Label1: TLabel
         Left = 16
         Top = 56
@@ -72,64 +70,10 @@ object frmCadastroCondPagamento: TfrmCadastroCondPagamento
           'APrazo')
         ParentShowHint = False
         ShowHint = False
-        TabOrder = 6
+        TabOrder = 5
         Values.Strings = (
           'A'
           'P')
-      end
-      object Panel1: TPanel
-        Left = 0
-        Top = 0
-        Width = 1158
-        Height = 41
-        Align = alTop
-        Color = clMenuHighlight
-        ParentBackground = False
-        TabOrder = 0
-        ExplicitWidth = 1312
-        object btnNovo: TButton
-          Left = 16
-          Top = 9
-          Width = 71
-          Height = 25
-          Caption = 'Novo'
-          TabOrder = 0
-          OnClick = btnNovoClick
-        end
-        object btnEdit: TButton
-          Left = 119
-          Top = 9
-          Width = 75
-          Height = 25
-          Caption = 'Edite'
-          TabOrder = 1
-          OnClick = btnEditClick
-        end
-        object btnDeletar: TButton
-          Left = 200
-          Top = 9
-          Width = 75
-          Height = 25
-          Caption = 'Deletar'
-          TabOrder = 2
-        end
-        object btnSalvar: TButton
-          Left = 281
-          Top = 9
-          Width = 75
-          Height = 25
-          Caption = 'Salvar'
-          TabOrder = 3
-          OnClick = btnSalvarClick
-        end
-        object btnCancelar: TButton
-          Left = 384
-          Top = 9
-          Width = 75
-          Height = 25
-          Caption = 'Cancelar'
-          TabOrder = 4
-        end
       end
       object DB_Codigo: TDBEdit
         Left = 16
@@ -138,7 +82,7 @@ object frmCadastroCondPagamento: TfrmCadastroCondPagamento
         Height = 21
         DataField = 'CODIGO'
         DataSource = DM_Cadastro.Dt_Condicao_pagamento
-        TabOrder = 1
+        TabOrder = 0
       end
       object DB_nome: TDBEdit
         Left = 104
@@ -149,7 +93,7 @@ object frmCadastroCondPagamento: TfrmCadastroCondPagamento
         DataField = 'NOME'
         DataSource = DM_Cadastro.Dt_Condicao_pagamento
         ReadOnly = True
-        TabOrder = 2
+        TabOrder = 1
       end
       object DB_desc_avista: TDBEdit
         Left = 560
@@ -159,7 +103,7 @@ object frmCadastroCondPagamento: TfrmCadastroCondPagamento
         DataField = 'DESCONTO_VISTA'
         DataSource = DM_Cadastro.Dt_Condicao_pagamento
         ReadOnly = True
-        TabOrder = 3
+        TabOrder = 2
       end
       object RadioButtonAPrazo: TRadioButton
         Left = 217
@@ -167,7 +111,7 @@ object frmCadastroCondPagamento: TfrmCadastroCondPagamento
         Width = 62
         Height = 17
         Caption = 'A Prazo'
-        TabOrder = 4
+        TabOrder = 3
       end
       object RadioButtonAVista: TRadioButton
         Left = 217
@@ -175,20 +119,17 @@ object frmCadastroCondPagamento: TfrmCadastroCondPagamento
         Width = 58
         Height = 17
         Caption = 'A Vista'
-        TabOrder = 5
+        TabOrder = 4
       end
     end
     object TabSheet1: TTabSheet
       Caption = 'Pesquisa'
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
+      ExplicitHeight = 650
       object DBGrid_Cliente: TDBGrid
         Left = 0
         Top = 41
         Width = 1158
-        Height = 609
+        Height = 568
         Align = alClient
         DataSource = DM_Cadastro.Dt_Condicao_pagamento
         ParentColor = True
@@ -228,7 +169,6 @@ object frmCadastroCondPagamento: TfrmCadastroCondPagamento
         Height = 41
         Align = alTop
         TabOrder = 1
-        ExplicitWidth = 1312
         object Label9: TLabel
           Left = 11
           Top = -5
@@ -293,6 +233,62 @@ object frmCadastroCondPagamento: TfrmCadastroCondPagamento
           TabOrder = 3
         end
       end
+    end
+  end
+  object Panel1: TPanel
+    Left = 0
+    Top = 0
+    Width = 1166
+    Height = 41
+    Align = alTop
+    Color = clMenuHighlight
+    ParentBackground = False
+    TabOrder = 1
+    ExplicitLeft = 8
+    ExplicitTop = 8
+    ExplicitWidth = 1158
+    object btnNovo: TButton
+      Left = 16
+      Top = 9
+      Width = 71
+      Height = 25
+      Caption = 'Novo'
+      TabOrder = 0
+      OnClick = btnNovoClick
+    end
+    object btnEdit: TButton
+      Left = 119
+      Top = 9
+      Width = 75
+      Height = 25
+      Caption = 'Edite'
+      TabOrder = 1
+      OnClick = btnEditClick
+    end
+    object btnDeletar: TButton
+      Left = 200
+      Top = 9
+      Width = 75
+      Height = 25
+      Caption = 'Deletar'
+      TabOrder = 2
+    end
+    object btnSalvar: TButton
+      Left = 281
+      Top = 9
+      Width = 75
+      Height = 25
+      Caption = 'Salvar'
+      TabOrder = 3
+      OnClick = btnSalvarClick
+    end
+    object btnCancelar: TButton
+      Left = 384
+      Top = 9
+      Width = 75
+      Height = 25
+      Caption = 'Cancelar'
+      TabOrder = 4
     end
   end
 end

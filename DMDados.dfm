@@ -5,8 +5,8 @@ object DM_Dados: TDM_Dados
   object DADOS: TFDConnection
     Params.Strings = (
       'Protocol='
-      'User_Name=sysdba'
-      'Password=masterkey'
+      'User_Name=SYSDBA'
+      'Password=pmpsyfwr'
       'Database=C:\SYS TEC\BIN\DATA\DADOS\DADOS.FDB'
       'DriverID=FB')
     FetchOptions.AssignedValues = [evAutoClose]

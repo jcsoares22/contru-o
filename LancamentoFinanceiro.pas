@@ -29,6 +29,7 @@ type
     Label6: TLabel;
     DBGrid1: TDBGrid;
     procedure FormCreate(Sender: TObject);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
   private
     { Private declarations }
   public
@@ -42,6 +43,13 @@ implementation
 
 {$R *.dfm}
  uses DMFinanceiro;
+procedure TfrmLancamentoFinanceiro.FormClose(Sender: TObject;
+  var Action: TCloseAction);
+begin
+frmLancamentoFinanceiro.Free;
+  frmLancamentoFinanceiro := nil;
+end;
+
 procedure TfrmLancamentoFinanceiro.FormCreate(Sender: TObject);
 begin
       DM_Finaceiro.FDQueryFinanceiro.Open();

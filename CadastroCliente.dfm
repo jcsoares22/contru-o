@@ -15,17 +15,16 @@ inherited frmCadastroCliente: TfrmCadastroCliente
   end
   inherited Cadastro: TPageControl
     Width = 1009
-    Height = 605
+    Height = 564
+    ExplicitTop = 41
     ExplicitWidth = 1009
-    ExplicitHeight = 605
+    ExplicitHeight = 564
     inherited TabSheet1: TTabSheet
-      ExplicitLeft = 4
-      ExplicitTop = 24
       ExplicitWidth = 1001
-      ExplicitHeight = 577
+      ExplicitHeight = 536
       inherited DBGrid_Cliente: TDBGrid
         Width = 1001
-        Height = 536
+        Height = 495
         DataSource = DM_Cadastro.DT_cliente
         Columns = <
           item
@@ -100,11 +99,9 @@ inherited frmCadastroCliente: TfrmCadastroCliente
       end
     end
     inherited TabSheet2: TTabSheet
-      ExplicitLeft = 4
-      ExplicitTop = 24
       ExplicitWidth = 1001
-      ExplicitHeight = 577
-      object Label1: TLabel [0]
+      ExplicitHeight = 536
+      object Label1: TLabel
         Left = 16
         Top = 56
         Width = 41
@@ -112,7 +109,7 @@ inherited frmCadastroCliente: TfrmCadastroCliente
         Caption = 'CODIGO'
         FocusControl = DBEdit1
       end
-      object Label4: TLabel [1]
+      object Label4: TLabel
         Left = 112
         Top = 56
         Width = 19
@@ -120,7 +117,7 @@ inherited frmCadastroCliente: TfrmCadastroCliente
         Caption = 'CPF'
         FocusControl = DB_Cpf
       end
-      object Label2: TLabel [2]
+      object Label2: TLabel
         Left = 283
         Top = 51
         Width = 29
@@ -128,7 +125,7 @@ inherited frmCadastroCliente: TfrmCadastroCliente
         Caption = 'NOME'
         FocusControl = DB_Nome
       end
-      object Label13: TLabel [3]
+      object Label13: TLabel
         Left = 632
         Top = 101
         Width = 33
@@ -136,7 +133,7 @@ inherited frmCadastroCliente: TfrmCadastroCliente
         Caption = 'Cidade'
         FocusControl = DB_Numero
       end
-      object Label12: TLabel [4]
+      object Label12: TLabel
         Left = 552
         Top = 101
         Width = 13
@@ -144,7 +141,7 @@ inherited frmCadastroCliente: TfrmCadastroCliente
         Caption = 'UF'
         FocusControl = DB_Numero
       end
-      object Label15: TLabel [5]
+      object Label15: TLabel
         Left = 861
         Top = 101
         Width = 28
@@ -152,7 +149,7 @@ inherited frmCadastroCliente: TfrmCadastroCliente
         Caption = 'Bairro'
         FocusControl = DB_Numero
       end
-      object Label3: TLabel [6]
+      object Label3: TLabel
         Left = 16
         Top = 104
         Width = 50
@@ -160,7 +157,7 @@ inherited frmCadastroCliente: TfrmCadastroCliente
         Caption = 'TELEFONE'
         FocusControl = DB_telefone
       end
-      object Label5: TLabel [7]
+      object Label5: TLabel
         Left = 182
         Top = 101
         Width = 30
@@ -168,7 +165,7 @@ inherited frmCadastroCliente: TfrmCadastroCliente
         Caption = 'EMAIL'
         FocusControl = DB_Email
       end
-      object Label8: TLabel [8]
+      object Label8: TLabel
         Left = 368
         Top = 157
         Width = 43
@@ -176,7 +173,7 @@ inherited frmCadastroCliente: TfrmCadastroCliente
         Caption = 'NUMERO'
         FocusControl = DB_Numero
       end
-      object Label7: TLabel [9]
+      object Label7: TLabel
         Left = 16
         Top = 160
         Width = 21
@@ -184,56 +181,12 @@ inherited frmCadastroCliente: TfrmCadastroCliente
         Caption = 'RUA'
         FocusControl = DB_Rua
       end
-      object Label6: TLabel [10]
+      object Label6: TLabel
         Left = 16
         Top = 208
         Width = 59
         Height = 13
         Caption = 'DESCRICAO'
-      end
-      inherited Panel1: TPanel
-        Width = 1001
-        ExplicitWidth = 1001
-        inherited btnNovo: TButton
-          Width = 63
-          ExplicitWidth = 63
-        end
-        inherited btnEdit: TButton
-          Width = 71
-          ExplicitWidth = 71
-        end
-        inherited btnDeletar: TButton
-          Width = 71
-          OnClick = btnDeletarClick
-          ExplicitWidth = 71
-        end
-        inherited btnSalvar: TButton
-          Left = 297
-          Width = 71
-          ExplicitLeft = 297
-          ExplicitWidth = 71
-        end
-        inherited btnCancelar: TButton
-          Width = 71
-          ExplicitWidth = 71
-        end
-        object DBNavigator1: TDBNavigator
-          Left = 697
-          Top = 9
-          Width = 240
-          Height = 25
-          DataSource = DM_Cadastro.DT_cliente
-          TabOrder = 5
-        end
-        object btnImprimir: TButton
-          Left = 472
-          Top = 9
-          Width = 75
-          Height = 25
-          Caption = 'Imprimir'
-          TabOrder = 6
-          OnClick = btnImprimirClick
-        end
       end
       object DBEdit1: TDBEdit
         Left = 16
@@ -243,7 +196,7 @@ inherited frmCadastroCliente: TfrmCadastroCliente
         DataField = 'CODIGO'
         DataSource = DM_Cadastro.DT_cliente
         ReadOnly = True
-        TabOrder = 1
+        TabOrder = 0
       end
       object DB_Cpf: TDBEdit
         Left = 112
@@ -255,7 +208,7 @@ inherited frmCadastroCliente: TfrmCadastroCliente
         DataSource = DM_Cadastro.DT_cliente
         MaxLength = 14
         ReadOnly = True
-        TabOrder = 2
+        TabOrder = 1
         OnKeyPress = DB_CpfKeyPress
       end
       object DB_Nome: TDBEdit
@@ -268,7 +221,7 @@ inherited frmCadastroCliente: TfrmCadastroCliente
         DataSource = DM_Cadastro.DT_cliente
         ImeName = 'Portuguese (Brazilian ABNT)'
         ReadOnly = True
-        TabOrder = 3
+        TabOrder = 2
       end
       object DBLookupComboBoxUf: TDBLookupComboBox
         Left = 552
@@ -281,7 +234,7 @@ inherited frmCadastroCliente: TfrmCadastroCliente
         ListField = 'UF'
         ListSource = DM_Endereco.DT_Estados
         ReadOnly = True
-        TabOrder = 4
+        TabOrder = 3
       end
       object DBLookupComboBoxCidade: TDBLookupComboBox
         Left = 632
@@ -294,7 +247,7 @@ inherited frmCadastroCliente: TfrmCadastroCliente
         ListField = 'NOME'
         ListSource = DM_Endereco.Dt_Cidade
         ReadOnly = True
-        TabOrder = 5
+        TabOrder = 4
       end
       object DB_telefone: TDBEdit
         Left = 16
@@ -306,7 +259,7 @@ inherited frmCadastroCliente: TfrmCadastroCliente
         DataSource = DM_Cadastro.DT_cliente
         ImeName = 'Portuguese (Brazilian ABNT)'
         ReadOnly = True
-        TabOrder = 6
+        TabOrder = 5
         OnKeyPress = DB_CpfKeyPress
       end
       object DB_Email: TDBEdit
@@ -319,7 +272,7 @@ inherited frmCadastroCliente: TfrmCadastroCliente
         DataSource = DM_Cadastro.DT_cliente
         ImeName = 'Portuguese (Brazilian ABNT)'
         ReadOnly = True
-        TabOrder = 7
+        TabOrder = 6
       end
       object DB_Numero: TDBEdit
         Left = 368
@@ -331,7 +284,7 @@ inherited frmCadastroCliente: TfrmCadastroCliente
         DataSource = DM_Cadastro.DT_cliente
         ImeName = 'Portuguese (Brazilian ABNT)'
         ReadOnly = True
-        TabOrder = 8
+        TabOrder = 7
       end
       object DB_Rua: TDBEdit
         Left = 16
@@ -343,7 +296,7 @@ inherited frmCadastroCliente: TfrmCadastroCliente
         DataSource = DM_Cadastro.DT_cliente
         ImeName = 'Portuguese (Brazilian ABNT)'
         ReadOnly = True
-        TabOrder = 9
+        TabOrder = 8
       end
       object Edt_bairro: TDBEdit
         Left = 861
@@ -365,8 +318,55 @@ inherited frmCadastroCliente: TfrmCadastroCliente
         DataField = 'DESCRICAO'
         DataSource = DM_Cadastro.DT_cliente
         ItemHeight = 13
-        TabOrder = 11
+        TabOrder = 9
       end
+    end
+  end
+  inherited Panel1: TPanel
+    Width = 1009
+    TabOrder = 2
+    ExplicitLeft = 0
+    ExplicitTop = 0
+    ExplicitWidth = 1009
+    inherited btnNovo: TButton
+      Width = 63
+      ExplicitWidth = 63
+    end
+    inherited btnEdit: TButton
+      Width = 71
+      ExplicitWidth = 71
+    end
+    inherited btnDeletar: TButton
+      Width = 71
+      OnClick = btnDeletarClick
+      ExplicitWidth = 71
+    end
+    inherited btnSalvar: TButton
+      Left = 297
+      Width = 71
+      ExplicitLeft = 297
+      ExplicitWidth = 71
+    end
+    inherited btnCancelar: TButton
+      Width = 71
+      ExplicitWidth = 71
+    end
+    object DBNavigator1: TDBNavigator
+      Left = 697
+      Top = 9
+      Width = 240
+      Height = 25
+      DataSource = DM_Cadastro.DT_cliente
+      TabOrder = 5
+    end
+    object btnImprimir: TButton
+      Left = 472
+      Top = 9
+      Width = 75
+      Height = 25
+      Caption = 'Imprimir'
+      TabOrder = 6
+      OnClick = btnImprimirClick
     end
   end
   object Panel4: TPanel
@@ -389,7 +389,7 @@ inherited frmCadastroCliente: TfrmCadastroCliente
     end
   end
   object frCliente: TfrxReport
-    Version = '2022.2.5'
+    Version = '2022.2.10'
     DotMatrixReport = False
     IniFile = '\Software\Fast Reports'
     PreviewOptions.Buttons = [pbPrint, pbLoad, pbSave, pbExport, pbZoom, pbFind, pbOutline, pbPageSetup, pbTools, pbEdit, pbNavigator, pbExportQuick, pbCopy, pbSelection]
