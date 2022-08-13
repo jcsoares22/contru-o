@@ -224,7 +224,7 @@ begin
       end
       else
         DM_Finaceiro.FDQueryFinanceiro.edit;
-     wData := wData + DM_Vendas.FDQuerySaida_VendaDIAS_ENTRE_PARCELAS.Value;
+      wData := wData + DM_Vendas.FDQuerySaida_VendaDIAS_ENTRE_PARCELAS.Value;
       DM_Finaceiro.FDQueryFinanceiroDATA_VENC.AsDateTime := wData;
 
       DM_Finaceiro.FDQueryFinanceiroVLR_PARC.AsCurrency :=
@@ -452,7 +452,7 @@ end;
 
 procedure TfrmCadastroVendas.Cliente21Click(Sender: TObject);
 begin
- CarregaRelatorio(frCliente2);
+  CarregaRelatorio(frCliente2);
 end;
 
 procedure TfrmCadastroVendas.DBC_DescontoChange(Sender: TObject);
@@ -555,24 +555,37 @@ end;
 procedure TfrmCadastroVendas.FormKeyDown(Sender: TObject; var Key: Word;
   Shift: TShiftState);
 begin
-  if Key = vk_f4 then
-  begin
-    frmCadastroRapidoCliente := TFrmCadastroRapidoCliente.Create(self);
-    try
-      frmCadastroRapidoCliente.showModal;
-    finally
-      FreeAndNil(frmCadastroRapidoCliente);
+  try
+    if (DM_Vendas.FDQuerySaida_Venda.State in [dsEdit, dsInsert]) then
+    begin
+      if Key = vk_f4 then
+      begin
+        frmCadastroRapidoCliente := TFrmCadastroRapidoCliente.Create(self);
+        try
+          frmCadastroRapidoCliente.showModal;
+        finally
+          FreeAndNil(frmCadastroRapidoCliente);
+          DM_Cadastro.FDQueryCliente.Open();
+        end;
+      end;
+      if Key = vk_f5 then
+      begin
+        frmPesquisaCliente := TFrmPesquisaCliente.Create(self);
+        try
+          frmPesquisaCliente.showModal;
+        finally
+          FreeAndNil(frmPesquisaCliente);
+          DM_Cadastro.FDQueryCliente.Open();
+        end;
+      end;
     end;
+  Except
+    on E: Exception do
+    BEGIN
+      ShowMessage('errooo');
+    END;
   end;
-  if Key = vk_f5 then
-  begin
-    frmPesquisaCliente := TFrmPesquisaCliente.Create(self);
-    try
-      frmPesquisaCliente.showModal;
-    finally
-      FreeAndNil(frmPesquisaCliente);
-    end;
-  end;
+
 end;
 
 procedure TfrmCadastroVendas.lancFinaceiro;

@@ -225,7 +225,7 @@ object frmCadastroRapidoCliente: TfrmCadastroRapidoCliente
     TabOrder = 10
   end
   object BntSalvar: TButton
-    Left = 424
+    Left = 431
     Top = 322
     Width = 75
     Height = 25

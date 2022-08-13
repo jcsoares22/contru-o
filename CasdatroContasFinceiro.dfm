@@ -27,6 +27,7 @@ object frmContas: TfrmContas
     Color = clSkyBlue
     ParentBackground = False
     TabOrder = 0
+    ExplicitTop = 41
     object btnEdit: TButton
       Left = 112
       Top = 9
@@ -96,7 +97,6 @@ object frmContas: TfrmContas
       item
         Expanded = False
         FieldName = 'BLOQUEADA'
-        Width = 64
         Visible = True
       end
       item
@@ -105,7 +105,6 @@ object frmContas: TfrmContas
         PickList.Strings = (
           'PAGAR'
           'RECEBER')
-        Width = 64
         Visible = True
       end>
   end
@@ -131,19 +130,16 @@ object frmContas: TfrmContas
       item
         Expanded = False
         FieldName = 'TIPO'
-        Width = 64
         Visible = True
       end
       item
         Expanded = False
         FieldName = 'DESCRICAO'
-        Width = 64
         Visible = True
       end
       item
         Expanded = False
         FieldName = 'BLOQUEADA'
-        Width = 64
         Visible = True
       end>
   end

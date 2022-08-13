@@ -219,11 +219,17 @@ end;
 
 procedure TfrmCadastroUsuario.checkBoxGeral;
 begin
-
+  //altera limite de venda
   if checkBoxUtrapassarLimite.Checked = true then
   begin
     DM_Dados.FDQueryUsuarioALTERAR_LIMITE_DESC.Value := 'T'
+  end
+  else
+  begin
+       DM_Dados.FDQueryUsuarioALTERAR_LIMITE_DESC.Value := 'F'
   end;
+
+
   if checkBoxAdministrador.Checked = true then
   // COLOCANDO SISTEMA COMO ADMINISTRADOR
   begin
@@ -309,6 +315,7 @@ begin
   DM_Dados.FDQueryUsuario.Edit;
   DM_Dados.FDQueryPreferencia.Edit;
   checkBoxGeral;
+  verificacaoCheckBoxGeral;
 end;
 
 procedure TfrmCadastroUsuario.edt_PesquisaChange(Sender: TObject);
@@ -320,15 +327,15 @@ end;
 
 procedure TfrmCadastroUsuario.FormActivate(Sender: TObject);
 begin
-  frmLoginMenu.Visible := false;
+//  frmLoginMenu.Visible := false;
 end;
 
 procedure TfrmCadastroUsuario.FormClose(Sender: TObject;
   var Action: TCloseAction);
 begin
-  DM_Dados.FDQueryUsuario.Close;
-   DM_Dados.FDQueryPreferencia.Close;
-  frmLoginMenu.Close;
+  {DM_Dados.FDQueryUsuario.Close;
+     DM_Dados.FDQueryPreferencia.Close;
+       frmLoginMenu.Close;}
 
 end;
 

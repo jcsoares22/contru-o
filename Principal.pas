@@ -123,7 +123,7 @@ uses CadastroCliente, CadastroFinanceiro, CadastroCondPagamento,
   EstoqueMinimo, MovimentoEstoque, DMDados, CadastroGrupo, CadastroSubGrupo,
   CadastroDocumento, LancamentoFinanceiro, LocalProduto, LoginMenu,
   CadastroMarca, CadastroCidades, informacao, Orcamento, CadastroProduto,
-  CadastroUnidadeMedida, CadastroVendas;
+  CadastroUnidadeMedida, CadastroVendas, CadastroUsuarios;
 
 procedure TfrmPrincipal.bntClienteClick(Sender: TObject);
 begin
@@ -340,151 +340,173 @@ end;
 
 procedure TfrmPrincipal.Manutencousurio1Click(Sender: TObject);
 begin
-  frmLoginMenu := TFrmLoginMenu.Create(self);
+  // DM_Dados.FDQueryUsuario.Open();
+
   try
-    frmLoginMenu.showModal;
-  finally
-    FreeAndNil(frmLoginMenu);
+    if (DM_Dados.FDQueryUsuario.recordCount > 0) and
+      (DM_Dados.FDQueryUsuarioCAD_USU.Value = 'T') then
+    begin
+      frmCadastroUsuario := TFrmCadastroUsuario.Create(self);
+      try
+        frmCadastroUsuario.showModal;
+      finally
+        FreeAndNil(frmCadastroUsuario);
+      end
+    end
+    else
+    begin
+      frmLoginMenu := TFrmLoginMenu.Create(self);
+      try
+        frmLoginMenu.showModal;
+      finally
+        FreeAndNil(frmLoginMenu);
+      end;
+    end;
+  Except
+    on E: Exception do
+    BEGIN
+      ShowMessage('errooo');
+    END;
   end;
 end;
 
-procedure TfrmPrincipal.Marca1Click(Sender: TObject);
-begin
-  // fecharTela;
-  if (frmCadastroMarca = nil) then
-    frmCadastroMarca := TFrmCadastroMarca.Create(self);
-  if (not frmCadastroMarca.showing) then
-    frmCadastroMarca.Show;
+  procedure TfrmPrincipal.Marca1Click(Sender: TObject);
   begin
-    if frmCadastroMarca.Visible = False then
-      frmCadastroMarca.Visible := True;
-    frmCadastroMarca.BringToFront;
+    fecharTela;
+    if (frmCadastroMarca = nil) then
+      frmCadastroMarca := TFrmCadastroMarca.Create(self);
+    if (not frmCadastroMarca.showing) then
+      frmCadastroMarca.Show;
+    begin
+      if frmCadastroMarca.Visible = False then
+        frmCadastroMarca.Visible := True;
+      frmCadastroMarca.BringToFront;
+    end;
   end;
-end;
 
-procedure TfrmPrincipal.N1Click(Sender: TObject);
-begin
-  // fecharTela;
-  if (frmCadastroCidades = nil) then
-    frmCadastroCidades := TFrmCadastroCidades.Create(self);
-  if (not frmCadastroCidades.showing) then
-    frmCadastroCidades.Show;
+  procedure TfrmPrincipal.N1Click(Sender: TObject);
   begin
-    if frmCadastroCidades.Visible = False then
-      frmCadastroCidades.Visible := True;
-    frmCadastroCidades.BringToFront;
-  end;
-end;
-
-procedure TfrmPrincipal.N4Click(Sender: TObject);
-begin
-  frmInformacao := TfrmInformacao.Create(self);
-  try
-    frmInformacao.showModal;
-  finally
-    FreeAndNil(frmInformacao);
+    // fecharTela;
+    if (frmCadastroCidades = nil) then
+      frmCadastroCidades := TFrmCadastroCidades.Create(self);
+    if (not frmCadastroCidades.showing) then
+      frmCadastroCidades.Show;
+    begin
+      if frmCadastroCidades.Visible = False then
+        frmCadastroCidades.Visible := True;
+      frmCadastroCidades.BringToFront;
+    end;
   end;
 
-end;
-
-procedure TfrmPrincipal.Oramento1Click(Sender: TObject);
-begin
-
-  // fecharTela;
-  if (frmOrcamento = nil) then
-    frmOrcamento := TFrmOrcamento.Create(self);
-  if (not frmOrcamento.showing) then
-    frmOrcamento.Show;
+  procedure TfrmPrincipal.N4Click(Sender: TObject);
   begin
-    if frmOrcamento.Visible = False then
-      frmOrcamento.Visible := True;
-    frmOrcamento.BringToFront;
+    frmInformacao := TfrmInformacao.Create(self);
+    try
+      frmInformacao.showModal;
+    finally
+      FreeAndNil(frmInformacao);
+    end;
+
   end;
-end;
 
-procedure TfrmPrincipal.Produto2Click(Sender: TObject);
-begin
-
-  // fecharTela;
-  if (frmCadastroProduto = nil) then
-    frmCadastroProduto := TFrmCadastroProduto.Create(self);
-  if (not frmCadastroProduto.showing) then
-    frmCadastroProduto.Show;
+  procedure TfrmPrincipal.Oramento1Click(Sender: TObject);
   begin
-    if frmCadastroProduto.Visible = False then
-      frmCadastroProduto.Visible := True;
-    frmCadastroProduto.BringToFront;
+
+    // fecharTela;
+    if (frmOrcamento = nil) then
+      frmOrcamento := TFrmOrcamento.Create(self);
+    if (not frmOrcamento.showing) then
+      frmOrcamento.Show;
+    begin
+      if frmOrcamento.Visible = False then
+        frmOrcamento.Visible := True;
+      frmOrcamento.BringToFront;
+    end;
   end;
-end;
 
-procedure TfrmPrincipal.Sair1Click(Sender: TObject);
-begin
-  close;
-end;
-
-procedure TfrmPrincipal.Timer1Timer(Sender: TObject);
-begin
-  StatusBar1.Panels[2].Text := 'Hora.: ' + TimeToStr(time);
-  StatusBar1.Panels[3].Text := 'Data.: ' + DateToStr(Date);
-end;
-
-procedure TfrmPrincipal.Unidademedida1Click(Sender: TObject);
-begin
-  // fecharTela;
-  if (frmCadastroUnidadeMedida = nil) then
-    frmCadastroUnidadeMedida := TFrmCadastroUnidadeMedida.Create(self);
-  if (not frmCadastroUnidadeMedida.showing) then
-    frmCadastroUnidadeMedida.Show;
+  procedure TfrmPrincipal.Produto2Click(Sender: TObject);
   begin
-    if frmCadastroUnidadeMedida.Visible = False then
-      frmCadastroUnidadeMedida.Visible := True;
-    frmCadastroUnidadeMedida.BringToFront;
-  end;
-end;
 
-procedure TfrmPrincipal.Venda1Click(Sender: TObject);
-begin
-  // fecharTela;
-  if (frmCadastroVendas = nil) then
-    frmCadastroVendas := TFrmCadastroVendas.Create(self);
-  if (not frmCadastroVendas.showing) then
-    frmCadastroVendas.Show;
+    // fecharTela;
+    if (frmCadastroProduto = nil) then
+      frmCadastroProduto := TFrmCadastroProduto.Create(self);
+    if (not frmCadastroProduto.showing) then
+      frmCadastroProduto.Show;
+    begin
+      if frmCadastroProduto.Visible = False then
+        frmCadastroProduto.Visible := True;
+      frmCadastroProduto.BringToFront;
+    end;
+  end;
+
+  procedure TfrmPrincipal.Sair1Click(Sender: TObject);
   begin
-    if frmCadastroVendas.Visible = False then
-      frmCadastroVendas.Visible := True;
-    frmCadastroVendas.BringToFront;
+    Close;
   end;
-end;
 
-procedure TfrmPrincipal.fecharJanelas1Click(Sender: TObject);
-begin
-  //frmCadastroProduto.CloseModal;
-  { frmCadastroVendas.CloseQuery;
-    frmCadastroUnidadeMedida.CloseModal;
-    frmCadastroProduto.CloseModal;
-    frmOrcamento.CloseModal;
-    frmCadastroCidades.CloseModal;
-    frmCadastroMarca.CloseModal;
-    frmCadastroLocalProduto.CloseModal;
-    frmLancamentoFinanceiro.CloseModal;
-    frmCadastroDocumento.CloseModal;
-    frmCadastroSubGrupo.CloseModal;
-    frmCadastroGrupo.CloseModal;
-    frmMovimento_estoque.CloseModal;
-    frmCadastroEstados.CloseModal;
-    frmContas.CloseModal;
-    frmCadastroCondPagamento.CloseModal;
-    frmCadastroFinanceiro.CloseModal;
-    frmCadastroCliente.CloseModal; }
-end;
-
-procedure TfrmPrincipal.fecharTela;
-begin
-  if formAberto <> nil then
+  procedure TfrmPrincipal.Timer1Timer(Sender: TObject);
   begin
-    formAberto.close;
-    FreeAndNil(formAberto);
+    StatusBar1.Panels[2].Text := 'Hora.: ' + TimeToStr(time);
+    StatusBar1.Panels[3].Text := 'Data.: ' + DateToStr(Date);
   end;
-end;
+
+  procedure TfrmPrincipal.Unidademedida1Click(Sender: TObject);
+  begin
+    // fecharTela;
+    if (frmCadastroUnidadeMedida = nil) then
+      frmCadastroUnidadeMedida := TFrmCadastroUnidadeMedida.Create(self);
+    if (not frmCadastroUnidadeMedida.showing) then
+      frmCadastroUnidadeMedida.Show;
+    begin
+      if frmCadastroUnidadeMedida.Visible = False then
+        frmCadastroUnidadeMedida.Visible := True;
+      frmCadastroUnidadeMedida.BringToFront;
+    end;
+  end;
+
+  procedure TfrmPrincipal.Venda1Click(Sender: TObject);
+  begin
+    // fecharTela;
+    if (frmCadastroVendas = nil) then
+      frmCadastroVendas := TFrmCadastroVendas.Create(self);
+    if (not frmCadastroVendas.showing) then
+      frmCadastroVendas.Show;
+    begin
+      if frmCadastroVendas.Visible = False then
+        frmCadastroVendas.Visible := True;
+      frmCadastroVendas.BringToFront;
+    end;
+  end;
+
+  procedure TfrmPrincipal.fecharJanelas1Click(Sender: TObject);
+  begin
+    // frmCadastroProduto.CloseModal;
+    { frmCadastroVendas.CloseQuery;
+      frmCadastroUnidadeMedida.CloseModal;
+      frmCadastroProduto.CloseModal;
+      frmOrcamento.CloseModal;
+      frmCadastroCidades.CloseModal;
+      frmCadastroMarca.CloseModal;
+      frmCadastroLocalProduto.CloseModal;
+      frmLancamentoFinanceiro.CloseModal;
+      frmCadastroDocumento.CloseModal;
+      frmCadastroSubGrupo.CloseModal;
+      frmCadastroGrupo.CloseModal;
+      frmMovimento_estoque.CloseModal;
+      frmCadastroEstados.CloseModal;
+      frmContas.CloseModal;
+      frmCadastroCondPagamento.CloseModal;
+      frmCadastroFinanceiro.CloseModal;
+      frmCadastroCliente.CloseModal; }
+  end;
+
+  procedure TfrmPrincipal.fecharTela;
+  begin
+    if formAberto <> nil then
+    begin
+      formAberto.Close;
+      FreeAndNil(formAberto);
+    end;
+  end;
 
 end.

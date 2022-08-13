@@ -52,6 +52,7 @@ object frmCadastroUsuario: TfrmCadastroUsuario
           item
             Expanded = False
             FieldName = 'USU_NOME'
+            Width = 64
             Visible = True
           end
           item
@@ -208,7 +209,7 @@ object frmCadastroUsuario: TfrmCadastroUsuario
         Top = 161
         Width = 1116
         Height = 438
-        ActivePage = TabSheet4
+        ActivePage = Geral
         Align = alClient
         TabOrder = 1
         object Geral: TTabSheet
@@ -253,10 +254,18 @@ object frmCadastroUsuario: TfrmCadastroUsuario
         object TabSheet3: TTabSheet
           Caption = 'Produtos'
           ImageIndex = 1
+          ExplicitLeft = 0
+          ExplicitTop = 0
+          ExplicitWidth = 0
+          ExplicitHeight = 0
         end
         object TabSheet4: TTabSheet
           Caption = 'Vendas'
           ImageIndex = 2
+          ExplicitLeft = 0
+          ExplicitTop = 0
+          ExplicitWidth = 0
+          ExplicitHeight = 0
           object Label7: TLabel
             Left = 204
             Top = -1

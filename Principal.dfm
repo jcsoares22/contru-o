@@ -2442,10 +2442,6 @@ object frmPrincipal: TfrmPrincipal
     TabOrder = 1
     object TabSheet1: TTabSheet
       Caption = 'Cadastro'
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object Panel1: TPanel
         Left = 0
         Top = 0
@@ -3061,10 +3057,6 @@ object frmPrincipal: TfrmPrincipal
     object TabSheet3: TTabSheet
       Caption = 'Financeiro'
       ImageIndex = 2
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object Panel4: TPanel
         Left = 0
         Top = 0

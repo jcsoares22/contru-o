@@ -20,12 +20,12 @@ object frmPesquisaCliente: TfrmPesquisaCliente
     Left = 0
     Top = 0
     Width = 1100
-    Height = 409
+    Height = 57
     Align = alTop
     TabOrder = 0
     object ComboBoxCliente: TComboBox
       Left = 16
-      Top = 83
+      Top = 19
       Width = 305
       Height = 21
       TabOrder = 0
@@ -34,9 +34,9 @@ object frmPesquisaCliente: TfrmPesquisaCliente
   end
   object DBGridPesquisa: TDBGrid
     Left = 0
-    Top = 409
+    Top = 57
     Width = 1100
-    Height = 263
+    Height = 615
     Align = alClient
     DataSource = DM_Cadastro.DT_cliente
     TabOrder = 1
@@ -45,6 +45,7 @@ object frmPesquisaCliente: TfrmPesquisaCliente
     TitleFont.Height = -11
     TitleFont.Name = 'Tahoma'
     TitleFont.Style = []
+    OnDblClick = DBGridPesquisaDblClick
     Columns = <
       item
         Expanded = False

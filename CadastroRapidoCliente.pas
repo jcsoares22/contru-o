@@ -50,7 +50,7 @@ implementation
 
 {$R *.dfm}
 
-uses CadastroCliente, DMCadastro, DMEndereco, CadastroVendas;
+uses CadastroCliente, DMCadastro, DMEndereco, CadastroVendas, DMVendas;
 
 procedure TfrmCadastroRapidoCliente.bntCancelarClick(Sender: TObject);
 begin
@@ -66,6 +66,7 @@ begin
    frmCadastroRapidoCliente.Close;
     // := DBEditCodigo.Text;
     // freeAndNil(frmCadastroRapidoCliente);
+    DM_Vendas.FDQuerySaida_VendaCODCLIENTE.Value := DM_Cadastro.FDQueryClienteCODIGO.Value;
   end;
 
 end;

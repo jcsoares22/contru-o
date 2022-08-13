@@ -845,8 +845,8 @@
     end
   end
   object PopupMenuMause: TPopupMenu
-    Left = 596
-    Top = 312
+    Left = 108
+    Top = 400
     object Produto1: TMenuItem
       Caption = 'Produto'
     end

@@ -11,13 +11,13 @@ uses
 
 type
   TfrmCadastroBasicoPai = class(TForm)
-    Panel1: TPanel;
     DB_Grid: TDBGrid;
+    Panel2: TPanel;
     btnNovo: TButton;
-    btnEdit: TButton;
-    btnDeletar: TButton;
-    btnSalvar: TButton;
     btnCancelar: TButton;
+    btnSalvar: TButton;
+    btnDeletar: TButton;
+    btnEdit: TButton;
     procedure FormCreate(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure btn_NovoClick(Sender: TObject);
