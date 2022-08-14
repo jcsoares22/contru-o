@@ -45,13 +45,13 @@ begin
   if (DM_Dados.FDQueryUsuario.recordCount > 0) and
     (DM_Dados.FDQueryUsuarioCAD_USU.Value = 'T') then
   begin
+    frmLoginMenu.Visible := false;
     DM_Dados.FDQueryUsuario.Close;
     frmCadastroUsuario := TFrmCadastroUsuario.Create(self);
     try
       frmCadastroUsuario.ShowModal;
     finally
       FreeAndNil(frmCadastroUsuario);
-
     end
   end
   else

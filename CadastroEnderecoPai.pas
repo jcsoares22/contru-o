@@ -11,19 +11,20 @@ uses
 type
   TfrmCadastroEnderecoPai = class(TForm)
     Panel1: TPanel;
-    Label1: TLabel;
-    Label2: TLabel;
-    Label3: TLabel;
-    btnNovo: TButton;
-    btnSalvar: TButton;
+    DBGrid_Bairro: TDBGrid;
+    Panel2: TPanel;
     btnDeletar: TButton;
+    btnCancelar: TButton;
+    btnSalvar: TButton;
+    btnNovo: TButton;
     btnEdit: TButton;
     btnPesquisar: TButton;
-    CB_opcao: TComboBox;
     edt_Pesquisa: TEdit;
+    Label3: TLabel;
     CB_Opcao2: TComboBox;
-    btnCancelar: TButton;
-    DBGrid_Bairro: TDBGrid;
+    Label2: TLabel;
+    Label1: TLabel;
+    CB_opcao: TComboBox;
     procedure FormCreate(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure btnNovoClick(Sender: TObject);

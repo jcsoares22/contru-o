@@ -116,8 +116,8 @@ end;
 
 procedure TDM_Vendas.FDQuerySaidaProdutoBeforePost(DataSet: TDataSet);
 begin
-   DM_Cadastro.FDQueryProduto.Open();
-  if  DM_Cadastro.FDQueryProduto.Locate('CODIGO',
+  DM_Cadastro.FDQueryProduto.Open();
+  if DM_Cadastro.FDQueryProduto.Locate('CODIGO',
     DM_Vendas.DTProduto.DataSet.FieldByName('CODPRODUTO').Value, []) then
   begin
     DM_Cadastro.FDQueryProduto.Edit;
@@ -130,9 +130,31 @@ end;
 
 procedure TDM_Vendas.FDQuerySaidaProdutoCODPRODUTOValidate(Sender: TField);
 begin
-  { DM_Vendas.FDQuerySaidaProdutoVALORPRODUTO :=
-    DM_Cadastro.FDQueryProdutoPRECO_VENDA; }
+  { if frmCadastroVendas.DBGridVendasItens.Columns.Items[0].Field.AsString <>
+    IntToStr(DM_Cadastro.FDQueryProdutoCODIGO.Value) then
+    begin
+    ShowMessage('Produto bloqueado ou inexistente, produto cod.: ' +
+    frmCadastroVendas.DBGridVendasItens.Columns.Items[0].Field.AsString);
+    //FDQuerySaidaProdutoCODPRODUTO.Clear;
+    end; }
 end;
+{ DM_Cadastro.FDQueryProduto.Open();
+  if frmCadastroVendas.DBGrid_Venda.Fields[0].Value <>
+  DM_Cadastro.FDQueryProdutoCODIGO.CurValue then
+  begin
+  ShowMessage('Produto bloqueado ou inesistente');
+
+  end;
+  FDQuerySaidaProdutoCODPRODUTO.Value := 1;
+
+
+  if CadastroVendas.frmCadastroVendas.DBGrid_Venda.SelectedRows('CODPRODUTO') <> DM_Cadastro.FDQueryProdutoCODIGO.Value
+  then
+  begin
+  ShowMessage('Produto bloqueado ou inesistente');
+
+  end;
+  FDQuerySaidaProdutoCODPRODUTO.Value := 1; }
 
 procedure TDM_Vendas.FDQuerySaidaProdutoQUANTIDADESetText(Sender: TField;
   const Text: string);

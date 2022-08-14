@@ -60,14 +60,11 @@ type
     procedure DBGrid_ClienteDblClick(Sender: TObject);
     procedure DBNavigator1Click(Sender: TObject; Button: TNavigateBtn);
     procedure FormShow(Sender: TObject);
-    procedure DBE_DescUsuarioChange(Sender: TObject);
     procedure DBE_DescUsuarioExit(Sender: TObject);
     procedure FormCreate(Sender: TObject);
   private
     { Private declarations }
     procedure verificacaoCheckBoxGeral;
-    procedure verificacaoCheckBoxProduto;
-    procedure verificacaoCheckBoxVendas;
     procedure checkBoxGeral;
   public
     { Public declarations }
@@ -89,6 +86,7 @@ begin
   if not(DM_Dados.FDQueryUsuario.State in [dsEdit, dsInsert]) then
   begin
     DM_Dados.FDQueryUsuario.Insert;
+    checkBoxGeral;
   end;
   DM_Dados.FDQueryUsuarioCAD_USU.Value := 'F';
 
@@ -219,18 +217,17 @@ end;
 
 procedure TfrmCadastroUsuario.checkBoxGeral;
 begin
-  //altera limite de venda
-  if checkBoxUtrapassarLimite.Checked = true then
+  // altera limite de venda
+  if checkBoxUtrapassarLimite.Checked = True then
   begin
     DM_Dados.FDQueryUsuarioALTERAR_LIMITE_DESC.Value := 'T'
   end
   else
   begin
-       DM_Dados.FDQueryUsuarioALTERAR_LIMITE_DESC.Value := 'F'
+    DM_Dados.FDQueryUsuarioALTERAR_LIMITE_DESC.Value := 'F'
   end;
 
-
-  if checkBoxAdministrador.Checked = true then
+  if checkBoxAdministrador.Checked = True then
   // COLOCANDO SISTEMA COMO ADMINISTRADOR
   begin
     DM_Dados.FDQueryUsuarioADM.Value := 'T';
@@ -238,7 +235,7 @@ begin
   else
     DM_Dados.FDQueryUsuarioADM.Value := 'F';
 
-  if checkBoxPreferencia.Checked = true then
+  if checkBoxPreferencia.Checked = True then
   // COLOCANDO SISTEMA COM PREMISSÃO PARA PODER EDITAR A PREFERENCIA
   begin
     DM_Dados.FDQueryUsuarioPREFERENCIA.Value := 'T';
@@ -246,7 +243,7 @@ begin
   else
     DM_Dados.FDQueryUsuarioPREFERENCIA.Value := 'F';
 
-  if checkBoxManutencaoUsuario.Checked = true then
+  if checkBoxManutencaoUsuario.Checked = True then
   // COLOCANDO SISTEMA COM PREMISSÃO PARA PODER EDITAR A PREFERENCIA
   begin
     DM_Dados.FDQueryUsuarioCAD_USU.Value := 'T';
@@ -255,44 +252,52 @@ begin
     DM_Dados.FDQueryUsuarioCAD_USU.Value := 'F';
 end;
 
-procedure TfrmCadastroUsuario.DBE_DescUsuarioChange(Sender: TObject);
-begin
-  { if DBE_DescUsuario.Text > Preferencia.frmPreferencia.DB_DescMaxUsuario.text then
-    begin
-    ShowMessage("Limite maior que permitodo nas preferencia");
-    end;
-  }
-
-end;
-
 procedure TfrmCadastroUsuario.DBE_DescUsuarioExit(Sender: TObject);
 begin
- // DM_Dados.FDQueryUsuario.Open();
- try
-     if (DM_Dados.FDQueryUsuario.State in [dsEdit, dsInsert]) then
-  begin DM_Dados.FDQueryPreferencia.Open;
-    if checkBoxUtrapassarLimite.Checked <> true then
-    begin
-      ShowMessage('Marque a opção, Ultra passar limite de desconto');
-      DM_Dados.FDQueryPreferenciaDESC_MAX_USUSARIO.Clear;
-      checkBoxUtrapassarLimite.SetFocus;
-    end;
-    if DBE_DescUsuario.Text >= DM_Dados.FDQueryPreferenciaDESC_MAX_USUSARIO.CurValue
-    then
-    begin
-      ShowMessage('Ultra passou limite de desconto das prreferencia' +
-        FloatToStr(DM_Dados.FDQueryPreferenciaDESC_MAX_USUSARIO.Value) + '%');
-      DM_Dados.FDQueryPreferenciaDESC_MAX_USUSARIO.Clear;
-      checkBoxUtrapassarLimite.SetFocus;
+  // DM_Dados.FDQueryUsuario.Open();
+  if DBE_DescUsuario.ReadOnly = false then
+  begin
+    try
+
+      if DM_Dados.FDQueryUsuarioDESCONTO_VENDA_USU.Value < 0 then
+      begin
+        ShowMessage('Não pode ter porcentagem memor que  "0"');
+        DM_Dados.FDQueryUsuarioALTERAR_LIMITE_DESC.Clear;
+        checkBoxUtrapassarLimite.SetFocus;
+      end
+      else
+      begin
+        if (DM_Dados.FDQueryUsuario.State in [dsEdit, dsInsert]) then
+        begin
+          DM_Dados.FDQueryPreferencia.Open;
+          if checkBoxUtrapassarLimite.Checked <> True then
+          begin
+            ShowMessage('Marque a opção, Ultra passar limite de desconto');
+            DM_Dados.FDQueryPreferenciaDESC_MAX_USUSARIO.Clear;
+            checkBoxUtrapassarLimite.SetFocus;
+          end;
+          if (DBE_DescUsuario.Text >=
+            DM_Dados.FDQueryPreferenciaDESC_MAX_USUSARIO.CurValue) then
+          begin
+            DM_Dados.FDQueryPreferencia.Edit;
+            ShowMessage('Ultra passou limite de desconto das preferencia.: ' +
+              FloatToStr(DM_Dados.FDQueryPreferenciaDESC_MAX_USUSARIO.
+              CurValue) + '%');
+            DM_Dados.FDQueryUsuarioALTERAR_LIMITE_DESC.Clear;
+            DBE_DescUsuario.Clear;
+            checkBoxUtrapassarLimite.SetFocus;
+          end;
+        end;
+      end;
+
+    Except
+      on E: Exception do
+      begin
+        ShowMessage('verifique o check box se esta marcado');
+      end;
+
     end;
   end;
- Except
-    on E: Exception do
-    begin
-
-    end;
-
- end;
 
 end;
 
@@ -300,14 +305,13 @@ procedure TfrmCadastroUsuario.DBGrid_ClienteDblClick(Sender: TObject);
 begin
   Cadastro.TabIndex := 1;
   verificacaoCheckBoxGeral;
-  verificacaoCheckBoxVendas;
+
 end;
 
 procedure TfrmCadastroUsuario.DBNavigator1Click(Sender: TObject;
   Button: TNavigateBtn);
 begin
   verificacaoCheckBoxGeral;
-  verificacaoCheckBoxVendas;
 end;
 
 procedure TfrmCadastroUsuario.btnEditClick(Sender: TObject);
@@ -315,7 +319,8 @@ begin
   DM_Dados.FDQueryUsuario.Edit;
   DM_Dados.FDQueryPreferencia.Edit;
   checkBoxGeral;
-  verificacaoCheckBoxGeral;
+  DBE_DescUsuario.ReadOnly := false;
+
 end;
 
 procedure TfrmCadastroUsuario.edt_PesquisaChange(Sender: TObject);
@@ -327,15 +332,16 @@ end;
 
 procedure TfrmCadastroUsuario.FormActivate(Sender: TObject);
 begin
-//  frmLoginMenu.Visible := false;
+  //
 end;
 
 procedure TfrmCadastroUsuario.FormClose(Sender: TObject;
   var Action: TCloseAction);
 begin
-  {DM_Dados.FDQueryUsuario.Close;
-     DM_Dados.FDQueryPreferencia.Close;
-       frmLoginMenu.Close;}
+  DM_Dados.FDQueryUsuario.Close;
+  DM_Dados.FDQueryPreferencia.Close;
+  // frmCadastroUsuario.Free;
+  // FreeAndNil(frmCadastroUsuario);
 
 end;
 
@@ -352,15 +358,22 @@ end;
 procedure TfrmCadastroUsuario.FormShow(Sender: TObject);
 begin
   verificacaoCheckBoxGeral;
-  verificacaoCheckBoxVendas;
 end;
 
 procedure TfrmCadastroUsuario.verificacaoCheckBoxGeral;
-begin
+begin // verrica limite de desconto
+  if DM_Dados.FDQueryUsuarioALTERAR_LIMITE_DESC.Value = 'T' then
+  begin
+    checkBoxUtrapassarLimite.Checked := True;
+  end
+  else
+  begin
+    checkBoxUtrapassarLimite.Checked := false;
+  end;
   // check box administrador
   if DM_Dados.FDQueryUsuarioADM.Value = 'T' then
   begin
-    checkBoxAdministrador.Checked := true;
+    checkBoxAdministrador.Checked := True;
   end
   else
   begin
@@ -369,7 +382,7 @@ begin
   // check box cadastro de usuario
   if DM_Dados.FDQueryUsuarioCAD_USU.Value = 'T' then
   begin
-    checkBoxManutencaoUsuario.Checked := true
+    checkBoxManutencaoUsuario.Checked := True
   end
   else
   begin
@@ -378,30 +391,12 @@ begin
   // checkbox cadastro de preferencia
   if DM_Dados.FDQueryUsuarioPREFERENCIA.Value = 'T' then
   begin
-    checkBoxPreferencia.Checked := true;
+    checkBoxPreferencia.Checked := True;
   end
   else
   begin
     checkBoxPreferencia.Checked := false;
   end;
-end;
-
-procedure TfrmCadastroUsuario.verificacaoCheckBoxProduto;
-begin
-
-end;
-
-procedure TfrmCadastroUsuario.verificacaoCheckBoxVendas;
-begin
-  if DM_Dados.FDQueryUsuarioALTERAR_LIMITE_DESC.Value = 'T' then
-  begin
-    checkBoxUtrapassarLimite.Checked := true;
-  end
-  else
-  begin
-    checkBoxUtrapassarLimite.Checked := false;
-  end;
-
 end;
 
 end.

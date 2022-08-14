@@ -54,7 +54,7 @@ begin
       begin
         ShowMessage('Limte utrapassou o Percentual de desconto do usuario, de '
           + FloatToStr(DM_Dados.FDQueryUsuarioDESCONTO_VENDA_USU.Value) + '%');
-        CadastroVendas.frmCadastroVendas.DBE_Desconto.Clear;
+       // CadastroVendas.frmCadastroVendas.DBE_Desconto.Clear;
         DM_Vendas.FDQuerySaida_VendaDESCONTO.Clear;
         CadastroVendas.frmCadastroVendas.DBE_Desconto.SetFocus;
 
@@ -91,6 +91,7 @@ procedure TfrmLoginDescVenda.FormCreate(Sender: TObject);
 begin
   inherited;
     DM_Vendas.FDQuerySaida_Venda.Open();
+
 end;
 
 end.

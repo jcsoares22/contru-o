@@ -283,6 +283,7 @@ object DM_Vendas: TDM_Vendas
       FieldName = 'CODPRODUTO'
       Origin = 'CODPRODUTO'
       Required = True
+      OnValidate = FDQuerySaidaProdutoCODPRODUTOValidate
     end
     object FDQuerySaidaProdutoQTE_ESTOQUE: TFloatField
       FieldKind = fkLookup

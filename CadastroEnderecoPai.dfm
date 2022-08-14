@@ -20,127 +20,83 @@ object frmCadastroEnderecoPai: TfrmCadastroEnderecoPai
   TextHeight = 13
   object Panel1: TPanel
     Left = 0
-    Top = 0
+    Top = 41
     Width = 1194
-    Height = 97
+    Height = 40
     Align = alTop
     Color = clSkyBlue
     ParentBackground = False
     TabOrder = 0
-    object Label1: TLabel
-      Left = 8
-      Top = 45
-      Width = 65
-      Height = 13
-      Caption = 'Pesquisar por'
-    end
-    object Label2: TLabel
-      Left = 105
-      Top = 47
-      Width = 35
-      Height = 13
-      Caption = 'Crit'#233'rio'
-    end
     object Label3: TLabel
       Left = 208
-      Top = 47
+      Top = 17
       Width = 60
       Height = 13
       Caption = 'Procurar por'
     end
-    object btnNovo: TButton
-      Left = 24
-      Top = 9
-      Width = 75
-      Height = 25
-      Caption = 'Novo'
-      TabOrder = 0
-      OnClick = btnNovoClick
+    object Label2: TLabel
+      Left = 105
+      Top = 17
+      Width = 35
+      Height = 13
+      Caption = 'Crit'#233'rio'
     end
-    object btnSalvar: TButton
-      Left = 218
-      Top = 9
-      Width = 75
-      Height = 25
-      Caption = 'Salvar'
-      TabOrder = 1
-      OnClick = btnSalvarClick
-    end
-    object btnDeletar: TButton
-      Left = 312
-      Top = 9
-      Width = 75
-      Height = 25
-      Caption = 'Delete'
-      TabOrder = 2
-    end
-    object btnEdit: TButton
-      Left = 121
-      Top = 9
-      Width = 75
-      Height = 25
-      Caption = 'Editar'
-      TabOrder = 3
-      OnClick = btnEditClick
+    object Label1: TLabel
+      Left = 8
+      Top = 17
+      Width = 65
+      Height = 13
+      Caption = 'Pesquisar por'
     end
     object btnPesquisar: TButton
       Left = 694
-      Top = 62
+      Top = 5
       Width = 75
       Height = 25
       Caption = '&Pesquisar'
-      TabOrder = 4
-    end
-    object CB_opcao: TComboBox
-      Left = 8
-      Top = 64
-      Width = 91
-      Height = 21
-      CharCase = ecUpperCase
-      TabOrder = 5
-      Text = 'CODIGO'
-      Items.Strings = (
-        'CODIGO'
-        'NOME'
-        'DIGITA'#199#195'O')
+      TabOrder = 0
     end
     object edt_Pesquisa: TEdit
       Left = 208
-      Top = 64
+      Top = 9
       Width = 449
       Height = 21
       CharCase = ecUpperCase
-      TabOrder = 6
+      TabOrder = 1
     end
     object CB_Opcao2: TComboBox
       Left = 105
-      Top = 64
+      Top = 9
       Width = 91
       Height = 21
       CharCase = ecUpperCase
       ItemIndex = 0
-      TabOrder = 7
+      TabOrder = 2
       Text = 'INICIADO COM'
       Items.Strings = (
         'INICIADO COM'
         'QUE CONT'#202'M'
         'IGUAL')
     end
-    object btnCancelar: TButton
-      Left = 408
+    object CB_opcao: TComboBox
+      Left = 8
       Top = 9
-      Width = 75
-      Height = 25
-      Caption = 'Cancelar'
-      TabOrder = 8
-      OnClick = btnCancelarClick
+      Width = 91
+      Height = 21
+      CharCase = ecUpperCase
+      TabOrder = 3
+      Text = 'CODIGO'
+      Items.Strings = (
+        'CODIGO'
+        'NOME'
+        'DIGITA'#199#195'O')
     end
   end
   object DBGrid_Bairro: TDBGrid
     Left = 0
-    Top = 97
+    Top = 81
     Width = 1194
-    Height = 588
+    Height = 604
     Align = alClient
     ReadOnly = True
     TabOrder = 1
@@ -150,5 +106,61 @@ object frmCadastroEnderecoPai: TfrmCadastroEnderecoPai
     TitleFont.Name = 'Tahoma'
     TitleFont.Style = []
     OnKeyPress = DBGrid_BairroKeyPress
+  end
+  object Panel2: TPanel
+    Left = 0
+    Top = 0
+    Width = 1194
+    Height = 41
+    Align = alTop
+    Color = clMenuHighlight
+    ParentBackground = False
+    TabOrder = 2
+    ExplicitLeft = -32
+    ExplicitTop = -7
+    object btnDeletar: TButton
+      Left = 312
+      Top = 6
+      Width = 75
+      Height = 25
+      Caption = 'Delete'
+      TabOrder = 0
+    end
+    object btnCancelar: TButton
+      Left = 408
+      Top = 6
+      Width = 75
+      Height = 25
+      Caption = 'Cancelar'
+      TabOrder = 1
+      OnClick = btnCancelarClick
+    end
+    object btnSalvar: TButton
+      Left = 218
+      Top = 6
+      Width = 75
+      Height = 25
+      Caption = 'Salvar'
+      TabOrder = 2
+      OnClick = btnSalvarClick
+    end
+    object btnNovo: TButton
+      Left = 24
+      Top = 6
+      Width = 75
+      Height = 25
+      Caption = 'Novo'
+      TabOrder = 3
+      OnClick = btnNovoClick
+    end
+    object btnEdit: TButton
+      Left = 121
+      Top = 6
+      Width = 75
+      Height = 25
+      Caption = 'Editar'
+      TabOrder = 4
+      OnClick = btnEditClick
+    end
   end
 end

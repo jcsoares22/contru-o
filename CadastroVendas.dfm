@@ -601,6 +601,7 @@
           DataSource = DM_Vendas.DT_Saida_Venda
           TabOrder = 4
           OnEnter = DBE_DescontoEnter
+          OnExit = DBE_DescontoExit
         end
         object DBEdit6: TDBEdit
           Left = 19
@@ -621,7 +622,7 @@
           TabOrder = 6
         end
       end
-      object DBGrid1: TDBGrid
+      object DBGridVendasItens: TDBGrid
         Left = 0
         Top = 169
         Width = 1287
@@ -634,12 +635,12 @@
         TitleFont.Height = -11
         TitleFont.Name = 'Tahoma'
         TitleFont.Style = []
-        OnColumnMoved = DBGrid_VendaColumnMoved
-        OnDrawColumnCell = DBGrid1DrawColumnCell
+        OnDrawColumnCell = DBGridVendasItensDrawColumnCell
         Columns = <
           item
             Expanded = False
             FieldName = 'CODPRODUTO'
+            Title.Caption = 'COD PRODUTO'
             Visible = True
           end
           item

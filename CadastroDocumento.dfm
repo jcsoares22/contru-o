@@ -4,11 +4,6 @@ inherited frmCadastroDocumento: TfrmCadastroDocumento
   ExplicitHeight = 682
   PixelsPerInch = 96
   TextHeight = 13
-  inherited Panel1: TPanel
-    inherited btnDeletar: TButton
-      OnClick = btnDeletarClick
-    end
-  end
   inherited DB_Grid: TDBGrid
     DataSource = DM_Cadastro.DT_Tipo_Pgto
     Columns = <

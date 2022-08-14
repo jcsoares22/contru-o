@@ -180,6 +180,7 @@ object DM_Dados: TDM_Dados
     object FDQueryUsuarioDESCONTO_VENDA_USU: TCurrencyField
       FieldName = 'DESCONTO_VENDA_USU'
       Origin = 'DESCONTO_VENDA_USU'
+      currency = False
     end
   end
 end

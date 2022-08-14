@@ -1,7 +1,7 @@
 object frmCadastroUsuario: TfrmCadastroUsuario
   Left = 0
   Top = 0
-  Caption = 'frmCadastroUsuario'
+  Caption = 'CadastroUsuario'
   ClientHeight = 627
   ClientWidth = 1124
   Color = clBtnFace
@@ -11,7 +11,6 @@ object frmCadastroUsuario: TfrmCadastroUsuario
   Font.Name = 'Tahoma'
   Font.Style = []
   OldCreateOrder = False
-  OnActivate = FormActivate
   OnClose = FormClose
   OnCreate = FormCreate
   OnShow = FormShow
@@ -209,7 +208,7 @@ object frmCadastroUsuario: TfrmCadastroUsuario
         Top = 161
         Width = 1116
         Height = 438
-        ActivePage = Geral
+        ActivePage = TabSheet4
         Align = alClient
         TabOrder = 1
         object Geral: TTabSheet
@@ -254,18 +253,10 @@ object frmCadastroUsuario: TfrmCadastroUsuario
         object TabSheet3: TTabSheet
           Caption = 'Produtos'
           ImageIndex = 1
-          ExplicitLeft = 0
-          ExplicitTop = 0
-          ExplicitWidth = 0
-          ExplicitHeight = 0
         end
         object TabSheet4: TTabSheet
           Caption = 'Vendas'
           ImageIndex = 2
-          ExplicitLeft = 0
-          ExplicitTop = 0
-          ExplicitWidth = 0
-          ExplicitHeight = 0
           object Label7: TLabel
             Left = 204
             Top = -1
@@ -292,6 +283,7 @@ object frmCadastroUsuario: TfrmCadastroUsuario
             Height = 21
             DataField = 'DESCONTO_VENDA_USU'
             DataSource = DM_Dados.DT_Usuario
+            ReadOnly = True
             TabOrder = 1
             OnExit = DBE_DescUsuarioExit
           end

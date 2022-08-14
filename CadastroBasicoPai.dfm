@@ -49,7 +49,6 @@ object frmCadastroBasicoPai: TfrmCadastroBasicoPai
       item
         Expanded = False
         FieldName = 'SECAO'
-        Width = 64
         Visible = True
       end>
   end
@@ -62,6 +61,7 @@ object frmCadastroBasicoPai: TfrmCadastroBasicoPai
     Color = clMenuHighlight
     ParentBackground = False
     TabOrder = 1
+    ExplicitTop = -6
     object btnNovo: TButton
       Left = 16
       Top = 8

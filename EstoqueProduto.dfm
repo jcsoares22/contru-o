@@ -136,7 +136,6 @@ object frmEstoque: TfrmEstoque
     Text = 'ComboBox1'
   end
   object FDQueryEstoque: TFDQuery
-    Active = True
     Connection = DM_Dados.DADOS
     SQL.Strings = (
       'select '
@@ -152,7 +151,6 @@ object frmEstoque: TfrmEstoque
       '    produto.cor,'
       '    produto.foto,'
       '    produto.marca,'
-      '    produto.bairro,'
       '    produto.precento_lucro,'
       '    produto.preco_prazo_custo,'
       '    produto.preco_prazo_venda,'
@@ -229,11 +227,6 @@ object frmEstoque: TfrmEstoque
       Origin = 'MARCA'
       Size = 15
     end
-    object FDQueryEstoqueBAIRRO: TStringField
-      FieldName = 'BAIRRO'
-      Origin = 'BAIRRO'
-      Size = 40
-    end
     object FDQueryEstoquePRECENTO_LUCRO: TCurrencyField
       FieldName = 'PRECENTO_LUCRO'
       Origin = 'PRECENTO_LUCRO'
@@ -285,7 +278,7 @@ object frmEstoque: TfrmEstoque
     Top = 368
   end
   object frEstoque: TfrxReport
-    Version = '2022.2.5'
+    Version = '2022.2.10'
     DotMatrixReport = False
     IniFile = '\Software\Fast Reports'
     PreviewOptions.Buttons = [pbPrint, pbLoad, pbSave, pbExport, pbZoom, pbFind, pbOutline, pbPageSetup, pbTools, pbEdit, pbNavigator, pbExportQuick, pbCopy, pbSelection]

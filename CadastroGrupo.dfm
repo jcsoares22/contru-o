@@ -5,11 +5,6 @@ inherited frmCadastroGrupo: TfrmCadastroGrupo
   ExplicitHeight = 706
   PixelsPerInch = 96
   TextHeight = 13
-  inherited Panel1: TPanel
-    inherited btnDeletar: TButton
-      OnClick = btnDeletarClick
-    end
-  end
   inherited DB_Grid: TDBGrid
     Height = 272
     Align = alTop
@@ -32,9 +27,9 @@ inherited frmCadastroGrupo: TfrmCadastroGrupo
   end
   object DBGridSubGrupo: TDBGrid
     Left = 0
-    Top = 362
+    Top = 313
     Width = 1185
-    Height = 305
+    Height = 354
     Align = alClient
     DataSource = DM_Cadastro.DT_SubGrupo
     ParentColor = True
@@ -65,13 +60,5 @@ inherited frmCadastroGrupo: TfrmCadastroGrupo
         FieldName = 'UNIDADE_CONSUMO'
         Visible = True
       end>
-  end
-  object Panel2: TPanel
-    Left = 0
-    Top = 321
-    Width = 1185
-    Height = 41
-    Align = alTop
-    TabOrder = 3
   end
 end

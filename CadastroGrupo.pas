@@ -11,7 +11,6 @@ uses
 type
   TfrmCadastroGrupo = class(TfrmCadastroBasicoPai)
     DBGridSubGrupo: TDBGrid;
-    Panel2: TPanel;
     procedure btnNovoClick(Sender: TObject);
     procedure btnEditClick(Sender: TObject);
     procedure btnDeletarClick(Sender: TObject);

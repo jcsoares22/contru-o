@@ -59,7 +59,7 @@ type
     DBEdit6: TDBEdit;
     Label7: TLabel;
     DBLookupCB_Cliente: TDBLookupComboBox;
-    DBGrid1: TDBGrid;
+    DBGridVendasItens: TDBGrid;
     Sitação: TRadioGroup;
     DBEdit2: TDBEdit;
     Label18: TLabel;
@@ -124,12 +124,12 @@ type
     procedure Cliente1Click(Sender: TObject);
     procedure Cliente21Click(Sender: TObject);
     procedure DBGrid1ColEnter(Sender: TObject);
-    procedure DBGrid1DrawColumnCell(Sender: TObject; const Rect: TRect;
-      DataCol: Integer; Column: TColumn; State: TGridDrawState);
-    procedure DBGrid_VendaColumnMoved(Sender: TObject;
-      FromIndex, ToIndex: Integer);
+    procedure DBGridVendasItensDrawColumnCell(Sender: TObject;
+      const Rect: TRect; DataCol: Integer; Column: TColumn;
+      State: TGridDrawState);
     procedure DBGrid_VendaEnter(Sender: TObject);
     procedure DBGrid_VendaDblClick(Sender: TObject);
+    procedure DBE_DescontoExit(Sender: TObject);
   private
     { Private declarations }
 
@@ -486,6 +486,16 @@ begin
   end;
 end;
 
+procedure TfrmCadastroVendas.DBE_DescontoExit(Sender: TObject);
+begin
+  if DM_Vendas.FDQuerySaida_VendaDESCONTO.Value < 0 then
+  begin
+    ShowMessage('Não pode ter desconto negativo');
+    DM_Vendas.FDQuerySaida_VendaDESCONTO.Clear;
+  end;
+
+end;
+
 procedure TfrmCadastroVendas.DBGrid1ColEnter(Sender: TObject);
 begin
   try
@@ -496,7 +506,7 @@ begin
   end;
 end;
 
-procedure TfrmCadastroVendas.DBGrid1DrawColumnCell(Sender: TObject;
+procedure TfrmCadastroVendas.DBGridVendasItensDrawColumnCell(Sender: TObject;
   const Rect: TRect; DataCol: Integer; Column: TColumn; State: TGridDrawState);
 begin
   // carregafoto;
@@ -507,12 +517,6 @@ begin
   { DM_Vendas.FDQuerySaidaProdutoVALORTOTAL.Value :=
     DM_Vendas.FDQuerySaidaProdutoQUANTIDADE.Value *
     DM_Vendas.FDQuerySaidaProdutoVALORPRODUTO.Value; }
-end;
-
-procedure TfrmCadastroVendas.DBGrid_VendaColumnMoved(Sender: TObject;
-  FromIndex, ToIndex: Integer);
-begin
-  carregafoto;
 end;
 
 procedure TfrmCadastroVendas.DBGrid_VendaDblClick(Sender: TObject);
@@ -565,7 +569,7 @@ begin
           frmCadastroRapidoCliente.showModal;
         finally
           FreeAndNil(frmCadastroRapidoCliente);
-          DM_Cadastro.FDQueryCliente.Open();
+          DM_Cadastro.FDQueryCliente.open();
         end;
       end;
       if Key = vk_f5 then
@@ -575,7 +579,7 @@ begin
           frmPesquisaCliente.showModal;
         finally
           FreeAndNil(frmPesquisaCliente);
-          DM_Cadastro.FDQueryCliente.Open();
+          DM_Cadastro.FDQueryCliente.open();
         end;
       end;
     end;

@@ -20,6 +20,8 @@ inherited frmCadastroCliente: TfrmCadastroCliente
     ExplicitWidth = 1009
     ExplicitHeight = 564
     inherited TabSheet1: TTabSheet
+      ExplicitLeft = 4
+      ExplicitTop = 24
       ExplicitWidth = 1001
       ExplicitHeight = 536
       inherited DBGrid_Cliente: TDBGrid

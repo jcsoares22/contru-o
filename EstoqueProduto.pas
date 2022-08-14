@@ -31,7 +31,6 @@ type
     FDQueryEstoqueCOR: TStringField;
     FDQueryEstoqueFOTO: TStringField;
     FDQueryEstoqueMARCA: TStringField;
-    FDQueryEstoqueBAIRRO: TStringField;
     FDQueryEstoquePRECENTO_LUCRO: TCurrencyField;
     FDQueryEstoquePRECO_PRAZO_CUSTO: TBCDField;
     FDQueryEstoquePRECO_PRAZO_VENDA: TBCDField;
@@ -108,7 +107,6 @@ begin
   FDQueryEstoque.SQL.Add('produto.cor, ');
   FDQueryEstoque.SQL.Add('produto.foto, ');
   FDQueryEstoque.SQL.Add('produto.marca, ');
-  FDQueryEstoque.SQL.Add('produto.bairro, ');
   FDQueryEstoque.SQL.Add('produto.precento_lucro, ');
   FDQueryEstoque.SQL.Add('produto.preco_prazo_custo, ');
   FDQueryEstoque.SQL.Add('produto.preco_prazo_venda, ');
