@@ -266,6 +266,7 @@ begin
   if not(DM_Vendas.FDQuerySaida_Venda.State in [dsEdit, dsInsert]) then
   begin
     DM_Vendas.FDQuerySaida_Venda.Insert;
+    PageControl1.TabIndex := 1;
   end;
   DbValorDesconto.Clear;
   btnNovo.Enabled := false;

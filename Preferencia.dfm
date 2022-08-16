@@ -29,8 +29,6 @@ object frmPreferencia: TfrmPreferencia
     TabOrder = 0
     object TabSheet1: TTabSheet
       Caption = 'Informa'#231#227'o'
-      ExplicitLeft = 8
-      ExplicitTop = 22
       object Label3: TLabel
         Left = 24
         Top = 56
@@ -240,7 +238,7 @@ object frmPreferencia: TfrmPreferencia
       end
       object DB_DescMaxUsuario: TDBEdit
         Left = 125
-        Top = 34
+        Top = 36
         Width = 134
         Height = 21
         DataField = 'DESC_MAX_USUSARIO'
@@ -254,9 +252,9 @@ object frmPreferencia: TfrmPreferencia
       object CheckBoxEstoqueProduto: TCheckBox
         Left = 3
         Top = 16
-        Width = 97
+        Width = 134
         Height = 17
-        Caption = 'CheckBox1'
+        Caption = 'Valida estoque minimo'
         TabOrder = 0
       end
     end

@@ -26,11 +26,8 @@ object frmCadastroPai: TfrmCadastroPai
     ActivePage = TabSheet1
     Align = alClient
     TabOrder = 0
-    ExplicitTop = 0
-    ExplicitHeight = 936
     object TabSheet1: TTabSheet
       Caption = 'Pesquisa'
-      ExplicitHeight = 908
       object DBGrid_Cliente: TDBGrid
         Left = 0
         Top = 41
@@ -77,7 +74,7 @@ object frmCadastroPai: TfrmCadastroPai
         end
         object CB_Opcao2: TComboBox
           Left = 108
-          Top = 12
+          Top = 14
           Width = 116
           Height = 21
           CharCase = ecUpperCase
@@ -122,7 +119,6 @@ object frmCadastroPai: TfrmCadastroPai
     object TabSheet2: TTabSheet
       Caption = 'Cadastro'
       ImageIndex = 1
-      ExplicitHeight = 908
     end
   end
   object Panel1: TPanel
@@ -134,49 +130,46 @@ object frmCadastroPai: TfrmCadastroPai
     Color = clMenuHighlight
     ParentBackground = False
     TabOrder = 1
-    ExplicitLeft = 8
-    ExplicitTop = 8
-    ExplicitWidth = 1312
     object btnNovo: TButton
       Left = 16
-      Top = 9
+      Top = 8
       Width = 71
-      Height = 25
+      Height = 26
       Caption = 'Novo'
       TabOrder = 0
       OnClick = btnNovoClick
     end
     object btnEdit: TButton
-      Left = 112
-      Top = 9
-      Width = 75
-      Height = 25
+      Left = 93
+      Top = 8
+      Width = 71
+      Height = 26
       Caption = 'Edite'
       TabOrder = 1
       OnClick = btnEditClick
     end
     object btnDeletar: TButton
-      Left = 200
-      Top = 9
-      Width = 75
-      Height = 25
+      Left = 174
+      Top = 8
+      Width = 71
+      Height = 26
       Caption = 'Deletar'
       TabOrder = 2
     end
     object btnSalvar: TButton
-      Left = 281
-      Top = 9
-      Width = 75
-      Height = 25
+      Left = 255
+      Top = 8
+      Width = 71
+      Height = 26
       Caption = 'Salvar'
       TabOrder = 3
       OnClick = btnSalvarClick
     end
     object btnCancelar: TButton
-      Left = 384
-      Top = 9
-      Width = 75
-      Height = 25
+      Left = 336
+      Top = 8
+      Width = 71
+      Height = 26
       Caption = 'Cancelar'
       TabOrder = 4
       OnClick = btnCancelarClick

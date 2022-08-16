@@ -49,6 +49,7 @@ object frmCadastroBasicoPai: TfrmCadastroBasicoPai
       item
         Expanded = False
         FieldName = 'SECAO'
+        Width = 64
         Visible = True
       end>
   end
@@ -61,19 +62,9 @@ object frmCadastroBasicoPai: TfrmCadastroBasicoPai
     Color = clMenuHighlight
     ParentBackground = False
     TabOrder = 1
-    ExplicitTop = -6
-    object btnNovo: TButton
-      Left = 16
-      Top = 8
-      Width = 71
-      Height = 25
-      Caption = 'Novo'
-      TabOrder = 0
-      OnClick = btnNovoClick
-    end
     object btnCancelar: TButton
-      Left = 384
-      Top = 8
+      Left = 336
+      Top = 10
       Width = 75
       Height = 25
       Caption = 'Cancelar'
@@ -81,8 +72,8 @@ object frmCadastroBasicoPai: TfrmCadastroBasicoPai
       OnClick = btnCancelarClick
     end
     object btnSalvar: TButton
-      Left = 281
-      Top = 8
+      Left = 255
+      Top = 10
       Width = 75
       Height = 25
       Caption = 'Salvar'
@@ -90,16 +81,25 @@ object frmCadastroBasicoPai: TfrmCadastroBasicoPai
       OnClick = btnSalvarClick
     end
     object btnDeletar: TButton
-      Left = 200
-      Top = 8
+      Left = 174
+      Top = 10
       Width = 75
       Height = 25
       Caption = 'Deletar'
       TabOrder = 3
     end
+    object btnNovo: TButton
+      Left = 16
+      Top = 10
+      Width = 71
+      Height = 25
+      Caption = 'Novo'
+      TabOrder = 0
+      OnClick = btnNovoClick
+    end
     object btnEdit: TButton
-      Left = 112
-      Top = 8
+      Left = 93
+      Top = 10
       Width = 75
       Height = 25
       Caption = 'Edite'

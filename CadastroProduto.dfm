@@ -11,10 +11,11 @@ inherited frmCadastroProduto: TfrmCadastroProduto
     Width = 1127
     Height = 593
     ActivePage = TabSheet2
-    ExplicitTop = 41
     ExplicitWidth = 1127
     ExplicitHeight = 593
     inherited TabSheet1: TTabSheet
+      ExplicitLeft = 4
+      ExplicitTop = 24
       ExplicitWidth = 1119
       ExplicitHeight = 565
       inherited DBGrid_Cliente: TDBGrid
@@ -37,31 +38,37 @@ inherited frmCadastroProduto: TfrmCadastroProduto
           item
             Expanded = False
             FieldName = 'PRODUTO'
+            Width = 64
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'UN_MEDIDA'
+            Width = 64
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'PRECO_CUSTO'
+            Width = 64
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'PRECO_VENDA'
+            Width = 64
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'OBS'
+            Width = 64
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'DATACAD'
+            Width = 64
             Visible = True
           end
           item
@@ -72,6 +79,7 @@ inherited frmCadastroProduto: TfrmCadastroProduto
           item
             Expanded = False
             FieldName = 'DATAVENDA'
+            Width = 64
             Visible = True
           end
           item
@@ -82,6 +90,7 @@ inherited frmCadastroProduto: TfrmCadastroProduto
           item
             Expanded = False
             FieldName = 'COR'
+            Width = 64
             Visible = True
           end
           item
@@ -92,11 +101,13 @@ inherited frmCadastroProduto: TfrmCadastroProduto
           item
             Expanded = False
             FieldName = 'FOTO'
+            Width = 64
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'MARCA'
+            Width = 64
             Visible = True
           end
           item
@@ -107,21 +118,25 @@ inherited frmCadastroProduto: TfrmCadastroProduto
           item
             Expanded = False
             FieldName = 'PRECENTO_LUCRO'
+            Width = 64
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'PRECO_PRAZO_CUSTO'
+            Width = 64
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'PRECO_PRAZO_VENDA'
+            Width = 64
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'PRECENTO_PRAZO_LUCRO'
+            Width = 64
             Visible = True
           end
           item
@@ -137,6 +152,7 @@ inherited frmCadastroProduto: TfrmCadastroProduto
           item
             Expanded = False
             FieldName = 'ID_SUBGRUPO'
+            Width = 64
             Visible = True
           end>
       end
@@ -151,11 +167,13 @@ inherited frmCadastroProduto: TfrmCadastroProduto
       end
     end
     inherited TabSheet2: TTabSheet
+      ExplicitLeft = 4
+      ExplicitTop = 24
       ExplicitWidth = 1119
       ExplicitHeight = 565
       object Label1: TLabel
         Left = 16
-        Top = 48
+        Top = -2
         Width = 41
         Height = 13
         Caption = 'CODIGO'
@@ -163,7 +181,7 @@ inherited frmCadastroProduto: TfrmCadastroProduto
       end
       object Label12: TLabel
         Left = 18
-        Top = 349
+        Top = 299
         Width = 20
         Height = 13
         Caption = 'OBS'
@@ -171,28 +189,28 @@ inherited frmCadastroProduto: TfrmCadastroProduto
       end
       object Label13: TLabel
         Left = 641
-        Top = 48
+        Top = -2
         Width = 28
         Height = 13
         Caption = 'FOTO'
       end
       object Label18: TLabel
         Left = 437
-        Top = 156
+        Top = 106
         Width = 17
         Height = 13
         Caption = 'Cor'
       end
       object Label19: TLabel
         Left = 200
-        Top = 96
+        Top = 46
         Width = 59
         Height = 13
         Caption = 'UN_MEDIDA'
       end
       object Label2: TLabel
         Left = 82
-        Top = 48
+        Top = -2
         Width = 49
         Height = 13
         Caption = 'PRODUTO'
@@ -200,14 +218,14 @@ inherited frmCadastroProduto: TfrmCadastroProduto
       end
       object Label21: TLabel
         Left = 426
-        Top = 181
+        Top = 131
         Width = 29
         Height = 13
         Caption = 'Marca'
       end
       object Label25: TLabel
         Left = 472
-        Top = 402
+        Top = 352
         Width = 85
         Height = 13
         Caption = 'Quantidade Saida'
@@ -215,7 +233,7 @@ inherited frmCadastroProduto: TfrmCadastroProduto
       end
       object Label3: TLabel
         Left = 712
-        Top = -328
+        Top = -378
         Width = 59
         Height = 13
         Caption = 'UN_MEDIDA'
@@ -223,21 +241,21 @@ inherited frmCadastroProduto: TfrmCadastroProduto
       end
       object Label4: TLabel
         Left = 363
-        Top = 98
+        Top = 48
         Width = 91
         Height = 13
         Caption = 'GRUPO_MATERIAL'
       end
       object Label8: TLabel
         Left = 404
-        Top = 126
+        Top = 76
         Width = 50
         Height = 13
         Caption = 'Sub Grupo'
       end
       object Label17: TLabel
         Left = 16
-        Top = 96
+        Top = 46
         Width = 48
         Height = 13
         Caption = 'DATACAD'
@@ -245,7 +263,7 @@ inherited frmCadastroProduto: TfrmCadastroProduto
       end
       object Label26: TLabel
         Left = 112
-        Top = 97
+        Top = 47
         Width = 60
         Height = 13
         Caption = 'DATAVENDA'
@@ -253,7 +271,7 @@ inherited frmCadastroProduto: TfrmCadastroProduto
       end
       object Label27: TLabel
         Left = 472
-        Top = 360
+        Top = 310
         Width = 119
         Height = 13
         Caption = 'QUANTIDADE_ENTRADA'
@@ -261,7 +279,7 @@ inherited frmCadastroProduto: TfrmCadastroProduto
       end
       object Label28: TLabel
         Left = 472
-        Top = 450
+        Top = 400
         Width = 104
         Height = 13
         Caption = 'QUANTIDADE_ATUAL'
@@ -269,7 +287,7 @@ inherited frmCadastroProduto: TfrmCadastroProduto
       end
       object Label20: TLabel
         Left = 472
-        Top = 498
+        Top = 448
         Width = 64
         Height = 13
         Caption = 'QTE_MINIMA'
@@ -277,14 +295,14 @@ inherited frmCadastroProduto: TfrmCadastroProduto
       end
       object DBImage: TImage
         Left = 641
-        Top = 67
+        Top = 17
         Width = 266
         Height = 138
         Stretch = True
       end
       object btn_foto: TButton
         Left = 773
-        Top = 231
+        Top = 181
         Width = 75
         Height = 25
         Caption = 'Carregar'
@@ -293,7 +311,7 @@ inherited frmCadastroProduto: TfrmCadastroProduto
       end
       object DB_Codigo: TDBEdit
         Left = 16
-        Top = 64
+        Top = 14
         Width = 41
         Height = 21
         DataField = 'CODIGO'
@@ -303,7 +321,7 @@ inherited frmCadastroProduto: TfrmCadastroProduto
       end
       object DBEdit3: TDBEdit
         Left = 712
-        Top = -312
+        Top = -362
         Width = 55
         Height = 21
         DataField = 'UN_MEDIDA'
@@ -311,7 +329,7 @@ inherited frmCadastroProduto: TfrmCadastroProduto
       end
       object DBEdit9: TDBEdit
         Left = 18
-        Top = 368
+        Top = 318
         Width = 441
         Height = 21
         CharCase = ecUpperCase
@@ -322,7 +340,7 @@ inherited frmCadastroProduto: TfrmCadastroProduto
       end
       object DBLookupComboBoxCor: TDBLookupComboBox
         Left = 460
-        Top = 152
+        Top = 102
         Width = 145
         Height = 21
         DataField = 'COR'
@@ -335,7 +353,7 @@ inherited frmCadastroProduto: TfrmCadastroProduto
       end
       object DBLookupComboBoxMarca: TDBLookupComboBox
         Left = 461
-        Top = 181
+        Top = 131
         Width = 145
         Height = 21
         DataField = 'MARCA'
@@ -348,7 +366,7 @@ inherited frmCadastroProduto: TfrmCadastroProduto
       end
       object DBLookupComboBoxUNMedida: TDBLookupComboBox
         Left = 201
-        Top = 115
+        Top = 65
         Width = 65
         Height = 21
         DataField = 'UN_MEDIDA'
@@ -361,7 +379,7 @@ inherited frmCadastroProduto: TfrmCadastroProduto
       end
       object DB_Qte_Saida: TDBEdit
         Left = 472
-        Top = 421
+        Top = 371
         Width = 134
         Height = 21
         DataField = 'QUANTIDADE_SAIDA'
@@ -371,7 +389,7 @@ inherited frmCadastroProduto: TfrmCadastroProduto
       end
       object DBRadioGroup1: TDBRadioGroup
         Left = 322
-        Top = 228
+        Top = 178
         Width = 137
         Height = 61
         Caption = 'Situa'#231#227'o'
@@ -388,7 +406,7 @@ inherited frmCadastroProduto: TfrmCadastroProduto
       end
       object Nome_produto: TDBEdit
         Left = 82
-        Top = 67
+        Top = 17
         Width = 391
         Height = 21
         CharCase = ecUpperCase
@@ -399,10 +417,10 @@ inherited frmCadastroProduto: TfrmCadastroProduto
       end
       object PageControl1: TPageControl
         Left = 16
-        Top = 142
+        Top = 92
         Width = 289
         Height = 193
-        ActivePage = TabSheet4
+        ActivePage = TabSheet3
         TabOrder = 12
         object TabSheet3: TTabSheet
           Caption = #192' vista'
@@ -524,7 +542,7 @@ inherited frmCadastroProduto: TfrmCadastroProduto
       end
       object DB_DT_Cad: TDBEdit
         Left = 16
-        Top = 115
+        Top = 65
         Width = 71
         Height = 21
         DataField = 'DATACAD'
@@ -534,7 +552,7 @@ inherited frmCadastroProduto: TfrmCadastroProduto
       end
       object DB_DT_Venda: TDBEdit
         Left = 112
-        Top = 115
+        Top = 65
         Width = 60
         Height = 21
         DataField = 'DATAVENDA'
@@ -544,7 +562,7 @@ inherited frmCadastroProduto: TfrmCadastroProduto
       end
       object DBLookupComboBoxGrupo: TDBLookupComboBox
         Left = 460
-        Top = 94
+        Top = 44
         Width = 145
         Height = 21
         DataField = 'ID_GRUPO'
@@ -557,7 +575,7 @@ inherited frmCadastroProduto: TfrmCadastroProduto
       end
       object DBLookupComboBoxSubGrupo: TDBLookupComboBox
         Left = 460
-        Top = 121
+        Top = 71
         Width = 145
         Height = 21
         DataField = 'ID_GRUPO'
@@ -570,7 +588,7 @@ inherited frmCadastroProduto: TfrmCadastroProduto
       end
       object DB_Qte_Entrada: TDBEdit
         Left = 472
-        Top = 376
+        Top = 326
         Width = 134
         Height = 21
         DataField = 'QUANTIDADE_ENTRADA'
@@ -580,7 +598,7 @@ inherited frmCadastroProduto: TfrmCadastroProduto
       end
       object DB_Qte_Atual: TDBEdit
         Left = 472
-        Top = 469
+        Top = 419
         Width = 134
         Height = 21
         DataField = 'QUANTIDADE_ATUAL'
@@ -591,7 +609,7 @@ inherited frmCadastroProduto: TfrmCadastroProduto
       end
       object DBEdtQTE_Minima: TDBEdit
         Left = 472
-        Top = 514
+        Top = 464
         Width = 134
         Height = 21
         DataField = 'QTE_MINIMA'
@@ -600,7 +618,7 @@ inherited frmCadastroProduto: TfrmCadastroProduto
       end
       object DBLocal: TDBEdit
         Left = 597
-        Top = 67
+        Top = 17
         Width = 39
         Height = 21
         DataField = 'NUM_LOCAL'
@@ -609,13 +627,13 @@ inherited frmCadastroProduto: TfrmCadastroProduto
       end
       object DBLookupComboBoxLocalProd: TDBLookupComboBox
         Left = 479
-        Top = 67
+        Top = 17
         Width = 119
         Height = 21
         DataField = 'COD_LOCAL'
         DataSource = DM_Cadastro.DT_produto
         KeyField = 'CODIGO'
-        ListField = 'CODIGO'
+        ListField = 'LOCAL'
         ListSource = DM_Cadastro.DT_LocalProd
         TabOrder = 18
       end
@@ -624,12 +642,10 @@ inherited frmCadastroProduto: TfrmCadastroProduto
   inherited Panel1: TPanel
     Width = 1127
     TabOrder = 2
-    ExplicitLeft = 0
-    ExplicitTop = 0
     ExplicitWidth = 1127
     inherited btnNovo: TButton
-      Left = 20
-      ExplicitLeft = 20
+      Left = 15
+      ExplicitLeft = 15
     end
     inherited btnDeletar: TButton
       OnClick = btnDeletarClick

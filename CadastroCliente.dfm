@@ -16,12 +16,9 @@ inherited frmCadastroCliente: TfrmCadastroCliente
   inherited Cadastro: TPageControl
     Width = 1009
     Height = 564
-    ExplicitTop = 41
     ExplicitWidth = 1009
     ExplicitHeight = 564
     inherited TabSheet1: TTabSheet
-      ExplicitLeft = 4
-      ExplicitTop = 24
       ExplicitWidth = 1001
       ExplicitHeight = 536
       inherited DBGrid_Cliente: TDBGrid
@@ -42,37 +39,31 @@ inherited frmCadastroCliente: TfrmCadastroCliente
           item
             Expanded = False
             FieldName = 'TELEFONE'
-            Width = 64
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'CPF'
-            Width = 64
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'EMAIL'
-            Width = 64
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'DESCRICAO'
-            Width = 64
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'RUA'
-            Width = 64
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'NUMERO'
-            Width = 64
             Visible = True
           end
           item
@@ -88,7 +79,6 @@ inherited frmCadastroCliente: TfrmCadastroCliente
           item
             Expanded = False
             FieldName = 'BAIRRO'
-            Width = 64
             Visible = True
           end>
       end
@@ -327,31 +317,19 @@ inherited frmCadastroCliente: TfrmCadastroCliente
   inherited Panel1: TPanel
     Width = 1009
     TabOrder = 2
-    ExplicitLeft = 0
-    ExplicitTop = 0
     ExplicitWidth = 1009
     inherited btnNovo: TButton
       Width = 63
       ExplicitWidth = 63
     end
-    inherited btnEdit: TButton
-      Width = 71
-      ExplicitWidth = 71
-    end
     inherited btnDeletar: TButton
-      Width = 71
       OnClick = btnDeletarClick
-      ExplicitWidth = 71
     end
     inherited btnSalvar: TButton
-      Left = 297
-      Width = 71
-      ExplicitLeft = 297
-      ExplicitWidth = 71
-    end
-    inherited btnCancelar: TButton
-      Width = 71
-      ExplicitWidth = 71
+      Left = 251
+      Top = 9
+      ExplicitLeft = 251
+      ExplicitTop = 9
     end
     object DBNavigator1: TDBNavigator
       Left = 697

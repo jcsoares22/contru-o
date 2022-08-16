@@ -116,10 +116,8 @@ object frmCadastroEnderecoPai: TfrmCadastroEnderecoPai
     Color = clMenuHighlight
     ParentBackground = False
     TabOrder = 2
-    ExplicitLeft = -32
-    ExplicitTop = -7
     object btnDeletar: TButton
-      Left = 312
+      Left = 270
       Top = 6
       Width = 75
       Height = 25
@@ -127,7 +125,7 @@ object frmCadastroEnderecoPai: TfrmCadastroEnderecoPai
       TabOrder = 0
     end
     object btnCancelar: TButton
-      Left = 408
+      Left = 351
       Top = 6
       Width = 75
       Height = 25
@@ -136,7 +134,7 @@ object frmCadastroEnderecoPai: TfrmCadastroEnderecoPai
       OnClick = btnCancelarClick
     end
     object btnSalvar: TButton
-      Left = 218
+      Left = 189
       Top = 6
       Width = 75
       Height = 25
@@ -154,7 +152,7 @@ object frmCadastroEnderecoPai: TfrmCadastroEnderecoPai
       OnClick = btnNovoClick
     end
     object btnEdit: TButton
-      Left = 121
+      Left = 108
       Top = 6
       Width = 75
       Height = 25

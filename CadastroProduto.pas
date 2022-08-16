@@ -104,7 +104,7 @@ implementation
 
 {$R *.dfm}
 
-uses EstoqueProduto;
+uses EstoqueProduto, DMDados;
 
 procedure TfrmCadastroProduto.btnCancelarClick(Sender: TObject);
 begin
@@ -301,22 +301,26 @@ end;
 procedure TfrmCadastroProduto.btnSalvarClick(Sender: TObject);
 begin
   inherited;
+   if DM_Dados.FDQueryPreferenciaVALIDAR_ESTOQUE_MINIMO.Value = 'T' then
+  begin
   if DBEdtQTE_Minima.Text = '' then
   begin
     ShowMessage('Quantidade minima deve ser informada');
     DBEdtQTE_Minima.SetFocus;
+  end;
   end;
   if DBLookupComboBoxUNMedida.Text = '' then
   begin
     ShowMessage('Informe a unidade de medida');
     DBLookupComboBoxUNMedida.SetFocus;
   end;
-  if DBEdtQTE_Minima.Text <> '' then
+     if DBEdtQTE_Minima.Text <> '' then
   begin
     DM_Cadastro.FDQueryProduto.Edit;
     DM_Cadastro.FDQueryProduto.Post;
     mod_ReadOnlyTrue;
   end;
+
 
 end;
 

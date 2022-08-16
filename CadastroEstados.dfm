@@ -22,26 +22,15 @@ inherited frmCadastroEstados: TfrmCadastroEstados
       end>
   end
   inherited Panel1: TPanel [1]
-    inherited Label1: TLabel
-      Enabled = False
-      Visible = False
-    end
     inherited Label2: TLabel
       Enabled = False
       Visible = False
     end
-    inherited btnNovo: TButton
-      Top = 14
-      ExplicitTop = 14
-    end
-    inherited btnDeletar: TButton
-      OnClick = btnDeletarClick
-    end
-    inherited btnPesquisar: TButton
+    inherited Label1: TLabel
       Enabled = False
       Visible = False
     end
-    inherited CB_opcao: TComboBox
+    inherited btnPesquisar: TButton
       Enabled = False
       Visible = False
     end
@@ -51,6 +40,15 @@ inherited frmCadastroEstados: TfrmCadastroEstados
     inherited CB_Opcao2: TComboBox
       Enabled = False
       Visible = False
+    end
+    inherited CB_opcao: TComboBox
+      Enabled = False
+      Visible = False
+    end
+  end
+  inherited Panel2: TPanel
+    inherited btnDeletar: TButton
+      OnClick = btnDeletarClick
     end
   end
 end
