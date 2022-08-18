@@ -23,13 +23,8 @@ type
     edt_Pesquisa: TEdit;
     btnPesquisa: TButton;
     TabSheet2: TTabSheet;
-    Panel1: TPanel;
     PageControl1: TPageControl;
     Geral: TTabSheet;
-    btnNovo: TButton;
-    btnSalvar: TButton;
-    btnEdit: TButton;
-    btnCancelar: TButton;
     Panel3: TPanel;
     DBEdit5: TDBEdit;
     Label5: TLabel;
@@ -50,6 +45,11 @@ type
     checkBoxUtrapassarLimite: TRxCheckBox;
     DBE_DescUsuario: TDBEdit;
     Label7: TLabel;
+    Panel1: TPanel;
+    btnNovo: TButton;
+    btnSalvar: TButton;
+    btnEdit: TButton;
+    btnCancelar: TButton;
     procedure btnNovoClick(Sender: TObject);
     procedure btnSalvarClick(Sender: TObject);
     procedure edt_PesquisaChange(Sender: TObject);

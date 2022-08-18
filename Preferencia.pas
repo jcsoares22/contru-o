@@ -34,7 +34,6 @@ type
     Panel1: TPanel;
     Button1: TButton;
     Button2: TButton;
-    Button3: TButton;
     Produto: TTabSheet;
     CheckBoxEstoqueProduto: TCheckBox;
     DBE_DESCONTO: TDBEdit;
@@ -94,7 +93,7 @@ end;
 
 procedure TfrmPreferencia.Button3Click(Sender: TObject);
 begin
-  DM_Dados.FDQueryPreferencia.Edit;
+
   { if DBCheckBoxEstoqueProduto.ValueChecked then
     begin
     DM_Dados.FDQueryPreferenciaVALIDAR_ESTOQUE_MINIMO.Value := 'T'
@@ -128,6 +127,7 @@ begin
   DM_Dados.FDQueryPreferencia.open();
   DM_Endereco.FDQueryCidade.open();
   DM_Endereco.FDQueryEstados.open();
+  DM_Dados.FDQueryPreferencia.Edit;
   try
     // DM_Cadastro.FDQueryProduto.Prior;
 

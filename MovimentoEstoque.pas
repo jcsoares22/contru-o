@@ -12,15 +12,16 @@ uses
 type
   TfrmMovimento_estoque = class(TfrmCadastroPai)
     DBGrid: TDBGrid;
-    Label1: TLabel;
+    DBNavigator1: TDBNavigator;
+    Panel3: TPanel;
     DBEdit1: TDBEdit;
-    Label2: TLabel;
-    Label3: TLabel;
-    DATE_Mov: TDBEdit;
+    Label1: TLabel;
     Label4: TLabel;
     DBCB_Movimentacao: TDBComboBox;
+    Label2: TLabel;
     DBEdit2: TDBEdit;
-    DBNavigator1: TDBNavigator;
+    DATE_Mov: TDBEdit;
+    Label3: TLabel;
     procedure btnSalvarClick(Sender: TObject);
     procedure btnNovoClick(Sender: TObject);
     procedure btnDeletarClick(Sender: TObject);

@@ -18,19 +18,22 @@ object frmCadastroUsuario: TfrmCadastroUsuario
   TextHeight = 13
   object Cadastro: TPageControl
     Left = 0
-    Top = 0
+    Top = 41
     Width = 1124
-    Height = 627
+    Height = 586
     ActivePage = TabSheet2
     Align = alClient
     TabOrder = 0
+    ExplicitTop = 0
+    ExplicitHeight = 627
     object TabSheet1: TTabSheet
       Caption = 'Pesquisa'
+      ExplicitHeight = 599
       object DBGrid_Cliente: TDBGrid
         Left = 0
         Top = 57
         Width = 1116
-        Height = 542
+        Height = 501
         Align = alClient
         DataSource = DM_Dados.DT_Usuario
         ParentColor = True
@@ -51,7 +54,6 @@ object frmCadastroUsuario: TfrmCadastroUsuario
           item
             Expanded = False
             FieldName = 'USU_NOME'
-            Width = 64
             Visible = True
           end
           item
@@ -158,59 +160,16 @@ object frmCadastroUsuario: TfrmCadastroUsuario
     object TabSheet2: TTabSheet
       Caption = 'Cadastro'
       ImageIndex = 1
-      object Panel1: TPanel
-        Left = 0
-        Top = 0
-        Width = 1116
-        Height = 41
-        Align = alTop
-        Color = clMenuHighlight
-        ParentBackground = False
-        TabOrder = 0
-        object btnNovo: TButton
-          Left = 16
-          Top = 8
-          Width = 75
-          Height = 25
-          Caption = 'Novo'
-          TabOrder = 0
-          OnClick = btnNovoClick
-        end
-        object btnSalvar: TButton
-          Left = 215
-          Top = 8
-          Width = 75
-          Height = 25
-          Caption = 'Salvar'
-          TabOrder = 1
-          OnClick = btnSalvarClick
-        end
-        object btnEdit: TButton
-          Left = 112
-          Top = 8
-          Width = 75
-          Height = 25
-          Caption = 'Edit'
-          TabOrder = 2
-          OnClick = btnEditClick
-        end
-        object btnCancelar: TButton
-          Left = 310
-          Top = 8
-          Width = 75
-          Height = 25
-          Caption = 'Cancelar'
-          TabOrder = 3
-        end
-      end
+      ExplicitHeight = 599
       object PageControl1: TPageControl
         Left = 0
-        Top = 161
+        Top = 120
         Width = 1116
         Height = 438
         ActivePage = TabSheet4
         Align = alClient
-        TabOrder = 1
+        TabOrder = 0
+        ExplicitTop = 161
         object Geral: TTabSheet
           Caption = 'Geral'
           object checkBoxManutencaoUsuario: TRxCheckBox
@@ -291,11 +250,12 @@ object frmCadastroUsuario: TfrmCadastroUsuario
       end
       object Panel3: TPanel
         Left = 0
-        Top = 41
+        Top = 0
         Width = 1116
         Height = 120
         Align = alTop
-        TabOrder = 2
+        TabOrder = 1
+        ExplicitTop = 41
         object Label5: TLabel
           Left = 456
           Top = 64
@@ -390,9 +350,57 @@ object frmCadastroUsuario: TfrmCadastroUsuario
         Width = 240
         Height = 25
         DataSource = DM_Dados.DT_Usuario
-        TabOrder = 3
+        TabOrder = 2
         OnClick = DBNavigator1Click
       end
+    end
+  end
+  object Panel1: TPanel
+    Left = 0
+    Top = 0
+    Width = 1124
+    Height = 41
+    Align = alTop
+    Color = clMenuHighlight
+    ParentBackground = False
+    TabOrder = 1
+    ExplicitLeft = 8
+    ExplicitTop = 8
+    ExplicitWidth = 1116
+    object btnNovo: TButton
+      Left = 16
+      Top = 8
+      Width = 75
+      Height = 25
+      Caption = 'Novo'
+      TabOrder = 0
+      OnClick = btnNovoClick
+    end
+    object btnSalvar: TButton
+      Left = 215
+      Top = 8
+      Width = 75
+      Height = 25
+      Caption = 'Salvar'
+      TabOrder = 1
+      OnClick = btnSalvarClick
+    end
+    object btnEdit: TButton
+      Left = 112
+      Top = 8
+      Width = 75
+      Height = 25
+      Caption = 'Edit'
+      TabOrder = 2
+      OnClick = btnEditClick
+    end
+    object btnCancelar: TButton
+      Left = 310
+      Top = 8
+      Width = 75
+      Height = 25
+      Caption = 'Cancelar'
+      TabOrder = 3
     end
   end
 end

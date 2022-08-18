@@ -269,7 +269,7 @@ object frmPreferencia: TfrmPreferencia
     ParentBackground = False
     TabOrder = 1
     object Button1: TButton
-      Left = 633
+      Left = 714
       Top = 6
       Width = 75
       Height = 25
@@ -285,15 +285,6 @@ object frmPreferencia: TfrmPreferencia
       Caption = 'Cancelar'
       TabOrder = 1
       OnClick = Button2Click
-    end
-    object Button3: TButton
-      Left = 714
-      Top = 6
-      Width = 75
-      Height = 25
-      Caption = 'Edit'
-      TabOrder = 2
-      OnClick = Button3Click
     end
   end
   object OpenDialogImage: TOpenDialog
