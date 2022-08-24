@@ -72,7 +72,7 @@ object frmCadastroBasicoPai: TfrmCadastroBasicoPai
       OnClick = btnCancelarClick
     end
     object btnSalvar: TButton
-      Left = 255
+      Left = 256
       Top = 10
       Width = 75
       Height = 25
@@ -81,7 +81,7 @@ object frmCadastroBasicoPai: TfrmCadastroBasicoPai
       OnClick = btnSalvarClick
     end
     object btnDeletar: TButton
-      Left = 174
+      Left = 176
       Top = 10
       Width = 75
       Height = 25
@@ -98,7 +98,7 @@ object frmCadastroBasicoPai: TfrmCadastroBasicoPai
       OnClick = btnNovoClick
     end
     object btnEdit: TButton
-      Left = 93
+      Left = 96
       Top = 10
       Width = 75
       Height = 25
