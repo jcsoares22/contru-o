@@ -26,7 +26,7 @@
     Top = 41
     Width = 1295
     Height = 603
-    ActivePage = TabSheet1
+    ActivePage = TabSheet2
     Align = alClient
     TabOrder = 0
     object TabSheet1: TTabSheet
@@ -786,6 +786,7 @@
     end
   end
   object FDQueryVendasCliente2: TFDQuery
+    Active = True
     Connection = DM_Dados.DADOS
     SQL.Strings = (
       'select '
@@ -877,6 +878,21 @@
     Datasets = <>
     Variables = <>
     Style = <>
+    object Data: TfrxDataPage
+      Height = 1000.000000000000000000
+      Width = 1000.000000000000000000
+    end
+    object Page1: TfrxReportPage
+      PaperWidth = 210.000000000000000000
+      PaperHeight = 297.000000000000000000
+      PaperSize = 9
+      LeftMargin = 10.000000000000000000
+      RightMargin = 10.000000000000000000
+      TopMargin = 10.000000000000000000
+      BottomMargin = 10.000000000000000000
+      Frame.Typ = []
+      MirrorMode = []
+    end
   end
   object frCliente2: TfrxReport
     Version = '2022.2.10'
@@ -886,8 +902,8 @@
     PreviewOptions.Zoom = 1.000000000000000000
     PrintOptions.Printer = 'Default'
     PrintOptions.PrintOnSheet = 0
-    ReportOptions.CreateDate = 44784.998324895830000000
-    ReportOptions.LastChange = 44784.998324895830000000
+    ReportOptions.CreateDate = 44784.998324895800000000
+    ReportOptions.LastChange = 44784.998324895800000000
     ScriptLanguage = 'PascalScript'
     ScriptText.Strings = (
       'begin'
@@ -898,5 +914,35 @@
     Datasets = <>
     Variables = <>
     Style = <>
+    object Data: TfrxDataPage
+      Height = 1000.000000000000000000
+      Width = 1000.000000000000000000
+    end
+    object Page1: TfrxReportPage
+      PaperWidth = 210.000000000000000000
+      PaperHeight = 297.000000000000000000
+      PaperSize = 9
+      LeftMargin = 10.000000000000000000
+      RightMargin = 10.000000000000000000
+      TopMargin = 10.000000000000000000
+      BottomMargin = 10.000000000000000000
+      Frame.Typ = []
+      MirrorMode = []
+    end
+    object DialogPage1: TfrxDialogPage
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clBlack
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      DoubleBuffered = False
+      Height = 591.000000000000000000
+      ClientHeight = 552.000000000000000000
+      Left = 265.000000000000000000
+      Top = 150.000000000000000000
+      Width = 791.000000000000000000
+      Scaled = True
+      ClientWidth = 775.000000000000000000
+    end
   end
 end
