@@ -7,11 +7,10 @@ object DM_Dados: TDM_Dados
       'Protocol='
       'User_Name=SYSDBA'
       'Password=pmpsyfwr'
-      'Database=C:\SYS TEC\BIN\DATA\DADOS\DADOS.FDB'
+      'Database=E:\SYS TEC\BIN\DATA\DADOS\DADOS.FDB'
       'DriverID=FB')
     FetchOptions.AssignedValues = [evAutoClose]
     FetchOptions.AutoClose = False
-    Connected = True
     LoginPrompt = False
     OnRecover = DADOSRecover
     Left = 8

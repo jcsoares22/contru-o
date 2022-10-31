@@ -21,14 +21,11 @@ object frmCadastroUsuario: TfrmCadastroUsuario
     Top = 41
     Width = 1124
     Height = 586
-    ActivePage = TabSheet2
+    ActivePage = TabSheet1
     Align = alClient
     TabOrder = 0
-    ExplicitTop = 0
-    ExplicitHeight = 627
     object TabSheet1: TTabSheet
       Caption = 'Pesquisa'
-      ExplicitHeight = 599
       object DBGrid_Cliente: TDBGrid
         Left = 0
         Top = 57
@@ -54,6 +51,7 @@ object frmCadastroUsuario: TfrmCadastroUsuario
           item
             Expanded = False
             FieldName = 'USU_NOME'
+            Width = 64
             Visible = True
           end
           item
@@ -160,7 +158,6 @@ object frmCadastroUsuario: TfrmCadastroUsuario
     object TabSheet2: TTabSheet
       Caption = 'Cadastro'
       ImageIndex = 1
-      ExplicitHeight = 599
       object PageControl1: TPageControl
         Left = 0
         Top = 120
@@ -169,7 +166,6 @@ object frmCadastroUsuario: TfrmCadastroUsuario
         ActivePage = TabSheet4
         Align = alClient
         TabOrder = 0
-        ExplicitTop = 161
         object Geral: TTabSheet
           Caption = 'Geral'
           object checkBoxManutencaoUsuario: TRxCheckBox
@@ -255,7 +251,6 @@ object frmCadastroUsuario: TfrmCadastroUsuario
         Height = 120
         Align = alTop
         TabOrder = 1
-        ExplicitTop = 41
         object Label5: TLabel
           Left = 456
           Top = 64
@@ -364,9 +359,6 @@ object frmCadastroUsuario: TfrmCadastroUsuario
     Color = clMenuHighlight
     ParentBackground = False
     TabOrder = 1
-    ExplicitLeft = 8
-    ExplicitTop = 8
-    ExplicitWidth = 1116
     object btnNovo: TButton
       Left = 16
       Top = 8
